@@ -47,12 +47,19 @@ body {
   background: var(--ink);
   color: var(--gold-pale);
   text-align: center;
-  padding: 0.6rem 1rem;
+  padding: 0.55rem 1rem;
   font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  font-size: clamp(0.55rem, 2.2vw, 0.72rem);
+  letter-spacing: 0.08em;
   position: relative;
   overflow: hidden;
+  white-space: nowrap;
+}
+.announce-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  white-space: nowrap;
 }
 .announce-bar::before {
   content: '';
@@ -1189,12 +1196,7 @@ footer {
   section { padding: 3rem 0; }
   .container { padding: 0 1.25rem; }
 
-  /* --- Announce bar --- */
-  .announce-bar {
-    font-size: 0.65rem;
-    padding: 0.5rem 1rem;
-    line-height: 1.5;
-  }
+  /* --- Announce bar handled by clamp() above --- */
 
   /* --- Section typography --- */
   .section-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
@@ -1309,7 +1311,7 @@ footer {
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
-  ⚖️ &nbsp;Konsultasi Hukum Gratis kini tersedia &mdash; <a href="#konsultasi">Ajukan pertanyaan Anda</a>
+  <span class="announce-text">⚖️ &nbsp;Konsultasi Hukum Gratis &mdash; <a href="#konsultasi">Ajukan Pertanyaan Anda</a></span>
 </div>
 
 <!-- NAVIGATION -->
