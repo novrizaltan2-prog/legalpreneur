@@ -157,6 +157,57 @@ nav {
 .nav-menu a:hover::after { transform: scaleX(1); }
 .nav-menu a:hover { color: var(--ink); }
 
+/* ── NAV DROPDOWN SUBMENU ── */
+.nav-item-dropdown {
+  position: relative;
+}
+.nav-submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(15,14,11,0.13);
+  list-style: none;
+  min-width: 160px;
+  z-index: 300;
+  padding: 0.35rem 0;
+}
+.nav-item-dropdown:hover .nav-submenu {
+  display: block;
+}
+.nav-submenu li a {
+  display: block;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--border-light);
+  border-radius: 0;
+  white-space: nowrap;
+}
+.nav-submenu li:last-child a { border-bottom: none; }
+.nav-submenu li a:hover { background: var(--cream-2); color: var(--gold); }
+
+@media (max-width: 860px) {
+  .nav-item-dropdown:hover .nav-submenu { display: none; }
+  .nav-submenu {
+    display: block !important;
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    background: var(--cream-2);
+    padding: 0;
+  }
+  .nav-submenu li a {
+    padding: 0.65rem 2.5rem;
+    font-size: 0.88rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+}
+
 .nav-cta {
   background: var(--ink) !important;
   color: var(--gold-pale) !important;
@@ -1331,7 +1382,17 @@ footer {
       <li><a href="#" onclick="closeMenu();showPage('home');return false;">Beranda</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Tentang</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
-      <li><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a></li>
+      <li class="nav-item-dropdown"><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a>
+        <ul class="nav-submenu">
+          <li><a href="#" onclick="closeMenu();showPage('konten','semua');return false;">Semua</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','hukum');return false;">⚖️ Hukum</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','mediasi');return false;">🤝 Mediasi</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','finansial');return false;">💰 Finansial</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','digital');return false;">📱 Digital</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','regulasi');return false;">🏛️ Regulasi</a></li>
+          <li><a href="#" onclick="closeMenu();showPage('konten','opini');return false;">✍️ Opini</a></li>
+        </ul>
+      </li>
       <li><a href="#" onclick="closeMenu();showPage('affiliate');return false;">Produk Rekomendasi</a></li>
       <li><a href="#" onclick="closeMenu();showPage('digital');return false;">Produk Digital</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),50);return false;" class="nav-cta">Hubungi Kami</a></li>
@@ -4747,7 +4808,7 @@ function collectHomeElements() {
   homeReady = true;
 }
 
-function showPage(page) {
+function showPage(page, cat) {
   const allPages = ['page-konten','page-affiliate','page-digital','page-dashboard'];
 
   // Semua elemen yang hanya tampil di halaman home
@@ -4789,6 +4850,19 @@ function showPage(page) {
     if (page === 'konten') {
       lp_init();
       setTimeout(lp_renderInsight, 300);
+      // Jika ada kategori, filter setelah render
+      if (cat) {
+        setTimeout(() => {
+          lp_activeFilter = cat;
+          lp_renderPortal();
+          // Update tombol kategori aktif
+          document.querySelectorAll('.lp-cat-btn').forEach(b => {
+            b.classList.remove('active');
+            const btnCat = b.getAttribute('onclick') && b.getAttribute('onclick').match(/lp_filterCat\('([^']+)'/);
+            if (btnCat && btnCat[1] === cat) b.classList.add('active');
+          });
+        }, 100);
+      }
     }
     if (page === 'digital') renderDigital && renderDigital();
     if (page === 'dashboard') {
@@ -5125,6 +5199,10 @@ function lp_openRead(id) {
 
   document.getElementById('lp-read-modal').style.display = '';
   document.body.style.overflow = 'hidden';
+  // Update URL hash agar bisa dibagikan langsung
+  if (id !== '__preview__') {
+    history.replaceState(null, '', '#artikel=' + encodeURIComponent(id));
+  }
 }
 
 // ── DROP CAP TOGGLE ───────────────────────────────────────
@@ -5156,9 +5234,9 @@ function lp_deleteFromRead(id) {
 
 // ── SHARE ─────────────────────────────────────────────────
 function lp_getShareUrl() {
-  // Karena ini SPA, buat URL dengan hash artikel
+  // Gunakan hash agar langsung buka artikel saat link diklik
   const base = window.location.href.split('#')[0].split('?')[0];
-  return lp_currentArticle ? `${base}?artikel=${lp_currentArticle.id}` : base;
+  return lp_currentArticle ? `${base}#artikel=${lp_currentArticle.id}` : base;
 }
 function lp_getShareText() {
   if (!lp_currentArticle) return '';
@@ -5694,6 +5772,8 @@ function lp_previewArticle() {
 function lp_closeRead() {
   document.getElementById('lp-read-modal').style.display = 'none';
   document.body.style.overflow = '';
+  // Bersihkan hash URL saat modal ditutup
+  history.replaceState(null, '', window.location.pathname + window.location.search);
 
   // Jika menutup preview, pulihkan editor dengan data tersimpan
   if (lp_previewState) {
@@ -6289,9 +6369,24 @@ function dashExportPDF() {
 
 // (showPage diperluas langsung di fungsi utama — tidak ada override di sini)
 
-// Auto-track halaman awal
+// Auto-track halaman awal + baca URL hash untuk deep-link artikel
 window.addEventListener('load', () => {
   lpTrackView();
+
+  // Cek apakah ada hash #artikel=ID di URL (untuk link share dari medsos/WA)
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#artikel=')) {
+    const articleId = decodeURIComponent(hash.slice('#artikel='.length));
+    // Tampilkan halaman konten terlebih dahulu
+    showPage('konten');
+    // Buka artikel setelah inisialisasi selesai
+    setTimeout(() => {
+      const art = lp_articles.find(a => a.id === articleId);
+      if (art) {
+        lp_openRead(articleId);
+      }
+    }, 400);
+  }
 });
 
 // ── SCROLL ANIMATIONS ────────────────────────────────────
