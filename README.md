@@ -1382,17 +1382,7 @@ footer {
       <li><a href="#" onclick="closeMenu();showPage('home');return false;">Beranda</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Tentang</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
-      <li class="nav-item-dropdown"><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a>
-        <ul class="nav-submenu">
-          <li><a href="#" onclick="closeMenu();showPage('konten','semua');return false;">Semua</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','hukum');return false;">⚖️ Hukum</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','mediasi');return false;">🤝 Mediasi</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','finansial');return false;">💰 Finansial</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','digital');return false;">📱 Digital</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','regulasi');return false;">🏛️ Regulasi</a></li>
-          <li><a href="#" onclick="closeMenu();showPage('konten','opini');return false;">✍️ Opini</a></li>
-        </ul>
-      </li>
+      <li><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a></li>
       <li><a href="#" onclick="closeMenu();showPage('affiliate');return false;">Produk Rekomendasi</a></li>
       <li><a href="#" onclick="closeMenu();showPage('digital');return false;">Produk Digital</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),50);return false;" class="nav-cta">Hubungi Kami</a></li>
@@ -1637,8 +1627,8 @@ footer {
 
 <!-- ── FILTER KATEGORI ────────────────────────────────── -->
 <div class="lp-filter-bar">
-  <div class="lp-portal-inner">
-    <button class="lp-cat-btn active" onclick="lp_filterCat('semua', this)">Semua</button>
+  <div class="lp-portal-inner" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+    <button class="lp-cat-btn active" onclick="lp_filterCat('semua', this)">📰 Semua</button>
     <button class="lp-cat-btn" onclick="lp_filterCat('hukum', this)">⚖️ Hukum</button>
     <button class="lp-cat-btn" onclick="lp_filterCat('mediasi', this)">🤝 Mediasi</button>
     <button class="lp-cat-btn" onclick="lp_filterCat('finansial', this)">💰 Finansial</button>
@@ -1687,6 +1677,29 @@ footer {
       <ul id="lp-recent-list" class="lp-recent-list"></ul>
     </div>
 
+    <!-- ── FORM KIRIM ARTIKEL (EMBED) ──────────────────── -->
+    <div class="lp-sidebar-box lp-kirim-box" id="lp-kirim-form-box">
+      <div class="lp-sidebar-title">✉️ Kirim Artikel</div>
+      <p style="font-size:0.8rem; color:var(--ink-3); margin:0 0 0.85rem; line-height:1.6;">
+        Punya tulisan soal hukum, mediasi, atau literasi hukum? Kirimkan ke redaksi LegalPreneur.
+      </p>
+      <div class="lp-kirim-field">
+        <input id="lp-kirim-judul" type="text" placeholder="Judul Artikel *" class="lp-kirim-input" maxlength="200">
+      </div>
+      <div class="lp-kirim-field">
+        <input id="lp-kirim-penulis" type="text" placeholder="Nama Penulis" class="lp-kirim-input" maxlength="80">
+      </div>
+      <div class="lp-kirim-field">
+        <textarea id="lp-kirim-isi" placeholder="Isi / ringkasan artikel Anda *" class="lp-kirim-textarea" rows="5" maxlength="5000"></textarea>
+        <div id="lp-kirim-charcount" style="font-size:0.68rem; color:var(--ink-3); text-align:right; margin-top:2px;">0 / 5000</div>
+      </div>
+      <button class="lp-kirim-btn" id="lp-kirim-btn" onclick="lp_kirimFormArtikel()">
+        <span id="lp-kirim-btn-label">📨 Kirim Artikel</span>
+      </button>
+      <div id="lp-kirim-msg" style="display:none; margin-top:0.75rem; padding:0.6rem 0.85rem; border-radius:6px; font-size:0.82rem; text-align:center;"></div>
+    </div>
+    <!-- ── /FORM KIRIM ARTIKEL ──────────────────────────── -->
+
     <!-- STATISTIK INSIGHT SIDEBAR -->
     <div class="lp-sidebar-box lp-insight-box">
       <div class="lp-sidebar-title">📊 Insight Konten</div>
@@ -1716,24 +1729,6 @@ footer {
       <canvas id="lp-week-chart" height="80" style="width:100%;"></canvas>
     </div>
 
-    <!-- INFO ENDORSEMENT / IKLAN -->
-    <div class="lp-sidebar-box lp-endorse-box">
-      <div class="lp-sidebar-title">🤝 Pasang Iklan di Sini</div>
-      <div class="lp-endorse-inner">
-        <div class="lp-endorse-badge">📣 Slot Iklan Tersedia</div>
-        <p class="lp-endorse-desc">Ingin produk atau brand Anda tampil di portal hukum digital terpercaya ini? Jangkau ribuan pembaca di segmen hukum, bisnis, dan literasi digital.</p>
-        <div class="lp-endorse-list">
-          <div class="lp-endorse-item">✅ Banner iklan di halaman utama</div>
-          <div class="lp-endorse-item">✅ Iklan di dalam artikel (in-read)</div>
-          <div class="lp-endorse-item">✅ Slot sidebar premium</div>
-          <div class="lp-endorse-item">✅ Artikel advertorial / sponsored</div>
-          <div class="lp-endorse-item">✅ Review & endorse produk</div>
-        </div>
-        <a href="https://wa.me/6281262195937?text=Halo+Novrizal%2C+saya+tertarik+untuk+beriklan+%2F+endorse+produk+di+portal+LegalPreneur." target="_blank" class="lp-endorse-btn">📱 Hubungi untuk Kerjasama</a>
-        <div class="lp-endorse-note">Harga negosiasi · Respon cepat via WhatsApp</div>
-      </div>
-    </div>
-
   </aside>
 </div>
 
@@ -1751,7 +1746,7 @@ footer {
 
 <div class="page-mini-footer">
   <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
-  <span>LegalPreneur · Novrizal, S.H., CPM</span>
+  <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
   <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
 </div>
 
@@ -1789,6 +1784,36 @@ footer {
       <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
         <button class="dash-export-btn" onclick="dashExportPDF()">📄 Export PDF</button>
         <button class="dash-logout-btn" onclick="dashLogout()">🔒 Kunci Dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Sheets Database Setup Banner -->
+  <div id="dash-firebase-banner" class="dash-inner" style="padding-top:1.5rem; padding-bottom:0;">
+    <div id="dash-firebase-card" style="background:linear-gradient(135deg,#0f2a1a,#1a3d28); border:1.5px solid rgba(34,197,94,0.4); border-radius:12px; padding:1.5rem 2rem; margin-bottom:0;">
+      <div style="display:flex; align-items:flex-start; gap:1rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <div style="font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; color:#4ade80; text-transform:uppercase; margin-bottom:0.5rem;" id="dash-fb-status-label">📊 Status Google Sheets Database</div>
+          <div style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:#f5f0e8; margin-bottom:0.5rem;" id="dash-fb-status-title">Menghubungkan ke database...</div>
+          <div style="font-size:0.88rem; color:rgba(245,240,232,0.6); line-height:1.6;" id="dash-fb-status-desc">Artikel tersimpan di browser (localStorage) + disinkron ke Google Sheets. Tidak hilang saat refresh.</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div style="width:14px; height:14px; border-radius:50%; background:#f59e0b; animation:pulse 1.5s ease-in-out infinite;" id="dash-fb-dot"></div>
+        </div>
+      </div>
+      <!-- Panduan setup Google Sheets — hanya muncul jika belum dikonfigurasi -->
+      <div id="dash-fb-setup-guide" style="display:none; margin-top:1.25rem; border-top:1px solid rgba(34,197,94,0.2); padding-top:1.25rem;">
+        <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; color:#4ade80; text-transform:uppercase; margin-bottom:0.85rem;">📋 Cara Setup Google Sheets Database (Gratis, 5 Menit)</div>
+        <ol style="font-size:0.88rem; color:rgba(245,240,232,0.75); line-height:2.2; padding-left:1.25rem;">
+          <li>Buka <a href="https://sheets.new" target="_blank" style="color:#4ade80;">sheets.new</a> (login akun Google) → beri nama: <strong style="color:#86efac;">LegalPreneur Articles</strong></li>
+          <li>Klik menu <strong style="color:#86efac;">Extensions → Apps Script</strong></li>
+          <li>Hapus semua kode yang ada, lalu paste kode Apps Script dari komentar di dalam file HTML ini (cari bagian <code style="background:rgba(34,197,94,0.15);padding:0.1rem 0.4rem;border-radius:3px;color:#86efac;">/* Paste kode ... */</code>)</li>
+          <li>Klik <strong style="color:#86efac;">Deploy → New deployment</strong> → pilih type: <em>Web App</em></li>
+          <li>Set <em>Execute as:</em> <strong>Me</strong> dan <em>Who has access:</em> <strong>Anyone</strong> → Deploy</li>
+          <li>Copy URL deployment yang muncul (format: <code style="color:#86efac;">https://script.google.com/macros/s/.../exec</code>)</li>
+          <li>Buka file HTML ini → cari <code style="background:rgba(34,197,94,0.15);padding:0.1rem 0.4rem;border-radius:3px;color:#86efac;">LP_SHEETS_URL</code> → tempel URL di situ → simpan</li>
+          <li>Buka kembali website → artikel tersimpan permanen di Google Sheets ✅</li>
+        </ol>
       </div>
     </div>
   </div>
@@ -2047,25 +2072,13 @@ footer {
         <div class="lp-field-hint">Judul yang baik: jelas, padat, dan mengandung kata kunci utama.</div>
       </div>
 
-      <!-- Kategori & Penulis -->
-      <div class="lp-field-row">
-        <div class="lp-field-group" style="flex:1;">
-          <label class="lp-field-label" for="lp-ed-cat">🗂️ Kategori <span class="lp-required">*</span></label>
-          <select id="lp-ed-cat" class="lp-field-input lp-field-select">
-            <option value="">— Pilih Kategori —</option>
-            <option value="hukum">⚖️ Hukum</option>
-            <option value="mediasi">🤝 Mediasi</option>
-            <option value="finansial">💰 Finansial</option>
-            <option value="digital">📱 Digital</option>
-            <option value="regulasi">🏛️ Regulasi</option>
-            <option value="opini">✍️ Opini</option>
-          </select>
-        </div>
-        <div class="lp-field-group" style="flex:1;">
-          <label class="lp-field-label" for="lp-ed-author">✍️ Nama Penulis</label>
-          <input type="text" id="lp-ed-author" class="lp-field-input" placeholder="Novrizal, S.H., CPM" value="Novrizal, S.H., CPM">
-        </div>
+      <!-- Penulis -->
+      <div class="lp-field-group">
+        <label class="lp-field-label" for="lp-ed-author">✍️ Nama Penulis</label>
+        <input type="text" id="lp-ed-author" class="lp-field-input" placeholder="Novrizal, S.I.Kom., S.H., CPM" value="Novrizal, S.I.Kom., S.H., CPM">
       </div>
+      <!-- Kategori disembunyikan, default 'umum' agar sistem tetap berjalan -->
+      <input type="hidden" id="lp-ed-cat" value="umum">
 
       <!-- Ringkasan -->
       <div class="lp-field-group">
@@ -2236,6 +2249,7 @@ footer {
         <button type="button" class="lp-btn-ghost" onclick="lp_saveDraft()">💾 Simpan Draft</button>
         <button type="button" class="lp-btn-ghost" onclick="lp_clearDraftAndForm()" style="color:rgba(248,113,113,0.7); border-color:rgba(248,113,113,0.2);">🗑️ Hapus Draft</button>
         <button type="button" class="lp-btn-ghost" onclick="lp_previewArticle()">👁️ Preview</button>
+        <button type="button" id="lp-ed-delete-btn" class="lp-btn-ghost" onclick="lp_deleteFromEditor()" style="display:none; color:rgba(248,113,113,0.9); border-color:rgba(248,113,113,0.35);">🗑️ Hapus Artikel</button>
         <button type="button" class="lp-btn-publish" onclick="lp_publishArticle()">🚀 Terbitkan Artikel</button>
       </div>
       <div id="lp-editor-msg" style="display:none; margin-top:0.75rem; padding:0.75rem 1rem; border-radius:6px; font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.05em; text-align:center;"></div>
@@ -2298,7 +2312,7 @@ footer {
   font-size: 0.92rem;
   color: rgba(245,240,232,0.55);
   font-weight: 300;
-  max-width: 520px;
+  white-space: nowrap;
 }
 .lp-portal-meta {
   display: flex;
@@ -2593,6 +2607,57 @@ footer {
   border-radius: 8px;
   padding: 1.25rem;
 }
+/* ── FORM KIRIM ARTIKEL SIDEBAR ────────────── */
+.lp-kirim-box { border-color: var(--gold); }
+.lp-kirim-field { margin-bottom: 0.65rem; }
+.lp-kirim-input {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.lp-kirim-input:focus { border-color: var(--gold); }
+.lp-kirim-textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  background: var(--cream);
+  border: 1px solid var(--border-light);
+  border-radius: 5px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  min-height: 90px;
+}
+.lp-kirim-textarea:focus { border-color: var(--gold); }
+.lp-kirim-btn {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  margin-top: 0.25rem;
+}
+.lp-kirim-btn:hover { background: var(--gold-light); }
+.lp-kirim-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+/* ── /FORM KIRIM ARTIKEL ────────────────────── */
 .lp-sidebar-title {
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;
@@ -3582,7 +3647,7 @@ footer {
   </div>
   <div class="page-mini-footer">
     <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
-    <span>LegalPreneur · Novrizal, S.H., CPM</span>
+    <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
     <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
   </div>
 </section>
@@ -3647,7 +3712,7 @@ footer {
   </div>
   <div class="page-mini-footer">
     <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
-    <span>LegalPreneur · Novrizal, S.H., CPM</span>
+    <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
     <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
   </div>
 </section>
@@ -4093,75 +4158,6 @@ footer {
   width: 20px;
   text-align: right;
   flex-shrink: 0;
-}
-
-/* ══════════════════════════════════════
-   ENDORSE BOX — SIDEBAR
-══════════════════════════════════════ */
-.lp-endorse-box {
-  border: 1px solid rgba(184,151,58,0.35) !important;
-  background: var(--ink) !important;
-}
-.lp-endorse-box .lp-sidebar-title { color: var(--gold) !important; }
-.lp-endorse-inner { padding-top: 0.25rem; }
-.lp-endorse-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(34,197,94,0.12);
-  border: 1px solid rgba(34,197,94,0.3);
-  color: #22c55e;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.08em;
-  padding: 0.3rem 0.65rem;
-  border-radius: 20px;
-  margin-bottom: 0.75rem;
-}
-.lp-endorse-desc {
-  font-size: 0.85rem;
-  color: rgba(245,240,232,0.6);
-  line-height: 1.6;
-  margin-bottom: 0.85rem;
-  font-weight: 300;
-}
-.lp-endorse-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin-bottom: 1rem;
-}
-.lp-endorse-item {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.05em;
-  color: rgba(245,240,232,0.7);
-  padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(184,151,58,0.1);
-}
-.lp-endorse-item:last-child { border-bottom: none; }
-.lp-endorse-btn {
-  display: block;
-  text-align: center;
-  background: var(--gold);
-  color: var(--ink);
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: all 0.2s;
-  margin-bottom: 0.5rem;
-}
-.lp-endorse-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
-.lp-endorse-note {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.58rem;
-  color: rgba(245,240,232,0.3);
-  text-align: center;
-  letter-spacing: 0.06em;
 }
 
 /* ══════════════════════════════════════
@@ -4862,12 +4858,21 @@ function showPage(page, cat) {
             if (btnCat && btnCat[1] === cat) b.classList.add('active');
           });
         }, 100);
+      } else {
+        // Reset filter ke 'semua' dan pastikan tombol Semua aktif
+        lp_activeFilter = 'semua';
+        setTimeout(() => {
+          document.querySelectorAll('.lp-cat-btn').forEach(b => b.classList.remove('active'));
+          const allBtn = document.querySelector('.lp-cat-btn');
+          if (allBtn) allBtn.classList.add('active');
+        }, 50);
       }
     }
-    if (page === 'digital') renderDigital && renderDigital();
+    if (page === 'digital') { if (typeof renderDigital === 'function') renderDigital(); }
     if (page === 'dashboard') {
       dashCheckSession();
       lpTrackView();
+      setTimeout(lp_updateFirebaseBanner, 500);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -4938,13 +4943,218 @@ function handleConsult(e) {
 // LEGALPRENEUR — SISTEM ARTIKEL / PORTAL BERITA
 // ════════════════════════════════════════════════════════
 
-// ── DATA STORE (localStorage) ────────────────────────────
-const LP_STORE_KEY = 'lp_articles_v2';
+// ── DATA STORE (Google Sheets sebagai Database) ──────────
+const LP_STORE_KEY = 'lp_articles_v2'; // untuk draft & cache lokal
 let lp_articles = [];
-let lp_currentArticle = null; // article being read
-let lp_editId = null;         // article being edited
+let lp_currentArticle = null;
+let lp_editId = null;
 let lp_activeFilter = 'semua';
 let lp_autoSaveTimer = null;
+let lp_dateTimeInterval = null;
+let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
+
+// ═══════════════════════════════════════════════════════════════
+// ╔══════════════════════════════════════════════════════════╗
+// ║         KONFIGURASI GOOGLE SHEETS DATABASE              ║
+// ║                                                          ║
+// ║  LANGKAH SETUP (5 menit):                               ║
+// ║  1. Buka: https://sheets.new  (buat spreadsheet baru)   ║
+// ║  2. Beri nama: "LegalPreneur Articles"                   ║
+// ║  3. Buka Extensions → Apps Script                        ║
+// ║  4. Hapus semua kode, paste kode dari bawah ini         ║
+// ║  5. Klik Deploy → New Deployment → Web App              ║
+// ║     - Execute as: Me                                     ║
+// ║     - Who has access: Anyone                             ║
+// ║  6. Copy URL deployment, tempel ke LP_SHEETS_URL bawah  ║
+// ╚══════════════════════════════════════════════════════════╝
+// ═══════════════════════════════════════════════════════════════
+
+// ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyiVmMWaZVTK20rhVLH3p8mdRQfmObzFBZQtLC9U7kUdf46_C1DyjKp-xlne5_q1aBc/exec';
+// Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
+// ────────────────────────────────────────────────────────────
+
+// ─── BASE URL UNTUK LINK SHARE ────────────────────────────
+// Jika website sudah punya domain (mis. legalpreneur.my.id atau di Google Sites),
+// isi LP_SITE_URL dengan URL lengkap website. Jika kosong (''), otomatis pakai
+// URL saat ini (cocok untuk Google Sites hosting).
+// Contoh: const LP_SITE_URL = 'https://sites.google.com/view/legalpreneur';
+// Atau:   const LP_SITE_URL = 'https://legalpreneur.my.id';
+const LP_SITE_URL = '';
+// ────────────────────────────────────────────────────────────
+
+// ─── URL GOOGLE APPS SCRIPT UNTUK KIRIM ARTIKEL (form eksternal) ───
+const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbwMFDB4c5uhlGEikqftvMgjz6jZ1GMMvNPhXMhyTm2tnIaaZ3gqPkUexvx-TQ6CD5R6SA/exec';
+// ────────────────────────────────────────────────────────────
+
+// ─── KODE GOOGLE APPS SCRIPT (copy-paste ke Apps Script) ────
+// ╔══════════════════════════════════════════════════════════╗
+// ║  Paste kode berikut ke Google Apps Script Anda:         ║
+// ╚══════════════════════════════════════════════════════════╝
+/*
+const SHEET_NAME = 'LegalPreneur Articles';
+
+function doGet(e) {
+  const action = e.parameter.action;
+  const callback = e.parameter.callback; // untuk JSONP
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
+    || SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME);
+
+  // Setup header jika sheet baru
+  const headers = ['id','title','cat','author','summary','body','tags','img','createdAt','updatedAt'];
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(headers);
+    sheet.getRange(1,1,1,headers.length).setFontWeight('bold').setBackground('#2a2720').setFontColor('#f0e4c0');
+    sheet.setFrozenRows(1);
+  }
+
+  if (action === 'getAll') {
+    const data = sheet.getDataRange().getValues();
+    if (data.length <= 1) return jsonpResponse([], callback);
+    const hdrs = data[0];
+    const rows = data.slice(1).map(row => {
+      const obj = {};
+      hdrs.forEach((h, i) => { obj[h] = row[i]; });
+      return obj;
+    }).filter(row => row.id && row.title); // filter baris kosong
+    return jsonpResponse(rows.reverse(), callback);
+  }
+
+  // FIX: Handle save via GET + JSONP (fallback dari no-cors POST yang gagal)
+  if (action === 'save') {
+    try {
+      const payload = JSON.parse(decodeURIComponent(e.parameter.data || '{}'));
+      const art = payload.article;
+      if (!art || !art.id) return jsonpResponse({ success: false, error: 'No article data' }, callback);
+      const data = sheet.getDataRange().getValues();
+      const hdrs = data[0];
+      const idIdx = hdrs.indexOf('id');
+      let found = false;
+      for (let i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(art.id)) {
+          const row = hdrs.map(h => art[h] !== undefined ? art[h] : '');
+          sheet.getRange(i+1, 1, 1, hdrs.length).setValues([row]);
+          found = true; break;
+        }
+      }
+      if (!found) {
+        const row = hdrs.map(h => art[h] !== undefined ? art[h] : '');
+        sheet.appendRow(row);
+      }
+      return jsonpResponse({ success: true, id: art.id }, callback);
+    } catch(err) {
+      return jsonpResponse({ success: false, error: err.toString() }, callback);
+    }
+  }
+
+  // FIX: Handle delete via GET + JSONP
+  if (action === 'delete') {
+    try {
+      const payload = JSON.parse(decodeURIComponent(e.parameter.data || '{}'));
+      const id = payload.id || e.parameter.id;
+      if (!id) return jsonpResponse({ success: false, error: 'No id' }, callback);
+      const data = sheet.getDataRange().getValues();
+      const hdrs = data[0];
+      const idIdx = hdrs.indexOf('id');
+      for (let i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(id)) {
+          sheet.deleteRow(i+1);
+          return jsonpResponse({ success: true }, callback);
+        }
+      }
+      return jsonpResponse({ success: false, error: 'Tidak ditemukan' }, callback);
+    } catch(err) {
+      return jsonpResponse({ success: false, error: err.toString() }, callback);
+    }
+  }
+
+  return jsonpResponse({ error: 'Unknown action' }, callback);
+}
+
+function doPost(e) {
+  const payload = JSON.parse(e.postData.contents);
+  const action = payload.action;
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
+    || SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME);
+
+  // Setup header jika sheet baru
+  const headers = ['id','title','cat','author','summary','body','tags','img','createdAt','updatedAt'];
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(headers);
+    sheet.getRange(1,1,1,headers.length).setFontWeight('bold').setBackground('#2a2720').setFontColor('#f0e4c0');
+    sheet.setFrozenRows(1);
+  }
+
+  if (action === 'save') {
+    const art = payload.article;
+    const data = sheet.getDataRange().getValues();
+    const hdrs = data[0];
+    const idIdx = hdrs.indexOf('id');
+    // Cari baris existing
+    let found = false;
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][idIdx] === art.id) {
+        // Update baris
+        const row = hdrs.map(h => art[h] !== undefined ? art[h] : '');
+        sheet.getRange(i+1, 1, 1, hdrs.length).setValues([row]);
+        found = true; break;
+      }
+    }
+    if (!found) {
+      // Tambah baris baru
+      const row = hdrs.map(h => art[h] !== undefined ? art[h] : '');
+      sheet.appendRow(row);
+    }
+    return jsonResponse({ success: true, id: art.id });
+  }
+
+  if (action === 'delete') {
+    const id = payload.id;
+    const data = sheet.getDataRange().getValues();
+    const hdrs = data[0];
+    const idIdx = hdrs.indexOf('id');
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][idIdx] === id) {
+        sheet.deleteRow(i+1);
+        return jsonResponse({ success: true });
+      }
+    }
+    return jsonResponse({ success: false, error: 'Tidak ditemukan' });
+  }
+
+  return jsonResponse({ error: 'Unknown action' });
+}
+
+function jsonResponse(data) {
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// JSONP response untuk mendukung cross-origin dari Google Sites
+function jsonpResponse(data, callback) {
+  if (callback) {
+    // JSONP: bungkus data dalam fungsi callback
+    return ContentService
+      .createTextOutput(callback + '(' + JSON.stringify(data) + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return jsonResponse(data);
+}
+*/
+// ────────────────────────────────────────────────────────────
+
+let lp_sheetsReady = false;
+
+// Cek apakah URL sudah dikonfigurasi
+(function lp_sheetsInit() {
+  if (LP_SHEETS_URL && LP_SHEETS_URL !== 'TEMPEL_URL_DEPLOYMENT_ANDA_DI_SINI') {
+    lp_sheetsReady = true;
+    console.log('LegalPreneur: Google Sheets database siap.');
+  } else {
+    console.warn('LegalPreneur: Google Sheets belum dikonfigurasi. Pakai localStorage sementara.');
+  }
+})();
 
 const LP_CAT_LABELS = {
   hukum: '⚖️ Hukum', mediasi: '🤝 Mediasi', finansial: '💰 Finansial',
@@ -5005,18 +5215,333 @@ const LP_TEMPLATES = [
 
 // ── INIT ──────────────────────────────────────────────────
 function lp_init() {
+  lp_updateDateTime();
+  if (!lp_dateTimeInterval) {
+    lp_dateTimeInterval = setInterval(lp_updateDateTime, 60000);
+  }
+  lp_buildTemplateGrid();
+
+  // FIX: Jika sudah punya artikel di memori, langsung render tanpa reload
+  // Ini mencegah artikel hilang saat user klik menu Konten berulang kali
+  if (lp_initialized && lp_articles.length > 0) {
+    lp_renderPortal();
+    return;
+  }
+
+  lp_initialized = true;
+
+  if (lp_sheetsReady) {
+    // Google Sheets sudah dikonfigurasi — load dari cloud
+    lp_loadFromSheets();
+  } else {
+    // Belum dikonfigurasi — pakai localStorage sebagai fallback
+    lp_loadFromLocalStorage();
+  }
+}
+
+function lp_showPortalLoading() {
+  var featuredWrap = document.getElementById('lp-featured-wrap');
+  var gridWrap = document.getElementById('lp-grid-wrap');
+  var empty = document.getElementById('lp-empty');
+  if (featuredWrap) featuredWrap.innerHTML = '<div style="text-align:center;padding:3.5rem 2rem;color:var(--ink-3);font-family:DM Mono,monospace;font-size:0.78rem;letter-spacing:0.1em;line-height:2;"><div style="font-size:2rem;margin-bottom:1rem;">📊</div>Memuat artikel dari Google Sheets...<br><span style="font-size:0.65rem;opacity:0.6;">Mohon tunggu sebentar</span></div>';
+  if (gridWrap) gridWrap.innerHTML = '';
+  if (empty) empty.style.display = 'none';
+}
+
+function lp_loadFromLocalStorage() {
   try {
-    const stored = localStorage.getItem(LP_STORE_KEY);
+    var stored = localStorage.getItem(LP_STORE_KEY);
     lp_articles = stored ? JSON.parse(stored) : [];
   } catch(e) { lp_articles = []; }
   lp_renderPortal();
-  lp_updateDateTime();
-  setInterval(lp_updateDateTime, 60000);
-  lp_buildTemplateGrid();
 }
 
+// ── LOAD DARI GOOGLE SHEETS ───────────────────────────────
+// ──────────────────────────────────────────────────────────
+// SISTEM PENYIMPANAN GANDA:
+//  1. localStorage  → UTAMA (selalu bekerja, langsung, tanpa CORS)
+//  2. Google Sheets → BACKUP CLOUD (sinkronisasi background via JSONP)
+//
+// Cara kerja:
+//  SIMPAN : localStorage dulu (langsung) → Sheets background (async)
+//  MUAT   : localStorage dulu (instan) → coba Sheets JSONP (update jika ada data baru)
+//  HAPUS  : localStorage dulu (langsung) → Sheets background (async)
+// ──────────────────────────────────────────────────────────
+
+// Callback global untuk JSONP dari Google Sheets
+window.lp_sheetsCallback = function(rows) {
+  try {
+    if (!Array.isArray(rows) || rows.length === 0) {
+      // Sheets kosong atau gagal — tetap pakai data localStorage yang sudah ada
+      if (lp_articles.length === 0) lp_loadFromLocalStorage();
+      return;
+    }
+    var mapped = rows.map(function(row) {
+      return {
+        id:        String(row.id || ''),
+        title:     String(row.title || ''),
+        cat:       String(row.cat || 'umum'),
+        author:    String(row.author || 'Novrizal, S.I.Kom., S.H., CPM'),
+        summary:   String(row.summary || ''),
+        body:      String(row.body || ''),
+        tags:      String(row.tags || ''),
+        img:       String(row.img || ''),
+        createdAt: Number(row.createdAt) || Date.now(),
+        updatedAt: Number(row.updatedAt) || Date.now()
+      };
+    }).filter(function(a) { return a.id && a.title; });
+
+    // Gabungkan: Sheets sebagai sumber utama (artikel cloud)
+    // Pertahankan artikel lokal yang belum tersinkron ke Sheets
+    var sheetsIds = mapped.map(function(a) { return a.id; });
+    // Ambil artikel dari localStorage yang ID-nya belum ada di Sheets (belum tersinkron)
+    var localUnsyncedIds = [];
+    try {
+      var localData = JSON.parse(localStorage.getItem(LP_STORE_KEY)) || [];
+      localUnsyncedIds = localData.filter(function(a) {
+        return a.id && a.title && !sheetsIds.includes(a.id);
+      });
+    } catch(e) {}
+
+    // Artikel Sheets + artikel lokal yang belum masuk Sheets
+    lp_articles = mapped.concat(localUnsyncedIds);
+    lp_articles.sort(function(a,b){ return b.createdAt - a.createdAt; });
+
+    // Update localStorage dengan data terbaru dari Sheets
+    try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+    lp_renderPortal();
+
+    // Jika ada artikel lokal yang belum ada di Sheets, sync sekarang
+    if (localUnsyncedIds.length > 0) {
+      localUnsyncedIds.forEach(function(art) {
+        var artForSheets = Object.assign({}, art);
+        if (artForSheets.img && artForSheets.img.startsWith('data:')) artForSheets.img = '';
+        fetch(LP_SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ action: 'save', article: artForSheets })
+        }).catch(function() {});
+      });
+    }
+  } catch(e) {
+    console.warn('lp_sheetsCallback error:', e);
+    // Fallback: tetap pakai localStorage
+    lp_loadFromLocalStorage();
+  } finally {
+    // Hapus script tag JSONP setelah selesai
+    var old = document.getElementById('lp-jsonp-script');
+    if (old && old.parentNode) old.parentNode.removeChild(old);
+    // Batalkan timeout jika callback sudah berhasil lebih dulu
+    if (window._lp_sheetsTimeout) {
+      clearTimeout(window._lp_sheetsTimeout);
+      window._lp_sheetsTimeout = null;
+    }
+  }
+};
+
+// Load dari Google Sheets via JSONP (bekerja tanpa CORS)
+function lp_loadFromSheets() {
+  // 1. Cek apakah localStorage punya data
+  var hasLocalData = false;
+  try {
+    var localRaw = localStorage.getItem(LP_STORE_KEY);
+    var localArr = localRaw ? JSON.parse(localRaw) : [];
+    hasLocalData = Array.isArray(localArr) && localArr.length > 0;
+  } catch(e) {}
+
+  if (hasLocalData) {
+    // Ada data lokal: tampilkan dulu (instan), lalu sync Sheets di background
+    lp_loadFromLocalStorage();
+  } else {
+    // Tidak ada data lokal (browser baru / incognito / setelah clear cache):
+    // Tampilkan indikator loading, tunggu Sheets
+    lp_showPortalLoading();
+  }
+
+  // 2. Jika Sheets dikonfigurasi, load/sync via JSONP
+  if (!lp_sheetsReady) {
+    // Sheets belum dikonfigurasi: render portal dengan data lokal (mungkin kosong)
+    if (!hasLocalData) lp_loadFromLocalStorage();
+    return;
+  }
+
+  lp_fetchFromSheets(false);
+}
+
+function lp_fetchFromSheets(isRetry) {
+  // Hapus script JSONP lama jika ada
+  var old = document.getElementById('lp-jsonp-script');
+  if (old && old.parentNode) old.parentNode.removeChild(old);
+
+  var script = document.createElement('script');
+  script.id = 'lp-jsonp-script';
+  script.src = LP_SHEETS_URL + '?action=getAll&callback=lp_sheetsCallback&t=' + Date.now();
+  script.onerror = function() {
+    var s = document.getElementById('lp-jsonp-script');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+    if (!isRetry) {
+      // Coba sekali lagi setelah 3 detik
+      console.warn('Google Sheets JSONP gagal - mencoba ulang...');
+      setTimeout(function() { lp_fetchFromSheets(true); }, 3000);
+    } else {
+      console.warn('Google Sheets tidak dapat dijangkau - menggunakan localStorage');
+    }
+  };
+  document.head.appendChild(script);
+
+  // Timeout 10 detik: jika Sheets tidak merespons, retry sekali
+  var timeoutId = setTimeout(function() {
+    var s = document.getElementById('lp-jsonp-script');
+    if (s && s.parentNode) {
+      s.parentNode.removeChild(s);
+      if (!isRetry) {
+        console.warn('Google Sheets timeout - mencoba ulang...');
+        setTimeout(function() { lp_fetchFromSheets(true); }, 2000);
+      } else {
+        console.warn('Google Sheets timeout (retry) - tetap pakai localStorage');
+      }
+    }
+    }, 20000); // Simpan timeoutId agar bisa dibatalkan jika callback berhasil lebih dulu
+  window._lp_sheetsTimeout = timeoutId;
+}
+
+// ── SIMPAN KE GOOGLE SHEETS ───────────────────────────────
 function lp_save() {
+  // Simpan ke localStorage (selalu berhasil)
   try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+}
+
+// ── HELPER: Kirim data ke GAS via form POST (menghindari CORS preflight) ──
+function lp_gasPost(payload) {
+  // Gunakan teknik iframe hidden form POST — 100% bypass CORS, tidak butuh CORS header di GAS
+  // Data dikirim sebagai form field 'data' berisi JSON string
+  try {
+    var iframe = document.createElement('iframe');
+    iframe.name = 'lp_gas_post_' + Date.now();
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = LP_SHEETS_URL;
+    form.target = iframe.name;
+    form.style.display = 'none';
+
+    // GAS doPost membaca e.postData.contents — kirim payload sebagai field tersembunyi
+    // Agar GAS bisa baca: gunakan application/x-www-form-urlencoded
+    // Tapi GAS hanya baca e.postData.contents untuk raw body.
+    // Solusi terbaik: encode payload ke query string GET (doGet)
+    // Untuk save/delete: gunakan JSONP GET dengan action=save&data=...
+    document.body.removeChild(iframe);
+
+    // === SOLUSI NYATA: Gunakan JSONP GET dengan data ter-encode ===
+    lp_gasJsonpAction(payload);
+  } catch(e) {
+    console.warn('lp_gasPost error:', e);
+  }
+}
+
+// Kirim aksi ke GAS via JSONP GET (bekerja tanpa CORS)
+function lp_gasJsonpAction(payload) {
+  try {
+    var callbackName = 'lp_gasActionCb_' + Date.now();
+    var scriptEl = document.createElement('script');
+    var dataEncoded = encodeURIComponent(JSON.stringify(payload));
+    scriptEl.src = LP_SHEETS_URL + '?action=' + payload.action + '&data=' + dataEncoded + '&callback=' + callbackName + '&t=' + Date.now();
+    scriptEl.onerror = function() {
+      if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+      if (window[callbackName]) delete window[callbackName];
+    };
+    window[callbackName] = function(result) {
+      if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+      delete window[callbackName];
+      if (result && result.success) {
+        console.log('Google Sheets sync berhasil:', payload.action);
+      } else {
+        console.warn('Google Sheets sync response:', result);
+      }
+    };
+    // Timeout 15 detik
+    setTimeout(function() {
+      if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+      if (window[callbackName]) delete window[callbackName];
+    }, 15000);
+    document.head.appendChild(scriptEl);
+  } catch(e) {
+    console.warn('lp_gasJsonpAction error:', e);
+  }
+}
+
+// Simpan satu artikel ke Sheets + localStorage
+function lp_saveArticleToFirestore(article) {
+  // Nama fungsi dipertahankan agar kompatibel dengan kode lain
+
+  // === LANGKAH 1: Simpan ke localStorage DULU (langsung, tidak pernah gagal) ===
+  var existingIdx = lp_articles.findIndex(function(x) { return x.id === article.id; });
+  if (existingIdx > -1) {
+    lp_articles[existingIdx] = article;
+  } else {
+    lp_articles.unshift(article);
+  }
+  try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+
+  // FIX: Reset flag agar saat kembali ke halaman Konten, artikel baru terrender
+  lp_initialized = false;
+
+  // === LANGKAH 2: Sync ke Google Sheets via JSONP GET (bypass CORS) ===
+  if (lp_sheetsReady) {
+    // Untuk Google Sheets: hapus base64 image (terlalu besar, max ~50k char per cell)
+    var articleForSheets = Object.assign({}, article);
+    if (articleForSheets.img && articleForSheets.img.startsWith('data:')) {
+      articleForSheets.img = '';
+    }
+
+    // Coba fetch no-cors dulu (biasanya berhasil kirim data ke GAS)
+    fetch(LP_SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'save', article: articleForSheets })
+    }).then(function() {
+      console.log('Artikel terkirim ke Google Sheets via POST (background)');
+    }).catch(function(e) {
+      // Fallback: coba via JSONP GET jika POST gagal
+      console.warn('POST gagal, mencoba JSONP:', e.message);
+      lp_gasJsonpAction({ action: 'save', article: articleForSheets });
+    });
+  }
+
+  // Return Promise.resolve() agar kode pemanggil tetap berjalan normal
+  return Promise.resolve({ success: true });
+
+}
+
+// Hapus satu artikel dari localStorage + Sheets
+function lp_deleteArticleFromFirestore(id) {
+  // Nama fungsi dipertahankan agar kompatibel dengan kode lain
+
+  // === LANGKAH 1: Hapus dari localStorage DULU ===
+  lp_articles = lp_articles.filter(function(x) { return x.id !== id; });
+  try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+
+  // FIX: Reset flag agar portal ter-refresh dengan benar
+  lp_initialized = false;
+
+  // === LANGKAH 2: Sync hapus ke Google Sheets di background ===
+  if (lp_sheetsReady) {
+    fetch(LP_SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'delete', id: id })
+    }).catch(function(e) {
+      // Fallback via JSONP GET
+      lp_gasJsonpAction({ action: 'delete', id: id });
+    });
+  }
+
+  return Promise.resolve({ success: true });
 }
 
 // ── DATE/TIME ─────────────────────────────────────────────
@@ -5076,7 +5601,7 @@ function lp_renderFeatured(a) {
         <div class="lp-featured-title">${lp_esc(a.title)}</div>
         <div class="lp-featured-summary">${lp_esc(a.summary)}</div>
         <div class="lp-featured-meta">
-          <span>✍️ ${lp_esc(a.author || 'Novrizal, S.H., CPM')}</span>
+          <span>✍️ ${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</span>
           <span>📅 ${dateStr}</span>
           <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         </div>
@@ -5101,8 +5626,7 @@ function lp_renderCard(a) {
         <div class="lp-card-footer">
           <div class="lp-card-meta">📅 ${dateStr} · ⏱ ${lp_readTime(a.body)} mnt</div>
           <div class="lp-card-actions" onclick="event.stopPropagation()">
-            <button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️</button>
-            <button class="lp-card-del-btn" onclick="lp_deleteArticle('${a.id}')">🗑️</button>
+            <button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button>
           </div>
         </div>
       </div>
@@ -5141,7 +5665,15 @@ function lp_renderCatCounts() {
 function lp_filterCat(cat, btn) {
   lp_activeFilter = cat;
   document.querySelectorAll('.lp-cat-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  if (btn) {
+    btn.classList.add('active');
+  } else {
+    // Dipanggil dari sidebar (btn=null) — cari dan aktifkan tombol yang sesuai
+    document.querySelectorAll('.lp-cat-btn').forEach(b => {
+      const match = b.getAttribute('onclick') && b.getAttribute('onclick').match(/lp_filterCat\('([^']+)'/);
+      if (match && match[1] === cat) b.classList.add('active');
+    });
+  }
   lp_renderPortal();
 }
 
@@ -5177,14 +5709,13 @@ function lp_openRead(id) {
       <div class="lp-read-cat">${catLabel}</div>
       <h1 class="lp-read-title">${lp_esc(a.title)}</h1>
       <div class="lp-read-byline">
-        <span>✍️ <strong>${lp_esc(a.author || 'Novrizal, S.H., CPM')}</strong></span>
+        <span>✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
         <span>📅 ${dateStr}</span>
         <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         <span>🔗 legalpreneur.id</span>
         <span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.35rem;">
           <button class="lp-read-edit-btn" id="lp-dropcap-toggle" onclick="lp_toggleDropcap()" title="Aktifkan Drop Cap (huruf awal besar)" style="opacity:0.55;">Ꞡ Drop Cap</button>
-          ${!isPreview ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>
-          <button class="lp-read-del-btn" onclick="lp_deleteFromRead('${a.id}')" title="Hapus artikel ini">🗑️ Hapus</button>` : ''}
+          ${!isPreview ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
         </span>
       </div>
       <div class="lp-read-summary-block">${lp_esc(a.summary)}</div>
@@ -5199,10 +5730,55 @@ function lp_openRead(id) {
 
   document.getElementById('lp-read-modal').style.display = '';
   document.body.style.overflow = 'hidden';
-  // Update URL hash agar bisa dibagikan langsung
+  // Update URL hash dengan ID artikel agar bisa dibagikan
   if (id !== '__preview__') {
     history.replaceState(null, '', '#artikel=' + encodeURIComponent(id));
   }
+}
+
+// ── BUKA ARTIKEL DARI DATA (untuk link share yang diterima orang lain) ──────
+// Fungsi ini menampilkan artikel langsung dari data JSON yang di-decode dari URL,
+// tanpa memerlukan artikel di localStorage penerima.
+function lp_openReadFromData(a) {
+  if (!a || !a.title || !a.body) return;
+  lp_currentArticle = a;
+
+  const catLabel = LP_CAT_LABELS[a.cat] || a.cat;
+  const dateStr = lp_formatDate(a.createdAt);
+  const tagsHtml = a.tags
+    ? a.tags.split(',').map(t => `<span class="lp-tag-chip">${lp_esc(t.trim())}</span>`).join('')
+    : '';
+  const imgHtml = a.img
+    ? `<img src="${lp_esc(a.img)}" class="lp-read-hero-img" alt="${lp_esc(a.title)}" onerror="this.remove()" style="width:100%;max-height:350px;object-fit:cover;">`
+    : '';
+  const bodyWithAds = lp_injectInReadAds ? lp_injectInReadAds(a.body) : a.body;
+
+  document.getElementById('lp-read-content').innerHTML = `
+    ${imgHtml}
+    <div class="lp-read-body-wrap">
+      <div class="lp-read-brand">
+        <span class="lp-read-brand-legal">Legal</span><span class="lp-read-brand-preneur">Preneur</span>
+      </div>
+      <div class="lp-read-cat">${catLabel}</div>
+      <h1 class="lp-read-title">${lp_esc(a.title)}</h1>
+      <div class="lp-read-byline">
+        <span>✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
+        <span>📅 ${dateStr}</span>
+        <span>⏱ ${lp_readTime(a.body)} menit baca</span>
+        <span>🔗 legalpreneur.site</span>
+        <span style="margin-left:auto; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--gold); padding:0.28rem 0.65rem; background:rgba(184,151,58,0.08); border:1px solid rgba(184,151,58,0.25); border-radius:4px;">🔗 Dibagikan</span>
+      </div>
+      <div class="lp-read-summary-block">${lp_esc(a.summary)}</div>
+      <div class="lp-read-article-body" id="lp-article-body-el">${bodyWithAds}</div>
+      ${tagsHtml ? `<div class="lp-read-tags">${tagsHtml}</div>` : ''}
+      <div class="lp-read-disclaimer">
+        <span class="lp-disclaimer-icon">ℹ️</span>
+        <p>Konten ini dimuat untuk tujuan edukasi dan informasi. Apabila terdapat pihak yang merasa dirugikan, hak jawab dapat disampaikan sesuai ketentuan Undang‑Undang Nomor 40 Tahun 1999 tentang Pers.</p>
+      </div>
+    </div>`;
+
+  document.getElementById('lp-read-modal').style.display = '';
+  document.body.style.overflow = 'hidden';
 }
 
 // ── DROP CAP TOGGLE ───────────────────────────────────────
@@ -5225,56 +5801,240 @@ function lp_deleteFromRead(id) {
   const a = lp_articles.find(x => x.id === id);
   if (!a) return;
   if (!confirm(`Hapus artikel "${a.title}"?\nTindakan ini tidak dapat dibatalkan.`)) return;
-  lp_articles = lp_articles.filter(x => x.id !== id);
-  lp_save();
-  lp_renderPortal();
   lp_closeRead();
+  lp_deleteArticleFromFirestore(id).then(function() {
+    lp_renderPortal();
+  });
 }
 
 
-// ── SHARE ─────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════
+// SHARE SYSTEM — ARTIKEL BISA DIBUKA SIAPAPUN
+// Artikel di-encode sebagai base64 di URL hash, sehingga
+// penerima link bisa membaca artikel tanpa perlu data di localStorage.
+// ══════════════════════════════════════════════════════
+
+function lp_encodeArticleToUrl(article) {
+  // Gunakan format pendek: hanya ID artikel (#artikel=ID)
+  // Penerima link akan load artikel dari Google Sheets berdasarkan ID
+
+  // Prioritas sumber URL:
+  // 1. LP_SITE_URL (dikonfigurasi manual - paling andal untuk share)
+  // 2. window.location.href jika BUKAN protokol file://
+  // 3. Jika file:// (buka lokal), kembalikan hanya hash saja
+  var base;
+  if (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim() !== '') {
+    base = LP_SITE_URL.trim().split('#')[0].split('?')[0].replace(/\/$/, '');
+  } else if (window.location.protocol !== 'file:') {
+    base = window.location.href.split('#')[0].split('?')[0].replace(/\/$/, '');
+  } else {
+    // File lokal: tidak bisa dibagikan ke luar, tampilkan peringatan
+    return '#artikel=' + encodeURIComponent(article.id);
+  }
+  return base + '#artikel=' + encodeURIComponent(article.id);
+}
+
 function lp_getShareUrl() {
-  // Gunakan hash agar langsung buka artikel saat link diklik
-  const base = window.location.href.split('#')[0].split('?')[0];
-  return lp_currentArticle ? `${base}#artikel=${lp_currentArticle.id}` : base;
+  if (!lp_currentArticle || lp_currentArticle.id === '__preview__') {
+    return window.location.href.split('#')[0];
+  }
+  var url = lp_encodeArticleToUrl(lp_currentArticle);
+  // FIX: Jika file lokal (url hanya berupa hash), gunakan window.location lengkap
+  if (!url.startsWith('http')) {
+    var base = window.location.href.split('#')[0].split('?')[0].replace(/\/$/, '');
+    url = base + '#artikel=' + encodeURIComponent(lp_currentArticle.id);
+  }
+  return url;
 }
+
 function lp_getShareText() {
   if (!lp_currentArticle) return '';
   return `${lp_currentArticle.title} — ${lp_currentArticle.summary.slice(0,80)}...`;
 }
+
+// ── COPY TO CLIPBOARD — iframe-safe (Google Sites compatible) ────────────────
+// Google Sites embed HTML dalam <iframe> yang memblokir clipboard API dan
+// execCommand. Solusi: coba clipboard API dulu, jika gagal tampilkan modal
+// popup berisi link agar user bisa menyalin secara manual (Ctrl+C / tap & hold).
+function lp_copyToClipboard(text, btnEl, successMsg, origHTML) {
+  const markDone = () => {
+    if (btnEl) {
+      btnEl.textContent = successMsg;
+      setTimeout(() => { btnEl.innerHTML = origHTML || successMsg; }, 2500);
+    }
+  };
+
+  const showCopyModal = () => {
+    // Hapus modal lama jika ada
+    const old = document.getElementById('lp-copy-modal');
+    if (old) old.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'lp-copy-modal';
+    modal.style.cssText = `
+      position:fixed;inset:0;z-index:9999;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(15,14,11,0.75);backdrop-filter:blur(4px);
+      padding:1rem;
+    `;
+    modal.innerHTML = `
+      <div style="
+        background:var(--white,#fdfcf9);border-radius:10px;
+        padding:1.75rem 2rem;max-width:540px;width:100%;
+        box-shadow:0 24px 80px rgba(15,14,11,0.35);
+        font-family:'Crimson Pro',Georgia,serif;
+      ">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:var(--gold,#b8973a);text-transform:uppercase;margin-bottom:0.75rem;">🔗 Salin Link Artikel</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--ink,#0f0e0b);margin-bottom:1rem;line-height:1.35;">
+          Pilih teks di bawah lalu tekan <kbd style="background:var(--cream-2,#ede6d6);border:1px solid #ccc;border-radius:3px;padding:0.1rem 0.4rem;font-size:0.85rem;">Ctrl+C</kbd> atau tahan untuk menyalin
+        </div>
+        <textarea id="lp-copy-ta" readonly style="
+          width:100%;min-height:80px;padding:0.75rem;
+          font-family:'DM Mono',monospace;font-size:0.68rem;
+          background:var(--cream,#f5f0e8);border:2px solid var(--gold,#b8973a);
+          border-radius:6px;color:var(--ink,#0f0e0b);
+          resize:none;outline:none;word-break:break-all;line-height:1.5;
+        ">${text}</textarea>
+        <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+          <button id="lp-copy-try-btn" style="
+            flex:1;background:var(--ink,#0f0e0b);color:var(--gold-pale,#f0e4c0);
+            border:none;border-radius:5px;padding:0.75rem 1rem;
+            font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:700;
+            letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;
+          ">📋 Salin Otomatis</button>
+          <button onclick="document.getElementById('lp-copy-modal').remove()" style="
+            background:transparent;border:1px solid rgba(92,87,73,0.3);
+            border-radius:5px;padding:0.75rem 1rem;
+            font-family:'DM Mono',monospace;font-size:0.7rem;
+            color:var(--ink-3,#5c5749);cursor:pointer;
+          ">✕ Tutup</button>
+        </div>
+        <div id="lp-copy-status" style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink-3,#5c5749);margin-top:0.6rem;min-height:1.2em;text-align:center;"></div>
+      </div>`;
+
+    document.body.appendChild(modal);
+
+    // Auto-select teks di textarea
+    const ta = document.getElementById('lp-copy-ta');
+    setTimeout(() => { ta.focus(); ta.select(); }, 80);
+
+    // Tombol salin otomatis
+    document.getElementById('lp-copy-try-btn').addEventListener('click', () => {
+      const statusEl = document.getElementById('lp-copy-status');
+      ta.focus(); ta.select();
+      // Coba clipboard API
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => {
+            statusEl.textContent = '✅ Berhasil disalin!';
+            statusEl.style.color = '#22c55e';
+            markDone();
+            setTimeout(() => modal.remove(), 1200);
+          })
+          .catch(() => {
+            // Coba execCommand
+            try {
+              const ok = document.execCommand('copy');
+              if (ok) {
+                statusEl.textContent = '✅ Berhasil disalin!';
+                statusEl.style.color = '#22c55e';
+                markDone();
+                setTimeout(() => modal.remove(), 1200);
+              } else {
+                statusEl.textContent = 'Tekan Ctrl+C (Windows/Linux) atau ⌘+C (Mac) setelah teks terpilih.';
+              }
+            } catch(e) {
+              statusEl.textContent = 'Tekan Ctrl+C (Windows/Linux) atau ⌘+C (Mac) setelah teks terpilih.';
+            }
+          });
+      } else {
+        try {
+          const ok = document.execCommand('copy');
+          statusEl.textContent = ok ? '✅ Berhasil disalin!' : 'Tekan Ctrl+C setelah teks terpilih.';
+          if (ok) { statusEl.style.color = '#22c55e'; markDone(); setTimeout(() => modal.remove(), 1200); }
+        } catch(e) {
+          statusEl.textContent = 'Tekan Ctrl+C setelah teks terpilih di atas.';
+        }
+      }
+    });
+
+    // Tutup modal jika klik di luar
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  };
+
+  // Coba clipboard API langsung terlebih dahulu
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text)
+      .then(() => { markDone(); })
+      .catch(() => showCopyModal());
+  } else {
+    // Coba execCommand dulu sebelum tampilkan modal
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0;';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (ok) { markDone(); } else { showCopyModal(); }
+    } catch(e) {
+      showCopyModal();
+    }
+  }
+}
+
 function lp_shareWA() {
-  const text = encodeURIComponent(lp_getShareText() + '\n\nBaca selengkapnya: ' + lp_getShareUrl());
+  const url = lp_getShareUrl();
+  if (!url || !url.startsWith('http')) {
+    lp_shareCopy(); // tampilkan pesan error konfigurasi
+    return;
+  }
+  const text = encodeURIComponent(
+    `*${lp_currentArticle ? lp_currentArticle.title : 'Artikel LegalPreneur'}*\n\n` +
+    `${lp_currentArticle ? lp_currentArticle.summary.slice(0,120) + '...' : ''}\n\n` +
+    `Baca selengkapnya:\n${url}\n\n— Portal Hukum LegalPreneur\nNovrizal, S.I.Kom., S.H., CPM`
+  );
   window.open('https://wa.me/?text=' + text, '_blank');
 }
+
 function lp_shareCopy() {
-  navigator.clipboard.writeText(lp_getShareUrl()).then(() => {
-    const btn = document.getElementById('lp-copy-btn');
-    if (btn) { btn.textContent = '✅ Tersalin!'; setTimeout(() => btn.textContent = '🔗 Salin Link', 2000); }
-  });
+  const btn = document.getElementById('lp-copy-btn');
+  const origHTML = btn ? btn.innerHTML : '🔗 Salin Link';
+  var url = lp_getShareUrl();
+
+  // FIX: Jika dibuka dari file lokal, gunakan window.location.href (path file lokal)
+  // sehingga user tetap bisa menyalin link artikel untuk dibuka di browser yang sama
+  if (!url || url === 'FILE_LOKAL_BELUM_UPLOAD_KE_HOSTING' || url === '') {
+    url = window.location.href.split('#')[0];
+    if (lp_currentArticle && lp_currentArticle.id && lp_currentArticle.id !== '__preview__') {
+      url = url + '#artikel=' + encodeURIComponent(lp_currentArticle.id);
+    }
+  }
+
+  lp_copyToClipboard(url, btn, '✅ Tersalin!', origHTML);
 }
+
 function lp_shareX() {
-  const text = encodeURIComponent(lp_getShareText());
+  const text = encodeURIComponent(lp_getShareText() + ' #LegalPreneur #Hukum');
   const url = encodeURIComponent(lp_getShareUrl());
   window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank');
 }
+
 function lp_shareFB() {
   const url = encodeURIComponent(lp_getShareUrl());
   window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
 }
+
 function lp_shareIG() {
-  // Instagram tidak mendukung direct share link; salin URL ke clipboard
-  navigator.clipboard.writeText(lp_getShareUrl()).then(() => {
-    const btn = document.querySelector('.lp-share-btn-ig');
-    if (btn) {
-      const orig = btn.innerHTML;
-      btn.textContent = '✅ Link disalin! Paste di IG Story';
-      setTimeout(() => btn.innerHTML = orig, 2500);
-    }
-    window.open('https://www.instagram.com/', '_blank');
-  });
+  const btn = document.querySelector('.lp-share-btn-ig');
+  const origHTML = btn ? btn.innerHTML : '📸 Instagram';
+  lp_copyToClipboard(lp_getShareUrl(), btn, '✅ Link disalin! Paste di Bio/Story IG', origHTML);
+  setTimeout(() => window.open('https://www.instagram.com/', '_blank'), 300);
 }
+
 function lp_shareThreads() {
-  const text = encodeURIComponent(lp_getShareText() + '\n' + lp_getShareUrl());
+  const text = encodeURIComponent(
+    `${lp_getShareText()}\n\nBaca: ${lp_getShareUrl()}\n\n#LegalPreneur #Hukum`
+  );
   window.open(`https://www.threads.net/intent/post?text=${text}`, '_blank');
 }
 
@@ -5382,7 +6142,7 @@ function lp_openEditor(id) {
     modeLabel.textContent = '✏️ Edit Artikel';
     document.getElementById('lp-ed-title').value   = a.title;
     document.getElementById('lp-ed-cat').value     = a.cat;
-    document.getElementById('lp-ed-author').value  = a.author || 'Novrizal, S.H., CPM';
+    document.getElementById('lp-ed-author').value  = a.author || 'Novrizal, S.I.Kom., S.H., CPM';
     document.getElementById('lp-ed-summary').value = a.summary;
     document.getElementById('lp-ed-body').innerHTML = a.body;
     document.getElementById('lp-ed-tags').value    = a.tags || '';
@@ -5403,7 +6163,7 @@ function lp_openEditor(id) {
         if (!draft.id && draft.title) {
           document.getElementById('lp-ed-title').value   = draft.title || '';
           document.getElementById('lp-ed-cat').value     = draft.cat || '';
-          document.getElementById('lp-ed-author').value  = draft.author || 'Novrizal, S.H., CPM';
+          document.getElementById('lp-ed-author').value  = draft.author || 'Novrizal, S.I.Kom., S.H., CPM';
           document.getElementById('lp-ed-summary').value = draft.summary || '';
           document.getElementById('lp-ed-body').innerHTML = draft.body || '';
           document.getElementById('lp-ed-tags').value    = draft.tags || '';
@@ -5424,6 +6184,9 @@ function lp_openEditor(id) {
 
   document.getElementById('lp-editor-msg').style.display = 'none';
   lp_updateSummaryCount();
+  // Tampilkan tombol Hapus hanya saat edit artikel yang sudah ada
+  const delBtn = document.getElementById('lp-ed-delete-btn');
+  if (delBtn) delBtn.style.display = id ? '' : 'none';
   document.getElementById('lp-editor-modal').style.display = '';
   document.body.style.overflow = 'hidden';
   lp_startAutoSave();
@@ -5432,7 +6195,7 @@ function lp_openEditor(id) {
 function lp_clearForm() {
   document.getElementById('lp-ed-title').value   = '';
   document.getElementById('lp-ed-cat').value     = '';
-  document.getElementById('lp-ed-author').value  = 'Novrizal, S.H., CPM';
+  document.getElementById('lp-ed-author').value  = 'Novrizal, S.I.Kom., S.H., CPM';
   document.getElementById('lp-ed-summary').value = '';
   document.getElementById('lp-ed-body').innerHTML = '';
   document.getElementById('lp-ed-tags').value    = '';
@@ -5638,7 +6401,7 @@ function lp_insertShopeeAd() {
 
 function lp_insertLynkAd() {
   const lynkUrl = prompt('URL Lynk.id / Produk Digital (kosongkan untuk pakai default):', 'http://lynk.id/novriz.digital') || 'http://lynk.id/novriz.digital';
-  const label = prompt('Nama produk digital:', 'Panduan Hukum Praktis oleh Novrizal, S.H., CPM') || 'Panduan Hukum Praktis oleh Novrizal, S.H., CPM';
+  const label = prompt('Nama produk digital:', 'Panduan Hukum Praktis oleh Novrizal, S.I.Kom., S.H., CPM') || 'Panduan Hukum Praktis oleh Novrizal, S.I.Kom., S.H., CPM';
   const html = `<div class="lp-inread-ad lp-inread-ad-lynk"><div class="lp-inread-ad-label">📚 Iklan · Produk Digital</div><div class="lp-inread-ad-body"><div class="lp-inread-ad-icon">📖</div><div class="lp-inread-ad-text-wrap"><div class="lp-inread-ad-title">${label}</div><div class="lp-inread-ad-desc">Tersedia di Lynk.id — e-book, game edukasi hukum, dan panduan digital.</div></div><a href="${lynkUrl}" target="_blank" class="lp-inread-ad-cta">📖 Dapatkan Sekarang</a></div></div><p></p>`;
   document.execCommand('insertHTML', false, html);
   document.getElementById('lp-ed-body').focus();
@@ -5813,19 +6576,18 @@ function lp_closeRead() {
 // ── PUBLISH ───────────────────────────────────────────────
 function lp_publishArticle() {
   const title = document.getElementById('lp-ed-title').value.trim();
-  const cat = document.getElementById('lp-ed-cat').value;
+  const cat = document.getElementById('lp-ed-cat').value || 'umum';
   const summary = document.getElementById('lp-ed-summary').value.trim();
   const body = document.getElementById('lp-ed-body').innerHTML.trim();
 
   if (!title) { lp_showEditorMsg('❌ Judul artikel wajib diisi.', 'error'); return; }
-  if (!cat) { lp_showEditorMsg('❌ Pilih kategori artikel.', 'error'); return; }
   if (!summary) { lp_showEditorMsg('❌ Ringkasan artikel wajib diisi.', 'error'); return; }
   if (!body || body === '<br>') { lp_showEditorMsg('❌ Isi artikel tidak boleh kosong.', 'error'); return; }
 
   const article = {
     id: lp_editId || ('lp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7)),
     title, cat,
-    author: document.getElementById('lp-ed-author').value.trim() || 'Novrizal, S.H., CPM',
+    author: document.getElementById('lp-ed-author').value.trim() || 'Novrizal, S.I.Kom., S.H., CPM',
     summary, body,
     tags: document.getElementById('lp-ed-tags').value.trim(),
     img: lp_getImgSrc(),
@@ -5833,33 +6595,177 @@ function lp_publishArticle() {
     updatedAt: Date.now()
   };
 
-  if (lp_editId) {
-    const idx = lp_articles.findIndex(x => x.id === lp_editId);
-    if (idx > -1) lp_articles[idx] = article;
-    else lp_articles.unshift(article);
-  } else {
-    lp_articles.unshift(article);
-  }
+  // Tampilkan loading di tombol
+  const btn = document.querySelector('.lp-btn-publish');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Menyimpan...'; }
 
-  lp_save();
-  lp_renderPortal();
-  lp_closeEditor();
-
-  // Brief success toast
-  setTimeout(() => {
-    const wrap = document.getElementById('lp-featured-wrap');
-    if (wrap) wrap.scrollIntoView({ behavior: 'smooth' });
-  }, 200);
+  // Simpan ke localStorage dulu (langsung berhasil) + sync Sheets background
+  lp_saveArticleToFirestore(article).then(function() {
+    // Selalu render ulang portal setelah simpan
+    lp_renderPortal();
+    lp_closeEditor();
+    if (btn) { btn.disabled = false; btn.textContent = '🚀 Terbitkan Artikel'; }
+    // Kirim notifikasi artikel ke Google Apps Script eksternal
+    kirimArtikel(article);
+    setTimeout(function() {
+      const wrap = document.getElementById('lp-featured-wrap');
+      if (wrap) wrap.scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+    // Tampilkan info jika Sheets dikonfigurasi
+    if (lp_sheetsReady) {
+      console.log('Artikel tersimpan di localStorage & dikirim ke Google Sheets (background)');
+    }
+  }).catch(function(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '🚀 Terbitkan Artikel'; }
+    lp_showEditorMsg('❌ Gagal menyimpan: ' + e.message, 'error');
+  });
 }
 
+// ── KIRIM ARTIKEL KE GOOGLE SHEETS EKSTERNAL ────────────────
+function kirimArtikel(article) {
+  if (!LP_KIRIM_URL) return;
+  var data = {
+    title:   article.title,
+    date:    new Date().toLocaleDateString('id-ID'),
+    author:  article.author || 'Novrizal',
+    content: article.body,
+    url:     window.location.href
+  };
+  fetch(LP_KIRIM_URL, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then(function() {
+    console.log('Artikel berhasil dikirim ke form eksternal.');
+  }).catch(function(e) {
+    console.warn('kirimArtikel gagal (tidak mempengaruhi penyimpanan utama):', e.message);
+  });
+}
+
+// ── FORM KIRIM ARTIKEL (SIDEBAR EMBED) ──────────────────────
+// Fungsi ini mengirim data dari form sidebar ke Google Sheets via LP_KIRIM_URL
+function lp_kirimFormArtikel() {
+  var judul  = (document.getElementById('lp-kirim-judul')  || {}).value || '';
+  var penulis = (document.getElementById('lp-kirim-penulis') || {}).value || '';
+  var isi    = (document.getElementById('lp-kirim-isi')    || {}).value || '';
+  var btn    = document.getElementById('lp-kirim-btn');
+  var msg    = document.getElementById('lp-kirim-msg');
+  var label  = document.getElementById('lp-kirim-btn-label');
+
+  // Validasi
+  if (!judul.trim()) { lp_kirimShowMsg('❌ Judul artikel wajib diisi.', 'error'); return; }
+  if (!isi.trim())   { lp_kirimShowMsg('❌ Isi artikel tidak boleh kosong.', 'error'); return; }
+  if (!LP_KIRIM_URL) { lp_kirimShowMsg('⚠️ URL pengiriman belum dikonfigurasi.', 'error'); return; }
+
+  // Loading state
+  if (btn)   { btn.disabled = true; }
+  if (label) { label.textContent = '⏳ Mengirim...'; }
+  if (msg)   { msg.style.display = 'none'; }
+
+  var data = {
+    title:   judul.trim(),
+    date:    new Date().toLocaleDateString('id-ID'),
+    author:  penulis.trim() || 'Anonim',
+    content: isi.trim(),
+    url:     window.location.href
+  };
+
+  fetch(LP_KIRIM_URL, {
+    method: 'POST',
+    body: JSON.stringify(data)
+  }).then(function() {
+    lp_kirimShowMsg('✅ Artikel berhasil dikirim ke redaksi!', 'success');
+    // Reset form
+    var judulEl   = document.getElementById('lp-kirim-judul');
+    var penulisEl = document.getElementById('lp-kirim-penulis');
+    var isiEl     = document.getElementById('lp-kirim-isi');
+    var counter   = document.getElementById('lp-kirim-charcount');
+    if (judulEl)   judulEl.value = '';
+    if (penulisEl) penulisEl.value = '';
+    if (isiEl)     isiEl.value = '';
+    if (counter)   counter.textContent = '0 / 5000';
+    if (btn)   { btn.disabled = false; }
+    if (label) { label.textContent = '📨 Kirim Artikel'; }
+  }).catch(function(e) {
+    // Coba via no-cors (tidak bisa baca respons, tapi data terkirim)
+    fetch(LP_KIRIM_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(data)
+    }).then(function() {
+      lp_kirimShowMsg('✅ Artikel terkirim! (mode no-cors)', 'success');
+      var judulEl   = document.getElementById('lp-kirim-judul');
+      var penulisEl = document.getElementById('lp-kirim-penulis');
+      var isiEl     = document.getElementById('lp-kirim-isi');
+      if (judulEl)   judulEl.value = '';
+      if (penulisEl) penulisEl.value = '';
+      if (isiEl)     isiEl.value = '';
+    }).catch(function() {
+      lp_kirimShowMsg('❌ Gagal mengirim. Cek koneksi internet Anda.', 'error');
+    }).finally(function() {
+      if (btn)   { btn.disabled = false; }
+      if (label) { label.textContent = '📨 Kirim Artikel'; }
+    });
+  });
+}
+
+function lp_kirimShowMsg(text, type) {
+  var msg = document.getElementById('lp-kirim-msg');
+  if (!msg) return;
+  msg.textContent = text;
+  msg.style.display = 'block';
+  if (type === 'success') {
+    msg.style.background = 'rgba(74,222,128,0.12)';
+    msg.style.color = '#166534';
+    msg.style.border = '1px solid rgba(74,222,128,0.35)';
+  } else {
+    msg.style.background = 'rgba(239,68,68,0.1)';
+    msg.style.color = '#991b1b';
+    msg.style.border = '1px solid rgba(239,68,68,0.25)';
+  }
+  // Auto-hide pesan sukses setelah 5 detik
+  if (type === 'success') {
+    setTimeout(function() {
+      if (msg) msg.style.display = 'none';
+    }, 5000);
+  }
+}
+
+// Char counter untuk textarea kirim artikel
+document.addEventListener('DOMContentLoaded', function() {
+  var isiEl   = document.getElementById('lp-kirim-isi');
+  var counter = document.getElementById('lp-kirim-charcount');
+  if (isiEl && counter) {
+    isiEl.addEventListener('input', function() {
+      counter.textContent = isiEl.value.length + ' / 5000';
+    });
+  }
+});
+// ── /FORM KIRIM ARTIKEL ─────────────────────────────────────
+
 // ── DELETE ────────────────────────────────────────────────
+function lp_deleteFromEditor() {
+  if (!lp_editId) return;
+  const a = lp_articles.find(x => x.id === lp_editId);
+  if (!a) return;
+  if (!confirm('Hapus artikel "' + a.title + '"?\nTindakan ini tidak dapat dibatalkan.')) return;
+  const idToDelete = lp_editId;
+  lp_editId = null;
+  lp_closeEditor();
+  lp_deleteArticleFromFirestore(idToDelete).then(function() {
+    // localStorage sudah diupdate di dalam lp_deleteArticleFromFirestore
+    lp_renderPortal();
+    // Google Sheets: sync sudah dilakukan background
+  });
+}
+
 function lp_deleteArticle(id) {
   const a = lp_articles.find(x => x.id === id);
   if (!a) return;
-  if (!confirm(`Hapus artikel "${a.title}"? Tindakan ini tidak dapat dibatalkan.`)) return;
-  lp_articles = lp_articles.filter(x => x.id !== id);
-  lp_save();
-  lp_renderPortal();
+  if (!confirm('Hapus artikel "' + a.title + '"? Tindakan ini tidak dapat dibatalkan.')) return;
+  lp_deleteArticleFromFirestore(id).then(function() {
+    // localStorage sudah diupdate di dalam lp_deleteArticleFromFirestore
+    lp_renderPortal();
+  });
 }
 
 // ── HELPERS ───────────────────────────────────────────────
@@ -6086,6 +6992,74 @@ function dashLogout() {
   document.getElementById('dash-pw-input').value = '';
 }
 
+function lp_updateFirebaseBanner() {
+  var dot = document.getElementById('dash-fb-dot');
+  var title = document.getElementById('dash-fb-status-title');
+  var desc = document.getElementById('dash-fb-status-desc');
+  var guide = document.getElementById('dash-fb-setup-guide');
+  var label = document.getElementById('dash-fb-status-label');
+  if (!dot) return;
+
+  if (!lp_sheetsReady) {
+    // Belum dikonfigurasi
+    dot.style.background = '#f59e0b';
+    dot.style.animation = 'pulse 2s ease-in-out infinite';
+    if (title) title.textContent = 'Tersimpan di Browser ✔ (Sheets Opsional)';
+    if (desc) desc.textContent = 'Artikel sudah tersimpan permanen di browser ini dan tidak hilang saat refresh. Hubungkan Google Sheets untuk backup cloud multi-perangkat.';
+    if (guide) guide.style.display = '';
+    if (label) label.textContent = '📊 Database: Browser (localStorage)';
+  } else {
+    // Cek koneksi ke Google Sheets via JSONP (sama seperti sistem load utama)
+    // Set status menunggu dulu
+    dot.style.background = '#f59e0b';
+    dot.style.animation = 'pulse 1.5s ease-in-out infinite';
+    if (title) title.textContent = 'Menghubungkan ke Google Sheets...';
+    if (label) label.textContent = '📊 Database: Menghubungkan...';
+
+    var cbName = 'lp_dashCheckCallback_' + Date.now();
+    var checkScript = document.createElement('script');
+    var timeoutCheck = setTimeout(function() {
+      var s = document.getElementById('lp-dash-check-script');
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+      if (window[cbName]) delete window[cbName];
+      dot.style.background = '#f59e0b';
+      dot.style.animation = 'pulse 1.5s ease-in-out infinite';
+      if (title) title.textContent = 'Menghubungkan ke Google Sheets...';
+      if (desc) desc.textContent = 'Sedang menyambung ke Google Sheets. Pastikan URL deployment sudah benar.';
+      if (guide) guide.style.display = '';
+      if (label) label.textContent = '📊 Database: Menghubungkan...';
+    }, 8000);
+
+    window[cbName] = function() {
+      clearTimeout(timeoutCheck);
+      var s = document.getElementById('lp-dash-check-script');
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+      delete window[cbName];
+      dot.style.background = '#22c55e';
+      dot.style.animation = 'pulse 2s ease-in-out infinite';
+      if (title) title.textContent = 'Tersimpan: Browser + Google Sheets ✔';
+      if (desc) desc.textContent = 'Artikel tersimpan langsung di browser (tidak hilang saat refresh) dan disinkron ke Google Sheets sebagai backup cloud.';
+      if (guide) guide.style.display = 'none';
+      if (label) label.textContent = '📊 Database: localStorage + Sheets ✔';
+    };
+
+    checkScript.id = 'lp-dash-check-script';
+    checkScript.src = LP_SHEETS_URL + '?action=getAll&callback=' + cbName + '&t=' + Date.now();
+    checkScript.onerror = function() {
+      clearTimeout(timeoutCheck);
+      var s = document.getElementById('lp-dash-check-script');
+      if (s && s.parentNode) s.parentNode.removeChild(s);
+      if (window[cbName]) delete window[cbName];
+      dot.style.background = '#f59e0b';
+      if (title) title.textContent = 'Menghubungkan ke Google Sheets...';
+      if (desc) desc.textContent = 'Sedang menyambung ke Google Sheets. Pastikan URL deployment sudah benar.';
+      if (guide) guide.style.display = '';
+      if (label) label.textContent = '📊 Database: Menghubungkan...';
+    };
+    document.head.appendChild(checkScript);
+  }
+}
+
 function dashCheckSession() {
   try {
     if (sessionStorage.getItem(DASH_SESSION_KEY) === '1') {
@@ -6205,7 +7179,7 @@ function dashRenderTable(s) {
       <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3);">${i+1}</td>
       <td><strong>${lp_esc(a.title.length > 50 ? a.title.slice(0,50)+'…' : a.title)}</strong></td>
       <td><span class="d-table-cat">${LP_CAT_LABELS[a.cat]||a.cat}</span></td>
-      <td style="font-size:0.85rem; color:var(--ink-3);">${lp_esc(a.author||'Novrizal, S.H., CPM')}</td>
+      <td style="font-size:0.85rem; color:var(--ink-3);">${lp_esc(a.author||'Novrizal, S.I.Kom., S.H., CPM')}</td>
       <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3); white-space:nowrap;">${lp_formatDate(a.createdAt)}</td>
       <td class="d-table-reads">${readCount}</td>
       <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3);">${lp_readTime(a.body)}m</td>
@@ -6373,19 +7347,35 @@ function dashExportPDF() {
 window.addEventListener('load', () => {
   lpTrackView();
 
-  // Cek apakah ada hash #artikel=ID di URL (untuk link share dari medsos/WA)
+  // Cek apakah ada hash #artikel=ID di URL (format link share)
   const hash = window.location.hash;
+
   if (hash && hash.startsWith('#artikel=')) {
     const articleId = decodeURIComponent(hash.slice('#artikel='.length));
-    // Tampilkan halaman konten terlebih dahulu
     showPage('konten');
-    // Buka artikel setelah inisialisasi selesai
     setTimeout(() => {
-      const art = lp_articles.find(a => a.id === articleId);
-      if (art) {
-        lp_openRead(articleId);
-      }
-    }, 400);
+      lp_init();
+      // Tunggu sampai Sheets selesai load, lalu buka artikel
+      // Batas: 60 percobaan x 300ms = 18 detik (cukup untuk Sheets response)
+      let attempts = 0;
+      const maxAttempts = 60;
+      const tryOpen = setInterval(() => {
+        attempts++;
+        const art = lp_articles.find(a => a.id === articleId);
+        if (art) {
+          clearInterval(tryOpen);
+          lp_openRead(articleId);
+        } else if (attempts >= maxAttempts) {
+          clearInterval(tryOpen);
+          // Artikel tidak ditemukan — tampilkan pesan ke user
+          const featuredWrap = document.getElementById('lp-featured-wrap');
+          if (featuredWrap) {
+            featuredWrap.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--ink-3);font-family:DM Mono,monospace;font-size:0.8rem;letter-spacing:0.08em;">⚠️ Artikel tidak ditemukan. Mungkin sudah dihapus atau link tidak valid.<br><br><button onclick="lp_renderPortal()" style="margin-top:1rem;background:var(--ink);color:var(--gold-pale);border:none;border-radius:5px;padding:0.65rem 1.25rem;font-family:DM Mono,monospace;font-size:0.7rem;cursor:pointer;">← Lihat Semua Artikel</button></div>';
+          }
+          console.warn('Artikel tidak ditemukan setelah ' + maxAttempts + ' percobaan:', articleId);
+        }
+      }, 300);
+    }, 100);
   }
 });
 
