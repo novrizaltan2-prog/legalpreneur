@@ -9,7 +9,7 @@
 <!-- ═══ OPEN GRAPH (WhatsApp, Facebook, Telegram, dll) ═══ -->
 <meta id="og-title"       property="og:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
 <meta id="og-description" property="og:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
-<meta id="og-image"       property="og:image"       content="">
+<meta id="og-image"       property="og:image"       content="https://novrizaltan2-prog.github.io/legalpreneur/og-default.png">
 <meta id="og-image-w"     property="og:image:width"  content="1200">
 <meta id="og-image-h"     property="og:image:height" content="630">
 <meta id="og-url"         property="og:url"          content="">
@@ -20,7 +20,7 @@
 <meta id="tw-card"        name="twitter:card"        content="summary_large_image">
 <meta id="tw-title"       name="twitter:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
 <meta id="tw-description" name="twitter:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
-<meta id="tw-image"       name="twitter:image"       content="">
+<meta id="tw-image"       name="twitter:image"       content="https://novrizaltan2-prog.github.io/legalpreneur/og-default.png">
 <meta                     name="twitter:site"        content="@Novriz_Tan">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6113,6 +6113,15 @@ function lp_deleteFromRead(id) {
 // WhatsApp, Telegram, Facebook, X/Twitter membaca meta tag OG
 // saat link pertama kali dibagikan. Fungsi ini memperbarui tag
 // tersebut secara dinamis agar preview menampilkan gambar & judul artikel.
+//
+// CATATAN PENTING — GitHub Pages & hosting statis:
+// Platform messenger (WA, Telegram, dll) membaca OG tags saat
+// crawling, SEBELUM JavaScript dijalankan. Oleh karena itu,
+// meta tag yang diubah JS di sini hanya efektif untuk platform
+// yang re-crawl setelah JS selesai (mis. beberapa versi Facebook).
+// Solusi terbaik: pastikan setiap artikel punya URL gambar eksternal
+// (bukan base64/data:), dan gunakan tombol share yang sudah menyertakan
+// URL gambar langsung di teks pesan (lihat lp_shareWA).
 function lp_updateOgTags(a) {
   if (!a) return;
   // Bangun URL artikel
@@ -6122,7 +6131,19 @@ function lp_updateOgTags(a) {
   const articleUrl = siteBase ? siteBase + '#artikel=' + encodeURIComponent(a.id) : '';
   const title      = a.title || 'LegalPreneur';
   const desc       = a.summary || 'Artikel hukum & literasi digital oleh Novrizal, S.I.Kom., S.H., CPM';
-  const img        = a.img && !a.img.startsWith('data:') ? a.img : '';
+
+  // Gunakan URL gambar eksternal artikel (bukan base64).
+  // Jika tidak ada gambar, buat OG image otomatis via microlink.io
+  // (service gratis yang generate screenshot/card dari teks)
+  let img = (a.img && !a.img.startsWith('data:') && a.img.startsWith('http')) ? a.img : '';
+  if (!img && articleUrl) {
+    // Generate OG image otomatis berisi judul & nama situs menggunakan
+    // layanan Microlink Cards (gratis, tidak perlu API key)
+    const encodedTitle = encodeURIComponent(title);
+    const encodedSub   = encodeURIComponent('LegalPreneur — Portal Hukum Digital');
+    img = 'https://api.microlink.io/?url=' + encodeURIComponent(articleUrl)
+        + '&screenshot=true&meta=false&embed=screenshot.url';
+  }
 
   // Helper update meta
   function setMeta(id, val) {
@@ -6141,7 +6162,6 @@ function lp_updateOgTags(a) {
     setMeta('tw-image', img);
     document.getElementById('tw-card')?.setAttribute('content', 'summary_large_image');
   } else {
-    // Tanpa gambar: gunakan card ringkas
     document.getElementById('tw-card')?.setAttribute('content', 'summary');
   }
 }
@@ -6328,13 +6348,20 @@ function lp_copyToClipboard(text, btnEl, successMsg, origHTML) {
 function lp_shareWA() {
   const url = lp_getShareUrl();
   if (!url || !url.startsWith('http')) {
-    lp_shareCopy(); // tampilkan pesan error konfigurasi
+    lp_shareCopy();
     return;
   }
+  const a = lp_currentArticle;
+  const title   = a ? a.title : 'Artikel LegalPreneur';
+  const summary = a ? a.summary.slice(0, 120) + '...' : '';
+  // Sertakan URL gambar artikel agar WhatsApp auto-generate preview thumbnail
+  const imgLine = (a && a.img && !a.img.startsWith('data:') && a.img.startsWith('http'))
+    ? '\n\n📷 ' + a.img : '';
   const text = encodeURIComponent(
-    `*${lp_currentArticle ? lp_currentArticle.title : 'Artikel LegalPreneur'}*\n\n` +
-    `${lp_currentArticle ? lp_currentArticle.summary.slice(0,120) + '...' : ''}\n\n` +
-    `Baca selengkapnya:\n${url}\n\n— Portal Hukum LegalPreneur\nNovrizal, S.I.Kom., S.H., CPM`
+    '*' + title + '*\n\n' +
+    summary + '\n\n' +
+    'Baca selengkapnya:\n' + url + imgLine + '\n\n' +
+    '— Portal Hukum LegalPreneur\nNovrizal, S.I.Kom., S.H., CPM'
   );
   window.open('https://wa.me/?text=' + text, '_blank');
 }
