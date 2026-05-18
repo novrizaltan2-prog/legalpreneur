@@ -5212,12 +5212,7 @@ function handleConsult(e) {
 // ── DATA STORE (Google Sheets sebagai Database) ──────────
 const LP_STORE_KEY = 'lp_articles_v2'; // untuk draft & cache lokal
 
-// ── BERSIHKAN ARTIKEL LAMA DARI LOCALSTORAGE ─────────────
-// Jalankan sekali: hapus semua artikel yang tersimpan secara lokal
-// agar format seragam dengan artikel baru yang akan dibuat.
-(function lp_clearOldArticles() {
-  try { localStorage.removeItem(LP_STORE_KEY); } catch(e) {}
-})();
+// Artikel di localStorage dipertahankan antar sesi (tidak dihapus saat refresh).
 let lp_articles = [];
 let lp_currentArticle = null;
 let lp_editId = null;
@@ -5243,7 +5238,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyiVmMWaZVTK20rhVLH3p8mdRQfmObzFBZQtLC9U7kUdf46_C1DyjKp-xlne5_q1aBc/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz0lk-MgqlmgQY9OnINBm98C5Gki0Up-vpnAXHuHGkdA_S8rvhLBxsMSj5egecdWoi4/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -5265,7 +5260,7 @@ const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbwMFDB4c5uhlGEikqf
 // ║  Paste kode berikut ke Google Apps Script Anda:         ║
 // ╚══════════════════════════════════════════════════════════╝
 /*
-const SHEET_NAME = 'LegalPreneur Articles';
+const SHEET_NAME = 'Sheet1';
 
 function doGet(e) {
   const action = e.parameter.action;
@@ -5896,7 +5891,11 @@ function lp_renderFeatured(a) {
           <span>🕐 ${dateStr}</span>
           <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         </div>
-        <button class="lp-featured-read" onclick="event.stopPropagation();lp_openRead('${a.id}')">Baca Selengkapnya →</button>
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <button class="lp-featured-read" onclick="event.stopPropagation();lp_openRead('${a.id}')">Baca Selengkapnya →</button>
+          ${lp_isOwner() ? `<button class="lp-card-edit-btn" onclick="event.stopPropagation();lp_openEditor('${a.id}')" style="flex-shrink:0;">✏️ Edit</button>` : ''}
+          ${lp_isOwner() ? `<button class="lp-card-edit-btn" onclick="event.stopPropagation();lp_deleteArticle('${a.id}')" style="flex-shrink:0;color:#f87171;">🗑️ Hapus</button>` : ''}
+        </div>
       </div>
     </div>`;
 }
@@ -5908,7 +5907,7 @@ function lp_renderCard(a) {
     ? `<img src="${lp_esc(a.img)}" alt="${lp_esc(a.title)}" onerror="this.parentElement.innerHTML='<div class=lp-card-no-img>${lp_catIcon(a.cat)}</div>'">`
     : `<div class="lp-card-no-img">${lp_catIcon(a.cat)}</div>`;
   const editBtn = lp_isOwner()
-    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button></div>`
+    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button><button class="lp-card-edit-btn" onclick="lp_deleteArticle('${a.id}')" style="color:#f87171;">🗑️ Hapus</button></div>`
     : '';
   return `
     <div class="lp-article-card" onclick="lp_openRead('${a.id}')">
