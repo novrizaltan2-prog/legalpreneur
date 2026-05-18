@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LegalPreneur — Hukum - Bisnis - Digital</title>
+<title>LegalPreneur — Advokat & Konsultan Hukum Digital</title>
 <meta name="description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1646,6 +1646,14 @@ img { max-width: 100%; height: auto; }
     </div>
     <div class="lp-portal-meta">
       <span id="lp-date-now" class="lp-date-live"></span>
+      <!-- Info user login -->
+      <div id="lp-user-status-bar" style="display:none; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:rgba(245,240,232,0.7);">
+        <span id="lp-user-greeting"></span>
+        <button onclick="lp_logout()" style="background:rgba(184,151,58,0.15); border:1px solid rgba(184,151,58,0.3); border-radius:4px; padding:0.3rem 0.65rem; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--gold); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(184,151,58,0.3)'" onmouseout="this.style.background='rgba(184,151,58,0.15)'">🔒 Keluar</button>
+      </div>
+      <div id="lp-auth-btn-wrap" style="display:none;">
+        <button onclick="lp_showAuthBox()" style="background:var(--gold); color:var(--ink); border:none; border-radius:5px; padding:0.5rem 1.1rem; font-family:'DM Mono',monospace; font-size:0.65rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">✍️ Daftar / Masuk</button>
+      </div>
       <div id="lp-write-btn-wrap" style="display:none;">
         <button class="lp-write-btn" onclick="lp_openEditor(null)">✏️ &nbsp;Tulis Artikel Baru</button>
       </div>
@@ -1653,15 +1661,60 @@ img { max-width: 100%; height: auto; }
   </div>
 </div>
 
-<!-- ── VISITOR NOTICE (hanya tampil untuk pengunjung) ─── -->
-<div id="lp-visitor-notice" style="display:none; max-width:700px; margin:3rem auto; padding:2rem 2.5rem; background:var(--white); border:1px solid var(--border-light); border-radius:10px; text-align:center; box-shadow:var(--shadow);">
-  <div style="font-size:2.5rem; margin-bottom:1rem;">🔒</div>
-  <div style="font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--ink); margin-bottom:0.75rem;">Konten Eksklusif Pemilik Web</div>
-  <p style="color:var(--ink-3); font-size:1rem; line-height:1.7; margin-bottom:1.5rem; font-weight:300;">Daftar artikel hanya dapat dilihat oleh pemilik web. Namun, jika Anda memiliki link artikel yang dibagikan, Anda tetap dapat membacanya langsung.</p>
-  <div style="font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; color:var(--ink-3); padding:0.75rem 1rem; background:var(--cream); border-radius:6px; border:1px dashed var(--border-light);">Pemilik web: Login melalui menu <strong style="color:var(--gold);">Dashboard</strong> untuk mengakses & mengelola artikel.</div>
+<!-- ── AUTH BOX (Login / Daftar untuk menulis artikel) ─── -->
+<div id="lp-visitor-notice" style="display:none;"></div>
+<div id="lp-auth-box" style="display:none; max-width:480px; margin:2.5rem auto 0; padding:2rem 2.5rem; background:var(--white); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-lg);">
+  <div style="text-align:center; margin-bottom:1.5rem;">
+    <div style="font-size:2rem; margin-bottom:0.5rem;">✍️</div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--ink);">Daftar / Masuk untuk Menulis</div>
+    <p style="color:var(--ink-3); font-size:0.88rem; line-height:1.6; margin-top:0.4rem;">Buat akun atau masuk untuk mengirimkan & mengelola artikel di portal LegalPreneur.</p>
+  </div>
+  <!-- Tab Switch -->
+  <div style="display:flex; gap:0; border:1px solid var(--border-light); border-radius:8px; overflow:hidden; margin-bottom:1.25rem;">
+    <button id="lp-auth-tab-login" onclick="lp_switchAuthTab('login')" style="flex:1; padding:0.6rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; border:none; cursor:pointer; background:var(--ink); color:var(--gold-pale); transition:all 0.2s;">🔓 MASUK</button>
+    <button id="lp-auth-tab-register" onclick="lp_switchAuthTab('register')" style="flex:1; padding:0.6rem; font-family:'DM Mono',monospace; font-size:0.7rem; letter-spacing:0.08em; border:none; cursor:pointer; background:var(--cream-2); color:var(--ink-3); transition:all 0.2s;">📝 DAFTAR</button>
+  </div>
+  <!-- Login Form -->
+  <div id="lp-auth-login-form">
+    <div style="margin-bottom:0.85rem;">
+      <input type="email" id="lp-login-email" placeholder="Email Anda" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''" onkeydown="if(event.key==='Enter')lp_doLogin()">
+    </div>
+    <div style="margin-bottom:1rem;">
+      <input type="password" id="lp-login-pw" placeholder="Password" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''" onkeydown="if(event.key==='Enter')lp_doLogin()">
+    </div>
+    <button onclick="lp_doLogin()" style="width:100%; padding:0.75rem; background:var(--ink); color:var(--gold-pale); border:none; border-radius:6px; font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='var(--ink)';this.style.color='var(--gold-pale)'">🔓 MASUK</button>
+    <div id="lp-login-err" style="display:none; color:#ef4444; font-family:'DM Mono',monospace; font-size:0.68rem; text-align:center; margin-top:0.65rem;"></div>
+  </div>
+  <!-- Register Form -->
+  <div id="lp-auth-register-form" style="display:none;">
+    <div style="margin-bottom:0.85rem;">
+      <input type="text" id="lp-reg-name" placeholder="Nama Lengkap *" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''">
+    </div>
+    <div style="margin-bottom:0.85rem;">
+      <input type="email" id="lp-reg-email" placeholder="Email *" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''">
+    </div>
+    <div style="margin-bottom:0.85rem;">
+      <input type="password" id="lp-reg-pw" placeholder="Password (min. 6 karakter) *" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''">
+    </div>
+    <div style="margin-bottom:1rem;">
+      <input type="password" id="lp-reg-pw2" placeholder="Konfirmasi Password *" style="width:100%; padding:0.7rem 1rem; background:var(--cream); border:1px solid var(--border-light); border-radius:6px; font-family:'Crimson Pro',serif; font-size:1rem; color:var(--ink); outline:none; box-sizing:border-box; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''" onkeydown="if(event.key==='Enter')lp_doRegister()">
+    </div>
+    <button onclick="lp_doRegister()" style="width:100%; padding:0.75rem; background:var(--gold); color:var(--ink); border:none; border-radius:6px; font-family:'DM Mono',monospace; font-size:0.75rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">📝 DAFTAR SEKARANG</button>
+    <div id="lp-reg-err" style="display:none; font-family:'DM Mono',monospace; font-size:0.68rem; text-align:center; margin-top:0.65rem;"></div>
+  </div>
 </div>
 
-<!-- ── FILTER KATEGORI ────────────────────────────────── -->
+<!-- ── BREAKING NEWS TICKER ────────────────── -->
+<div class="lp-breaking-bar">
+  <div class="lp-breaking-inner" id="lp-ticker-inner">
+    <span><span class="lp-breaking-label">TERKINI</span><span class="lp-breaking-text">Portal Hukum & Literasi Digital LegalPreneur — Informasi hukum terpercaya oleh Novrizal, S.I.Kom., S.H., CPM</span></span>
+    <span><span class="lp-breaking-label">INFO</span><span class="lp-breaking-text">Konsultasi hukum gratis: WhatsApp 0812-6219-5937 — Advokat, Mediator Bersertifikat</span></span>
+    <span><span class="lp-breaking-label">TERKINI</span><span class="lp-breaking-text">Portal Hukum & Literasi Digital LegalPreneur — Informasi hukum terpercaya oleh Novrizal, S.I.Kom., S.H., CPM</span></span>
+    <span><span class="lp-breaking-label">INFO</span><span class="lp-breaking-text">Konsultasi hukum gratis: WhatsApp 0812-6219-5937 — Advokat, Mediator Bersertifikat</span></span>
+  </div>
+</div>
+
+
 <div class="lp-filter-bar">
   <div class="lp-portal-inner" style="display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
     <button class="lp-cat-btn active" onclick="lp_filterCat('semua', this)">📰 Semua</button>
@@ -1713,28 +1766,7 @@ img { max-width: 100%; height: auto; }
       <ul id="lp-recent-list" class="lp-recent-list"></ul>
     </div>
 
-    <!-- ── FORM KIRIM ARTIKEL (EMBED) ──────────────────── -->
-    <div class="lp-sidebar-box lp-kirim-box" id="lp-kirim-form-box">
-      <div class="lp-sidebar-title">✉️ Kirim Artikel</div>
-      <p style="font-size:0.8rem; color:var(--ink-3); margin:0 0 0.85rem; line-height:1.6;">
-        Punya tulisan soal hukum, mediasi, atau literasi hukum? Kirimkan ke redaksi LegalPreneur.
-      </p>
-      <div class="lp-kirim-field">
-        <input id="lp-kirim-judul" type="text" placeholder="Judul Artikel *" class="lp-kirim-input" maxlength="200">
-      </div>
-      <div class="lp-kirim-field">
-        <input id="lp-kirim-penulis" type="text" placeholder="Nama Penulis" class="lp-kirim-input" maxlength="80">
-      </div>
-      <div class="lp-kirim-field">
-        <textarea id="lp-kirim-isi" placeholder="Isi / ringkasan artikel Anda *" class="lp-kirim-textarea" rows="5" maxlength="5000"></textarea>
-        <div id="lp-kirim-charcount" style="font-size:0.68rem; color:var(--ink-3); text-align:right; margin-top:2px;">0 / 5000</div>
-      </div>
-      <button class="lp-kirim-btn" id="lp-kirim-btn" onclick="lp_kirimFormArtikel()">
-        <span id="lp-kirim-btn-label">📨 Kirim Artikel</span>
-      </button>
-      <div id="lp-kirim-msg" style="display:none; margin-top:0.75rem; padding:0.6rem 0.85rem; border-radius:6px; font-size:0.82rem; text-align:center;"></div>
-    </div>
-    <!-- ── /FORM KIRIM ARTIKEL ──────────────────────────── -->
+    <!-- ── /FORM KIRIM ARTIKEL DIHAPUS ──────────────────────────── -->
 
     <!-- STATISTIK INSIGHT SIDEBAR -->
     <div class="lp-sidebar-box lp-insight-box">
@@ -2140,6 +2172,9 @@ img { max-width: 100%; height: auto; }
           <input type="text" id="lp-ed-imgurl" class="lp-field-input" placeholder="Atau tempel URL gambar: https://..." style="font-size:0.85rem;" oninput="lp_previewUrl(this.value)">
           <button type="button" class="lp-btn-sm" onclick="lp_clearImg()">✕ Hapus</button>
         </div>
+        <div style="margin-top:0.5rem;">
+          <input type="text" id="lp-ed-imgcaption" class="lp-field-input" placeholder="Keterangan foto / caption (opsional)" style="font-size:0.85rem;">
+        </div>
         <div class="lp-field-hint">Format: JPG, PNG, WEBP. Ukuran ideal: 1200×630px (rasio 16:9).</div>
       </div>
 
@@ -2302,9 +2337,33 @@ img { max-width: 100%; height: auto; }
   padding: 0 2rem;
 }
 .lp-portal-header {
-  background: var(--ink);
+  background: linear-gradient(135deg, #0f0e0b 0%, #1a1816 55%, #0d0c09 100%);
   padding: 2.5rem 0 2rem;
   border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.lp-portal-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 70% at 0% 100%, rgba(184,151,58,0.13) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 50% at 100% 0%, rgba(184,151,58,0.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+.lp-portal-header::after {
+  content: '§';
+  position: absolute;
+  right: 3rem;
+  top: -1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 14rem;
+  font-weight: 900;
+  color: rgba(184,151,58,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
 }
 .lp-portal-inner.lp-portal-body {
   display: grid;
@@ -2623,8 +2682,146 @@ img { max-width: 100%; height: auto; }
 }
 .lp-card-del-btn:hover { border-color: #dc3545; background: #fff5f5; }
 
-/* ── EMPTY STATE ─────────────────────────── */
-.lp-empty-state {
+/* ── AUTH BOX ANIMATION ──────────────────── */
+#lp-auth-box {
+  animation: lp-fadein 0.3s ease;
+}
+@keyframes lp-fadein { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+/* ── PORTAL HEADER ENHANCED ─────────────── */
+.lp-portal-header {
+  background: linear-gradient(135deg, var(--ink) 0%, #1a1816 50%, #0f0e0b 100%);
+  padding: 2.5rem 0 2rem;
+  border-bottom: 3px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.lp-portal-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 0% 100%, rgba(184,151,58,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 100% 0%, rgba(184,151,58,0.07) 0%, transparent 50%);
+  pointer-events: none;
+}
+.lp-portal-header::after {
+  content: '§';
+  position: absolute;
+  right: 4rem;
+  top: -1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 12rem;
+  font-weight: 900;
+  color: rgba(184,151,58,0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── BREAKING NEWS TICKER ─────────────────── */
+.lp-breaking-bar {
+  background: var(--gold);
+  padding: 0.4rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.lp-breaking-inner {
+  display: inline-flex;
+  gap: 3rem;
+  animation: lp-ticker 30s linear infinite;
+  white-space: nowrap;
+}
+.lp-breaking-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--gold);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-right: 0.75rem;
+}
+.lp-breaking-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+@keyframes lp-ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── ARTICLE CARD ENHANCED ─────────────────── */
+.lp-article-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.lp-article-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.lp-article-card:hover::before { transform: scaleX(1); }
+.lp-article-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(15,14,11,0.16);
+}
+
+/* ── FEATURED CARD ENHANCED ────────────────── */
+.lp-featured-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── USER STATUS BAR ──────────────────────── */
+#lp-user-status-bar {
+  background: rgba(184,151,58,0.1);
+  border: 1px solid rgba(184,151,58,0.25);
+  border-radius: 20px;
+  padding: 0.4rem 0.85rem;
+}
+
+/* ── SECTION BG ALTERNATING ─────────────────── */
+#page-konten {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+}
+.lp-portal-inner.lp-portal-body {
+  background: transparent;
+}
+
+/* ── FILTER BAR ENHANCED ────────────────── */
+.lp-filter-bar {
+  background: linear-gradient(90deg, var(--ink-2), var(--ink));
+  border-bottom: 2px solid rgba(184,151,58,0.3);
+  padding: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 68px;
+  z-index: 50;
+}
+
+.lp-cat-btn.active {
+  background: var(--gold) !important;
+  color: var(--ink) !important;
+  border-bottom-color: var(--gold) !important;
+}
+
+
   text-align: center;
   padding: 4rem 2rem;
   background: var(--white);
@@ -2840,6 +3037,20 @@ img { max-width: 100%; height: auto; }
 }
 .lp-ad-side-btn:hover { background: rgba(34,197,94,0.25); }
 
+/* ── HERO IMAGE CAPTION ───────────────────── */
+.lp-hero-img-caption {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+  text-align: center;
+  padding: 0.5rem 1.5rem 0.25rem;
+  background: var(--cream-2);
+  border-bottom: 1px solid var(--border-light);
+  font-style: italic;
+  line-height: 1.5;
+}
+
 /* ── READ MODAL ─────────────────────────── */
 .lp-modal-overlay {
   position: fixed;
@@ -2944,6 +3155,9 @@ img { max-width: 100%; height: auto; }
   gap: 0.65rem;
 }
 .lp-read-byline strong { color: var(--ink); }
+.lp-byline-author { color: #e07820 !important; font-weight: 600; }
+.lp-byline-author strong { color: #e07820 !important; }
+.lp-byline-datetime { color: #e07820 !important; font-weight: 600; }
 
 /* Tombol Edit & Hapus di dalam byline */
 .lp-read-action-btns {
@@ -3044,6 +3258,10 @@ img { max-width: 100%; height: auto; }
   line-height: 1.9;
   color: var(--ink);
   letter-spacing: 0.008em;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin: 0.5rem 0;
 }
 .lp-read-article-body h1 {
   font-family: 'Playfair Display', serif;
@@ -5256,6 +5474,7 @@ function lp_init() {
     lp_dateTimeInterval = setInterval(lp_updateDateTime, 60000);
   }
   lp_buildTemplateGrid();
+  lp_updateUserBar();
 
   // FIX: Jika sudah punya artikel di memori, langsung render tanpa reload
   // Ini mencegah artikel hilang saat user klik menu Konten berulang kali
@@ -5592,12 +5811,12 @@ function lp_updateDateTime() {
 
 // ── RENDER PORTAL (dengan kontrol akses pemilik) ──────────
 function lp_renderPortalWithOwnerCheck() {
-  // Sembunyikan / tampilkan tombol Tulis Artikel sesuai sesi pemilik
+  // Tombol Tulis Artikel: tampil untuk owner ATAU pengguna terdaftar (lp_isLoggedIn)
   const writeBtnWrap = document.getElementById('lp-write-btn-wrap');
-  if (writeBtnWrap) writeBtnWrap.style.display = lp_isOwner() ? '' : 'none';
-  // Sembunyikan form kirim artikel dari pengunjung
+  if (writeBtnWrap) writeBtnWrap.style.display = (lp_isOwner() || lp_isLoggedIn()) ? '' : 'none';
+  // Form kirim artikel: tampil untuk semua (termasuk visitor yang sudah daftar)
   const kirimBox = document.getElementById('lp-kirim-form-box');
-  if (kirimBox) kirimBox.style.display = lp_isOwner() ? '' : 'none';
+  if (kirimBox) kirimBox.style.display = lp_isLoggedIn() || lp_isOwner() ? '' : 'none';
   // Re-render konten portal
   lp_renderPortal();
 }
@@ -5618,18 +5837,7 @@ function lp_renderPortal() {
 
   if (!featuredWrap) return;
 
-  // Pengunjung biasa: sembunyikan daftar artikel, tampilkan pesan
-  if (!isOwner) {
-    featuredWrap.innerHTML = '';
-    if (gridWrap) gridWrap.innerHTML = '';
-    if (empty) empty.style.display = 'none';
-    if (visitorNotice) visitorNotice.style.display = '';
-    lp_renderSidebar();
-    lp_renderCatCounts();
-    return;
-  }
-
-  // Pemilik web: sembunyikan notice, tampilkan daftar artikel
+  // Semua pengunjung bisa melihat artikel — sembunyikan visitor notice
   if (visitorNotice) visitorNotice.style.display = 'none';
 
   if (filtered.length === 0) {
@@ -5651,7 +5859,7 @@ function lp_renderPortal() {
 
 function lp_renderFeatured(a) {
   const catLabel = LP_CAT_LABELS[a.cat] || a.cat;
-  const dateStr = lp_formatDate(a.createdAt);
+  const dateStr = lp_formatDateTime(a.createdAt);
   const imgHtml = a.img
     ? `<img src="${lp_esc(a.img)}" class="lp-featured-img" alt="${lp_esc(a.title)}" onerror="this.style.display='none'">`
     : `<div class="lp-featured-no-img">${lp_catIcon(a.cat)}</div>`;
@@ -5665,7 +5873,7 @@ function lp_renderFeatured(a) {
         <div class="lp-featured-summary">${lp_esc(a.summary)}</div>
         <div class="lp-featured-meta">
           <span>✍️ ${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</span>
-          <span>📅 ${dateStr}</span>
+          <span>🕐 ${dateStr}</span>
           <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         </div>
         <button class="lp-featured-read" onclick="event.stopPropagation();lp_openRead('${a.id}')">Baca Selengkapnya →</button>
@@ -5675,7 +5883,7 @@ function lp_renderFeatured(a) {
 
 function lp_renderCard(a) {
   const catLabel = LP_CAT_LABELS[a.cat] || a.cat;
-  const dateStr = lp_formatDate(a.createdAt);
+  const dateStr = lp_formatDateTime(a.createdAt);
   const imgHtml = a.img
     ? `<img src="${lp_esc(a.img)}" alt="${lp_esc(a.title)}" onerror="this.parentElement.innerHTML='<div class=lp-card-no-img>${lp_catIcon(a.cat)}</div>'">`
     : `<div class="lp-card-no-img">${lp_catIcon(a.cat)}</div>`;
@@ -5690,7 +5898,7 @@ function lp_renderCard(a) {
         <div class="lp-card-title">${lp_esc(a.title)}</div>
         <div class="lp-card-summary">${lp_esc(a.summary)}</div>
         <div class="lp-card-footer">
-          <div class="lp-card-meta">📅 ${dateStr} · ⏱ ${lp_readTime(a.body)} mnt</div>
+          <div class="lp-card-meta">🕐 ${dateStr} · ⏱ ${lp_readTime(a.body)} mnt</div>
           ${editBtn}
         </div>
       </div>
@@ -5708,7 +5916,7 @@ function lp_renderSidebar() {
   list.innerHTML = recent.map(a => `
     <li onclick="lp_openRead('${a.id}')">
       <div class="lp-recent-title">${lp_esc(a.title)}</div>
-      <div class="lp-recent-meta">${LP_CAT_LABELS[a.cat] || a.cat} · ${lp_formatDate(a.createdAt)}</div>
+      <div class="lp-recent-meta">${LP_CAT_LABELS[a.cat] || a.cat} · ${lp_formatDateTime(a.createdAt)}</div>
     </li>`).join('');
 }
 
@@ -5751,12 +5959,15 @@ function lp_openRead(id) {
   if (id !== '__preview__') lpTrackRead(id);
 
   const catLabel = LP_CAT_LABELS[a.cat] || a.cat;
-  const dateStr = lp_formatDate(a.createdAt);
+  const dateStr = lp_formatDateTime(a.createdAt);
   const tagsHtml = a.tags
     ? a.tags.split(',').map(t => `<span class="lp-tag-chip">${lp_esc(t.trim())}</span>`).join('')
     : '';
   const imgHtml = a.img
-    ? `<img src="${lp_esc(a.img)}" class="lp-read-hero-img" alt="${lp_esc(a.title)}" onerror="this.remove()">`
+    ? `<figure style="margin:0;padding:0;">
+        <img src="${lp_esc(a.img)}" class="lp-read-hero-img" alt="${lp_esc(a.title)}" onerror="this.parentElement.style.display='none'">
+        <figcaption class="lp-hero-img-caption">${lp_esc(a.imgCaption || a.title)}</figcaption>
+       </figure>`
     : '';
 
   // Sisipkan slot iklan tengah artikel (setelah paragraf ke-3)
@@ -5773,12 +5984,10 @@ function lp_openRead(id) {
       <div class="lp-read-cat">${catLabel}</div>
       <h1 class="lp-read-title">${lp_esc(a.title)}</h1>
       <div class="lp-read-byline">
-        <span>✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
-        <span>📅 ${dateStr}</span>
+        <span class="lp-byline-author">✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
+        <span class="lp-byline-datetime">🕐 ${dateStr}</span>
         <span>⏱ ${lp_readTime(a.body)} menit baca</span>
-        <span>🔗 legalpreneur.id</span>
         <span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.35rem;">
-          <button class="lp-read-edit-btn" id="lp-dropcap-toggle" onclick="lp_toggleDropcap()" title="Aktifkan Drop Cap (huruf awal besar)" style="opacity:0.55;">Ꞡ Drop Cap</button>
           ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
           ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_deleteFromRead('${a.id}')" title="Hapus artikel ini" style="color:#f87171;">🗑️ Hapus</button>` : ''}
         </span>
@@ -5809,12 +6018,12 @@ function lp_openReadFromData(a) {
   lp_currentArticle = a;
 
   const catLabel = LP_CAT_LABELS[a.cat] || a.cat;
-  const dateStr = lp_formatDate(a.createdAt);
+  const dateStr = lp_formatDateTime(a.createdAt);
   const tagsHtml = a.tags
     ? a.tags.split(',').map(t => `<span class="lp-tag-chip">${lp_esc(t.trim())}</span>`).join('')
     : '';
   const imgHtml = a.img
-    ? `<img src="${lp_esc(a.img)}" class="lp-read-hero-img" alt="${lp_esc(a.title)}" onerror="this.remove()" style="width:100%;max-height:350px;object-fit:cover;">`
+    ? `<figure style="margin:0;padding:0;"><img src="${lp_esc(a.img)}" class="lp-read-hero-img" alt="${lp_esc(a.title)}" onerror="this.parentElement.style.display='none'" style="width:100%;max-height:350px;object-fit:cover;"><figcaption class="lp-hero-img-caption">${lp_esc(a.imgCaption || a.title)}</figcaption></figure>`
     : '';
   const bodyWithAds = lp_injectInReadAds ? lp_injectInReadAds(a.body) : a.body;
 
@@ -5827,10 +6036,9 @@ function lp_openReadFromData(a) {
       <div class="lp-read-cat">${catLabel}</div>
       <h1 class="lp-read-title">${lp_esc(a.title)}</h1>
       <div class="lp-read-byline">
-        <span>✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
-        <span>📅 ${dateStr}</span>
+        <span class="lp-byline-author">✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
+        <span class="lp-byline-datetime">🕐 ${dateStr}</span>
         <span>⏱ ${lp_readTime(a.body)} menit baca</span>
-        <span>🔗 legalpreneur.site</span>
         <span style="margin-left:auto; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--gold); padding:0.28rem 0.65rem; background:rgba(184,151,58,0.08); border:1px solid rgba(184,151,58,0.25); border-radius:4px;">🔗 Dibagikan</span>
       </div>
       <div class="lp-read-summary-block">${lp_esc(a.summary)}</div>
@@ -6199,22 +6407,31 @@ function lp_applyTemplate(i) {
 }
 
 function lp_openEditor(id) {
-  // Hak akses: hanya pemilik web yang boleh membuka editor
-  if (!lp_isOwner()) {
-    alert('🔒 Akses ditolak. Silakan login sebagai pemilik web terlebih dahulu melalui menu Dashboard.');
+  // Hak akses: pemilik web ATAU pengguna yang sudah login
+  if (!lp_isOwner() && !lp_isLoggedIn()) {
+    lp_showPortalToast('🔒 Masuk atau daftar terlebih dahulu untuk menulis artikel.');
+    lp_showAuthBox();
     return;
   }
+  // Auto-isi nama penulis dari user session jika belum diisi
+  const defaultAuthorVal = lp_isOwner()
+    ? 'Novrizal, S.I.Kom., S.H., CPM'
+    : (lp_getLoggedInUser()?.name || '');
   lp_editId = id;
   const modeLabel = document.getElementById('lp-editor-mode-label');
 
   if (id) {
-    // Edit artikel yang sudah ada
+    // Edit artikel yang sudah ada — hanya owner atau penulis artikel itu
     const a = lp_articles.find(x => x.id === id);
     if (!a) return;
+    if (!lp_isOwner() && lp_getLoggedInUser()?.name !== a.author) {
+      lp_showPortalToast('🔒 Anda hanya bisa mengedit artikel milik Anda sendiri.');
+      return;
+    }
     modeLabel.textContent = '✏️ Edit Artikel';
     document.getElementById('lp-ed-title').value   = a.title;
     document.getElementById('lp-ed-cat').value     = a.cat;
-    document.getElementById('lp-ed-author').value  = a.author || 'Novrizal, S.I.Kom., S.H., CPM';
+    document.getElementById('lp-ed-author').value  = a.author || defaultAuthorVal;
     document.getElementById('lp-ed-summary').value = a.summary;
     document.getElementById('lp-ed-body').innerHTML = a.body;
     document.getElementById('lp-ed-tags').value    = a.tags || '';
@@ -6222,6 +6439,7 @@ function lp_openEditor(id) {
       document.getElementById('lp-ed-imgurl').value = a.img;
       lp_previewUrl(a.img);
     } else { lp_clearImg(); }
+    if (document.getElementById('lp-ed-imgcaption')) document.getElementById('lp-ed-imgcaption').value = a.imgCaption || '';
   } else {
     // Artikel baru — coba pulihkan dari draft tersimpan
     modeLabel.textContent = '✏️ Tulis Artikel Baru';
@@ -6265,9 +6483,12 @@ function lp_openEditor(id) {
 }
 
 function lp_clearForm() {
+  const defaultAuthor = lp_isOwner()
+    ? 'Novrizal, S.I.Kom., S.H., CPM'
+    : (lp_getLoggedInUser()?.name || '');
   document.getElementById('lp-ed-title').value   = '';
   document.getElementById('lp-ed-cat').value     = '';
-  document.getElementById('lp-ed-author').value  = 'Novrizal, S.I.Kom., S.H., CPM';
+  document.getElementById('lp-ed-author').value  = defaultAuthor;
   document.getElementById('lp-ed-summary').value = '';
   document.getElementById('lp-ed-body').innerHTML = '';
   document.getElementById('lp-ed-tags').value    = '';
@@ -6522,9 +6743,9 @@ function lp_stopAutoSave() {
   if (lp_autoSaveTimer) clearInterval(lp_autoSaveTimer);
 }
 function lp_saveDraft(silent) {
-  // Hak akses: hanya pemilik web yang boleh menyimpan draft
-  if (!lp_isOwner() && !silent) {
-    lp_showEditorMsg('🔒 Hanya pemilik web yang dapat menyimpan artikel.', 'error');
+  // Hak akses: pemilik web ATAU pengguna yang sudah login
+  if (!lp_isOwner() && !lp_isLoggedIn() && !silent) {
+    lp_showEditorMsg('🔒 Masuk atau daftar terlebih dahulu untuk menyimpan artikel.', 'error');
     return;
   }
 
@@ -6679,10 +6900,19 @@ function lp_closeRead() {
 
 // ── PUBLISH ───────────────────────────────────────────────
 function lp_publishArticle() {
-  // Hak akses: hanya pemilik web yang boleh menerbitkan artikel
-  if (!lp_isOwner()) {
-    lp_showEditorMsg('🔒 Akses ditolak. Hanya pemilik web yang dapat menerbitkan artikel.', 'error');
+  // Hak akses: pemilik web ATAU pengguna yang sudah login
+  if (!lp_isOwner() && !lp_isLoggedIn()) {
+    lp_showEditorMsg('🔒 Masuk atau daftar terlebih dahulu untuk menerbitkan artikel.', 'error');
+    lp_closeEditor();
+    lp_showAuthBox();
     return;
+  }
+
+  // Ambil nama penulis dari user session jika bukan owner
+  let defaultAuthor = 'Novrizal, S.I.Kom., S.H., CPM';
+  if (!lp_isOwner() && lp_isLoggedIn()) {
+    const u = lp_getLoggedInUser();
+    if (u) defaultAuthor = u.name;
   }
 
   const title = document.getElementById('lp-ed-title').value.trim();
@@ -6694,13 +6924,16 @@ function lp_publishArticle() {
   if (!summary) { lp_showEditorMsg('❌ Ringkasan artikel wajib diisi.', 'error'); return; }
   if (!body || body === '<br>') { lp_showEditorMsg('❌ Isi artikel tidak boleh kosong.', 'error'); return; }
 
+  const authorVal = document.getElementById('lp-ed-author').value.trim() || defaultAuthor;
+
   const article = {
     id: lp_editId || ('lp_' + Date.now() + '_' + Math.random().toString(36).slice(2,7)),
     title, cat,
-    author: document.getElementById('lp-ed-author').value.trim() || 'Novrizal, S.I.Kom., S.H., CPM',
+    author: authorVal,
     summary, body,
     tags: document.getElementById('lp-ed-tags').value.trim(),
     img: lp_getImgSrc(),
+    imgCaption: (document.getElementById('lp-ed-imgcaption')?.value || '').trim(),
     createdAt: lp_editId ? (lp_articles.find(x=>x.id===lp_editId)?.createdAt || Date.now()) : Date.now(),
     updatedAt: Date.now()
   };
@@ -6717,6 +6950,7 @@ function lp_publishArticle() {
     if (btn) { btn.disabled = false; btn.textContent = '🚀 Terbitkan Artikel'; }
     // Kirim notifikasi artikel ke Google Apps Script eksternal
     kirimArtikel(article);
+    lp_showPortalToast('✅ Artikel berhasil diterbitkan!');
     setTimeout(function() {
       const wrap = document.getElementById('lp-featured-wrap');
       if (wrap) wrap.scrollIntoView({ behavior: 'smooth' });
@@ -6887,6 +7121,13 @@ function lp_formatDate(ts) {
   const d = new Date(ts);
   const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
   return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+function lp_formatDateTime(ts) {
+  const d = new Date(ts);
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+  const hh = String(d.getHours()).padStart(2,'0');
+  const mm = String(d.getMinutes()).padStart(2,'0');
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()} · ${hh}.${mm} WIB`;
 }
 function lp_readTime(html) {
   const text = html ? html.replace(/<[^>]+>/g,'') : '';
@@ -7065,6 +7306,164 @@ function drawMiniChart(canvas, data, labels, color) {
     ctx.fillStyle = color;
   });
 }
+
+// ════════════════════════════════════════════════════════
+// SISTEM AUTH PENGGUNA (Daftar / Login)
+// Menyimpan akun di localStorage sebagai storage sisi klien
+// Untuk integrasi nyata, data bisa disinkronkan via Apps Script
+// ════════════════════════════════════════════════════════
+const LP_USERS_KEY = 'lp_users_v1';
+const LP_SESSION_USER_KEY = 'lp_user_session';
+
+// Ambil semua user terdaftar
+function lp_getUsers() {
+  try { return JSON.parse(localStorage.getItem(LP_USERS_KEY)) || {}; } catch(e) { return {}; }
+}
+function lp_saveUsers(u) {
+  try { localStorage.setItem(LP_USERS_KEY, JSON.stringify(u)); } catch(e) {}
+}
+
+// Cek apakah ada user yang sedang login
+function lp_isLoggedIn() {
+  try { return !!sessionStorage.getItem(LP_SESSION_USER_KEY); } catch(e) { return false; }
+}
+function lp_getLoggedInUser() {
+  try { return JSON.parse(sessionStorage.getItem(LP_SESSION_USER_KEY)); } catch(e) { return null; }
+}
+
+// Hash sederhana untuk password (tidak untuk produksi)
+function lp_hashPw(pw) {
+  let h = 0;
+  for (let i = 0; i < pw.length; i++) { h = ((h << 5) - h) + pw.charCodeAt(i); h |= 0; }
+  return 'lp_' + Math.abs(h).toString(36);
+}
+
+// Tampilkan / sembunyikan auth box
+function lp_showAuthBox() {
+  const box = document.getElementById('lp-auth-box');
+  if (box) {
+    box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
+    if (box.style.display === 'block') box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+}
+function lp_hideAuthBox() {
+  const box = document.getElementById('lp-auth-box');
+  if (box) box.style.display = 'none';
+}
+
+function lp_switchAuthTab(tab) {
+  const loginForm = document.getElementById('lp-auth-login-form');
+  const regForm = document.getElementById('lp-auth-register-form');
+  const loginTab = document.getElementById('lp-auth-tab-login');
+  const regTab = document.getElementById('lp-auth-tab-register');
+  if (tab === 'login') {
+    loginForm.style.display = '';
+    regForm.style.display = 'none';
+    loginTab.style.background = 'var(--ink)'; loginTab.style.color = 'var(--gold-pale)';
+    regTab.style.background = 'var(--cream-2)'; regTab.style.color = 'var(--ink-3)';
+  } else {
+    loginForm.style.display = 'none';
+    regForm.style.display = '';
+    regTab.style.background = 'var(--ink)'; regTab.style.color = 'var(--gold-pale)';
+    loginTab.style.background = 'var(--cream-2)'; loginTab.style.color = 'var(--ink-3)';
+  }
+}
+
+function lp_doLogin() {
+  const email = (document.getElementById('lp-login-email').value || '').trim().toLowerCase();
+  const pw = (document.getElementById('lp-login-pw').value || '');
+  const errEl = document.getElementById('lp-login-err');
+  if (!email || !pw) { lp_showAuthErr(errEl, '⚠️ Email dan password wajib diisi.'); return; }
+  const users = lp_getUsers();
+  const user = users[email];
+  if (!user) { lp_showAuthErr(errEl, '❌ Email tidak terdaftar. Silakan daftar terlebih dahulu.'); return; }
+  if (user.pw !== lp_hashPw(pw)) { lp_showAuthErr(errEl, '❌ Password salah. Coba lagi.'); return; }
+  // Berhasil login
+  try { sessionStorage.setItem(LP_SESSION_USER_KEY, JSON.stringify({ email, name: user.name })); } catch(e) {}
+  lp_hideAuthBox();
+  lp_updateUserBar();
+  lp_renderPortalWithOwnerCheck();
+  lp_showPortalToast(`👋 Selamat datang, ${user.name}!`);
+}
+
+function lp_doRegister() {
+  const name = (document.getElementById('lp-reg-name').value || '').trim();
+  const email = (document.getElementById('lp-reg-email').value || '').trim().toLowerCase();
+  const pw = (document.getElementById('lp-reg-pw').value || '');
+  const pw2 = (document.getElementById('lp-reg-pw2').value || '');
+  const errEl = document.getElementById('lp-reg-err');
+  if (!name || !email || !pw || !pw2) { lp_showAuthErr(errEl, '⚠️ Semua field wajib diisi.'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { lp_showAuthErr(errEl, '❌ Format email tidak valid.'); return; }
+  if (pw.length < 6) { lp_showAuthErr(errEl, '❌ Password minimal 6 karakter.'); return; }
+  if (pw !== pw2) { lp_showAuthErr(errEl, '❌ Konfirmasi password tidak cocok.'); return; }
+  const users = lp_getUsers();
+  if (users[email]) { lp_showAuthErr(errEl, '❌ Email sudah terdaftar. Silakan masuk.'); return; }
+  // Simpan user baru
+  users[email] = { name, email, pw: lp_hashPw(pw), createdAt: Date.now() };
+  lp_saveUsers(users);
+  // Kirim ke Google Sheets jika tersedia (via Apps Script)
+  if (lp_sheetsReady) {
+    lp_gasJsonpAction({ action: 'registerUser', user: { name, email, createdAt: Date.now() } });
+  }
+  // Auto login
+  try { sessionStorage.setItem(LP_SESSION_USER_KEY, JSON.stringify({ email, name })); } catch(e) {}
+  lp_hideAuthBox();
+  lp_updateUserBar();
+  lp_renderPortalWithOwnerCheck();
+  lp_showPortalToast(`🎉 Akun berhasil dibuat! Selamat datang, ${name}!`);
+}
+
+function lp_logout() {
+  try { sessionStorage.removeItem(LP_SESSION_USER_KEY); } catch(e) {}
+  lp_updateUserBar();
+  lp_renderPortalWithOwnerCheck();
+  lp_showPortalToast('👋 Anda telah keluar.');
+}
+
+function lp_showAuthErr(el, msg) {
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.style.color = msg.startsWith('🎉') ? '#22c55e' : '#ef4444';
+  setTimeout(() => { if (el) el.style.display = 'none'; }, 4000);
+}
+
+function lp_updateUserBar() {
+  const statusBar = document.getElementById('lp-user-status-bar');
+  const authBtnWrap = document.getElementById('lp-auth-btn-wrap');
+  const greeting = document.getElementById('lp-user-greeting');
+  const user = lp_getLoggedInUser();
+  if (user) {
+    if (statusBar) { statusBar.style.display = 'flex'; }
+    if (authBtnWrap) authBtnWrap.style.display = 'none';
+    if (greeting) greeting.textContent = `👤 ${user.name}`;
+  } else {
+    if (statusBar) statusBar.style.display = 'none';
+    if (authBtnWrap) authBtnWrap.style.display = '';
+  }
+}
+
+function lp_showPortalToast(msg) {
+  const old = document.getElementById('lp-portal-toast');
+  if (old) old.remove();
+  const toast = document.createElement('div');
+  toast.id = 'lp-portal-toast';
+  toast.textContent = msg;
+  toast.style.cssText = `
+    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%);
+    background:var(--ink); color:var(--gold-pale);
+    font-family:'DM Mono',monospace; font-size:0.72rem; letter-spacing:0.06em;
+    padding:0.75rem 1.5rem; border-radius:8px;
+    box-shadow:0 8px 32px rgba(15,14,11,0.35);
+    border:1px solid rgba(184,151,58,0.3);
+    z-index:9999; opacity:1; transition:opacity 0.4s;
+    white-space:nowrap; max-width:90vw;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 2800);
+}
+
+// ── /SISTEM AUTH ──────────────────────────────────────────
 
 // ════════════════════════════════════════════════════════
 // DASHBOARD OWNER — AKSES TERSEMBUNYI
@@ -7280,7 +7679,7 @@ function dashRenderTopArticles(s) {
       <div class="d-top-rank">${medals[i]}</div>
       <div class="d-top-info">
         <div class="d-top-title">${lp_esc(a.title)}</div>
-        <div class="d-top-meta">${LP_CAT_LABELS[a.cat]||a.cat} · ${lp_formatDate(a.createdAt)}</div>
+        <div class="d-top-meta">${LP_CAT_LABELS[a.cat]||a.cat} · ${lp_formatDateTime(a.createdAt)}</div>
       </div>
       <div class="d-top-reads">${a.readCount} baca</div>
     </div>`).join('');
@@ -7302,7 +7701,7 @@ function dashRenderTable(s) {
       <td><strong>${lp_esc(a.title.length > 50 ? a.title.slice(0,50)+'…' : a.title)}</strong></td>
       <td><span class="d-table-cat">${LP_CAT_LABELS[a.cat]||a.cat}</span></td>
       <td style="font-size:0.85rem; color:var(--ink-3);">${lp_esc(a.author||'Novrizal, S.I.Kom., S.H., CPM')}</td>
-      <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3); white-space:nowrap;">${lp_formatDate(a.createdAt)}</td>
+      <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3); white-space:nowrap;">${lp_formatDateTime(a.createdAt)}</td>
       <td class="d-table-reads">${readCount}</td>
       <td style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--ink-3);">${lp_readTime(a.body)}m</td>
     </tr>`;
