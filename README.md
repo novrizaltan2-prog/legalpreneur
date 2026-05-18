@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LegalPreneur — Advokat & Konsultan Hukum Digital</title>
 <meta name="description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+
+<!-- ═══ OPEN GRAPH (WhatsApp, Facebook, Telegram, dll) ═══ -->
+<meta id="og-title"       property="og:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
+<meta id="og-description" property="og:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+<meta id="og-image"       property="og:image"       content="">
+<meta id="og-image-w"     property="og:image:width"  content="1200">
+<meta id="og-image-h"     property="og:image:height" content="630">
+<meta id="og-url"         property="og:url"          content="">
+<meta                     property="og:type"          content="article">
+<meta                     property="og:site_name"     content="LegalPreneur">
+<meta                     property="og:locale"        content="id_ID">
+<!-- ═══ TWITTER / X CARD ═══ -->
+<meta id="tw-card"        name="twitter:card"        content="summary_large_image">
+<meta id="tw-title"       name="twitter:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
+<meta id="tw-description" name="twitter:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+<meta id="tw-image"       name="twitter:image"       content="">
+<meta                     name="twitter:site"        content="@Novriz_Tan">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
@@ -2045,11 +2062,6 @@ img { max-width: 100%; height: auto; }
           <button class="lp-share-btn lp-share-btn-fb" onclick="lp_shareFB()" title="Bagikan ke Facebook">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px;"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073c0 6.031 4.438 11.031 10.125 11.927v-8.437H7.078v-3.49h3.047V9.42c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.514c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796v8.437C19.562 23.104 24 18.104 24 12.073z"/></svg>
             Facebook
-          </button>
-          <!-- Instagram (copy link karena IG tidak support direct share link) -->
-          <button class="lp-share-btn lp-share-btn-ig" onclick="lp_shareIG()" title="Salin tautan untuk Instagram">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:4px;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            Instagram
           </button>
           <!-- Threads -->
           <button class="lp-share-btn lp-share-btn-threads" onclick="lp_shareThreads()" title="Bagikan ke Threads">
@@ -5199,6 +5211,13 @@ function handleConsult(e) {
 
 // ── DATA STORE (Google Sheets sebagai Database) ──────────
 const LP_STORE_KEY = 'lp_articles_v2'; // untuk draft & cache lokal
+
+// ── BERSIHKAN ARTIKEL LAMA DARI LOCALSTORAGE ─────────────
+// Jalankan sekali: hapus semua artikel yang tersimpan secara lokal
+// agar format seragam dengan artikel baru yang akan dibuat.
+(function lp_clearOldArticles() {
+  try { localStorage.removeItem(LP_STORE_KEY); } catch(e) {}
+})();
 let lp_articles = [];
 let lp_currentArticle = null;
 let lp_editId = null;
@@ -5541,6 +5560,7 @@ window.lp_sheetsCallback = function(rows) {
         body:      String(row.body || ''),
         tags:      String(row.tags || ''),
         img:       String(row.img || ''),
+        imgCaption: String(row.imgCaption || ''),
         createdAt: Number(row.createdAt) || Date.now(),
         updatedAt: Number(row.updatedAt) || Date.now()
       };
@@ -5887,9 +5907,8 @@ function lp_renderCard(a) {
   const imgHtml = a.img
     ? `<img src="${lp_esc(a.img)}" alt="${lp_esc(a.title)}" onerror="this.parentElement.innerHTML='<div class=lp-card-no-img>${lp_catIcon(a.cat)}</div>'">`
     : `<div class="lp-card-no-img">${lp_catIcon(a.cat)}</div>`;
-  const canEditCard = lp_isOwner() || (lp_isLoggedIn() && lp_getLoggedInUser()?.name === a.author);
-  const editBtn = canEditCard
-    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button>${lp_isOwner() ? `<button class="lp-card-del-btn" onclick="lp_deleteArticle('${a.id}')">🗑️</button>` : ''}</div>`
+  const editBtn = lp_isOwner()
+    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button></div>`
     : '';
   return `
     <div class="lp-article-card" onclick="lp_openRead('${a.id}')">
@@ -5989,7 +6008,7 @@ function lp_openRead(id) {
         <span class="lp-byline-datetime">🕐 ${dateStr}</span>
         <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         <span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.35rem;">
-          ${!isPreview && (lp_isOwner() || (lp_isLoggedIn() && lp_getLoggedInUser()?.name === a.author)) ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
+          ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
           ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_deleteFromRead('${a.id}')" title="Hapus artikel ini" style="color:#f87171;">🗑️ Hapus</button>` : ''}
         </span>
       </div>
@@ -6008,6 +6027,8 @@ function lp_openRead(id) {
   // Update URL hash dengan ID artikel agar bisa dibagikan
   if (id !== '__preview__') {
     history.replaceState(null, '', '#artikel=' + encodeURIComponent(id));
+    // Update OG/Twitter meta tags agar preview share (WA, FB, dll) menampilkan gambar & judul
+    lp_updateOgTags(a);
   }
 }
 
@@ -6087,6 +6108,54 @@ function lp_deleteFromRead(id) {
 // Artikel di-encode sebagai base64 di URL hash, sehingga
 // penerima link bisa membaca artikel tanpa perlu data di localStorage.
 // ══════════════════════════════════════════════════════
+
+// ── UPDATE OG / TWITTER META TAGS UNTUK SHARE PREVIEW ────────
+// WhatsApp, Telegram, Facebook, X/Twitter membaca meta tag OG
+// saat link pertama kali dibagikan. Fungsi ini memperbarui tag
+// tersebut secara dinamis agar preview menampilkan gambar & judul artikel.
+function lp_updateOgTags(a) {
+  if (!a) return;
+  // Bangun URL artikel
+  const siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+    ? LP_SITE_URL.trim().replace(/\/$/, '')
+    : (window.location.protocol !== 'file:' ? window.location.href.split('#')[0].replace(/\/$/, '') : '');
+  const articleUrl = siteBase ? siteBase + '#artikel=' + encodeURIComponent(a.id) : '';
+  const title      = a.title || 'LegalPreneur';
+  const desc       = a.summary || 'Artikel hukum & literasi digital oleh Novrizal, S.I.Kom., S.H., CPM';
+  const img        = a.img && !a.img.startsWith('data:') ? a.img : '';
+
+  // Helper update meta
+  function setMeta(id, val) {
+    const el = document.getElementById(id);
+    if (el && val) el.setAttribute('content', val);
+  }
+
+  document.title = title + ' — LegalPreneur';
+  setMeta('og-title',       title);
+  setMeta('og-description', desc);
+  setMeta('og-url',         articleUrl);
+  setMeta('tw-title',       title);
+  setMeta('tw-description', desc);
+  if (img) {
+    setMeta('og-image', img);
+    setMeta('tw-image', img);
+    document.getElementById('tw-card')?.setAttribute('content', 'summary_large_image');
+  } else {
+    // Tanpa gambar: gunakan card ringkas
+    document.getElementById('tw-card')?.setAttribute('content', 'summary');
+  }
+}
+
+// Reset OG tags ke default situs (dipanggil saat modal artikel ditutup)
+function lp_resetOgTags() {
+  const defaultTitle = 'LegalPreneur — Advokat & Konsultan Hukum Digital';
+  const defaultDesc  = 'LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.';
+  document.title = defaultTitle;
+  ['og-title','tw-title'].forEach(id => document.getElementById(id)?.setAttribute('content', defaultTitle));
+  ['og-description','tw-description'].forEach(id => document.getElementById(id)?.setAttribute('content', defaultDesc));
+  ['og-image','tw-image'].forEach(id => document.getElementById(id)?.setAttribute('content', ''));
+  ['og-url'].forEach(id => document.getElementById(id)?.setAttribute('content', ''));
+}
 
 function lp_encodeArticleToUrl(article) {
   // Gunakan format pendek: hanya ID artikel (#artikel=ID)
@@ -6863,6 +6932,8 @@ function lp_closeRead() {
   document.body.style.overflow = '';
   // Bersihkan hash URL saat modal ditutup
   history.replaceState(null, '', window.location.pathname + window.location.search);
+  // Reset OG/Twitter meta tags ke default
+  lp_resetOgTags();
 
   // Jika menutup preview, pulihkan editor dengan data tersimpan
   if (lp_previewState) {
@@ -7104,7 +7175,6 @@ function lp_deleteFromEditor() {
 }
 
 function lp_deleteArticle(id) {
-  if (!lp_isOwner()) { lp_showPortalToast('🔒 Hanya pemilik web yang dapat menghapus artikel.'); return; }
   const a = lp_articles.find(x => x.id === id);
   if (!a) return;
   if (!confirm('Hapus artikel "' + a.title + '"? Tindakan ini tidak dapat dibatalkan.')) return;
@@ -7888,6 +7958,7 @@ window.addEventListener('load', () => {
         if (art) {
           clearInterval(tryOpen);
           lp_openRead(articleId);
+          // OG tags sudah diupdate di dalam lp_openRead
         } else if (attempts >= maxAttempts) {
           clearInterval(tryOpen);
           // Artikel tidak ditemukan — tampilkan pesan ke user
