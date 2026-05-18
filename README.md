@@ -5887,8 +5887,9 @@ function lp_renderCard(a) {
   const imgHtml = a.img
     ? `<img src="${lp_esc(a.img)}" alt="${lp_esc(a.title)}" onerror="this.parentElement.innerHTML='<div class=lp-card-no-img>${lp_catIcon(a.cat)}</div>'">`
     : `<div class="lp-card-no-img">${lp_catIcon(a.cat)}</div>`;
-  const editBtn = lp_isOwner()
-    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button></div>`
+  const canEditCard = lp_isOwner() || (lp_isLoggedIn() && lp_getLoggedInUser()?.name === a.author);
+  const editBtn = canEditCard
+    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button>${lp_isOwner() ? `<button class="lp-card-del-btn" onclick="lp_deleteArticle('${a.id}')">🗑️</button>` : ''}</div>`
     : '';
   return `
     <div class="lp-article-card" onclick="lp_openRead('${a.id}')">
@@ -5988,7 +5989,7 @@ function lp_openRead(id) {
         <span class="lp-byline-datetime">🕐 ${dateStr}</span>
         <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         <span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.35rem;">
-          ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
+          ${!isPreview && (lp_isOwner() || (lp_isLoggedIn() && lp_getLoggedInUser()?.name === a.author)) ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
           ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_deleteFromRead('${a.id}')" title="Hapus artikel ini" style="color:#f87171;">🗑️ Hapus</button>` : ''}
         </span>
       </div>
@@ -7103,6 +7104,7 @@ function lp_deleteFromEditor() {
 }
 
 function lp_deleteArticle(id) {
+  if (!lp_isOwner()) { lp_showPortalToast('🔒 Hanya pemilik web yang dapat menghapus artikel.'); return; }
   const a = lp_articles.find(x => x.id === id);
   if (!a) return;
   if (!confirm('Hapus artikel "' + a.title + '"? Tindakan ini tidak dapat dibatalkan.')) return;
