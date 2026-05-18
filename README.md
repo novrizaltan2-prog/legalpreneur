@@ -1351,11 +1351,37 @@ footer {
   .footer-copy, .footer-bottom-links a { font-size: 0.6rem; }
 }
 
-/* ── 400px and under — smallest phones ── */
-@media (max-width: 400px) {
-  .hero-title { font-size: 1.75rem; }
-  .hero-stat-num { font-size: 1.4rem; }
-  .section-title { font-size: 1.5rem; }
+/* ── Visitor Notice responsive ── */
+#lp-visitor-notice {
+  margin: 2rem 1.25rem;
+  padding: 2rem 1.5rem;
+}
+@media (min-width: 600px) {
+  #lp-visitor-notice {
+    margin: 3rem auto;
+    padding: 2rem 2.5rem;
+  }
+}
+
+/* ── Portal header write button responsive ── */
+.lp-portal-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .lp-portal-meta { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  #lp-write-btn-wrap { width: 100%; }
+  #lp-write-btn-wrap .lp-write-btn { width: 100%; justify-content: center; }
+}
+
+/* ── Extra: ensure all images are responsive ── */
+img { max-width: 100%; height: auto; }
+
+/* ── Overflow guard for all pages ── */
+#page-konten, #page-affiliate, #page-digital, #page-dashboard {
+  overflow-x: hidden;
 }
 
 
@@ -1620,9 +1646,19 @@ footer {
     </div>
     <div class="lp-portal-meta">
       <span id="lp-date-now" class="lp-date-live"></span>
-      <button class="lp-write-btn" onclick="lp_openEditor(null)">✏️ &nbsp;Tulis Artikel Baru</button>
+      <div id="lp-write-btn-wrap" style="display:none;">
+        <button class="lp-write-btn" onclick="lp_openEditor(null)">✏️ &nbsp;Tulis Artikel Baru</button>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- ── VISITOR NOTICE (hanya tampil untuk pengunjung) ─── -->
+<div id="lp-visitor-notice" style="display:none; max-width:700px; margin:3rem auto; padding:2rem 2.5rem; background:var(--white); border:1px solid var(--border-light); border-radius:10px; text-align:center; box-shadow:var(--shadow);">
+  <div style="font-size:2.5rem; margin-bottom:1rem;">🔒</div>
+  <div style="font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--ink); margin-bottom:0.75rem;">Konten Eksklusif Pemilik Web</div>
+  <p style="color:var(--ink-3); font-size:1rem; line-height:1.7; margin-bottom:1.5rem; font-weight:300;">Daftar artikel hanya dapat dilihat oleh pemilik web. Namun, jika Anda memiliki link artikel yang dibagikan, Anda tetap dapat membacanya langsung.</p>
+  <div style="font-family:'DM Mono',monospace; font-size:0.68rem; letter-spacing:0.1em; color:var(--ink-3); padding:0.75rem 1rem; background:var(--cream); border-radius:6px; border:1px dashed var(--border-light);">Pemilik web: Login melalui menu <strong style="color:var(--gold);">Dashboard</strong> untuk mengakses & mengelola artikel.</div>
 </div>
 
 <!-- ── FILTER KATEGORI ────────────────────────────────── -->
@@ -2246,7 +2282,7 @@ footer {
 
       <!-- Action buttons -->
       <div class="lp-editor-actions">
-        <button type="button" class="lp-btn-ghost" onclick="lp_saveDraft()">💾 Simpan Draft</button>
+        <button type="button" class="lp-btn-ghost" onclick="lp_saveDraft()">💾 Simpan ke Draf</button>
         <button type="button" class="lp-btn-ghost" onclick="lp_clearDraftAndForm()" style="color:rgba(248,113,113,0.7); border-color:rgba(248,113,113,0.2);">🗑️ Hapus Draft</button>
         <button type="button" class="lp-btn-ghost" onclick="lp_previewArticle()">👁️ Preview</button>
         <button type="button" id="lp-ed-delete-btn" class="lp-btn-ghost" onclick="lp_deleteFromEditor()" style="display:none; color:rgba(248,113,113,0.9); border-color:rgba(248,113,113,0.35);">🗑️ Hapus Artikel</button>
@@ -4845,7 +4881,7 @@ function showPage(page, cat) {
     if (page === 'affiliate') renderShopee();
     if (page === 'konten') {
       lp_init();
-      setTimeout(lp_renderInsight, 300);
+      setTimeout(lp_renderPortalWithOwnerCheck, 200);
       // Jika ada kategori, filter setelah render
       if (cat) {
         setTimeout(() => {
@@ -5554,8 +5590,20 @@ function lp_updateDateTime() {
   el.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} · ${String(now.getHours()).padStart(2,'0')}.${String(now.getMinutes()).padStart(2,'0')} WIB`;
 }
 
-// ── RENDER PORTAL ─────────────────────────────────────────
+// ── RENDER PORTAL (dengan kontrol akses pemilik) ──────────
+function lp_renderPortalWithOwnerCheck() {
+  // Sembunyikan / tampilkan tombol Tulis Artikel sesuai sesi pemilik
+  const writeBtnWrap = document.getElementById('lp-write-btn-wrap');
+  if (writeBtnWrap) writeBtnWrap.style.display = lp_isOwner() ? '' : 'none';
+  // Sembunyikan form kirim artikel dari pengunjung
+  const kirimBox = document.getElementById('lp-kirim-form-box');
+  if (kirimBox) kirimBox.style.display = lp_isOwner() ? '' : 'none';
+  // Re-render konten portal
+  lp_renderPortal();
+}
+
 function lp_renderPortal() {
+  const isOwner = lp_isOwner();
   const filtered = lp_activeFilter === 'semua'
     ? [...lp_articles]
     : lp_articles.filter(a => a.cat === lp_activeFilter);
@@ -5566,18 +5614,33 @@ function lp_renderPortal() {
   const featuredWrap = document.getElementById('lp-featured-wrap');
   const gridWrap = document.getElementById('lp-grid-wrap');
   const empty = document.getElementById('lp-empty');
+  const visitorNotice = document.getElementById('lp-visitor-notice');
 
   if (!featuredWrap) return;
 
+  // Pengunjung biasa: sembunyikan daftar artikel, tampilkan pesan
+  if (!isOwner) {
+    featuredWrap.innerHTML = '';
+    if (gridWrap) gridWrap.innerHTML = '';
+    if (empty) empty.style.display = 'none';
+    if (visitorNotice) visitorNotice.style.display = '';
+    lp_renderSidebar();
+    lp_renderCatCounts();
+    return;
+  }
+
+  // Pemilik web: sembunyikan notice, tampilkan daftar artikel
+  if (visitorNotice) visitorNotice.style.display = 'none';
+
   if (filtered.length === 0) {
     featuredWrap.innerHTML = '';
-    gridWrap.innerHTML = '';
-    empty.style.display = '';
+    if (gridWrap) gridWrap.innerHTML = '';
+    if (empty) empty.style.display = '';
   } else {
-    empty.style.display = 'none';
+    if (empty) empty.style.display = 'none';
     const [featured, ...rest] = filtered;
     featuredWrap.innerHTML = lp_renderFeatured(featured);
-    gridWrap.innerHTML = rest.map(a => lp_renderCard(a)).join('');
+    if (gridWrap) gridWrap.innerHTML = rest.map(a => lp_renderCard(a)).join('');
   }
 
   lp_renderSidebar();
@@ -5616,6 +5679,9 @@ function lp_renderCard(a) {
   const imgHtml = a.img
     ? `<img src="${lp_esc(a.img)}" alt="${lp_esc(a.title)}" onerror="this.parentElement.innerHTML='<div class=lp-card-no-img>${lp_catIcon(a.cat)}</div>'">`
     : `<div class="lp-card-no-img">${lp_catIcon(a.cat)}</div>`;
+  const editBtn = lp_isOwner()
+    ? `<div class="lp-card-actions" onclick="event.stopPropagation()"><button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button></div>`
+    : '';
   return `
     <div class="lp-article-card" onclick="lp_openRead('${a.id}')">
       <div class="lp-card-img-wrap">${imgHtml}</div>
@@ -5625,9 +5691,7 @@ function lp_renderCard(a) {
         <div class="lp-card-summary">${lp_esc(a.summary)}</div>
         <div class="lp-card-footer">
           <div class="lp-card-meta">📅 ${dateStr} · ⏱ ${lp_readTime(a.body)} mnt</div>
-          <div class="lp-card-actions" onclick="event.stopPropagation()">
-            <button class="lp-card-edit-btn" onclick="lp_openEditor('${a.id}')">✏️ Edit</button>
-          </div>
+          ${editBtn}
         </div>
       </div>
     </div>`;
@@ -5715,7 +5779,8 @@ function lp_openRead(id) {
         <span>🔗 legalpreneur.id</span>
         <span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto; display:inline-flex; align-items:center; gap:0.35rem;">
           <button class="lp-read-edit-btn" id="lp-dropcap-toggle" onclick="lp_toggleDropcap()" title="Aktifkan Drop Cap (huruf awal besar)" style="opacity:0.55;">Ꞡ Drop Cap</button>
-          ${!isPreview ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
+          ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor('${a.id}')" title="Edit artikel ini">✏️ Edit</button>` : ''}
+          ${!isPreview && lp_isOwner() ? `<button class="lp-read-edit-btn" onclick="lp_deleteFromRead('${a.id}')" title="Hapus artikel ini" style="color:#f87171;">🗑️ Hapus</button>` : ''}
         </span>
       </div>
       <div class="lp-read-summary-block">${lp_esc(a.summary)}</div>
@@ -5836,13 +5901,13 @@ function lp_encodeArticleToUrl(article) {
 
 function lp_getShareUrl() {
   if (!lp_currentArticle || lp_currentArticle.id === '__preview__') {
+    if (window.location.protocol === 'file:') return '';
     return window.location.href.split('#')[0];
   }
   var url = lp_encodeArticleToUrl(lp_currentArticle);
-  // FIX: Jika file lokal (url hanya berupa hash), gunakan window.location lengkap
+  // Jika URL masih relatif (file lokal, LP_SITE_URL belum diisi), beri tahu user
   if (!url.startsWith('http')) {
-    var base = window.location.href.split('#')[0].split('?')[0].replace(/\/$/, '');
-    url = base + '#artikel=' + encodeURIComponent(lp_currentArticle.id);
+    return 'FILE_LOKAL_BELUM_UPLOAD_KE_HOSTING';
   }
   return url;
 }
@@ -6000,16 +6065,18 @@ function lp_shareCopy() {
   const btn = document.getElementById('lp-copy-btn');
   const origHTML = btn ? btn.innerHTML : '🔗 Salin Link';
   var url = lp_getShareUrl();
-
-  // FIX: Jika dibuka dari file lokal, gunakan window.location.href (path file lokal)
-  // sehingga user tetap bisa menyalin link artikel untuk dibuka di browser yang sama
   if (!url || url === 'FILE_LOKAL_BELUM_UPLOAD_KE_HOSTING' || url === '') {
-    url = window.location.href.split('#')[0];
-    if (lp_currentArticle && lp_currentArticle.id && lp_currentArticle.id !== '__preview__') {
-      url = url + '#artikel=' + encodeURIComponent(lp_currentArticle.id);
-    }
+    // File dibuka lokal, belum di-hosting
+    var old2 = document.getElementById('lp-copy-modal');
+    if (old2) old2.remove();
+    var modal2 = document.createElement('div');
+    modal2.id = 'lp-copy-modal';
+    modal2.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(15,14,11,0.75);backdrop-filter:blur(4px);padding:1rem;';
+    modal2.innerHTML = '<div style="background:var(--white,#fdfcf9);border-radius:10px;padding:1.75rem 2rem;max-width:480px;width:100%;box-shadow:0 24px 80px rgba(15,14,11,0.35);font-family:Crimson Pro,Georgia,serif;"><div style="font-family:DM Mono,monospace;font-size:0.65rem;letter-spacing:0.15em;color:#f59e0b;text-transform:uppercase;margin-bottom:0.75rem;">⚠️ Konfigurasi Diperlukan</div><div style="font-size:1rem;color:var(--ink,#0f0e0b);margin-bottom:1rem;line-height:1.6;">Website ini dibuka dari <strong>file lokal</strong>. Link share hanya bisa berfungsi jika website sudah di-upload ke hosting (Google Sites, Netlify, dll).<br><br>Isi variabel <code style="background:#f5f0e8;padding:0.2rem 0.4rem;border-radius:3px;font-size:0.85rem;">LP_SITE_URL</code> dengan URL website Anda setelah di-hosting.</div><button onclick="document.getElementById(\'lp-copy-modal\').remove()" style="background:var(--ink,#0f0e0b);color:var(--gold-pale,#f0e4c0);border:none;border-radius:5px;padding:0.65rem 1.25rem;font-family:DM Mono,monospace;font-size:0.7rem;cursor:pointer;">✕ Tutup</button></div>';
+    modal2.addEventListener('click', function(e){ if(e.target===modal2) modal2.remove(); });
+    document.body.appendChild(modal2);
+    return;
   }
-
   lp_copyToClipboard(url, btn, '✅ Tersalin!', origHTML);
 }
 
@@ -6132,6 +6199,11 @@ function lp_applyTemplate(i) {
 }
 
 function lp_openEditor(id) {
+  // Hak akses: hanya pemilik web yang boleh membuka editor
+  if (!lp_isOwner()) {
+    alert('🔒 Akses ditolak. Silakan login sebagai pemilik web terlebih dahulu melalui menu Dashboard.');
+    return;
+  }
   lp_editId = id;
   const modeLabel = document.getElementById('lp-editor-mode-label');
 
@@ -6450,6 +6522,12 @@ function lp_stopAutoSave() {
   if (lp_autoSaveTimer) clearInterval(lp_autoSaveTimer);
 }
 function lp_saveDraft(silent) {
+  // Hak akses: hanya pemilik web yang boleh menyimpan draft
+  if (!lp_isOwner() && !silent) {
+    lp_showEditorMsg('🔒 Hanya pemilik web yang dapat menyimpan artikel.', 'error');
+    return;
+  }
+
   const title = document.getElementById('lp-ed-title').value.trim();
   if (!title) { if (!silent) lp_showEditorMsg('❌ Judul artikel wajib diisi.', 'error'); return; }
   const DRAFT_KEY = 'lp_draft_v2';
@@ -6463,12 +6541,38 @@ function lp_saveDraft(silent) {
     img: lp_getImgSrc()
   };
   try { localStorage.setItem(DRAFT_KEY, JSON.stringify(draft)); } catch(e) {}
+
+  // Jika artikel bukan template cepat (ada konten nyata), simpan juga ke Google Sheets sebagai draft
+  if (!silent && lp_sheetsReady && draft.title && draft.body && draft.body !== '<br>') {
+    const draftArticle = {
+      id: lp_editId || ('draft_' + Date.now() + '_' + Math.random().toString(36).slice(2,7)),
+      title: '[DRAFT] ' + draft.title,
+      cat: draft.cat || 'umum',
+      author: draft.author || 'Novrizal, S.I.Kom., S.H., CPM',
+      summary: draft.summary || '',
+      body: draft.body,
+      tags: draft.tags || '',
+      img: draft.img && !draft.img.startsWith('data:') ? draft.img : '',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      status: 'draft'
+    };
+    fetch(LP_SHEETS_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'save', article: draftArticle })
+    }).catch(function() {
+      lp_gasJsonpAction({ action: 'save', article: draftArticle });
+    });
+  }
+
   const status = document.getElementById('lp-autosave-status');
   if (status) {
     const t = new Date();
     status.textContent = `💾 Draft tersimpan pukul ${String(t.getHours()).padStart(2,'0')}.${String(t.getMinutes()).padStart(2,'0')}`;
   }
-  if (!silent) lp_showEditorMsg('💾 Draft berhasil disimpan.', 'success');
+  if (!silent) lp_showEditorMsg('💾 Draft berhasil disimpan ke perangkat & Google Sheets.', 'success');
 }
 
 function lp_clearDraftAndForm() {
@@ -6575,6 +6679,12 @@ function lp_closeRead() {
 
 // ── PUBLISH ───────────────────────────────────────────────
 function lp_publishArticle() {
+  // Hak akses: hanya pemilik web yang boleh menerbitkan artikel
+  if (!lp_isOwner()) {
+    lp_showEditorMsg('🔒 Akses ditolak. Hanya pemilik web yang dapat menerbitkan artikel.', 'error');
+    return;
+  }
+
   const title = document.getElementById('lp-ed-title').value.trim();
   const cat = document.getElementById('lp-ed-cat').value || 'umum';
   const summary = document.getElementById('lp-ed-summary').value.trim();
@@ -6962,6 +7072,12 @@ function drawMiniChart(canvas, data, labels, color) {
 const DASH_PW_HASH = 'lp2024novrizal'; // Kata sandi dashboard owner
 const DASH_SESSION_KEY = 'lp_dash_session';
 
+// ── OWNER SESSION CHECK ───────────────────────────────────
+// Cek apakah sesi pemilik web aktif (login via dashboard)
+function lp_isOwner() {
+  try { return sessionStorage.getItem(DASH_SESSION_KEY) === '1'; } catch(e) { return false; }
+}
+
 function dashLogin() {
   const pw = document.getElementById('dash-pw-input').value;
   const err = document.getElementById('dash-pw-err');
@@ -6973,6 +7089,9 @@ function dashLogin() {
     // Tampilkan menu dashboard di nav
     const navLi = document.getElementById('nav-dashboard-li');
     if (navLi) navLi.style.display = '';
+    // Refresh portal konten agar tombol tulis & edit muncul
+    lp_initialized = false;
+    lp_renderPortalWithOwnerCheck();
     dashRender();
     lpTrackView();
   } else {
@@ -6990,6 +7109,9 @@ function dashLogout() {
   document.getElementById('dash-content').style.display = 'none';
   document.getElementById('nav-dashboard-li').style.display = 'none';
   document.getElementById('dash-pw-input').value = '';
+  // Refresh portal konten agar tombol tulis & edit disembunyikan
+  lp_initialized = false;
+  lp_renderPortalWithOwnerCheck();
 }
 
 function lp_updateFirebaseBanner() {
