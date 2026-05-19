@@ -5238,7 +5238,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz0lk-MgqlmgQY9OnINBm98C5Gki0Up-vpnAXHuHGkdA_S8rvhLBxsMSj5egecdWoi4/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx0VuXVZ_rpWqbOqlVZAPdxKutp8UMnfqKCrtBVWymGa2RuNjOtidQXzkikkM8lxpXE/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -8331,6 +8331,456 @@ function lp_openArticleById(articleId) {
     run();
   }
 })();
+
+// ════════════════════════════════════════════════════════════════
+//  FUNGSI CRUD ARTIKEL — JSONP GITHUB PAGES COMPATIBLE
+//  LP_SHEETS_URL sudah ditetapkan di atas dan digunakan di sini.
+//  Semua operasi ke Google Apps Script menggunakan JSONP (?callback=)
+//  sehingga bisa diakses cross-origin dari GitHub Pages.
+// ════════════════════════════════════════════════════════════════
+
+// ── loadArticles() ────────────────────────────────────────────
+// Ambil semua artikel dari Google Sheets via JSONP (action=getAll).
+// Memperbarui lp_articles dan merender ulang portal.
+function loadArticles() {
+  if (!lp_sheetsReady) {
+    lp_loadFromLocalStorage();
+    return;
+  }
+  lp_showPortalLoading();
+  var cbName = 'lp_loadArticlesCb_' + Date.now();
+  var script = document.createElement('script');
+  var done   = false;
+
+  var cleanup = function() {
+    var s = document.getElementById('lp-loadarticles-script');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+    lp_loadFromLocalStorage();
+  }, 15000);
+
+  window[cbName] = function(rows) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    if (Array.isArray(rows) && rows.length > 0) {
+      var mapped = rows.map(function(row) {
+        return {
+          id:         String(row.id         || ''),
+          title:      String(row.title      || ''),
+          cat:        String(row.cat        || 'umum'),
+          author:     String(row.author     || 'Novrizal, S.I.Kom., S.H., CPM'),
+          summary:    String(row.summary    || ''),
+          body:       String(row.body       || ''),
+          tags:       String(row.tags       || ''),
+          img:        String(row.img        || ''),
+          imgCaption: String(row.imgCaption || ''),
+          createdAt:  Number(row.createdAt) || Date.now(),
+          updatedAt:  Number(row.updatedAt) || Date.now()
+        };
+      }).filter(function(a) { return a.id && a.title; });
+      lp_articles = mapped;
+      try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+    } else {
+      lp_loadFromLocalStorage();
+    }
+    lp_renderPortal();
+  };
+
+  script.id     = 'lp-loadarticles-script';
+  script.src    = LP_SHEETS_URL + '?action=getAll&callback=' + cbName + '&t=' + Date.now();
+  script.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    lp_loadFromLocalStorage();
+  };
+  document.head.appendChild(script);
+}
+
+// ── displayArticles() ─────────────────────────────────────────
+// Render daftar semua artikel lengkap dengan tombol Edit, Hapus, Share Link.
+// Tombol Edit & Hapus hanya muncul untuk owner yang sudah login.
+function displayArticles() {
+  var container = document.getElementById('lp-grid-wrap');
+  var featured  = document.getElementById('lp-featured-wrap');
+  var empty     = document.getElementById('lp-empty');
+
+  if (!container) return;
+
+  var articles = lp_articles || [];
+  if (articles.length === 0) {
+    if (container) container.innerHTML = '';
+    if (featured)  featured.innerHTML  = '';
+    if (empty)     empty.style.display = '';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  var isOwner = (typeof lp_isOwner === 'function') ? lp_isOwner() : false;
+
+  // Render artikel dalam grid dengan tombol aksi
+  container.innerHTML = articles.map(function(a) {
+    var titleSafe   = JSON.stringify(a.title   || '');
+    var summarySafe = JSON.stringify(a.summary || '');
+    var idSafe      = JSON.stringify(a.id      || '');
+    var shareUrl    = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL)
+      ? LP_SITE_URL.replace(/\/$/, '') + '?id=' + encodeURIComponent(a.id)
+      : window.location.href.split('?')[0] + '?id=' + encodeURIComponent(a.id);
+    var shareUrlSafe = JSON.stringify(shareUrl);
+
+    var actionBtns = isOwner
+      ? '<div style="display:flex;gap:0.5rem;margin-top:0.85rem;flex-wrap:wrap;">'
+        + '<button onclick="editArticle(' + idSafe + ')" style="background:var(--gold);color:var(--ink);border:none;border-radius:4px;padding:0.35rem 0.85rem;font-family:DM Mono,monospace;font-size:0.65rem;letter-spacing:0.06em;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=\'0.8\'" onmouseout="this.style.opacity=\'1\'">✏️ Edit</button>'
+        + '<button onclick="deleteArticle(' + idSafe + ')" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.3);border-radius:4px;padding:0.35rem 0.85rem;font-family:DM Mono,monospace;font-size:0.65rem;letter-spacing:0.06em;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=\'0.7\'" onmouseout="this.style.opacity=\'1\'">🗑️ Hapus</button>'
+        + '<button onclick="navigator.clipboard&&navigator.clipboard.writeText(' + shareUrlSafe + ').then(function(){var b=document.getElementById(\'share-btn-\'+' + idSafe + ');if(b){var o=b.innerHTML;b.innerHTML=\'✅ Tersalin!\';setTimeout(function(){b.innerHTML=o;},1500);}}).catch(function(){window.prompt(\'Salin link artikel:\', ' + shareUrlSafe + ');})" id="share-btn-' + lp_esc(a.id) + '" style="background:rgba(184,151,58,0.12);color:var(--gold);border:1px solid rgba(184,151,58,0.3);border-radius:4px;padding:0.35rem 0.85rem;font-family:DM Mono,monospace;font-size:0.65rem;letter-spacing:0.06em;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=\'0.75\'" onmouseout="this.style.opacity=\'1\'">🔗 Share Link</button>'
+        + '</div>'
+      : '<div style="margin-top:0.85rem;">'
+        + '<button onclick="navigator.clipboard&&navigator.clipboard.writeText(' + shareUrlSafe + ').then(function(){var b=document.getElementById(\'share-btn-\'+' + idSafe + ');if(b){var o=b.innerHTML;b.innerHTML=\'✅ Tersalin!\';setTimeout(function(){b.innerHTML=o;},1500);}}).catch(function(){window.prompt(\'Salin link artikel:\', ' + shareUrlSafe + ');})" id="share-btn-' + lp_esc(a.id) + '" style="background:rgba(184,151,58,0.12);color:var(--gold);border:1px solid rgba(184,151,58,0.3);border-radius:4px;padding:0.35rem 0.85rem;font-family:DM Mono,monospace;font-size:0.65rem;letter-spacing:0.06em;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=\'0.75\'" onmouseout="this.style.opacity=\'1\'">🔗 Share Link</button>'
+        + '</div>';
+
+    var catIcon = (typeof lp_catIcon === 'function') ? lp_catIcon(a.cat) : '📰';
+    var dateStr = (typeof lp_formatDate === 'function') ? lp_formatDate(a.createdAt) : '';
+
+    return '<div class="content-card" style="cursor:default;">'
+      + '<div class="content-card-icon">' + catIcon + '</div>'
+      + '<div class="content-card-tag">' + lp_esc(a.cat) + '</div>'
+      + '<div class="content-card-title" style="cursor:pointer;" onclick="lp_openRead(' + idSafe + ')">' + lp_esc(a.title) + '</div>'
+      + '<div class="content-card-desc">' + lp_esc((a.summary || '').slice(0, 120) + (a.summary && a.summary.length > 120 ? '…' : '')) + '</div>'
+      + '<div style="font-family:DM Mono,monospace;font-size:0.62rem;color:var(--ink-3);margin-top:0.25rem;">' + dateStr + '</div>'
+      + actionBtns
+      + '</div>';
+  }).join('');
+}
+
+// ── addArticle() ──────────────────────────────────────────────
+// Tambah artikel baru dengan ID unik, simpan ke Sheets (action=save) via JSONP.
+// Data artikel dimasukkan via prompt untuk kesederhanaan.
+function addArticle() {
+  if (typeof lp_isOwner === 'function' && !lp_isOwner() &&
+      typeof lp_isLoggedIn === 'function' && !lp_isLoggedIn()) {
+    if (typeof lp_showPortalToast === 'function') {
+      lp_showPortalToast('🔒 Masuk terlebih dahulu untuk menambah artikel.');
+    }
+    if (typeof lp_showAuthBox === 'function') lp_showAuthBox();
+    return;
+  }
+  // Buka editor artikel baru
+  if (typeof lp_openEditor === 'function') {
+    lp_openEditor(null);
+  }
+}
+
+// ── _lp_saveArticleJsonp(article, onDone) ─────────────────────
+// Internal helper: simpan artikel ke Google Sheets via JSONP GET (action=save).
+// Menggunakan JSON.stringify() untuk mengamankan semua field data artikel
+// agar tidak menimbulkan error "Unexpected identifier" di dalam query string.
+function _lp_saveArticleJsonp(article, onDone) {
+  var art = Object.assign({}, article);
+  // Pastikan ID ada
+  if (!art.id) {
+    art.id = 'lp_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9);
+  }
+  if (!art.createdAt) art.createdAt = Date.now();
+  art.updatedAt = Date.now();
+
+  // JSON.stringify() menjamin semua field (termasuk body HTML) aman untuk dikirim
+  var payload = JSON.stringify({ article: art });
+
+  // Simpan ke localStorage terlebih dahulu
+  var idx = lp_articles.findIndex(function(x) { return x.id === art.id; });
+  if (idx >= 0) {
+    lp_articles[idx] = art;
+  } else {
+    lp_articles.unshift(art);
+  }
+  try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+
+  if (!lp_sheetsReady) {
+    lp_renderPortal();
+    if (typeof onDone === 'function') onDone(true, art.id);
+    return;
+  }
+
+  // Kirim ke Google Sheets via JSONP
+  var cbName = 'lp_saveCb_' + Date.now();
+  var script = document.createElement('script');
+  var done   = false;
+
+  var cleanup = function() {
+    var s = document.getElementById('lp-save-script');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+    lp_renderPortal();
+    if (typeof onDone === 'function') onDone(true, art.id);
+  }, 15000);
+
+  window[cbName] = function(result) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    lp_renderPortal();
+    if (typeof onDone === 'function') onDone(result && result.success, art.id);
+  };
+
+  script.id      = 'lp-save-script';
+  script.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    lp_renderPortal();
+    if (typeof onDone === 'function') onDone(false, art.id);
+  };
+  // encodeURIComponent memastikan payload JSON aman untuk query string
+  script.src = LP_SHEETS_URL
+    + '?action=save'
+    + '&data=' + encodeURIComponent(payload)
+    + '&callback=' + cbName
+    + '&t=' + Date.now();
+  document.head.appendChild(script);
+}
+
+// ── editArticle(id) ───────────────────────────────────────────
+// Buka prompt untuk judul/isi baru, lalu simpan artikel via JSONP (action=save).
+// Semua data yang dimasukkan ke template literal diamankan dengan JSON.stringify().
+function editArticle(id) {
+  if (!id) return;
+  if (typeof lp_isOwner === 'function' && !lp_isOwner() &&
+      typeof lp_isLoggedIn === 'function' && !lp_isLoggedIn()) {
+    if (typeof lp_showPortalToast === 'function') {
+      lp_showPortalToast('🔒 Masuk terlebih dahulu untuk mengedit artikel.');
+    }
+    return;
+  }
+
+  var art = lp_articles.find(function(a) { return a.id === id; });
+  if (!art) {
+    alert('Artikel tidak ditemukan.');
+    return;
+  }
+
+  // Gunakan full editor jika tersedia
+  if (typeof lp_openEditor === 'function') {
+    lp_openEditor(id);
+    return;
+  }
+
+  // Fallback: prompt sederhana
+  // JSON.stringify() digunakan untuk menghindari error saat data mengandung
+  // karakter khusus seperti petik, backslash, newline, dll.
+  var newTitle = prompt('Judul artikel baru (kosongkan untuk tetap sama):', art.title || '');
+  if (newTitle === null) return; // user klik Cancel
+
+  var newBody = prompt('Isi / ringkasan baru (kosongkan untuk tetap sama):', art.summary || '');
+  if (newBody === null) return;
+
+  var updated = Object.assign({}, art);
+  if (newTitle.trim()) updated.title   = newTitle.trim();
+  if (newBody.trim())  updated.summary = newBody.trim();
+  updated.updatedAt = Date.now();
+
+  // JSON.stringify() menjamin data aman di dalam pengiriman
+  _lp_saveArticleJsonp(updated, function(success) {
+    if (typeof lp_showPortalToast === 'function') {
+      lp_showPortalToast(success ? '✅ Artikel berhasil diperbarui.' : '⚠️ Tersimpan lokal, Sheets gagal.');
+    }
+    displayArticles();
+  });
+}
+
+// ── deleteArticle(id) ─────────────────────────────────────────
+// Hapus artikel berdasarkan ID dari localStorage dan Google Sheets (action=delete) via JSONP.
+function deleteArticle(id) {
+  if (!id) return;
+  if (typeof lp_isOwner === 'function' && !lp_isOwner()) {
+    if (typeof lp_showPortalToast === 'function') {
+      lp_showPortalToast('🔒 Hanya owner yang bisa menghapus artikel.');
+    }
+    return;
+  }
+
+  var art = lp_articles.find(function(a) { return a.id === id; });
+  if (!art) { alert('Artikel tidak ditemukan.'); return; }
+
+  if (!confirm('Hapus artikel ' + JSON.stringify(art.title) + '?\nTindakan ini tidak dapat dibatalkan.')) return;
+
+  // Hapus dari memori & localStorage
+  lp_articles = lp_articles.filter(function(a) { return a.id !== id; });
+  try { localStorage.setItem(LP_STORE_KEY, JSON.stringify(lp_articles)); } catch(e) {}
+  lp_renderPortal();
+
+  if (!lp_sheetsReady) return;
+
+  // Hapus dari Google Sheets via JSONP (action=delete)
+  var cbName = 'lp_deleteCb_' + Date.now();
+  var script = document.createElement('script');
+  var done   = false;
+
+  var cleanup = function() {
+    var s = document.getElementById('lp-delete-script');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+  }, 15000);
+
+  window[cbName] = function(result) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    if (typeof lp_showPortalToast === 'function') {
+      lp_showPortalToast((result && result.success) ? '🗑️ Artikel dihapus dari Sheets.' : '⚠️ Dihapus lokal, Sheets gagal.');
+    }
+  };
+
+  script.id      = 'lp-delete-script';
+  script.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+  };
+  // Kirim id via query string — JSON.stringify() digunakan sebagai pengaman nilai
+  script.src = LP_SHEETS_URL
+    + '?action=delete'
+    + '&id=' + encodeURIComponent(id)
+    + '&callback=' + cbName
+    + '&t=' + Date.now();
+  document.head.appendChild(script);
+}
+
+// ── displaySingle() ───────────────────────────────────────────
+// Tampilkan artikel tunggal berdasarkan parameter ?id= di URL (action=getById).
+// Dipanggil saat window.onload mendeteksi ada ?id= di URL.
+function displaySingle(articleId) {
+  if (!articleId) {
+    // Tidak ada ID → tampilkan daftar semua artikel
+    if (typeof showPage === 'function') showPage('konten');
+    if (typeof lp_init  === 'function' && !lp_initialized) lp_init();
+    return;
+  }
+
+  // Pastikan halaman konten aktif
+  if (typeof showPage === 'function') showPage('konten');
+
+  // Coba buka langsung jika sudah ada di memori
+  var artInMem = (typeof lp_articles !== 'undefined')
+    ? lp_articles.find(function(a) { return a.id === articleId; })
+    : null;
+
+  if (artInMem) {
+    if (typeof lp_openRead === 'function') lp_openRead(articleId);
+    return;
+  }
+
+  // Belum ada di memori → ambil dari Sheets via JSONP (action=getById)
+  var cbName = 'lp_displaySingleCb_' + Date.now();
+  var script = document.createElement('script');
+  var done   = false;
+
+  var cleanup = function() {
+    var s = document.getElementById('lp-displaysingle-script');
+    if (s && s.parentNode) s.parentNode.removeChild(s);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+    // Timeout: fallback ke polling lokal
+    lp_openArticleById(articleId);
+  }, 15000);
+
+  window[cbName] = function(result) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    if (result && result.success && result.article) {
+      var fetched = result.article;
+      // Inject ke memori jika belum ada
+      if (!lp_articles.find(function(a) { return a.id === fetched.id; })) {
+        lp_articles.push(fetched);
+      }
+      if (typeof lp_openRead === 'function') lp_openRead(fetched.id);
+    } else {
+      // Tidak ditemukan di Sheets → coba lokal
+      lp_openArticleById(articleId);
+    }
+  };
+
+  script.id      = 'lp-displaysingle-script';
+  script.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    lp_openArticleById(articleId);
+  };
+  script.src = LP_SHEETS_URL
+    + '?action=getById'
+    + '&id=' + encodeURIComponent(articleId)
+    + '&callback=' + cbName
+    + '&t=' + Date.now();
+  document.head.appendChild(script);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  window.onload — Cek parameter ?id= di URL saat halaman dimuat.
+//  Jika ada ?id=xxx → tampilkan artikel tunggal via displaySingle().
+//  Jika tidak ada  → tampilkan daftar semua artikel (lp_init).
+//  Menggantikan / melengkapi lp_routeOnLoad yang sudah ada di atas.
+// ════════════════════════════════════════════════════════════════
+window.onload = (function(_prevOnload) {
+  return function() {
+    // Jalankan handler lama jika ada
+    if (typeof _prevOnload === 'function') {
+      try { _prevOnload.call(this); } catch(e) {}
+    }
+
+    var params  = new URLSearchParams(window.location.search);
+    var shareId = params.get('id');
+
+    if (shareId && shareId.trim()) {
+      // Ada ?id= → tampilkan artikel tunggal
+      // Inisialisasi portal terlebih dahulu agar lp_articles siap
+      if (typeof lp_init === 'function' && !lp_initialized) {
+        lp_init();
+      }
+      // Panggil displaySingle setelah sedikit delay agar init selesai
+      setTimeout(function() {
+        displaySingle(shareId.trim());
+      }, 200);
+    } else {
+      // Tidak ada ?id= → tampilkan daftar semua artikel seperti biasa
+      // (lp_routeOnLoad sudah menangani ini, jadi tidak perlu aksi tambahan)
+    }
+  };
+})(typeof window.onload === 'function' ? window.onload : null);
+
+// ── /FUNGSI CRUD ARTIKEL ──────────────────────────────────────
 
 // ─── Tangani tombol Kembali (popstate) ──────────────────────────────────
 window.addEventListener('popstate', function(event) {
