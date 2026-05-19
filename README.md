@@ -1890,7 +1890,7 @@ img { max-width: 100%; height: auto; }
       <div id="dash-fb-setup-guide" style="display:none; margin-top:1.25rem; border-top:1px solid rgba(34,197,94,0.2); padding-top:1.25rem;">
         <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; color:#4ade80; text-transform:uppercase; margin-bottom:0.85rem;">📋 Cara Setup Google Sheets Database (Gratis, 5 Menit)</div>
         <ol style="font-size:0.88rem; color:rgba(245,240,232,0.75); line-height:2.2; padding-left:1.25rem;">
-          <li>Buka <a href="https://sheets.new" target="_blank" style="color:#4ade80;">sheets.new</a> (login akun Google) → beri nama: <strong style="color:#86efac;">LegalPreneur Articles</strong></li>
+          <li>Buka <a href="https://sheets.new" target="_blank" rel="noopener noreferrer"style="color:#4ade80;">sheets.new</a> (login akun Google) → beri nama: <strong style="color:#86efac;">LegalPreneur Articles</strong></li>
           <li>Klik menu <strong style="color:#86efac;">Extensions → Apps Script</strong></li>
           <li>Hapus semua kode yang ada, lalu paste kode Apps Script dari komentar di dalam file HTML ini (cari bagian <code style="background:rgba(34,197,94,0.15);padding:0.1rem 0.4rem;border-radius:3px;color:#86efac;">/* Paste kode ... */</code>)</li>
           <li>Klik <strong style="color:#86efac;">Deploy → New deployment</strong> → pilih type: <em>Web App</em></li>
@@ -5209,7 +5209,7 @@ function handleConsult(e) {
 // LEGALPRENEUR — SISTEM ARTIKEL / PORTAL BERITA
 // ════════════════════════════════════════════════════════
 
-// ── DATA STORE (Google Sheets sebagai Database) ──────────
+// DATA STORE (Google Sheets + local cache)
 const LP_STORE_KEY = 'lp_articles_v2'; // untuk draft & cache lokal
 
 // Artikel di localStorage dipertahankan antar sesi (tidak dihapus saat refresh).
@@ -5246,9 +5246,9 @@ const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbz0lk-MgqlmgQY9On
 // Jika website sudah punya domain (mis. legalpreneur.my.id atau di Google Sites),
 // isi LP_SITE_URL dengan URL lengkap website. Jika kosong (''), otomatis pakai
 // URL saat ini (cocok untuk Google Sites hosting).
-// Contoh: const LP_SITE_URL = 'https://sites.google.com/view/legalpreneur';
-// Atau:   const LP_SITE_URL = 'https://legalpreneur.my.id';
-const LP_SITE_URL = '';
+// Contoh: const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
+// Atau:   const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
+const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
 // ────────────────────────────────────────────────────────────
 
 // ─── URL GOOGLE APPS SCRIPT UNTUK KIRIM ARTIKEL (form eksternal) ───
@@ -5285,8 +5285,15 @@ function doGet(e) {
       hdrs.forEach((h, i) => { obj[h] = row[i]; });
       return obj;
     }).filter(row => row.id && row.title); // filter baris kosong
-    return jsonpResponse(rows.reverse(), callback);
-  }
+    return jsonpResponse(rows.reverse(), callback); function jsonpResponse(data, callback) {
+  const output = callback
+    ? `${callback}(${JSON.stringify(data)})`
+    : JSON.stringify(data);
+
+  return ContentService
+    .createTextOutput(output)
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
 
   // FIX: Handle save via GET + JSONP (fallback dari no-cors POST yang gagal)
   if (action === 'save') {
@@ -5340,7 +5347,9 @@ function doGet(e) {
 }
 
 function doPost(e) {
-  const payload = JSON.parse(e.postData.contents);
+  const payload = JSON.parse(
+  (e.postData && e.postData.contents) || '{}'
+);
   const action = payload.action;
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME)
     || SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME);
@@ -5353,15 +5362,21 @@ function doPost(e) {
     sheet.setFrozenRows(1);
   }
 
-  if (action === 'save') {
-    const art = payload.article;
+  if (!payload.article) {
+  return jsonResponse({
+    success: false,
+    error: 'Article kosong'
+  });
+}
+
+const art = payload.article;
     const data = sheet.getDataRange().getValues();
     const hdrs = data[0];
     const idIdx = hdrs.indexOf('id');
     // Cari baris existing
     let found = false;
     for (let i = 1; i < data.length; i++) {
-      if (data[i][idIdx] === art.id) {
+     if (String(data[i][idIdx]) === String(art.id)) {
         // Update baris
         const row = hdrs.map(h => art[h] !== undefined ? art[h] : '');
         sheet.getRange(i+1, 1, 1, hdrs.length).setValues([row]);
@@ -8027,5 +8042,657 @@ document.addEventListener('click', function(e) {
   }
 });
 </script>
+
+
+<!-- ════════════════════════════════════════════════════════════════════
+     PATCH: Share Link ?id=, getById, Routing, OG Tags
+     Fungsi: lp_getById · lp_openRead · lp_closeRead
+             lp_encodeArticleToUrl · lp_updateOgTags · lp_routeOnLoad
+     ════════════════════════════════════════════════════════════════ -->
+<script>
+// ════════════════════════════════════════════════════════════════
+//  PATCH 1 — lp_getById
+//  Ambil satu artikel dari Google Sheets via JSONP GET.
+//  Dipanggil saat URL mengandung ?id=xxx tapi artikel belum
+//  ada di memori (lp_articles) — misalnya penerima share link.
+// ════════════════════════════════════════════════════════════════
+function lp_getById(articleId, onSuccess, onError) {
+  if (!lp_sheetsReady) {
+    // Sheets belum dikonfigurasi: cari di localStorage / memori
+    var art = lp_articles.find(function(a) { return a.id === articleId; });
+    if (art) { onSuccess(art); } else { if (onError) onError(); }
+    return;
+  }
+
+  var cbName   = 'lp_getByIdCb_' + Date.now();
+  var scriptEl = document.createElement('script');
+  var done     = false;
+
+  var cleanup = function() {
+    if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  // Timeout 15 detik
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+    // Fallback: cari di memori lokal
+    var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+    if (localArt) { onSuccess(localArt); }
+    else if (onError) onError();
+  }, 15000);
+
+  window[cbName] = function(result) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    if (result && result.success && result.article) {
+      onSuccess(result.article);
+    } else {
+      // Fallback: cari di memori lokal
+      var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+      if (localArt) { onSuccess(localArt); }
+      else if (onError) onError();
+    }
+  };
+
+  scriptEl.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    // Fallback: cari di memori lokal
+    var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+    if (localArt) { onSuccess(localArt); }
+    else if (onError) onError();
+  };
+
+  scriptEl.src = LP_SHEETS_URL
+    + '?action=getById'
+    + '&id=' + encodeURIComponent(articleId)
+    + '&callback=' + cbName
+    + '&t=' + Date.now();
+
+  document.head.appendChild(scriptEl);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 2 — lp_openRead (override)
+//  Perbarui URL pakai ?id= saat membuka artikel,
+//  agar link share dan refresh halaman tetap berfungsi.
+// ════════════════════════════════════════════════════════════════
+var _lp_openRead_original = (typeof lp_openRead === 'function') ? lp_openRead : null;
+
+function lp_openRead(id) {
+  // Panggil implementasi asli terlebih dahulu
+  if (_lp_openRead_original) {
+    _lp_openRead_original(id);
+  }
+
+  // Setelah modal terbuka, perbarui URL menjadi ?id=xxx
+  // (menggantikan #artikel= yang dipakai versi lama)
+  if (id && id !== '__preview__') {
+    var base = window.location.pathname;
+    // Gunakan LP_SITE_URL jika tersedia, atau URL saat ini
+    var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+      ? LP_SITE_URL.trim().replace(/\/$/, '')
+      : '';
+    // Hanya perbarui URL, jangan reload
+    try {
+      history.replaceState({ articleId: id }, '', base + '?id=' + encodeURIComponent(id));
+    } catch(e) {}
+    // Update OG tags
+    var art = (typeof lp_articles !== 'undefined')
+      ? lp_articles.find(function(a) { return a.id === id; })
+      : null;
+    if (art && typeof lp_updateOgTags === 'function') {
+      lp_updateOgTags(art);
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 3 — lp_closeRead (override)
+//  Bersihkan ?id= dari URL saat modal artikel ditutup.
+// ════════════════════════════════════════════════════════════════
+var _lp_closeRead_original = (typeof lp_closeRead === 'function') ? lp_closeRead : null;
+
+function lp_closeRead() {
+  if (_lp_closeRead_original) {
+    _lp_closeRead_original();
+  }
+  // Hapus ?id= dari URL (tanpa reload)
+  try {
+    history.replaceState(null, '', window.location.pathname);
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 4 — lp_encodeArticleToUrl (override)
+//  Pakai format ?id= untuk share link, bukan base64/hash.
+// ════════════════════════════════════════════════════════════════
+function lp_encodeArticleToUrl(article) {
+  if (!article || !article.id) return window.location.href;
+
+  var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+    ? LP_SITE_URL.trim().replace(/\/$/, '')
+    : (window.location.protocol !== 'file:'
+        ? window.location.href.split('?')[0].split('#')[0].replace(/\/$/, '')
+        : 'https://novrizaltan2-prog.github.io/legalpreneur');
+
+  return siteBase + '?id=' + encodeURIComponent(article.id);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 5 — lp_updateOgTags (override)
+//  Pakai format ?id= untuk URL di OG tags.
+// ════════════════════════════════════════════════════════════════
+function lp_updateOgTags(a) {
+  if (!a) return;
+
+  var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+    ? LP_SITE_URL.trim().replace(/\/$/, '')
+    : (window.location.protocol !== 'file:'
+        ? window.location.href.split('?')[0].split('#')[0].replace(/\/$/, '')
+        : 'https://novrizaltan2-prog.github.io/legalpreneur');
+
+  var articleUrl = siteBase + '?id=' + encodeURIComponent(a.id);
+  var title      = a.title   || 'LegalPreneur';
+  var desc       = a.summary || 'Artikel hukum & literasi digital oleh Novrizal, S.I.Kom., S.H., CPM';
+
+  var img = (a.img && !a.img.startsWith('data:') && a.img.startsWith('http'))
+    ? a.img
+    : 'https://novrizaltan2-prog.github.io/legalpreneur/og-default.png';
+
+  function setMeta(id, val) {
+    var el = document.getElementById(id);
+    if (el && val) el.setAttribute('content', val);
+  }
+
+  document.title = title + ' — LegalPreneur';
+  setMeta('og-title',       title);
+  setMeta('og-description', desc);
+  setMeta('og-url',         articleUrl);
+  setMeta('og-image',       img);
+  setMeta('tw-title',       title);
+  setMeta('tw-description', desc);
+  setMeta('tw-image',       img);
+
+  var twCard = document.getElementById('tw-card');
+  if (twCard) twCard.setAttribute('content', 'summary_large_image');
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 6 — showPage('konten') + routing ?id=
+//  Dipanggil sekali saat halaman load.
+//  Jika URL mengandung ?id=xxx, tampilkan artikel tersebut.
+//  Jika tidak, tampilkan daftar artikel seperti biasa.
+// ════════════════════════════════════════════════════════════════
+
+// Fungsi utama: buka artikel berdasarkan ID, dengan polling
+// sampai artikel tersedia di lp_articles atau Sheets merespon.
+function lp_openArticleById(articleId) {
+  // Cek apakah sudah ada di memori
+  var art = (typeof lp_articles !== 'undefined')
+    ? lp_articles.find(function(a) { return a.id === articleId; })
+    : null;
+
+  if (art) {
+    lp_openRead(articleId);
+    return;
+  }
+
+  // Belum ada di memori → ambil langsung dari Sheets via getById
+  lp_getById(articleId, function(fetchedArt) {
+    // Inject ke memori sementara jika belum ada
+    var existing = lp_articles.find(function(a) { return a.id === fetchedArt.id; });
+    if (!existing) {
+      lp_articles.push(fetchedArt);
+    }
+    lp_openRead(articleId);
+  }, function() {
+    // Artikel tidak ditemukan di Sheets — tampilkan pesan error
+    var featuredWrap = document.getElementById('lp-featured-wrap');
+    if (featuredWrap) {
+      featuredWrap.innerHTML = [
+        '<div style="text-align:center;padding:3rem 2rem;',
+        'color:var(--ink-3);font-family:DM Mono,monospace;',
+        'font-size:0.8rem;letter-spacing:0.08em;line-height:2;">',
+        '<div style="font-size:2rem;margin-bottom:1rem;">⚠️</div>',
+        'Artikel tidak ditemukan.<br>',
+        '<span style="font-size:0.7rem;opacity:0.7;">',
+        'Artikel mungkin sudah dihapus atau link tidak valid.</span><br>',
+        '<button onclick="lp_renderPortal()" style="margin-top:1.5rem;',
+        'background:var(--ink);color:var(--gold-pale);border:none;',
+        'border-radius:5px;padding:0.65rem 1.35rem;',
+        'font-family:DM Mono,monospace;font-size:0.72rem;',
+        'letter-spacing:0.06em;cursor:pointer;">',
+        '← Lihat Semua Artikel</button></div>'
+      ].join('');
+    }
+    // Bersihkan URL
+    try { history.replaceState(null, '', window.location.pathname); } catch(e2) {}
+  });
+}
+
+// ─── Cek URL saat halaman pertama dimuat ────────────────────────────────
+(function lp_routeOnLoad() {
+  // Jalankan setelah DOMContentLoaded (untuk mendukung berbagai posisi script)
+  function run() {
+    var params   = new URLSearchParams(window.location.search);
+    var shareId  = params.get('id');
+
+    // Juga cek format hash lama (#artikel=xxx) untuk kompatibilitas mundur
+    var hash = window.location.hash;
+    if (!shareId && hash && hash.startsWith('#artikel=')) {
+      shareId = decodeURIComponent(hash.slice('#artikel='.length));
+    }
+
+    if (!shareId) return; // Tidak ada ID → tampilkan daftar biasa
+
+    // Ada ID di URL → pastikan halaman konten aktif
+    if (typeof showPage === 'function') {
+      showPage('konten');
+    }
+
+    // Tunggu sampai lp_init selesai & Sheets merespon, lalu buka artikel
+    var attempts    = 0;
+    var maxAttempts = 100; // 100 × 200ms = 20 detik
+    var interval    = setInterval(function() {
+      attempts++;
+
+      // Cek apakah lp_init sudah selesai (lp_initialized = true)
+      var isReady = (typeof lp_initialized !== 'undefined' && lp_initialized);
+      if (!isReady && attempts < maxAttempts) return;
+
+      clearInterval(interval);
+
+      // Coba buka artikel — lp_openArticleById akan query Sheets jika perlu
+      lp_openArticleById(shareId);
+    }, 200);
+
+    // Jika halaman dimuat ulang dengan ?id= di address bar,
+    // pastikan portal diinisialisasi agar data tersedia
+    if (typeof lp_init === 'function') {
+      setTimeout(function() {
+        if (typeof lp_initialized !== 'undefined' && !lp_initialized) {
+          lp_init();
+        }
+      }, 150);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+
+// ─── Tangani tombol Kembali (popstate) ──────────────────────────────────
+window.addEventListener('popstate', function(event) {
+  var params  = new URLSearchParams(window.location.search);
+  var shareId = params.get('id');
+  if (shareId) {
+    // Pengguna menekan Kembali ke URL yang masih berisi ?id=
+    lp_openArticleById(shareId);
+  } else {
+    // Pengguna kembali ke halaman tanpa ID → tutup modal jika terbuka
+    var modal = document.getElementById('lp-read-modal');
+    if (modal && modal.style.display !== 'none') {
+      if (_lp_closeRead_original) {
+        _lp_closeRead_original();
+      }
+    }
+  }
+});
+</script>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     GOOGLE APPS SCRIPT — REFERENSI KODE BACKEND (Code.gs)
+     Salin kode di antara >>>GAS dan GAS<<< ke Google Apps Script.
+     Spreadsheet ID : 1H1ln1BkyAh2EgIfDJUussHBsD5zp7TMsjhDpvrmStd0
+     Sheet          : Sheet1
+     Deploy: Extensions → Apps Script → New Deployment → Web App
+             Execute as: Me | Who has access: Anyone
+     ════════════════════════════════════════════════════════════════ -->
+<!--GAS
+// ═══════════════════════════════════════════════════════════════════════
+//  LEGALPRENEUR — GOOGLE APPS SCRIPT BACKEND
+//  Spreadsheet ID : 1H1ln1BkyAh2EgIfDJUussHBsD5zp7TMsjhDpvrmStd0
+//  Sheet          : Sheet1
+//  Kolom          : id | title | cat | author | summary | body | tags |
+//                   img | imgCaption | createdAt | updatedAt
+//
+//  CARA DEPLOY:
+//  1. Buka spreadsheet → Extensions → Apps Script
+//  2. Hapus semua kode lama, paste seluruh file ini
+//  3. Klik Deploy → New Deployment → Web App
+//     - Execute as : Me
+//     - Who has access : Anyone
+//  4. Salin URL deployment → tempel ke LP_SHEETS_URL di index.html
+// ═══════════════════════════════════════════════════════════════════════
+
+// ─── KONFIGURASI ────────────────────────────────────────────────────────
+const SPREADSHEET_ID = '1H1ln1BkyAh2EgIfDJUussHBsD5zp7TMsjhDpvrmStd0';
+const SHEET_NAME     = 'Sheet1';
+const HEADERS        = ['id','title','cat','author','summary','body','tags','img','imgCaption','createdAt','updatedAt'];
+
+// ─── HELPER: Ambil sheet, buat jika belum ada ────────────────────────────
+function getSheet() {
+  const ss    = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let   sheet = ss.getSheetByName(SHEET_NAME);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME);
+  }
+
+  // Inisialisasi header jika sheet masih kosong
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HEADERS);
+    const headerRange = sheet.getRange(1, 1, 1, HEADERS.length);
+    headerRange
+      .setFontWeight('bold')
+      .setBackground('#2a2720')
+      .setFontColor('#f0e4c0');
+    sheet.setFrozenRows(1);
+  }
+
+  return sheet;
+}
+
+// ─── HELPER: Ubah array baris → objek berdasarkan header ────────────────
+function rowToObject(headers, row) {
+  const obj = {};
+  headers.forEach(function(h, i) {
+    obj[h] = row[i] !== undefined ? row[i] : '';
+  });
+  return obj;
+}
+
+// ─── HELPER: Ubah objek artikel → array baris sesuai urutan HEADERS ─────
+function objectToRow(art) {
+  return HEADERS.map(function(h) {
+    if (art[h] !== undefined && art[h] !== null) return art[h];
+    return '';
+  });
+}
+
+// ─── HELPER: Format response JSON (non-JSONP) ───────────────────────────
+function jsonResponse(data) {
+  return ContentService
+    .createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ─── HELPER: Format response JSONP ─────────────────────────────────────
+// Selalu kembalikan MimeType.JAVASCRIPT agar browser mau mengeksekusi
+// callback — wajib untuk JSONP cross-origin dari GitHub Pages.
+function jsonpResponse(data, callback) {
+  const body = callback
+    ? callback + '(' + JSON.stringify(data) + ')'
+    : JSON.stringify(data);
+
+  return ContentService
+    .createTextOutput(body)
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  doGet — menangani semua permintaan GET (JSONP-friendly)
+//  Parameter yang didukung:
+//    ?action=getAll&callback=xxx          → ambil semua artikel
+//    ?action=getById&id=xxx&callback=xxx  → ambil satu artikel by ID
+//    ?action=save&data=<JSON>&callback=xxx → simpan / update artikel
+//    ?action=delete&id=xxx&callback=xxx   → hapus artikel by ID
+// ══════════════════════════════════════════════════════════════════════
+function doGet(e) {
+  const params   = e.parameter || {};
+  const action   = params.action   || '';
+  const callback = params.callback || '';
+
+  try {
+    // ── getAll ──────────────────────────────────────────────────────
+    if (action === 'getAll') {
+      const sheet = getSheet();
+      const data  = sheet.getDataRange().getValues();
+
+      if (data.length <= 1) {
+        // Sheet hanya punya baris header → kembalikan array kosong
+        return jsonpResponse([], callback);
+      }
+
+      const hdrs = data[0];
+      const rows = data.slice(1)
+        .map(function(row) { return rowToObject(hdrs, row); })
+        .filter(function(row) { return row.id && row.title; });
+
+      // Urut terbaru dulu (createdAt descending)
+      rows.sort(function(a, b) {
+        return Number(b.createdAt || 0) - Number(a.createdAt || 0);
+      });
+
+      return jsonpResponse(rows, callback);
+    }
+
+    // ── getById ─────────────────────────────────────────────────────
+    if (action === 'getById') {
+      const id = params.id || '';
+      if (!id) {
+        return jsonpResponse({ success: false, error: 'Parameter id wajib diisi' }, callback);
+      }
+
+      const sheet = getSheet();
+      const data  = sheet.getDataRange().getValues();
+
+      if (data.length <= 1) {
+        return jsonpResponse({ success: false, error: 'Artikel tidak ditemukan' }, callback);
+      }
+
+      const hdrs  = data[0];
+      const idIdx = hdrs.indexOf('id');
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(id)) {
+          const article = rowToObject(hdrs, data[i]);
+          return jsonpResponse({ success: true, article: article }, callback);
+        }
+      }
+
+      return jsonpResponse({ success: false, error: 'Artikel tidak ditemukan' }, callback);
+    }
+
+    // ── save (via GET + JSONP — fallback dari POST) ─────────────────
+    if (action === 'save') {
+      let payload = {};
+      try {
+        payload = JSON.parse(decodeURIComponent(params.data || '{}'));
+      } catch(parseErr) {
+        return jsonpResponse({ success: false, error: 'JSON tidak valid: ' + parseErr.toString() }, callback);
+      }
+
+      const art = payload.article;
+      if (!art) {
+        return jsonpResponse({ success: false, error: 'Data artikel kosong' }, callback);
+      }
+
+      // Pastikan artikel punya ID unik
+      if (!art.id) {
+        art.id = Utilities.getUuid();
+      }
+
+      // Isi timestamp default
+      if (!art.createdAt) art.createdAt = Date.now();
+      art.updatedAt = Date.now();
+
+      const sheet  = getSheet();
+      const data   = sheet.getDataRange().getValues();
+      const hdrs   = data.length > 0 ? data[0] : HEADERS;
+      const idIdx  = hdrs.indexOf('id');
+      let   found  = false;
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(art.id)) {
+          // Update baris yang sudah ada
+          const row = objectToRow(art);
+          sheet.getRange(i + 1, 1, 1, HEADERS.length).setValues([row]);
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        // Tambah baris baru
+        sheet.appendRow(objectToRow(art));
+      }
+
+      return jsonpResponse({ success: true, id: art.id }, callback);
+    }
+
+    // ── delete (via GET + JSONP — fallback dari POST) ───────────────
+    if (action === 'delete') {
+      const id = params.id || '';
+      if (!id) {
+        // Coba ambil dari field `data`
+        let payload = {};
+        try {
+          payload = JSON.parse(decodeURIComponent(params.data || '{}'));
+        } catch(e2) {}
+        if (!payload.id) {
+          return jsonpResponse({ success: false, error: 'Parameter id wajib diisi' }, callback);
+        }
+        return doDeleteById(payload.id, callback);
+      }
+      return doDeleteById(id, callback);
+    }
+
+    // ── Aksi tidak dikenal ──────────────────────────────────────────
+    return jsonpResponse({ success: false, error: 'Action tidak dikenal: ' + action }, callback);
+
+  } catch(err) {
+    return jsonpResponse({ success: false, error: err.toString() }, callback);
+  }
+}
+
+// ─── Helper hapus artikel by ID ─────────────────────────────────────────
+function doDeleteById(id, callback) {
+  try {
+    const sheet  = getSheet();
+    const data   = sheet.getDataRange().getValues();
+
+    if (data.length <= 1) {
+      return jsonpResponse({ success: false, error: 'Sheet kosong' }, callback);
+    }
+
+    const hdrs  = data[0];
+    const idIdx = hdrs.indexOf('id');
+
+    for (var i = 1; i < data.length; i++) {
+      if (String(data[i][idIdx]) === String(id)) {
+        sheet.deleteRow(i + 1);
+        return jsonpResponse({ success: true }, callback);
+      }
+    }
+
+    return jsonpResponse({ success: false, error: 'Artikel tidak ditemukan' }, callback);
+  } catch(err) {
+    return jsonpResponse({ success: false, error: err.toString() }, callback);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  doPost — menangani permintaan POST dari fetch() mode no-cors
+//  Body (e.postData.contents) berisi JSON:
+//    { action: 'save',   article: { ... } }
+//    { action: 'delete', id: 'xxx' }
+// ══════════════════════════════════════════════════════════════════════
+function doPost(e) {
+  let payload = {};
+  try {
+    const raw = (e.postData && e.postData.contents) ? e.postData.contents : '{}';
+    payload = JSON.parse(raw);
+  } catch(parseErr) {
+    return jsonResponse({ success: false, error: 'JSON tidak valid: ' + parseErr.toString() });
+  }
+
+  const action = payload.action || '';
+
+  try {
+
+    // ── save ────────────────────────────────────────────────────────
+    if (action === 'save') {
+      const art = payload.article;
+      if (!art) {
+        return jsonResponse({ success: false, error: 'Data artikel kosong' });
+      }
+
+      // Pastikan artikel punya ID unik
+      if (!art.id) {
+        art.id = Utilities.getUuid();
+      }
+
+      // Isi timestamp
+      if (!art.createdAt) art.createdAt = Date.now();
+      art.updatedAt = Date.now();
+
+      const sheet  = getSheet();
+      const data   = sheet.getDataRange().getValues();
+      const hdrs   = data.length > 0 ? data[0] : HEADERS;
+      const idIdx  = hdrs.indexOf('id');
+      let   found  = false;
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(art.id)) {
+          const row = objectToRow(art);
+          sheet.getRange(i + 1, 1, 1, HEADERS.length).setValues([row]);
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) {
+        sheet.appendRow(objectToRow(art));
+      }
+
+      return jsonResponse({ success: true, id: art.id });
+    }
+
+    // ── delete ──────────────────────────────────────────────────────
+    if (action === 'delete') {
+      const id = payload.id || '';
+      if (!id) {
+        return jsonResponse({ success: false, error: 'Parameter id wajib diisi' });
+      }
+
+      const sheet  = getSheet();
+      const data   = sheet.getDataRange().getValues();
+
+      if (data.length <= 1) {
+        return jsonResponse({ success: false, error: 'Sheet kosong' });
+      }
+
+      const hdrs  = data[0];
+      const idIdx = hdrs.indexOf('id');
+
+      for (var i = 1; i < data.length; i++) {
+        if (String(data[i][idIdx]) === String(id)) {
+          sheet.deleteRow(i + 1);
+          return jsonResponse({ success: true });
+        }
+      }
+
+      return jsonResponse({ success: false, error: 'Artikel tidak ditemukan' });
+    }
+
+    return jsonResponse({ success: false, error: 'Action tidak dikenal: ' + action });
+
+  } catch(err) {
+    return jsonResponse({ success: false, error: err.toString() });
+  }
+}
+GAS-->
 </body>
 </html>
