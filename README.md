@@ -8449,7 +8449,7 @@ window.addEventListener('popstate', function(event) {
       }
     }
   }
-}});
+});
 </script>
 
 
