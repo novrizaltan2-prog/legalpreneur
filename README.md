@@ -7556,7 +7556,18 @@ function lp_showPortalToast(msg) {
 // DASHBOARD OWNER — AKSES TERSEMBUNYI
 // ════════════════════════════════════════════════════════
 const DASH_PW_HASH = 'lp2024novrizal'; // Kata sandi dashboard owner
-const DASH_SESSION_KEY = 'lp_dash_session';
+const DASH_SESSION_KEY    = 'lp_dash_session';
+const DASH_LS_PERSIST_KEY = 'lp_dash_owner_v1'; // persist owner login ke localStorage
+
+// Auto-restore sesi owner dari localStorage saat halaman dimuat
+// Agar tombol Edit/Hapus tetap muncul tanpa login ulang setiap buka halaman
+(function lp_restoreOwnerSession() {
+  try {
+    if (localStorage.getItem(DASH_LS_PERSIST_KEY) === '1') {
+      sessionStorage.setItem(DASH_SESSION_KEY, '1');
+    }
+  } catch(e) {}
+})();
 
 // ── OWNER SESSION CHECK ───────────────────────────────────
 // Cek apakah sesi pemilik web aktif (login via dashboard)
@@ -7568,7 +7579,10 @@ function dashLogin() {
   const pw = document.getElementById('dash-pw-input').value;
   const err = document.getElementById('dash-pw-err');
   if (pw === DASH_PW_HASH) {
-    try { sessionStorage.setItem(DASH_SESSION_KEY, '1'); } catch(e) {}
+    try {
+      sessionStorage.setItem(DASH_SESSION_KEY, '1');
+      localStorage.setItem(DASH_LS_PERSIST_KEY, '1'); // persist agar tombol Edit/Hapus muncul tanpa login ulang
+    } catch(e) {}
     err.style.display = 'none';
     document.getElementById('dash-login-gate').style.display = 'none';
     document.getElementById('dash-content').style.display = 'block';
@@ -7590,7 +7604,10 @@ function dashLogin() {
 }
 
 function dashLogout() {
-  try { sessionStorage.removeItem(DASH_SESSION_KEY); } catch(e) {}
+  try {
+    sessionStorage.removeItem(DASH_SESSION_KEY);
+    localStorage.removeItem(DASH_LS_PERSIST_KEY); // hapus persist saat logout
+  } catch(e) {}
   document.getElementById('dash-login-gate').style.display = 'flex';
   document.getElementById('dash-content').style.display = 'none';
   document.getElementById('nav-dashboard-li').style.display = 'none';
@@ -8295,49 +8312,70 @@ function lp_openArticleById(articleId) {
 
 // ─── Cek URL saat halaman pertama dimuat ────────────────────────────────
 (function lp_routeOnLoad() {
-  // Jalankan setelah DOMContentLoaded (untuk mendukung berbagai posisi script)
+  // FIX: Panggil lp_init() langsung, query getById ke Sheets sekaligus,
+  // lalu polling lp_articles sebagai fallback. Tidak menunggu lp_initialized.
   function run() {
-    var params   = new URLSearchParams(window.location.search);
-    var shareId  = params.get('id');
+    var params  = new URLSearchParams(window.location.search);
+    var shareId = params.get('id');
 
-    // Juga cek format hash lama (#artikel=xxx) untuk kompatibilitas mundur
+    // Cek format hash lama (#artikel=xxx) untuk kompatibilitas mundur
     var hash = window.location.hash;
     if (!shareId && hash && hash.startsWith('#artikel=')) {
       shareId = decodeURIComponent(hash.slice('#artikel='.length));
     }
 
-    if (!shareId) return; // Tidak ada ID → tampilkan daftar biasa
+    if (!shareId) return; // Tidak ada ID -> tampilkan daftar biasa
 
-    // Ada ID di URL → pastikan halaman konten aktif
-    if (typeof showPage === 'function') {
-      showPage('konten');
-    }
+    // Ada ?id= -> aktifkan halaman konten
+    if (typeof showPage === 'function') showPage('konten');
 
-    // Tunggu sampai lp_init selesai & Sheets merespon, lalu buka artikel
+    // Panggil lp_init() langsung agar proses load Sheets dimulai
+    if (typeof lp_init === 'function') lp_init();
+
+    var opened      = false;
     var attempts    = 0;
-    var maxAttempts = 100; // 100 × 200ms = 20 detik
-    var interval    = setInterval(function() {
+    var maxAttempts = 120; // 120 x 250ms = 30 detik
+
+    // Polling fallback: cek jika artikel sudah masuk lp_articles
+    var pollInterval = setInterval(function() {
       attempts++;
-
-      // Cek apakah lp_init sudah selesai (lp_initialized = true)
-      var isReady = (typeof lp_initialized !== 'undefined' && lp_initialized);
-      if (!isReady && attempts < maxAttempts) return;
-
-      clearInterval(interval);
-
-      // Coba buka artikel — lp_openArticleById akan query Sheets jika perlu
-      lp_openArticleById(shareId);
-    }, 200);
-
-    // Jika halaman dimuat ulang dengan ?id= di address bar,
-    // pastikan portal diinisialisasi agar data tersedia
-    if (typeof lp_init === 'function') {
-      setTimeout(function() {
-        if (typeof lp_initialized !== 'undefined' && !lp_initialized) {
-          lp_init();
+      if (opened) { clearInterval(pollInterval); return; }
+      var art = (typeof lp_articles !== 'undefined')
+        ? lp_articles.find(function(a) { return a.id === shareId; })
+        : null;
+      if (art) {
+        clearInterval(pollInterval);
+        opened = true;
+        lp_openRead(shareId);
+        return;
+      }
+      if (attempts >= maxAttempts) {
+        clearInterval(pollInterval);
+        if (!opened) {
+          var fw = document.getElementById('lp-featured-wrap');
+          if (fw) fw.innerHTML = '<div style="text-align:center;padding:3rem 2rem;color:var(--ink-3);font-family:DM Mono,monospace;font-size:0.8rem;letter-spacing:0.08em;line-height:2;"><div style="font-size:2rem;margin-bottom:1rem;">&#9888;&#65039;</div>Artikel tidak ditemukan.<br><span style="font-size:0.7rem;opacity:0.7;">Mungkin sudah dihapus atau link tidak valid.</span><br><button onclick="lp_renderPortal()" style="margin-top:1.5rem;background:var(--ink);color:var(--gold-pale);border:none;border-radius:5px;padding:0.65rem 1.35rem;font-family:DM Mono,monospace;font-size:0.72rem;letter-spacing:0.06em;cursor:pointer;">&#8592; Lihat Semua Artikel</button></div>';
+          try { history.replaceState(null, '', window.location.pathname); } catch(e2) {}
         }
-      }, 150);
-    }
+      }
+    }, 250);
+
+    // Langsung query Sheets via getById (lebih cepat dari menunggu getAll selesai)
+    setTimeout(function() {
+      if (opened) return;
+      if (typeof lp_getById === 'function') {
+        lp_getById(shareId, function(fetchedArt) {
+          if (opened) return;
+          opened = true;
+          clearInterval(pollInterval);
+          if (!lp_articles.find(function(a) { return a.id === fetchedArt.id; })) {
+            lp_articles.push(fetchedArt);
+          }
+          lp_openRead(shareId);
+        }, function() {
+          // getById gagal, biarkan polling interval yang menangani
+        });
+      }
+    }, 500);
   }
 
   if (document.readyState === 'loading') {
@@ -8768,32 +8806,8 @@ function displaySingle(articleId) {
 //  Jika tidak ada  → tampilkan daftar semua artikel (lp_init).
 //  Menggantikan / melengkapi lp_routeOnLoad yang sudah ada di atas.
 // ════════════════════════════════════════════════════════════════
-window.onload = (function(_prevOnload) {
-  return function() {
-    // Jalankan handler lama jika ada
-    if (typeof _prevOnload === 'function') {
-      try { _prevOnload.call(this); } catch(e) {}
-    }
-
-    var params  = new URLSearchParams(window.location.search);
-    var shareId = params.get('id');
-
-    if (shareId && shareId.trim()) {
-      // Ada ?id= → tampilkan artikel tunggal
-      // Inisialisasi portal terlebih dahulu agar lp_articles siap
-      if (typeof lp_init === 'function' && !lp_initialized) {
-        lp_init();
-      }
-      // Panggil displaySingle setelah sedikit delay agar init selesai
-      setTimeout(function() {
-        displaySingle(shareId.trim());
-      }, 200);
-    } else {
-      // Tidak ada ?id= → tampilkan daftar semua artikel seperti biasa
-      // (lp_routeOnLoad sudah menangani ini, jadi tidak perlu aksi tambahan)
-    }
-  };
-})(typeof window.onload === 'function' ? window.onload : null);
+// window.onload override dihapus -- routing ?id= sudah ditangani
+// sepenuhnya oleh lp_routeOnLoad di atas agar tidak ada konflik ganda.
 
 // ── /FUNGSI CRUD ARTIKEL ──────────────────────────────────────
 
