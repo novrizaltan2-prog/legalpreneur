@@ -5227,7 +5227,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwppTZeUClB4DmPLrw0vm_XSOrIxb6vSE3j2i9rhpjQXESfe7KZDw4kIMyH_hvuUAsJ/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby77ExA7ea1gTBQcpBgnloCeDEFcRT2iQ26TrEdhPbRjEJVlVB_2HYtqcMz6R1BZL03/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -8449,45 +8449,7 @@ window.addEventListener('popstate', function(event) {
       }
     }
   }
-});
-</script>
-
-<form onsubmit="event.preventDefault(); simpanArtikel()">
-  <input type="text" id="id" placeholder="ID Artikel (opsional)" />
-  <input type="text" id="title" placeholder="Judul Artikel" required />
-  <input type="text" id="cat" placeholder="Kategori" />
-  <input type="text" id="author" placeholder="Penulis" />
-  <input type="text" id="summary" placeholder="Ringkasan" />
-  <textarea id="body" placeholder="Isi Artikel" required></textarea>
-  <input type="text" id="tags" placeholder="Tag (pisahkan dengan koma)" />
-  <input type="text" id="img" placeholder="URL Gambar (opsional)" />
-  <input type="text" id="imgCaption" placeholder="Keterangan Gambar" />
-  <button type="submit">Kirim ke Google Sheet</button>
-</form>
-
-<script>
-  function simpanArtikel() {
-    const data = {
-      id: document.getElementById("id").value,
-      title: document.getElementById("title").value,
-      cat: document.getElementById("cat").value,
-      author: document.getElementById("author").value,
-      summary: document.getElementById("summary").value,
-      body: document.getElementById("body").value,
-      tags: document.getElementById("tags").value,
-      img: document.getElementById("img").value,
-      imgCaption: document.getElementById("imgCaption").value
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbyeexcsrcmcKbpzhEzcdY5Pvvit29XdjTsptQjsB8e-zD2oi25AZbQ5vJivCwlxpBcFR/exec", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(res => res.text())
-    .then(msg => alert("Artikel berhasil dikirim: " + msg))
-    .catch(err => alert("Terjadi kesalahan: " + err));
-  }
+}});
 </script>
 
 
