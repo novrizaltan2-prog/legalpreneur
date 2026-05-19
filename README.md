@@ -5238,7 +5238,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx0VuXVZ_rpWqbOqlVZAPdxKutp8UMnfqKCrtBVWymGa2RuNjOtidQXzkikkM8lxpXE/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbMBLj3_fY8jahrsskvsFH6NE0dfUAGIMlaP3I2GlTucy8T9hBMriGQ-kMCOHhx5ml/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -5601,12 +5601,8 @@ window.lp_sheetsCallback = function(rows) {
       localUnsyncedIds.forEach(function(art) {
         var artForSheets = Object.assign({}, art);
         if (artForSheets.img && artForSheets.img.startsWith('data:')) artForSheets.img = '';
-        fetch(LP_SHEETS_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ action: 'save', article: artForSheets })
-        }).catch(function() {});
+        // JSONP GET sebagai metode utama — bekerja cross-origin dari GitHub Pages
+        lp_gasJsonpAction({ action: 'save', article: artForSheets });
       });
     }
   } catch(e) {
@@ -5782,19 +5778,10 @@ function lp_saveArticleToFirestore(article) {
       articleForSheets.img = '';
     }
 
-    // Coba fetch no-cors dulu (biasanya berhasil kirim data ke GAS)
-    fetch(LP_SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'save', article: articleForSheets })
-    }).then(function() {
-      console.log('Artikel terkirim ke Google Sheets via POST (background)');
-    }).catch(function(e) {
-      // Fallback: coba via JSONP GET jika POST gagal
-      console.warn('POST gagal, mencoba JSONP:', e.message);
-      lp_gasJsonpAction({ action: 'save', article: articleForSheets });
-    });
+    // JSONP GET sebagai metode utama — bekerja cross-origin dari GitHub Pages.
+    // fetch no-cors POST tidak mengirimkan body ke Apps Script dari GitHub Pages,
+    // sehingga JSONP GET digunakan langsung tanpa fallback fetch.
+    lp_gasJsonpAction({ action: 'save', article: articleForSheets });
   }
 
   // Return Promise.resolve() agar kode pemanggil tetap berjalan normal
@@ -5813,17 +5800,10 @@ function lp_deleteArticleFromFirestore(id) {
   // FIX: Reset flag agar portal ter-refresh dengan benar
   lp_initialized = false;
 
-  // === LANGKAH 2: Sync hapus ke Google Sheets di background ===
+  // === LANGKAH 2: Sync hapus ke Google Sheets via JSONP GET (metode utama dari GitHub Pages) ===
+  // fetch no-cors POST tidak mengirimkan body ke Apps Script dari GitHub Pages.
   if (lp_sheetsReady) {
-    fetch(LP_SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'delete', id: id })
-    }).catch(function(e) {
-      // Fallback via JSONP GET
-      lp_gasJsonpAction({ action: 'delete', id: id });
-    });
+    lp_gasJsonpAction({ action: 'delete', id: id });
   }
 
   return Promise.resolve({ success: true });
@@ -6889,14 +6869,8 @@ function lp_saveDraft(silent) {
       updatedAt: Date.now(),
       status: 'draft'
     };
-    fetch(LP_SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'save', article: draftArticle })
-    }).catch(function() {
-      lp_gasJsonpAction({ action: 'save', article: draftArticle });
-    });
+    // JSONP GET sebagai metode utama — bekerja cross-origin dari GitHub Pages
+    lp_gasJsonpAction({ action: 'save', article: draftArticle });
   }
 
   const status = document.getElementById('lp-autosave-status');
@@ -8123,34 +8097,75 @@ function lp_getById(articleId, onSuccess, onError) {
 //  PATCH 2 — lp_openRead (override)
 //  Perbarui URL pakai ?id= saat membuka artikel,
 //  agar link share dan refresh halaman tetap berfungsi.
+//
+//  FIX: _lp_openRead_original selalu null karena JS function declaration
+//  di-hoist sehingga override ini langsung menggantikan versi asli.
+//  Solusi: implementasikan ulang logika buka artikel secara lengkap di sini.
 // ════════════════════════════════════════════════════════════════
-var _lp_openRead_original = (typeof lp_openRead === 'function') ? lp_openRead : null;
-
 function lp_openRead(id) {
-  // Panggil implementasi asli terlebih dahulu
-  if (_lp_openRead_original) {
-    _lp_openRead_original(id);
+  // Cari artikel di memori
+  var a = (typeof lp_articles !== 'undefined')
+    ? lp_articles.find(function(x) { return x.id === id; })
+    : null;
+  if (!a) return;
+
+  lp_currentArticle = a;
+
+  // Track pembaca (kecuali preview)
+  if (id !== '__preview__' && typeof lpTrackRead === 'function') lpTrackRead(id);
+
+  var catLabel = (typeof LP_CAT_LABELS !== 'undefined' && LP_CAT_LABELS[a.cat]) ? LP_CAT_LABELS[a.cat] : (a.cat || '');
+  var dateStr  = (typeof lp_formatDateTime === 'function') ? lp_formatDateTime(a.createdAt) : '';
+  var tagsHtml = a.tags
+    ? a.tags.split(',').map(function(t) { return '<span class="lp-tag-chip">' + lp_esc(t.trim()) + '</span>'; }).join('')
+    : '';
+  var imgHtml = a.img
+    ? '<figure style="margin:0;padding:0;"><img src="' + lp_esc(a.img) + '" class="lp-read-hero-img" alt="' + lp_esc(a.title) + '" onerror="this.parentElement.style.display=\'none\'"><figcaption class="lp-hero-img-caption">' + lp_esc(a.imgCaption || a.title) + '</figcaption></figure>'
+    : '';
+
+  var bodyWithAds = (typeof lp_injectInReadAds === 'function') ? lp_injectInReadAds(a.body) : (a.body || '');
+  var isPreview   = a._isPreview;
+  var readTime    = (typeof lp_readTime === 'function') ? lp_readTime(a.body) : 1;
+  var authorEsc   = lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM');
+  var isOwnerNow  = (typeof lp_isOwner === 'function') ? lp_isOwner() : false;
+
+  var editBtns = (!isPreview && isOwnerNow)
+    ? '<button class="lp-read-edit-btn" onclick="lp_closeRead();lp_openEditor(\'' + lp_esc(a.id) + '\')" title="Edit artikel ini">✏️ Edit</button>'
+      + '<button class="lp-read-edit-btn" onclick="lp_deleteFromRead(\'' + lp_esc(a.id) + '\')" title="Hapus artikel ini" style="color:#f87171;">🗑️ Hapus</button>'
+    : '';
+
+  var readContent = document.getElementById('lp-read-content');
+  if (readContent) {
+    readContent.innerHTML = imgHtml
+      + '<div class="lp-read-body-wrap">'
+      + '<div class="lp-read-brand"><span class="lp-read-brand-legal">Legal</span><span class="lp-read-brand-preneur">Preneur</span></div>'
+      + '<div class="lp-read-cat">' + catLabel + '</div>'
+      + '<h1 class="lp-read-title">' + lp_esc(a.title) + '</h1>'
+      + '<div class="lp-read-byline">'
+      + '<span class="lp-byline-author">✍️ <strong>' + authorEsc + '</strong></span>'
+      + '<span class="lp-byline-datetime">🕐 ' + dateStr + '</span>'
+      + '<span>⏱ ' + readTime + ' menit baca</span>'
+      + '<span class="lp-read-action-btns" onclick="event.stopPropagation()" style="margin-left:auto;display:inline-flex;align-items:center;gap:0.35rem;">' + editBtns + '</span>'
+      + '</div>'
+      + '<div class="lp-read-summary-block">' + lp_esc(a.summary) + '</div>'
+      + '<div class="lp-read-article-body" id="lp-article-body-el">' + bodyWithAds + '</div>'
+      + (tagsHtml ? '<div class="lp-read-tags">' + tagsHtml + '</div>' : '')
+      + '<div class="lp-read-disclaimer"><span class="lp-disclaimer-icon">ℹ️</span><p>Konten ini dimuat untuk tujuan edukasi dan informasi. Apabila terdapat pihak yang merasa dirugikan, hak jawab dapat disampaikan sesuai ketentuan Undang‑Undang Nomor 40 Tahun 1999 tentang Pers.</p></div>'
+      + '</div>';
   }
 
-  // Setelah modal terbuka, perbarui URL menjadi ?id=xxx
-  // (menggantikan #artikel= yang dipakai versi lama)
+  var modal = document.getElementById('lp-read-modal');
+  if (modal) modal.style.display = '';
+  document.body.style.overflow = 'hidden';
+
+  // Perbarui URL menjadi ?id=xxx (menggantikan #artikel= versi lama)
   if (id && id !== '__preview__') {
     var base = window.location.pathname;
-    // Gunakan LP_SITE_URL jika tersedia, atau URL saat ini
-    var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
-      ? LP_SITE_URL.trim().replace(/\/$/, '')
-      : '';
-    // Hanya perbarui URL, jangan reload
     try {
       history.replaceState({ articleId: id }, '', base + '?id=' + encodeURIComponent(id));
     } catch(e) {}
-    // Update OG tags
-    var art = (typeof lp_articles !== 'undefined')
-      ? lp_articles.find(function(a) { return a.id === id; })
-      : null;
-    if (art && typeof lp_updateOgTags === 'function') {
-      lp_updateOgTags(art);
-    }
+    // Update OG/Twitter meta tags
+    if (typeof lp_updateOgTags === 'function') lp_updateOgTags(a);
   }
 }
 
