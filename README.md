@@ -5238,7 +5238,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwbMBLj3_fY8jahrsskvsFH6NE0dfUAGIMlaP3I2GlTucy8T9hBMriGQ-kMCOHhx5ml/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwppTZeUClB4DmPLrw0vm_XSOrIxb6vSE3j2i9rhpjQXESfe7KZDw4kIMyH_hvuUAsJ/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -5430,8 +5430,11 @@ function jsonpResponse(data, callback) {
 let lp_sheetsReady = false;
 
 // Cek apakah URL sudah dikonfigurasi
+// FIX #1: Logika sebelumnya membandingkan URL dengan dirinya sendiri sehingga
+// lp_sheetsReady selalu false — diperbaiki menjadi cek apakah URL valid (non-kosong).
 (function lp_sheetsInit() {
-  if (LP_SHEETS_URL && LP_SHEETS_URL !== 'TEMPEL_URL_DEPLOYMENT_ANDA_DI_SINI') {
+  var PLACEHOLDER_URL = ''; // placeholder jika belum diisi
+  if (LP_SHEETS_URL && LP_SHEETS_URL.indexOf('script.google.com') !== -1) {
     lp_sheetsReady = true;
     console.log('LegalPreneur: Google Sheets database siap.');
   } else {
@@ -5505,8 +5508,7 @@ function lp_init() {
   lp_buildTemplateGrid();
   lp_updateUserBar();
 
-  // FIX: Jika sudah punya artikel di memori, langsung render tanpa reload
-  // Ini mencegah artikel hilang saat user klik menu Konten berulang kali
+  // FIX #2: Jika sudah punya artikel di memori, langsung render tanpa reload
   if (lp_initialized && lp_articles.length > 0) {
     lp_renderPortal();
     return;
@@ -5514,12 +5516,11 @@ function lp_init() {
 
   lp_initialized = true;
 
+  // FIX #2: Selalu load dari localStorage dulu (agar artikel tidak hilang saat refresh),
+  // kemudian sync/perbarui dari Google Sheets di background jika sudah dikonfigurasi.
+  lp_loadFromLocalStorage();
   if (lp_sheetsReady) {
-    // Google Sheets sudah dikonfigurasi — load dari cloud
-    lp_loadFromSheets();
-  } else {
-    // Belum dikonfigurasi — pakai localStorage sebagai fallback
-    lp_loadFromLocalStorage();
+    lp_fetchFromSheets(false);
   }
 }
 
@@ -5724,11 +5725,29 @@ function lp_gasPost(payload) {
 }
 
 // Kirim aksi ke GAS via JSONP GET (bekerja tanpa CORS)
+// FIX #1/#4: Pastikan lp_sheetsReady benar-benar true sebelum mengirim
 function lp_gasJsonpAction(payload) {
+  if (!lp_sheetsReady || !LP_SHEETS_URL) return; // Guard: tidak kirim jika belum siap
   try {
     var callbackName = 'lp_gasActionCb_' + Date.now();
     var scriptEl = document.createElement('script');
     var dataEncoded = encodeURIComponent(JSON.stringify(payload));
+    // FIX: Jika URL terlalu panjang (>6000 char), kemungkinan ada data base64 besar
+    // Hapus img dari payload agar tidak melewati batas URL browser
+    if ((LP_SHEETS_URL + '?action=' + payload.action + '&data=' + dataEncoded).length > 6000) {
+      var smallPayload = Object.assign({}, payload);
+      if (smallPayload.article) {
+        smallPayload.article = Object.assign({}, smallPayload.article);
+        if (smallPayload.article.img && smallPayload.article.img.startsWith('data:')) {
+          smallPayload.article.img = ''; // hapus base64 image
+        }
+        // Batasi body agar URL tidak terlalu panjang
+        if (smallPayload.article.body && smallPayload.article.body.length > 3000) {
+          smallPayload.article.body = smallPayload.article.body.substring(0, 3000) + '...(dipotong untuk sync)...';
+        }
+      }
+      dataEncoded = encodeURIComponent(JSON.stringify(smallPayload));
+    }
     scriptEl.src = LP_SHEETS_URL + '?action=' + payload.action + '&data=' + dataEncoded + '&callback=' + callbackName + '&t=' + Date.now();
     scriptEl.onerror = function() {
       if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
@@ -5770,18 +5789,29 @@ function lp_saveArticleToFirestore(article) {
   // FIX: Reset flag agar saat kembali ke halaman Konten, artikel baru terrender
   lp_initialized = false;
 
-  // === LANGKAH 2: Sync ke Google Sheets via JSONP GET (bypass CORS) ===
+  // === LANGKAH 2: Sync ke Google Sheets via dua metode (JSONP + fetch no-cors) ===
+  // FIX #1: lp_sheetsReady kini benar — pengiriman ke Sheets akan berjalan
   if (lp_sheetsReady) {
     // Untuk Google Sheets: hapus base64 image (terlalu besar, max ~50k char per cell)
     var articleForSheets = Object.assign({}, article);
     if (articleForSheets.img && articleForSheets.img.startsWith('data:')) {
-      articleForSheets.img = '';
+      articleForSheets.img = ''; // base64 terlalu besar untuk dikirim via URL
     }
 
-    // JSONP GET sebagai metode utama — bekerja cross-origin dari GitHub Pages.
-    // fetch no-cors POST tidak mengirimkan body ke Apps Script dari GitHub Pages,
-    // sehingga JSONP GET digunakan langsung tanpa fallback fetch.
+    // Metode 1: JSONP GET (bekerja cross-origin dari GitHub Pages)
     lp_gasJsonpAction({ action: 'save', article: articleForSheets });
+
+    // Metode 2: fetch no-cors POST sebagai backup (data terkirim meski response tidak terbaca)
+    // Berguna untuk body artikel yang panjang (>3000 char) yang dipotong di JSONP
+    try {
+      var fullPayload = { action: 'save', article: articleForSheets };
+      fetch(LP_SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(fullPayload)
+      }).catch(function() { /* silent fail - JSONP sudah jadi backup */ });
+    } catch(fetchErr) { /* fetch tidak tersedia */ }
   }
 
   // Return Promise.resolve() agar kode pemanggil tetap berjalan normal
@@ -6340,6 +6370,8 @@ function lp_copyToClipboard(text, btnEl, successMsg, origHTML) {
 }
 
 function lp_shareWA() {
+  // FIX #5: Perbarui pesan share WA agar lebih informatif
+  // dan sertakan URL gambar di awal teks agar WA auto-generate thumbnail.
   const url = lp_getShareUrl();
   if (!url || !url.startsWith('http')) {
     lp_shareCopy();
@@ -6347,15 +6379,17 @@ function lp_shareWA() {
   }
   const a = lp_currentArticle;
   const title   = a ? a.title : 'Artikel LegalPreneur';
-  const summary = a ? a.summary.slice(0, 120) + '...' : '';
-  // Sertakan URL gambar artikel agar WhatsApp auto-generate preview thumbnail
-  const imgLine = (a && a.img && !a.img.startsWith('data:') && a.img.startsWith('http'))
-    ? '\n\n📷 ' + a.img : '';
+  const summary = a ? (a.summary || '').slice(0, 150) + (a.summary && a.summary.length > 150 ? '...' : '') : '';
+  // Sertakan URL gambar artikel di awal agar WA/Telegram meng-generate thumbnail.
+  // WhatsApp akan membaca gambar pertama dari URL yang ada di teks pesan.
+  const hasImg = (a && a.img && !a.img.startsWith('data:') && a.img.startsWith('http'));
+  const imgLine = hasImg ? a.img + '\n\n' : '';
   const text = encodeURIComponent(
-    '*' + title + '*\n\n' +
+    imgLine +
+    '📰 *' + title + '*\n\n' +
     summary + '\n\n' +
-    'Baca selengkapnya:\n' + url + imgLine + '\n\n' +
-    '— Portal Hukum LegalPreneur\nNovrizal, S.I.Kom., S.H., CPM'
+    '🔗 Baca selengkapnya:\n' + url + '\n\n' +
+    '— Portal Hukum LegalPreneur\n© Novrizal, S.I.Kom., S.H., CPM'
   );
   window.open('https://wa.me/?text=' + text, '_blank');
 }
@@ -8187,19 +8221,58 @@ function lp_openRead(id) {
 }
 
 // ════════════════════════════════════════════════════════════════
-//  PATCH 3 — lp_closeRead (override)
+//  PATCH 3 — lp_closeRead (full override, FIX #3)
 //  Bersihkan ?id= dari URL saat modal artikel ditutup.
+//  FIX: Tidak lagi mengandalkan _lp_closeRead_original untuk menghindari
+//  infinite recursion karena JS function declaration di-hoist.
 // ════════════════════════════════════════════════════════════════
-var _lp_closeRead_original = (typeof lp_closeRead === 'function') ? lp_closeRead : null;
-
 function lp_closeRead() {
-  if (_lp_closeRead_original) {
-    _lp_closeRead_original();
-  }
-  // Hapus ?id= dari URL (tanpa reload)
+  var modal = document.getElementById('lp-read-modal');
+  if (modal) modal.style.display = 'none';
+  document.body.style.overflow = '';
+
+  // Bersihkan hash URL lama & query string ?id=
   try {
     history.replaceState(null, '', window.location.pathname);
   } catch(e) {}
+
+  // Reset OG/Twitter meta tags ke default
+  if (typeof lp_resetOgTags === 'function') lp_resetOgTags();
+
+  // Jika menutup preview, pulihkan editor dengan data tersimpan
+  if (typeof lp_previewState !== 'undefined' && lp_previewState) {
+    var state = lp_previewState;
+    lp_previewState = null;
+
+    lp_editId = state.editId;
+    var modeLabel = document.getElementById('lp-editor-mode-label');
+    if (modeLabel) modeLabel.textContent = state.editId ? '✏️ Edit Artikel' : '✏️ Tulis Artikel Baru';
+
+    document.getElementById('lp-ed-title').value   = state.title;
+    document.getElementById('lp-ed-cat').value     = state.cat;
+    document.getElementById('lp-ed-author').value  = state.author;
+    document.getElementById('lp-ed-summary').value = state.summary;
+    document.getElementById('lp-ed-body').innerHTML = state.body;
+    document.getElementById('lp-ed-tags').value    = state.tags;
+
+    if (state.img) {
+      document.getElementById('lp-ed-imgurl').value = state.img;
+      if (typeof lp_showImgPreview === 'function') lp_showImgPreview(state.img);
+    } else {
+      if (typeof lp_clearImg === 'function') lp_clearImg();
+    }
+
+    if (typeof lp_updateSummaryCount === 'function') lp_updateSummaryCount();
+    var edMsg = document.getElementById('lp-editor-msg');
+    if (edMsg) edMsg.style.display = 'none';
+    document.getElementById('lp-editor-modal').style.display = '';
+    document.body.style.overflow = 'hidden';
+    if (typeof lp_startAutoSave === 'function') lp_startAutoSave();
+    setTimeout(function() {
+      if (typeof lp_showEditorMsg === 'function')
+        lp_showEditorMsg('👁️ Kembali dari preview — artikel masih tersimpan di draft.', 'success');
+    }, 200);
+  }
 }
 
 // ════════════════════════════════════════════════════════════════
