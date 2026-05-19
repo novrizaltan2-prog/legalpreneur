@@ -1,0 +1,410 @@
+<!--
+═══════════════════════════════════════════════════════════════════
+  LEGALPRENEUR — FRONTEND PATCH
+  File  : lp_patch.js  (atau paste isi blok <script> ini ke dalam
+          index.html SEBELUM tag </body>, setelah semua script lain)
+
+  Patch ini menambahkan / menggantikan:
+  1. Routing berdasarkan ?id=xxx di URL (GitHub Pages)
+  2. Fungsi lp_getById — ambil artikel tunggal dari Sheets via JSONP
+  3. Share link menggunakan ?id= (bukan #artikel=)
+  4. lp_openRead — update URL pakai ?id= + history.pushState
+  5. lp_closeRead — bersihkan ?id= dari URL
+  6. window.load handler — cek ?id= saat halaman pertama dimuat
+  7. Perbaikan lp_encodeArticleToUrl — pakai format ?id=
+
+  CARA PAKAI:
+  Paste seluruh isi <script> ini ke dalam index.html,
+  SETELAH semua blok <script> yang sudah ada, sebelum </body>.
+═══════════════════════════════════════════════════════════════════
+-->
+
+<script>
+// ════════════════════════════════════════════════════════════════
+//  PATCH 1 — lp_getById
+//  Ambil satu artikel dari Google Sheets via JSONP GET.
+//  Dipanggil saat URL mengandung ?id=xxx tapi artikel belum
+//  ada di memori (lp_articles) — misalnya penerima share link.
+// ════════════════════════════════════════════════════════════════
+function lp_getById(articleId, onSuccess, onError) {
+  if (!lp_sheetsReady) {
+    // Sheets belum dikonfigurasi: cari di localStorage / memori
+    var art = lp_articles.find(function(a) { return a.id === articleId; });
+    if (art) { onSuccess(art); } else { if (onError) onError(); }
+    return;
+  }
+
+  var cbName   = 'lp_getByIdCb_' + Date.now();
+  var scriptEl = document.createElement('script');
+  var done     = false;
+
+  var cleanup = function() {
+    if (scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+    if (window[cbName]) delete window[cbName];
+  };
+
+  // Timeout 15 detik
+  var timer = setTimeout(function() {
+    if (done) return;
+    done = true;
+    cleanup();
+    // Fallback: cari di memori lokal
+    var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+    if (localArt) { onSuccess(localArt); }
+    else if (onError) onError();
+  }, 15000);
+
+  window[cbName] = function(result) {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    if (result && result.success && result.article) {
+      onSuccess(result.article);
+    } else {
+      // Fallback: cari di memori lokal
+      var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+      if (localArt) { onSuccess(localArt); }
+      else if (onError) onError();
+    }
+  };
+
+  scriptEl.onerror = function() {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    cleanup();
+    // Fallback: cari di memori lokal
+    var localArt = lp_articles.find(function(a) { return a.id === articleId; });
+    if (localArt) { onSuccess(localArt); }
+    else if (onError) onError();
+  };
+
+  scriptEl.src = LP_SHEETS_URL
+    + '?action=getById'
+    + '&id=' + encodeURIComponent(articleId)
+    + '&callback=' + cbName
+    + '&t=' + Date.now();
+
+  document.head.appendChild(scriptEl);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 2 — lp_openRead (override)
+//  Perbarui URL pakai ?id= saat membuka artikel,
+//  agar link share dan refresh halaman tetap berfungsi.
+// ════════════════════════════════════════════════════════════════
+var _lp_openRead_original = (typeof lp_openRead === 'function') ? lp_openRead : null;
+
+function lp_openRead(id) {
+  // Panggil implementasi asli terlebih dahulu
+  if (_lp_openRead_original) {
+    _lp_openRead_original(id);
+  }
+
+  // Setelah modal terbuka, perbarui URL menjadi ?id=xxx
+  // (menggantikan #artikel= yang dipakai versi lama)
+  if (id && id !== '__preview__') {
+    var base = window.location.pathname;
+    // Gunakan LP_SITE_URL jika tersedia, atau URL saat ini
+    var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+      ? LP_SITE_URL.trim().replace(/\/$/, '')
+      : '';
+    // Hanya perbarui URL, jangan reload
+    try {
+      history.replaceState({ articleId: id }, '', base + '?id=' + encodeURIComponent(id));
+    } catch(e) {}
+    // Update OG tags
+    var art = (typeof lp_articles !== 'undefined')
+      ? lp_articles.find(function(a) { return a.id === id; })
+      : null;
+    if (art && typeof lp_updateOgTags === 'function') {
+      lp_updateOgTags(art);
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 3 — lp_closeRead (override)
+//  Bersihkan ?id= dari URL saat modal artikel ditutup.
+// ════════════════════════════════════════════════════════════════
+var _lp_closeRead_original = (typeof lp_closeRead === 'function') ? lp_closeRead : null;
+
+function lp_closeRead() {
+  if (_lp_closeRead_original) {
+    _lp_closeRead_original();
+  }
+  // Hapus ?id= dari URL (tanpa reload)
+  try {
+    history.replaceState(null, '', window.location.pathname);
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 4 — lp_encodeArticleToUrl (override)
+//  Pakai format ?id= untuk share link, bukan base64/hash.
+// ════════════════════════════════════════════════════════════════
+function lp_encodeArticleToUrl(article) {
+  if (!article || !article.id) return window.location.href;
+
+  var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+    ? LP_SITE_URL.trim().replace(/\/$/, '')
+    : (window.location.protocol !== 'file:'
+        ? window.location.href.split('?')[0].split('#')[0].replace(/\/$/, '')
+        : 'https://novrizaltan2-prog.github.io/legalpreneur');
+
+  return siteBase + '?id=' + encodeURIComponent(article.id);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 5 — lp_updateOgTags (override)
+//  Pakai format ?id= untuk URL di OG tags.
+// ════════════════════════════════════════════════════════════════
+function lp_updateOgTags(a) {
+  if (!a) return;
+
+  var siteBase = (typeof LP_SITE_URL !== 'undefined' && LP_SITE_URL && LP_SITE_URL.trim())
+    ? LP_SITE_URL.trim().replace(/\/$/, '')
+    : (window.location.protocol !== 'file:'
+        ? window.location.href.split('?')[0].split('#')[0].replace(/\/$/, '')
+        : 'https://novrizaltan2-prog.github.io/legalpreneur');
+
+  var articleUrl = siteBase + '?id=' + encodeURIComponent(a.id);
+  var title      = a.title   || 'LegalPreneur';
+  var desc       = a.summary || 'Artikel hukum & literasi digital oleh Novrizal, S.I.Kom., S.H., CPM';
+
+  var img = (a.img && !a.img.startsWith('data:') && a.img.startsWith('http'))
+    ? a.img
+    : 'https://novrizaltan2-prog.github.io/legalpreneur/og-default.png';
+
+  function setMeta(id, val) {
+    var el = document.getElementById(id);
+    if (el && val) el.setAttribute('content', val);
+  }
+
+  document.title = title + ' — LegalPreneur';
+  setMeta('og-title',       title);
+  setMeta('og-description', desc);
+  setMeta('og-url',         articleUrl);
+  setMeta('og-image',       img);
+  setMeta('tw-title',       title);
+  setMeta('tw-description', desc);
+  setMeta('tw-image',       img);
+
+  var twCard = document.getElementById('tw-card');
+  if (twCard) twCard.setAttribute('content', 'summary_large_image');
+}
+
+// ════════════════════════════════════════════════════════════════
+//  PATCH 6 — showPage('konten') + routing ?id=
+//  Dipanggil sekali saat halaman load.
+//  Jika URL mengandung ?id=xxx, tampilkan artikel tersebut.
+//  Jika tidak, tampilkan daftar artikel seperti biasa.
+// ════════════════════════════════════════════════════════════════
+
+// Fungsi utama: buka artikel berdasarkan ID, dengan polling
+// sampai artikel tersedia di lp_articles atau Sheets merespon.
+function lp_openArticleById(articleId) {
+  // Cek apakah sudah ada di memori
+  var art = (typeof lp_articles !== 'undefined')
+    ? lp_articles.find(function(a) { return a.id === articleId; })
+    : null;
+
+  if (art) {
+    lp_openRead(articleId);
+    return;
+  }
+
+  // Belum ada di memori → ambil langsung dari Sheets via getById
+  lp_getById(articleId, function(fetchedArt) {
+    // Inject ke memori sementara jika belum ada
+    var existing = lp_articles.find(function(a) { return a.id === fetchedArt.id; });
+    if (!existing) {
+      lp_articles.push(fetchedArt);
+    }
+    lp_openRead(articleId);
+  }, function() {
+    // Artikel tidak ditemukan di Sheets — tampilkan pesan error
+    var featuredWrap = document.getElementById('lp-featured-wrap');
+    if (featuredWrap) {
+      featuredWrap.innerHTML = [
+        '<div style="text-align:center;padding:3rem 2rem;',
+        'color:var(--ink-3);font-family:DM Mono,monospace;',
+        'font-size:0.8rem;letter-spacing:0.08em;line-height:2;">',
+        '<div style="font-size:2rem;margin-bottom:1rem;">⚠️</div>',
+        'Artikel tidak ditemukan.<br>',
+        '<span style="font-size:0.7rem;opacity:0.7;">',
+        'Artikel mungkin sudah dihapus atau link tidak valid.</span><br>',
+        '<button onclick="lp_renderPortal()" style="margin-top:1.5rem;',
+        'background:var(--ink);color:var(--gold-pale);border:none;',
+        'border-radius:5px;padding:0.65rem 1.35rem;',
+        'font-family:DM Mono,monospace;font-size:0.72rem;',
+        'letter-spacing:0.06em;cursor:pointer;">',
+        '← Lihat Semua Artikel</button></div>'
+      ].join('');
+    }
+    // Bersihkan URL
+    try { history.replaceState(null, '', window.location.pathname); } catch(e2) {}
+  });
+}
+
+// ─── Cek URL saat halaman pertama dimuat ────────────────────────────────
+(function lp_routeOnLoad() {
+  // Jalankan setelah DOMContentLoaded (untuk mendukung berbagai posisi script)
+  function run() {
+    var params   = new URLSearchParams(window.location.search);
+    var shareId  = params.get('id');
+
+    // Juga cek format hash lama (#artikel=xxx) untuk kompatibilitas mundur
+    var hash = window.location.hash;
+    if (!shareId && hash && hash.startsWith('#artikel=')) {
+      shareId = decodeURIComponent(hash.slice('#artikel='.length));
+    }
+
+    if (!shareId) return; // Tidak ada ID → tampilkan daftar biasa
+
+    // Ada ID di URL → pastikan halaman konten aktif
+    if (typeof showPage === 'function') {
+      showPage('konten');
+    }
+
+    // Tunggu sampai lp_init selesai & Sheets merespon, lalu buka artikel
+    var attempts    = 0;
+    var maxAttempts = 100; // 100 × 200ms = 20 detik
+    var interval    = setInterval(function() {
+      attempts++;
+
+      // Cek apakah lp_init sudah selesai (lp_initialized = true)
+      var isReady = (typeof lp_initialized !== 'undefined' && lp_initialized);
+      if (!isReady && attempts < maxAttempts) return;
+
+      clearInterval(interval);
+
+      // Coba buka artikel — lp_openArticleById akan query Sheets jika perlu
+      lp_openArticleById(shareId);
+    }, 200);
+
+    // Jika halaman dimuat ulang dengan ?id= di address bar,
+    // pastikan portal diinisialisasi agar data tersedia
+    if (typeof lp_init === 'function') {
+      setTimeout(function() {
+        if (typeof lp_initialized !== 'undefined' && !lp_initialized) {
+          lp_init();
+        }
+      }, 150);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+
+// ─── Tangani tombol Kembali (popstate) ──────────────────────────────────
+window.addEventListener('popstate', function(event) {
+  var params  = new URLSearchParams(window.location.search);
+  var shareId = params.get('id');
+  if (shareId) {
+    // Pengguna menekan Kembali ke URL yang masih berisi ?id=
+    lp_openArticleById(shareId);
+  } else {
+    // Pengguna kembali ke halaman tanpa ID → tutup modal jika terbuka
+    var modal = document.getElementById('lp-read-modal');
+    if (modal && modal.style.display !== 'none') {
+      if (_lp_closeRead_original) {
+        _lp_closeRead_original();
+      }
+    }
+  }
+});
+</script>
+
+<!--
+═══════════════════════════════════════════════════════════════════
+  PETUNJUK INTEGRASI LENGKAP
+  ─────────────────────────────────────────────────────────────────
+
+  LANGKAH 1 — Deploy Google Apps Script
+  ───────────────────────────────────────
+  1. Buka: https://docs.google.com/spreadsheets/d/1H1ln1BkyAh2EgIfDJUussHBsD5zp7TMsjhDpvrmStd0
+  2. Klik Extensions → Apps Script
+  3. Hapus semua kode lama di Code.gs
+  4. Paste seluruh isi file Code.gs yang sudah dibuat
+  5. Klik Deploy → New Deployment
+     - Type        : Web App
+     - Execute as  : Me (akun Google Anda)
+     - Who can access: Anyone
+  6. Klik Deploy → salin URL deployment
+     Contoh: https://script.google.com/macros/s/AKfycb.../exec
+
+  LANGKAH 2 — Update LP_SHEETS_URL di index.html
+  ────────────────────────────────────────────────
+  Cari baris ini di index.html:
+    const LP_SHEETS_URL = 'https://script.google.com/...';
+  Ganti dengan URL deployment baru dari Langkah 1.
+
+  LANGKAH 3 — Paste patch ini ke index.html
+  ──────────────────────────────────────────
+  Salin blok <script>...</script> di atas (tanpa komentar HTML ini),
+  paste ke dalam index.html SEBELUM tag </body>,
+  setelah semua blok <script> yang sudah ada.
+
+  LANGKAH 4 — Update LP_SITE_URL di index.html
+  ──────────────────────────────────────────────
+  Cari baris:
+    const LP_SITE_URL = '';
+  Ganti dengan:
+    const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
+
+  LANGKAH 5 — Push ke GitHub Pages
+  ──────────────────────────────────
+  Commit dan push index.html yang sudah diperbarui ke repo GitHub.
+  GitHub Pages akan otomatis memperbarui situs dalam ~1-2 menit.
+
+  ─────────────────────────────────────────────────────────────────
+  CARA KERJA SHARE LINK
+  ─────────────────────────────────────────────────────────────────
+  Saat penulis berbagi artikel, URL yang dibagikan akan berbentuk:
+    https://novrizaltan2-prog.github.io/legalpreneur/?id=<UUID>
+
+  Saat penerima membuka link tersebut:
+  1. Router membaca ?id= dari URL
+  2. lp_init() dipanggil → Sheets diload via JSONP
+  3. Jika artikel sudah ada di memori → langsung dibuka
+  4. Jika belum ada → lp_getById() query Sheets langsung
+  5. Artikel ditampilkan di modal baca
+  6. Jika tidak ditemukan → tampilkan pesan error + tombol kembali
+
+  Saat pengguna menutup modal atau klik Kembali:
+  - URL dikembalikan ke /legalpreneur/ (tanpa ?id=)
+  - Daftar artikel ditampilkan normal
+
+  ─────────────────────────────────────────────────────────────────
+  FUNGSI YANG TERSEDIA DI APPS SCRIPT (doGet)
+  ─────────────────────────────────────────────────────────────────
+  ?action=getAll&callback=xxx
+    → Kembalikan semua artikel, urut terbaru dulu
+    → Response: callback([{id, title, cat, author, ...}, ...])
+
+  ?action=getById&id=UUID&callback=xxx
+    → Kembalikan satu artikel berdasarkan ID
+    → Response: callback({success:true, article:{...}})
+                atau callback({success:false, error:'...'})
+
+  ?action=save&data=<JSON>&callback=xxx
+    → Simpan/update artikel (ID sudah ada → update, belum ada → insert)
+    → data = encodeURIComponent(JSON.stringify({article:{...}}))
+    → Response: callback({success:true, id:'...'})
+
+  ?action=delete&id=UUID&callback=xxx
+    → Hapus artikel berdasarkan ID
+    → Response: callback({success:true})
+                atau callback({success:false, error:'...'})
+
+  SEMUA fungsi doGet juga tersedia via doPost (untuk fetch no-cors):
+    POST body: {"action":"save","article":{...}}
+    POST body: {"action":"delete","id":"..."}
+═══════════════════════════════════════════════════════════════════
+-->
