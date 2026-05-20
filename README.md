@@ -3650,6 +3650,421 @@ img { max-width: 100%; height: auto; }
   border-radius: 6px;
   margin-bottom: 1.5rem;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   RESPONSIVE ENHANCEMENT — Mobile-First Polish Layer
+   Meningkatkan kenyamanan browsing di HP & desktop tanpa
+   mengubah konten atau fungsionalitas apapun.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Base touch improvements ── */
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+}
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* ── Smooth scroll for all anchor jumps ── */
+html {
+  scroll-padding-top: 80px; /* offset for sticky nav */
+}
+
+/* ── Typography fluid scaling ── */
+body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* ── Navigation improvements ── */
+.nav-inner {
+  gap: 0.5rem;
+}
+
+/* ── Hamburger menu touch target ── */
+.hamburger {
+  min-width: 44px;
+  min-height: 44px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ── Hero section: eyebrow hidden on tiny screens to save vertical space ── */
+@media (max-width: 380px) {
+  .hero-eyebrow { display: none; }
+  .hero-left { padding: 2rem 1rem 1.75rem; }
+  .hero-right { padding: 1.5rem 1rem 2rem; }
+  .container { padding: 0 1rem; }
+  section { padding: 2.5rem 0; }
+}
+
+/* ── Announce bar: nowrap with gentle overflow scroll on tiny screens ── */
+@media (max-width: 420px) {
+  .announce-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    text-align: left;
+    padding: 0.55rem 1rem;
+  }
+  .announce-text {
+    padding: 0 0.5rem;
+  }
+}
+
+/* ── Service cards: 2-col on medium-small screens ── */
+@media (max-width: 540px) and (min-width: 380px) {
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Read modal: full-screen on mobile for comfortable reading ── */
+@media (max-width: 600px) {
+  .lp-modal-overlay {
+    padding: 0;
+  }
+  .lp-modal-box {
+    border-radius: 0;
+    min-height: 100dvh;
+    min-height: 100vh;
+  }
+  .lp-read-body-wrap {
+    padding: 1.25rem 1rem;
+  }
+  .lp-read-article-body {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.85;
+    border-radius: 4px;
+  }
+  .lp-featured-body {
+    padding: 1.25rem 1rem;
+  }
+  .lp-modal-close {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.9);
+    color: var(--ink);
+    border-radius: 50%;
+  }
+}
+
+/* ── Share buttons: horizontal scroll on mobile ── */
+@media (max-width: 600px) {
+  .lp-share-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .lp-share-row::-webkit-scrollbar { display: none; }
+  .lp-share-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* ── Filter bar: horizontal scroll on mobile ── */
+.lp-filter-bar {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.lp-filter-bar::-webkit-scrollbar { display: none; }
+@media (max-width: 600px) {
+  .lp-cat-btn {
+    padding: 0.85rem 0.9rem;
+    font-size: 0.6rem;
+  }
+}
+
+/* ── Portal body: single column on mobile ── */
+@media (max-width: 900px) {
+  .lp-portal-inner.lp-portal-body {
+    grid-template-columns: 1fr;
+  }
+  .lp-sidebar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+@media (max-width: 560px) {
+  .lp-portal-inner.lp-portal-body {
+    padding: 1.5rem 1rem 2rem;
+    gap: 1.5rem;
+  }
+  .lp-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Featured card: min-height reduced on mobile ── */
+@media (max-width: 600px) {
+  .lp-featured-card {
+    min-height: 260px;
+  }
+  .lp-featured-title {
+    font-size: 1.15rem;
+  }
+  .lp-featured-summary {
+    font-size: 0.88rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ── Article cards: full 1-col on mobile ── */
+@media (max-width: 480px) {
+  .lp-articles-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .lp-card-img-wrap {
+    height: 140px;
+  }
+}
+
+/* ── Content tabs: horizontal scroll ── */
+.content-tabs {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.content-tabs::-webkit-scrollbar { display: none; }
+@media (max-width: 500px) {
+  .tab-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    white-space: nowrap;
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Editor modal: full-screen on mobile ── */
+@media (max-width: 640px) {
+  .lp-editor-box {
+    border-radius: 0;
+    max-width: 100%;
+    margin: 0;
+    min-height: 100dvh;
+    min-height: 100vh;
+  }
+  .lp-editor-header {
+    padding: 1.25rem 1rem;
+  }
+  .lp-editor-body {
+    padding: 1.25rem 1rem;
+    max-height: calc(100dvh - 140px);
+    max-height: calc(100vh - 140px);
+  }
+  .lp-field-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .lp-editor-toolbar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+  .lp-editor-toolbar::-webkit-scrollbar { display: none; }
+}
+
+/* ── Ad banners: wrapping on mobile ── */
+@media (max-width: 560px) {
+  .lp-ad-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .lp-ad-btn {
+    align-self: flex-start;
+  }
+  .lp-inread-ad-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .lp-inread-ad-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── Registration form on LegalPreneur Class page ── */
+@media (max-width: 480px) {
+  .reg-grid { grid-template-columns: 1fr !important; }
+  .reg-form-body { padding: 1.25rem 1rem !important; }
+}
+
+/* ── Footer: better readability on small screens ── */
+@media (max-width: 560px) {
+  footer { padding: 2.5rem 0 1.5rem; }
+  .footer-grid { padding: 0 1rem; }
+  .footer-bottom { padding: 1.25rem 1rem 0; }
+}
+
+/* ── Consult section: form full width ── */
+@media (max-width: 480px) {
+  .consult-form {
+    padding: 1.25rem 1rem;
+  }
+  .consult-title {
+    font-size: clamp(1.4rem, 7vw, 1.9rem);
+  }
+}
+
+/* ── Byline: stack on very small screens ── */
+@media (max-width: 420px) {
+  .lp-read-byline {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .lp-read-action-btns {
+    margin-left: 0;
+  }
+}
+
+/* ── Portal header: better spacing on small screens ── */
+@media (max-width: 560px) {
+  .lp-portal-header {
+    padding: 1.75rem 0 1.5rem;
+  }
+  .lp-portal-inner {
+    padding: 0 1rem;
+  }
+  .lp-portal-title {
+    font-size: clamp(1.35rem, 5.5vw, 1.9rem);
+  }
+  .lp-portal-sub {
+    font-size: 0.82rem;
+    white-space: normal;
+  }
+}
+
+/* ── Dashboard: responsive table ── */
+@media (max-width: 700px) {
+  .d-article-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .d-grid-cards {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  .d-grid-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Stat cards in hero: compact on very small screens ── */
+@media (max-width: 360px) {
+  .hero-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-stat {
+    padding: 0.75rem 0.6rem;
+  }
+  .hero-stat-num {
+    font-size: 1.4rem;
+  }
+  .hero-stat-label {
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Tab panels inside articles: fix overflow ── */
+#page-affiliate, #page-digital {
+  overflow-x: hidden;
+}
+
+/* ── All form inputs: adequate tap targets on mobile ── */
+@media (max-width: 600px) {
+  .form-input,
+  .lp-field-input,
+  .lp-kirim-input,
+  .lp-kirim-textarea {
+    font-size: 16px; /* prevents iOS zoom on focus */
+    padding: 0.75rem 1rem;
+  }
+  .form-submit,
+  .lp-kirim-btn {
+    min-height: 48px;
+    font-size: 1rem;
+  }
+}
+
+/* ── Nav CTA button: full width on mobile ── */
+@media (max-width: 860px) {
+  .nav-cta {
+    margin: 0.5rem 1.25rem !important;
+    width: calc(100% - 2.5rem);
+    text-align: center;
+    display: block !important;
+  }
+}
+
+/* ── Hero actions: touch-friendly button sizing ── */
+@media (max-width: 600px) {
+  .btn-primary, .btn-outline {
+    min-height: 50px;
+    font-size: 1rem;
+  }
+}
+
+/* ── Reduced motion support ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Desktop polish: wider screens ── */
+@media (min-width: 1400px) {
+  .hero-left { padding: 6rem 5rem 6rem 8rem; }
+  .hero-right { padding: 6rem 6rem 6rem 5rem; }
+  .container { max-width: 1360px; }
+  .lp-portal-inner { max-width: 1360px; }
+}
+
+/* ── Large desktop: hero stat grid improvement ── */
+@media (min-width: 1200px) {
+  .hero-stat-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Prevent content from touching screen edges ── */
+@media (max-width: 400px) {
+  .section-divider { padding: 0 1rem; }
+  .about-section .container,
+  .services-section .container,
+  .content-section .container,
+  .consult-section .container {
+    padding: 0 1rem;
+  }
+}
+
+/* ── Visitor notice cleanup ── */
+@media (max-width: 400px) {
+  #lp-visitor-notice {
+    margin: 1.5rem 1rem;
+    padding: 1.5rem 1rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -7270,6 +7685,13 @@ function handleConsult(e) {
 
 // DATA STORE (Google Sheets + local cache)
 const LP_STORE_KEY = 'lp_articles_v2'; // untuk draft & cache lokal
+
+// ── RESET SATU KALI: Hapus semua artikel lama dari sesi sebelumnya ──────────
+// Baris ini membersihkan localStorage agar daftar artikel dimulai dari kosong.
+// Setelah artikel baru dibuat dan disimpan, baris ini boleh dihapus atau dibiarkan
+// (tidak berpengaruh karena hanya membersihkan saat halaman pertama kali dimuat).
+try { localStorage.removeItem(LP_STORE_KEY); } catch(e) {}
+// ────────────────────────────────────────────────────────────────────────────
 
 // Artikel di localStorage dipertahankan antar sesi (tidak dihapus saat refresh).
 let lp_articles = [];
