@@ -7297,7 +7297,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycby77ExA7ea1gTBQcpBgnloCeDEFcRT2iQ26TrEdhPbRjEJVlVB_2HYtqcMz6R1BZL03/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzBy7h6OyfgHAUG_VbpAxQ2bh7HVpjznypFpXNoADrR8EeMqhRiRhO1HwFJov_KKOu4/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
