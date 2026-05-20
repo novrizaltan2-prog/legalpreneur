@@ -7297,7 +7297,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxIddCiU5fspL7ysZJuIQQHUZ8J5mSWGycRQt7byDNkdTveWv8XZWJ1iebCmYgxuY--/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx3YfEnrnUtxcePee9nkXSwj7if1zPEmDBa7ntf4cvUoTqvFK_HwXuPkdpR4W7mKQ8G/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -7310,7 +7310,7 @@ const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
 // ────────────────────────────────────────────────────────────
 
 // ─── URL GOOGLE APPS SCRIPT UNTUK KIRIM ARTIKEL (form eksternal) ───
-const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbxIddCiU5fspL7ysZJuIQQHUZ8J5mSWGycRQt7byDNkdTveWv8XZWJ1iebCmYgxuY--/exec';
+const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbx3YfEnrnUtxcePee9nkXSwj7if1zPEmDBa7ntf4cvUoTqvFK_HwXuPkdpR4W7mKQ8G/exec';
 // ────────────────────────────────────────────────────────────
 
 
