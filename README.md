@@ -607,6 +607,13 @@ nav {
   .hero-stat-label { font-size: 0.78rem; }
 }
 
+
+/* ══════════════════════════════════════
+   MAIN REGISTRATION FORM RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 700px) {
+  #daftar .reg-grid { grid-template-columns: 1fr !important; }
+}
 /* ══════════════════════════════════════
    DIVIDER
 ══════════════════════════════════════ */
@@ -3667,9 +3674,9 @@ img { max-width: 100%; height: auto; }
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Tentang</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
       <li><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a></li>
-      <li><a href="#" onclick="closeMenu();showPage('affiliate');return false;">Produk Rekomendasi</a></li>
-      <li><a href="#" onclick="closeMenu();showPage('digital');return false;">Produk Digital</a></li>
-      <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),50);return false;" class="nav-cta">Hubungi Kami</a></li>
+      <li><a href="#" onclick="closeMenu();showPage('produk');return false;">🛍 Produk Kami</a></li>
+      <li><a href="#" onclick="closeMenu();showPage('lexiclass');return false;">⚖ LegalPreneur Class</a></li>
+      <li><a href="#" onclick="closeMenu();showPage('lexiclass');return false;" class="nav-cta">Daftar Kelas</a></li>
       <li id="nav-dashboard-li" style="display:none;"><a href="#" onclick="closeMenu();showPage('dashboard');return false;" style="color:var(--gold)!important;">🔐 Dashboard</a></li>
     </ul>
   </div>
@@ -3684,7 +3691,7 @@ img { max-width: 100%; height: auto; }
 
     <p class="hero-subtitle">Platform hukum & literasi digital terpercaya</p>
 
-    <p class="hero-desc">
+    <p class="hero-desc" style="text-align:justify;">
       LegalPreneur hadir untuk menjembatani masyarakat, profesional, dan korporasi dalam mengakses solusi hukum yang praktis, transparan, dan berdampak nyata.
     </p>
 
@@ -3692,7 +3699,7 @@ img { max-width: 100%; height: auto; }
       <div class="hero-cred-icon">⚖️</div>
       <div class="hero-cred-text">
         <div class="hero-cred-name">Novrizal, S.I.Kom., S.H., CPM</div>
-        Advokat & Konsultan Hukum · Mediator Non Hakim<br>
+        Advokat · Mediator Non Hakim · Konsultan Hukum<br>
         Business Owner NovrizDigital · Affiliate Marketer · Penulis
       </div>
     </div>
@@ -3751,7 +3758,7 @@ img { max-width: 100%; height: auto; }
       </a>
       <a href="#produk" class="hero-service-item">
         <span class="service-icon">🛍️</span>
-        <span class="service-text">Produk Rekomendasi Pilihan</span>
+        <span class="service-text">Produk Kami — Digital &amp; Rekomendasi</span>
         <span class="service-arrow">→</span>
       </a>
     </div>
@@ -3774,11 +3781,12 @@ img { max-width: 100%; height: auto; }
           </div>
           <div class="profile-body">
             <div class="profile-cert">
-              <div class="cert-item"><span class="icon">🏅</span>CPM – Certified Professional Mediator</div>
+              <div class="cert-item"><span class="icon">⚖️</span>Advokat</div>
               <div class="cert-item"><span class="icon">🤝</span>Mediator Non Hakim</div>
+              <div class="cert-item"><span class="icon">⚖️</span>Konsultan Hukum</div>
               <div class="cert-item"><span class="icon">🏢</span>Business Owner NovrizDigital</div>
               <div class="cert-item"><span class="icon">🛍️</span>Affiliate Marketer</div>
-              <div class="cert-item"><span class="icon">✍️</span>Penulis & Content Creator</div>
+              <div class="cert-item"><span class="icon">✍️</span>Penulis</div>
             </div>
           </div>
           <div class="social-links">
@@ -3796,22 +3804,18 @@ img { max-width: 100%; height: auto; }
         <div class="section-tag fade-up">Tentang Kami</div>
         <h2 class="section-title fade-up">Selamat Datang di <em>LegalPreneur</em></h2>
 
-        <p class="about-intro fade-up">
-          LegalPreneur dibangun oleh <strong>Novrizal, S.I.Kom., S.H., CPM</strong> — seorang Advokat & Konsultan Hukum yang menggabungkan pengalaman hukum, latar belakang ilmu komunikasi, dan sertifikasi profesional untuk menghadirkan solusi hukum yang tepat sasaran dan advokasi yang berintegritas.
-        </p>
-
-        <p class="section-lead fade-up" style="margin-bottom: 2.5rem;">
-          Platform ini lahir dari keyakinan bahwa <em>setiap orang berhak memahami hukum</em> — bukan sekadar mereka yang mampu menyewa pengacara mahal. Pengetahuan hukum yang aksesibel adalah fondasi masyarakat yang berdaya.
+        <p class="about-intro fade-up" style="text-align:justify;">
+          Novrizal, S.I.Kom., S.H., CPM adalah Advokat, Mediator Non Hakim, dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan UMKM. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai affiliate marketer, pengembang produk digital, dan penulis.
         </p>
 
         <div class="visi-misi-grid">
           <div class="vm-card fade-up">
             <div class="vm-card-label">Visi</div>
-            <p class="vm-card-text">Menjadi platform hukum, literasi, dan gaya hidup digital terpercaya yang menjembatani masyarakat, profesional, dan korporasi dalam satu ekosistem yang modern dan berdampak.</p>
+            <p class="vm-card-text" style="text-align:justify;">Menjadi platform hukum, literasi, dan gaya hidup digital terpercaya yang menjembatani masyarakat, profesional, dan korporasi dalam satu ekosistem yang modern dan berdampak.</p>
           </div>
           <div class="vm-card fade-up">
             <div class="vm-card-label">Misi</div>
-            <p class="vm-card-text">Memberikan solusi hukum yang praktis dan berintegritas, mendorong literasi hukum yang aksesibel, serta berbagi pengetahuan bermakna melalui karya tulis dan inovasi digital.</p>
+            <p class="vm-card-text" style="text-align:justify;">Memberikan solusi hukum yang praktis dan berintegritas, mendorong literasi hukum yang aksesibel, serta berbagi pengetahuan bermakna melalui karya tulis dan inovasi digital.</p>
           </div>
         </div>
 
@@ -3831,7 +3835,7 @@ img { max-width: 100%; height: auto; }
         <div class="section-tag fade-up">Layanan Kami</div>
         <h2 class="section-title fade-up">Solusi Hukum <em>Lengkap</em> untuk Anda</h2>
       </div>
-      <p class="section-lead fade-up">
+      <p class="section-lead fade-up" style="text-align:justify;">
         Dari konsultasi ringan hingga penanganan perkara kompleks — kami menghadirkan layanan hukum digital yang mudah diakses oleh siapa saja, kapan saja.
       </p>
     </div>
@@ -3841,37 +3845,37 @@ img { max-width: 100%; height: auto; }
         <div class="service-card-num">01</div>
         <div class="service-card-icon">⚖️</div>
         <h3 class="service-card-title">Konsultasi Hukum Online</h3>
-        <p class="service-card-desc">Ruang terbuka bagi masyarakat yang membutuhkan panduan awal menghadapi permasalahan hukum. Dapatkan arahan yang jelas, praktis, dan berintegritas.</p>
+        <p class="service-card-desc" style="text-align:justify;">Ruang terbuka bagi masyarakat yang membutuhkan panduan awal dalam menghadapi permasalahan hukum. Melalui LegalPreneur, setiap orang dapat memperoleh arahan yang jelas, praktis, dan berintegritas, sehingga mampu mengelola risiko hukum dengan lebih percaya diri.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">02</div>
         <div class="service-card-icon">📑</div>
         <h3 class="service-card-title">Penyusunan Kontrak & Dokumen Legal</h3>
-        <p class="service-card-desc">Kontrak bisnis, perjanjian kerja sama, dokumen perusahaan — disusun secara profesional sesuai kebutuhan bisnis maupun personal Anda.</p>
+        <p class="service-card-desc" style="text-align:justify;">Kontrak bisnis, perjanjian kerja sama, dokumen perusahaan — disusun secara profesional sesuai kebutuhan bisnis maupun personal Anda.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">03</div>
         <div class="service-card-icon">🔍</div>
         <h3 class="service-card-title">Verifikasi Legalitas</h3>
-        <p class="service-card-desc">Memastikan semua transaksi bisnis Anda aman dan sesuai regulasi. Verifikasi dokumen, izin usaha, dan aspek legal penyedia layanan.</p>
+        <p class="service-card-desc" style="text-align:justify;">Memastikan semua transaksi bisnis Anda aman dan sesuai regulasi. Verifikasi dokumen, izin usaha, dan aspek legal penyedia layanan.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">04</div>
         <div class="service-card-icon">🏛️</div>
         <h3 class="service-card-title">Edukasi Hukum Praktis</h3>
-        <p class="service-card-desc">Workshop, artikel, dan materi edukasi hukum yang dirancang agar masyarakat lebih melek hukum dalam kehidupan digital sehari-hari.</p>
+        <p class="service-card-desc" style="text-align:justify;">Workshop, artikel, dan materi edukasi hukum yang dirancang agar masyarakat lebih melek hukum dalam kehidupan digital sehari-hari.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">05</div>
         <div class="service-card-icon">🤝</div>
         <h3 class="service-card-title">Mediasi Non-Litigasi</h3>
-        <p class="service-card-desc">Penyelesaian sengketa di luar pengadilan — lebih cepat, lebih hemat, dan lebih menjaga hubungan para pihak melalui proses mediasi profesional.</p>
+        <p class="service-card-desc" style="text-align:justify;">Penyelesaian sengketa di luar pengadilan — lebih cepat, lebih hemat, dan lebih menjaga hubungan para pihak melalui proses mediasi profesional.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">06</div>
         <div class="service-card-icon">📩</div>
         <h3 class="service-card-title">Kolaborasi & Kemitraan</h3>
-        <p class="service-card-desc">Terbuka untuk individu, komunitas, organisasi, maupun korporasi — dalam bidang advokasi, edukasi hukum, penerbitan, dan inisiatif digital.</p>
+        <p class="service-card-desc" style="text-align:justify;">Terbuka untuk individu, komunitas, organisasi, maupun korporasi — dalam bidang advokasi, edukasi hukum, penerbitan, dan inisiatif digital.</p>
       </div>
     </div>
   </div>
@@ -4064,9 +4068,9 @@ img { max-width: 100%; height: auto; }
   <div class="lp-ad-content">
     <div class="lp-ad-logo">📱 NovrizDigital</div>
     <div class="lp-ad-text">
-      <strong>Produk Rekomendasi Pilihan</strong> — Kebutuhan produktivitas & gaya hidup. Kuratasi personal oleh Novrizal.
+      <strong>Produk Kami</strong> — E-Book hukum, game edukasi, novel, dan produk rekomendasi pilihan. Kuratasi personal oleh Novrizal.
     </div>
-    <a href="#" onclick="closeMenu();showPage('affiliate');return false;" class="lp-ad-btn" style="background:var(--gold); color:var(--ink); border-color:var(--gold);">Lihat Produk →</a>
+    <a href="#" onclick="closeMenu();showPage('produk');return false;" class="lp-ad-btn" style="background:var(--gold); color:var(--ink); border-color:var(--gold);">Lihat Produk →</a>
   </div>
 </div>
 
@@ -4338,7 +4342,7 @@ img { max-width: 100%; height: auto; }
               <div class="lp-inread-ad-title">Produk Pilihan di Shopee</div>
               <div class="lp-inread-ad-desc">Temukan produk berkualitas pilihan LegalPreneur — dari kebutuhan sehari-hari hingga produktivitas.</div>
             </div>
-            <a href="#" onclick="showPage('affiliate');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">
+            <a href="#" onclick="showPage('produk');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">
               🛍️ Lihat Katalog
             </a>
           </div>
@@ -4356,7 +4360,7 @@ img { max-width: 100%; height: auto; }
               <div class="lp-inread-ad-title">E-Book & Produk Digital Hukum</div>
               <div class="lp-inread-ad-desc">Belajar hukum, bermain game, dan siap CPNS/ASN bersama LegalPreneur — dapatkan akses sekarang!</div>
             </div>
-            <a href="#" onclick="showPage('digital');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">
+            <a href="#" onclick="showPage('produk');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">
               📖 Lihat Produk
             </a>
           </div>
@@ -4585,91 +4589,296 @@ img { max-width: 100%; height: auto; }
 
 <!-- STYLES KONTEN PORTAL -->
 
-<!-- PRODUK REKOMENDASI SHOPEE PAGE -->
-<section class="content-section" id="page-affiliate" style="display:none;">
-  <div class="container">
-    <div class="section-tag">Produk Rekomendasi</div>
-    <h2 class="section-title" style="margin-bottom: 0.75rem;">Katalog Produk <em>Rekomendasi</em></h2>
-    <p class="section-lead" style="margin-bottom: 2rem;">Produk-produk berkualitas yang telah terseleksi secara personal — dari kebutuhan produktivitas hingga gaya hidup sehari-hari.</p>
-    <div class="shopee-search-wrap">
-      <input class="shopee-search" id="shopee-search" type="text" placeholder="🔍  Cari nama produk..." oninput="filterShopee(this.value)">
-      <span class="shopee-count" id="shopee-count"></span>
+<!-- PRODUK REKOMENDASI (hidden, kept for backward compatibility) -->
+<section class="content-section" id="page-affiliate" style="display:none;"></section>
+<!-- PRODUK DIGITAL (hidden, kept for backward compatibility) -->
+<section class="content-section" id="page-digital" style="display:none;"></section>
+
+<!-- ═══════════════════════════════════════════════════
+     PRODUK KAMI PAGE (Gabungan Rekomendasi + Digital)
+═══════════════════════════════════════════════════ -->
+<style>
+/* ── Produk Kami Page ── */
+.pk-hero {
+  background: linear-gradient(135deg, var(--ink) 0%, #1e1c16 100%);
+  padding: 4rem 0 3.5rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.pk-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(184,151,58,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,151,58,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+.pk-hero-inner { position: relative; z-index: 1; }
+.pk-hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  border: 0.5px solid rgba(184,151,58,0.3); border-radius: 2rem;
+  padding: 0.3rem 0.9rem; margin-bottom: 1.5rem;
+}
+.pk-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900; color: var(--white);
+  line-height: 1.1; margin-bottom: 0.75rem;
+}
+.pk-hero h1 em { color: var(--gold); font-style: italic; }
+.pk-hero p { font-size: 1rem; color: rgba(245,240,232,0.65); max-width: 560px; line-height: 1.75; font-weight: 300; }
+
+/* Tab nav */
+.pk-tabs {
+  display: flex; gap: 0; border-bottom: 1px solid var(--border-light);
+  background: var(--white); position: sticky; top: 68px; z-index: 10;
+  padding: 0 2rem; max-width: none;
+  box-shadow: 0 2px 16px rgba(15,14,11,0.06);
+}
+.pk-tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 500;
+  color: var(--ink-3); padding: 1rem 1.5rem;
+  border-bottom: 2px solid transparent; transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
+}
+.pk-tab-btn:hover { color: var(--ink); }
+.pk-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }
+
+/* Tab panels */
+.pk-tab-panel { display: none; }
+.pk-tab-panel.active { display: block; }
+
+/* Digital products grid */
+.pk-digital-section { padding: 3rem 0 4rem; background: var(--cream); }
+.pk-digital-section .section-tag { margin-bottom: 0.5rem; }
+.pk-digital-section .section-title { margin-bottom: 0.75rem; }
+.pk-digital-section .section-lead { margin-bottom: 2.5rem; }
+
+/* Category pills for digital */
+.pk-cat-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.pk-cat-pill {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
+  padding: 0.35rem 0.85rem; border-radius: 2rem;
+  border: 1px solid var(--border-light); background: var(--white);
+  color: var(--ink-3); cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase;
+}
+.pk-cat-pill:hover, .pk-cat-pill.active {
+  background: var(--ink); color: var(--gold-pale);
+  border-color: var(--ink);
+}
+
+/* Shopee tab panel */
+.pk-shopee-section { padding: 3rem 0 4rem; background: var(--cream); }
+.pk-shopee-section .section-tag { margin-bottom: 0.5rem; }
+.pk-shopee-section .section-title { margin-bottom: 0.75rem; }
+
+/* Product card enhancements */
+.pk-digital-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.pk-prod-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 1.75rem 1.5rem;
+  text-decoration: none; color: var(--ink);
+  display: flex; flex-direction: column; gap: 0.6rem;
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.pk-prod-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold); opacity: 0; transition: opacity 0.25s;
+}
+.pk-prod-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--border); }
+.pk-prod-card:hover::before { opacity: 1; }
+.pk-prod-icon { font-size: 2rem; }
+.pk-prod-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  border: 0.5px solid rgba(184,151,58,0.3);
+  background: rgba(184,151,58,0.06);
+  padding: 0.2rem 0.55rem; border-radius: 3px; width: fit-content;
+}
+.pk-prod-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.3; color: var(--ink); }
+.pk-prod-desc { font-size: 0.85rem; color: var(--ink-3); line-height: 1.65; flex: 1; }
+.pk-prod-cta {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.06em;
+  color: var(--gold); font-weight: 500; margin-top: 0.25rem;
+}
+
+/* Section divider inside page */
+.pk-section-sep {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 0 2rem; margin: 0.5rem 0;
+}
+.pk-sep-line { flex: 1; height: 1px; background: var(--border-light); }
+.pk-sep-text {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3);
+}
+
+@media (max-width: 700px) {
+  .pk-hero { padding: 3rem 0 2.5rem; }
+  .pk-tabs { padding: 0 1rem; top: 60px; overflow-x: auto; }
+  .pk-tab-btn { font-size: 0.9rem; padding: 0.85rem 1rem; }
+  .pk-digital-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .pk-digital-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<section class="content-section" id="page-produk" style="display:none;">
+
+  <!-- HERO -->
+  <div class="pk-hero">
+    <div class="container">
+      <div class="pk-hero-inner">
+        <div class="pk-hero-tag">🛍 Produk Kami</div>
+        <h1>Semua Produk &amp; Karya<br><em>LegalPreneur</em></h1>
+        <p>Dari produk rekomendasi pilihan untuk produktivitas sehari-hari, hingga karya digital eksklusif berupa e-book hukum, game edukasi, dan simulasi interaktif.</p>
+      </div>
     </div>
-    <div class="shopee-grid" id="shopee-grid"></div>
-    <!-- PAGINATION -->
-    <div class="shopee-pagination" id="shopee-pagination"></div>
   </div>
+
+  <!-- TABS -->
+  <div class="pk-tabs" id="pk-tabs">
+    <button class="pk-tab-btn active" onclick="pkSwitchTab('digital', this)">📚 Produk Digital</button>
+    <button class="pk-tab-btn" onclick="pkSwitchTab('shopee', this)">🛒 Produk Rekomendasi</button>
+  </div>
+
+  <!-- TAB: PRODUK DIGITAL -->
+  <div class="pk-tab-panel active" id="pk-panel-digital">
+    <div class="pk-digital-section">
+      <div class="container">
+        <div class="section-tag">Produk Digital Eksklusif</div>
+        <h2 class="section-title">E-Book, Game & <em>Simulasi Interaktif</em></h2>
+        <p class="section-lead">Karya digital eksklusif oleh Novrizal — tersedia di Lynk.id dan Amazon. Mulai dari panduan hukum praktis hingga game edukasi dan simulasi tes CPNS.</p>
+
+        <div class="pk-cat-pills">
+          <button class="pk-cat-pill active" onclick="pkFilterDigital('semua', this)">Semua</button>
+          <button class="pk-cat-pill" onclick="pkFilterDigital('ebook-hukum', this)">E-Book Hukum</button>
+          <button class="pk-cat-pill" onclick="pkFilterDigital('novel', this)">Novel</button>
+          <button class="pk-cat-pill" onclick="pkFilterDigital('game', this)">Game & Simulasi</button>
+        </div>
+
+        <div class="pk-digital-grid" id="pk-digital-grid">
+
+          <a href="http://lynk.id/novriz.digital/qp2p592qwj84" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+            <div class="pk-prod-icon">📖</div>
+            <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
+            <div class="pk-prod-title">Panduan Menghadapi Debt Collector</div>
+            <p class="pk-prod-desc">Hak-hak Anda sebagai debitur, cara legal menghadapi tekanan penagihan, dan langkah hukum yang bisa ditempuh.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+          <a href="http://lynk.id/novriz.digital/z4q46p9evexv" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+            <div class="pk-prod-icon">💼</div>
+            <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
+            <div class="pk-prod-title">Adil di atas Kertas</div>
+            <p class="pk-prod-desc">Legalitas usaha online, perlindungan hak cipta, kontrak digital, dan regulasi e-commerce yang wajib dipahami.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+          <a href="http://lynk.id/novriz.digital/9yvm9n4evyke" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+            <div class="pk-prod-icon">🛒</div>
+            <div class="pk-prod-cat">E-Book · Lynk.id</div>
+            <div class="pk-prod-title">Panduan Praktis Jualan Produk Digital</div>
+            <p class="pk-prod-desc">Panduan lengkap dan praktis untuk memulai dan mengembangkan bisnis jualan produk digital secara efektif dan menguntungkan.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+          <a href="https://www.amazon.com/dp/B0GRJL9XFM" target="_blank" class="pk-prod-card" data-cat="novel">
+            <div class="pk-prod-icon">📕</div>
+            <div class="pk-prod-cat">Novel Geopolitik · Amazon</div>
+            <div class="pk-prod-title">Novel Geopolitik</div>
+            <p class="pk-prod-desc">Narasi fiksi bertensi tinggi yang mengeksplorasi dinamika kekuasaan dan konsekuensi hukum internasional.</p>
+            <div class="pk-prod-cta">Beli di Amazon →</div>
+          </a>
+
+          <a href="https://a.co/d/013vts5G" target="_blank" class="pk-prod-card" data-cat="novel">
+            <div class="pk-prod-icon">🌍</div>
+            <div class="pk-prod-cat">Novel Eksklusif · Amazon</div>
+            <div class="pk-prod-title">Novel Eksklusif — Amazon Store</div>
+            <p class="pk-prod-desc">Karya fiksi terbaru tersedia di platform Amazon untuk pembaca global yang menginginkan cerita berkualitas tinggi.</p>
+            <div class="pk-prod-cta">Beli di Amazon →</div>
+          </a>
+
+          <a href="http://lynk.id/novriz.digital/8lzqkld4z42m" target="_blank" class="pk-prod-card" data-cat="game">
+            <div class="pk-prod-icon">🎮</div>
+            <div class="pk-prod-cat">Game Edukasi Hukum · Lynk.id</div>
+            <div class="pk-prod-title">Game Edukasi Hukum Interaktif</div>
+            <p class="pk-prod-desc">Belajar hukum dengan cara yang menyenangkan melalui game interaktif yang dirancang khusus untuk meningkatkan literasi hukum masyarakat.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+          <a href="http://lynk.id/novriz.digital/dlp846yqpp7y" target="_blank" class="pk-prod-card" data-cat="game">
+            <div class="pk-prod-icon">📝</div>
+            <div class="pk-prod-cat">Simulasi CPNS/ASN · Lynk.id</div>
+            <div class="pk-prod-title">Simulasi Interaktif Tes CPNS/ASN</div>
+            <p class="pk-prod-desc">Persiapkan diri menghadapi tes CPNS/ASN dengan simulasi interaktif yang komprehensif, akurat, dan terpercaya.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+        </div><!-- /pk-digital-grid -->
+      </div>
+    </div>
+  </div><!-- /pk-panel-digital -->
+
+  <!-- TAB: PRODUK REKOMENDASI SHOPEE -->
+  <div class="pk-tab-panel" id="pk-panel-shopee">
+    <div class="pk-shopee-section">
+      <div class="container">
+        <div class="section-tag">Produk Rekomendasi</div>
+        <h2 class="section-title">Katalog Produk <em>Rekomendasi</em></h2>
+        <p class="section-lead" style="margin-bottom: 2rem;">Produk-produk berkualitas yang telah terseleksi secara personal — dari kebutuhan produktivitas hingga gaya hidup sehari-hari.</p>
+        <div class="shopee-search-wrap">
+          <input class="shopee-search" id="shopee-search" type="text" placeholder="🔍  Cari nama produk..." oninput="filterShopee(this.value)">
+          <span class="shopee-count" id="shopee-count"></span>
+        </div>
+        <div class="shopee-grid" id="shopee-grid"></div>
+        <div class="shopee-pagination" id="shopee-pagination"></div>
+      </div>
+    </div>
+  </div><!-- /pk-panel-shopee -->
+
   <div class="page-mini-footer">
     <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
     <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
     <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
   </div>
+
 </section>
 
-<!-- PRODUK DIGITAL PAGE -->
-<section class="content-section" id="page-digital" style="display:none;">
-  <div class="container">
-    <div class="section-tag">Produk Digital</div>
-    <h2 class="section-title" style="margin-bottom: 0.75rem;">E-Book, Game & <em>Simulasi Interaktif</em></h2>
-    <p class="section-lead" style="margin-bottom: 3rem;">Karya digital eksklusif oleh Novrizal — tersedia di Lynk.id dan Amazon. Mulai dari panduan hukum praktis hingga game edukasi dan simulasi tes CPNS.</p>
-    <div class="content-grid">
-      <a href="http://lynk.id/novriz.digital/qp2p592qwj84" target="_blank" class="content-card">
-        <div class="content-card-icon">📖</div>
-        <div class="content-card-tag">E-Book Hukum · Lynk.id</div>
-        <div class="content-card-title">Panduan Menghadapi Debt Collector</div>
-        <p class="content-card-desc">Hak-hak Anda sebagai debitur, cara legal menghadapi tekanan penagihan, dan langkah hukum yang bisa ditempuh.</p>
-        <div class="content-card-link">Dapatkan di Lynk.id →</div>
-      </a>
-      <a href="http://lynk.id/novriz.digital/z4q46p9evexv" target="_blank" class="content-card">
-        <div class="content-card-icon">💼</div>
-        <div class="content-card-tag">E-Book Hukum · Lynk.id</div>
-        <div class="content-card-title">Adil di atas Kertas</div>
-        <p class="content-card-desc">Legalitas usaha online, perlindungan hak cipta, kontrak digital, dan regulasi e-commerce yang wajib dipahami.</p>
-        <div class="content-card-link">Dapatkan di Lynk.id →</div>
-      </a>
-      <a href="https://www.amazon.com/dp/B0GRJL9XFM" target="_blank" class="content-card">
-        <div class="content-card-icon">📕</div>
-        <div class="content-card-tag">E-Book Novel · Amazon</div>
-        <div class="content-card-title">Novel Geopolitik (Amazon)</div>
-        <p class="content-card-desc">Narasi fiksi bertensi tinggi yang mengeksplorasi dinamika kekuasaan dan konsekuensi hukum internasional.</p>
-        <div class="content-card-link">Beli di Amazon →</div>
-      </a>
-      <a href="https://a.co/d/013vts5G" target="_blank" class="content-card">
-        <div class="content-card-icon">🌍</div>
-        <div class="content-card-tag">E-Book Novel · Amazon</div>
-        <div class="content-card-title">Novel Eksklusif — Amazon Store</div>
-        <p class="content-card-desc">Karya fiksi terbaru tersedia di platform Amazon untuk pembaca global yang menginginkan cerita berkualitas tinggi.</p>
-        <div class="content-card-link">Beli di Amazon →</div>
-      </a>
-      <a href="http://lynk.id/novriz.digital/8lzqkld4z42m" target="_blank" class="content-card">
-        <div class="content-card-icon">🎮</div>
-        <div class="content-card-tag">Game Edukasi Hukum · Lynk.id</div>
-        <div class="content-card-title">Game Edukasi Hukum Interaktif</div>
-        <p class="content-card-desc">Belajar hukum dengan cara yang menyenangkan melalui game interaktif yang dirancang khusus untuk meningkatkan literasi hukum masyarakat.</p>
-        <div class="content-card-link">Dapatkan di Lynk.id →</div>
-      </a>
-      <a href="http://lynk.id/novriz.digital/dlp846yqpp7y" target="_blank" class="content-card">
-        <div class="content-card-icon">📝</div>
-        <div class="content-card-tag">Simulasi CPNS/ASN · Lynk.id</div>
-        <div class="content-card-title">Simulasi Interaktif Tes CPNS/ASN</div>
-        <p class="content-card-desc">Persiapkan diri menghadapi tes CPNS/ASN dengan simulasi interaktif yang komprehensif, akurat, dan terpercaya.</p>
-        <div class="content-card-link">Dapatkan di Lynk.id →</div>
-      </a>
-      <a href="http://lynk.id/novriz.digital/9yvm9n4evyke" target="_blank" class="content-card">
-        <div class="content-card-icon">🛒</div>
-        <div class="content-card-tag">E-Book · Lynk.id</div>
-        <div class="content-card-title">Panduan Praktis Jualan Produk Digital</div>
-        <p class="content-card-desc">Panduan lengkap dan praktis untuk memulai dan mengembangkan bisnis jualan produk digital secara efektif dan menguntungkan.</p>
-        <div class="content-card-link">Dapatkan di Lynk.id →</div>
-      </a>
-    </div>
-  </div>
-  <div class="page-mini-footer">
-    <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
-    <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
-    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
-  </div>
-</section>
+<script>
+function pkSwitchTab(tab, btn) {
+  document.querySelectorAll('.pk-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.pk-tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pk-panel-' + tab).classList.add('active');
+  if (tab === 'shopee') renderShopee();
+}
+function pkFilterDigital(cat, btn) {
+  document.querySelectorAll('.pk-cat-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#pk-digital-grid .pk-prod-card').forEach(card => {
+    card.style.display = (cat === 'semua' || card.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
 <section class="consult-section" id="konsultasi">
   <div class="container">
     <div class="consult-inner">
@@ -4723,6 +4932,1866 @@ img { max-width: 100%; height: auto; }
   </div>
 </section>
 
+
+
+<!-- ═══════════════════════════════════════════════════
+     LEGALPRENEUR CLASS PAGE
+═══════════════════════════════════════════════════ -->
+<style>
+/* ── LexiClass Page Styles ── */
+.lc-page { background: #0F0E0C; color: #F5F0E8; }
+.lc-hero {
+  background: linear-gradient(145deg, #0d0c0a 0%, #191714 60%, #1e1c16 100%);
+  padding: 5rem 0 4rem;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.lc-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 55px 55px;
+  pointer-events: none;
+}
+.lc-hero::after {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.lc-hero-inner { position: relative; z-index: 1; }
+.lc-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  border: 0.5px solid rgba(201,168,76,0.3); color: #C9A84C;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.35rem 1rem; border-radius: 2rem; margin-bottom: 1.75rem;
+}
+.lc-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 900; line-height: 1.06; letter-spacing: -0.02em;
+  margin-bottom: 1.4rem; color: #F5F0E8;
+}
+.lc-hero h1 em { color: #C9A84C; font-style: italic; }
+.lc-hero-sub {
+  font-size: 1rem; color: #9A9280; max-width: 560px;
+  line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300;
+}
+.lc-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.lc-btn-gold {
+  background: #C9A84C; color: #0F0E0C;
+  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 700;
+  padding: 0.85rem 2rem; border-radius: 3px; border: 2px solid #C9A84C;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: all 0.2s; cursor: pointer;
+}
+.lc-btn-gold:hover { background: #d4b05a; border-color: #d4b05a; transform: translateY(-2px); }
+.lc-btn-outline-cream {
+  background: transparent; color: #F5F0E8;
+  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 500;
+  padding: 0.85rem 2rem; border-radius: 3px;
+  border: 1.5px solid rgba(245,240,232,0.25);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: all 0.2s; cursor: pointer;
+}
+.lc-btn-outline-cream:hover { border-color: #C9A84C; color: #C9A84C; }
+.lc-stats-row {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  padding-top: 2.5rem; border-top: 0.5px solid rgba(245,240,232,0.08);
+}
+.lc-stat-num {
+  font-family: 'Playfair Display', serif; font-size: 1.9rem;
+  color: #C9A84C; font-weight: 700; line-height: 1; display: block;
+}
+.lc-stat-label {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  color: #9A9280; letter-spacing: 0.09em; text-transform: uppercase;
+  display: block; margin-top: 0.3rem;
+}
+
+/* Pain section */
+.lc-pain { background: #1A1915; padding: 4rem 0; border-bottom: 1px solid rgba(245,240,232,0.05); }
+.lc-section-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: #C9A84C; margin-bottom: 0.75rem; }
+.lc-section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem,4vw,2.6rem); font-weight: 700; line-height: 1.18; margin-bottom: 0.9rem; color: #F5F0E8; }
+.lc-section-title em { color: #C9A84C; font-style: italic; }
+.lc-section-sub { font-size: 0.95rem; color: #9A9280; max-width: 540px; line-height: 1.75; margin-bottom: 2.5rem; font-weight: 300; }
+.lc-pain-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem;
+}
+.lc-pain-card {
+  background: #252420; border: 0.5px solid rgba(245,240,232,0.07);
+  border-radius: 10px; padding: 1.5rem;
+  transition: border-color 0.2s;
+}
+.lc-pain-card:hover { border-color: rgba(201,168,76,0.3); }
+.lc-pain-icon { font-size: 1.5rem; margin-bottom: 0.85rem; display: block; }
+.lc-pain-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.45rem; line-height: 1.4; color: #F5F0E8; }
+.lc-pain-card p { font-size: 0.8rem; color: #9A9280; line-height: 1.65; }
+
+/* Modules section */
+.lc-modules { background: #0F0E0C; padding: 5rem 0; }
+.lc-modules-header { max-width: 640px; margin-bottom: 3.5rem; }
+.lc-module-list {
+  display: flex; flex-direction: column; gap: 0;
+  border-radius: 12px; overflow: hidden;
+  border: 0.5px solid rgba(245,240,232,0.08);
+}
+.lc-module-acc { background: #1A1915; border-bottom: 0.5px solid rgba(245,240,232,0.06); }
+.lc-module-acc:last-child { border-bottom: none; }
+.lc-module-trigger {
+  width: 100%; background: none; border: none; cursor: pointer; color: #F5F0E8;
+  padding: 1.6rem 1.75rem;
+  display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: start;
+  text-align: left; transition: background 0.2s;
+}
+.lc-module-trigger:hover { background: rgba(201,168,76,0.04); }
+.lc-module-trigger.open { background: rgba(201,168,76,0.06); }
+.lc-module-num {
+  font-family: 'Playfair Display', serif; font-size: 2rem;
+  color: rgba(201,168,76,0.22); font-weight: 900; line-height: 1; min-width: 2.6rem;
+  transition: color 0.2s;
+}
+.lc-module-trigger.open .lc-module-num { color: rgba(201,168,76,0.6); }
+.lc-module-head h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; line-height: 1.35; font-family: 'Crimson Pro', serif; color: #F5F0E8; }
+.lc-module-head p { font-size: 0.82rem; color: #9A9280; line-height: 1.65; }
+.lc-module-format { margin-top: 0.65rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.lc-fmt-tag {
+  background: rgba(245,240,232,0.05); border: 0.5px solid rgba(245,240,232,0.1);
+  border-radius: 4px; padding: 0.18rem 0.55rem; font-size: 0.68rem;
+  color: #9A9280; font-family: 'DM Mono', monospace;
+}
+.lc-module-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+.lc-module-bonus {
+  background: rgba(201,168,76,0.12); border: 0.5px solid rgba(201,168,76,0.3);
+  border-radius: 6px; padding: 0.28rem 0.7rem; font-size: 0.67rem; color: #C9A84C;
+  white-space: nowrap; font-family: 'DM Mono', monospace;
+}
+.lc-acc-chevron { font-size: 1.1rem; color: #6B6457; transition: transform 0.3s; }
+.lc-module-trigger.open .lc-acc-chevron { transform: rotate(180deg); }
+
+/* Module Panel */
+.lc-module-panel { display: none; overflow: hidden; }
+.lc-module-panel.open { display: block; }
+.lc-panel-inner { padding: 1.5rem 1.75rem 2rem; }
+/* Slide + Script two-column layout */
+.lc-slide-script-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  margin-bottom: 1.5rem; align-items: start;
+}
+@media (max-width: 900px) { .lc-slide-script-grid { grid-template-columns: 1fr; } }
+/* Script sosial media box */
+.lc-script-box {
+  background: #1A1915; border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  display: flex; flex-direction: column;
+}
+.lc-script-box-header {
+  padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(245,240,232,0.08);
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+  font-family: 'DM Mono', monospace; font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C;
+  background: rgba(201,168,76,0.06);
+}
+.lc-script-tabs { display: flex; gap: 0.4rem; }
+.lc-script-tab { background: rgba(245,240,232,0.06); border: 0.5px solid rgba(245,240,232,0.12); color: #9A9280; border-radius: 4px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s; }
+.lc-script-tab.active { background: rgba(201,168,76,0.15); border-color: rgba(201,168,76,0.4); color: #C9A84C; }
+.lc-script-body { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.lc-script-segment { border-left: 2px solid rgba(201,168,76,0.35); padding-left: 0.85rem; }
+.lc-script-segment-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C; margin-bottom: 0.3rem; }
+.lc-script-text { font-family: 'Crimson Pro', serif; font-size: 0.9rem; color: #F5F0E8; line-height: 1.6; font-style: italic; margin-bottom: 0.3rem; }
+.lc-script-dir { font-size: 0.72rem; color: #6B6457; line-height: 1.5; font-style: normal; }
+.lc-script-footer { padding: 0.75rem 1.25rem; border-top: 0.5px solid rgba(245,240,232,0.06); display: flex; flex-direction: column; gap: 0.3rem; }
+.lc-script-footer-row { font-size: 0.72rem; color: #6B6457; display: flex; align-items: flex-start; gap: 0.4rem; }
+.lc-script-footer-row span { color: #C9A84C; flex-shrink: 0; }
+.lc-content-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 700px) { .lc-content-grid { grid-template-columns: 1fr; } }
+
+/* Learning points */
+.lc-learn-box {
+  background: #252420; border: 0.5px solid rgba(245,240,232,0.08);
+  border-radius: 10px; padding: 1.4rem; display: flex; flex-direction: column; gap: 0.85rem;
+}
+.lc-learn-box h4 {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C;
+  margin-bottom: 0.25rem;
+}
+.lc-learn-item {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  padding-bottom: 0.75rem; border-bottom: 0.5px solid rgba(245,240,232,0.06);
+}
+.lc-learn-item:last-child { border-bottom: none; padding-bottom: 0; }
+.lc-learn-num {
+  min-width: 22px; height: 22px; border-radius: 5px; flex-shrink: 0;
+  background: rgba(201,168,76,0.12); border: 0.5px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700; color: #C9A84C; margin-top: 2px;
+  font-family: 'DM Mono', monospace;
+}
+.lc-learn-text-wrap .lc-learn-t { font-size: 0.88rem; font-weight: 600; color: #F5F0E8; line-height: 1.35; }
+.lc-learn-text-wrap .lc-learn-s { font-size: 0.76rem; color: #9A9280; margin-top: 0.2rem; line-height: 1.5; }
+
+/* Highlight box */
+.lc-highlight {
+  background: rgba(201,168,76,0.1); border: 0.5px solid rgba(201,168,76,0.25);
+  border-radius: 8px; padding: 1rem 1.1rem;
+  display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.85rem;
+}
+.lc-highlight-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+.lc-highlight p { font-size: 0.84rem; color: #d4b86a; line-height: 1.65; }
+
+/* Bonus chip */
+.lc-bonus-chip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.3);
+  border-radius: 6px; padding: 0.5rem 0.85rem;
+  font-size: 0.78rem; color: #1D9E75; margin-top: 0.85rem;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Bonus materials box */
+.lc-bonus-box {
+  background: #252420; border: 0.5px solid rgba(245,240,232,0.08);
+  border-radius: 10px; padding: 1.4rem;
+}
+.lc-bonus-box h4 {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C;
+  margin-bottom: 1rem;
+}
+.lc-bonus-item {
+  display: flex; align-items: center; gap: 0.65rem;
+  padding: 0.65rem 0; border-bottom: 0.5px solid rgba(245,240,232,0.06);
+  font-size: 0.85rem; color: #F5F0E8;
+}
+.lc-bonus-item:last-child { border-bottom: none; }
+.lc-bonus-item-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* What you learn summary */
+.lc-summary-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-top: 0.5rem;
+}
+.lc-summary-item {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  font-size: 0.82rem; color: #9A9280; line-height: 1.45;
+}
+.lc-summary-check { color: #1D9E75; flex-shrink: 0; margin-top: 1px; }
+
+/* Instructor section */
+.lc-instructor { background: #1A1915; padding: 4rem 0; border-top: 1px solid rgba(245,240,232,0.05); border-bottom: 1px solid rgba(245,240,232,0.05); }
+.lc-instructor-grid { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+@media (max-width: 640px) { .lc-instructor-grid { grid-template-columns: 1fr; } }
+.lc-instructor-avatar {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: rgba(201,168,76,0.12); border: 2px solid rgba(201,168,76,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; flex-shrink: 0;
+}
+.lc-instructor-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #F5F0E8; margin-bottom: 0.25rem; }
+.lc-instructor-title { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: #C9A84C; margin-bottom: 0.85rem; }
+.lc-instructor-bio { font-size: 0.9rem; color: #9A9280; line-height: 1.75; max-width: 560px; }
+.lc-cred-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.lc-cred-tag {
+  background: rgba(245,240,232,0.05); border: 0.5px solid rgba(245,240,232,0.12);
+  border-radius: 4px; padding: 0.22rem 0.65rem; font-size: 0.72rem; color: #C8C0B0;
+  font-family: 'DM Mono', monospace;
+}
+
+/* Pricing */
+.lc-pricing { background: #0F0E0C; padding: 5rem 0; }
+.lc-price-card {
+  max-width: 480px; margin: 0 auto;
+  background: #1A1915; border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 14px; overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+}
+.lc-price-header {
+  background: linear-gradient(135deg, #252420, #1A1915);
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 0.5px solid rgba(201,168,76,0.15);
+}
+.lc-price-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(201,168,76,0.12); border: 0.5px solid rgba(201,168,76,0.3);
+  border-radius: 2rem; padding: 0.28rem 0.85rem;
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #C9A84C; margin-bottom: 1.25rem;
+}
+.lc-price-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #F5F0E8; margin-bottom: 0.25rem; }
+.lc-price-amount {
+  font-family: 'Playfair Display', serif; font-size: 3rem;
+  font-weight: 900; color: #C9A84C; line-height: 1; margin-bottom: 0.4rem;
+}
+.lc-price-old { font-size: 0.85rem; color: #6B6457; text-decoration: line-through; margin-bottom: 0.75rem; }
+.lc-price-body { padding: 1.75rem 2rem 2rem; }
+.lc-price-include-title {
+  font-family: 'DM Mono', monospace; font-size: 0.65rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #9A9280;
+  margin-bottom: 1.1rem;
+}
+.lc-include-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; }
+.lc-include-item { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.88rem; color: #F5F0E8; }
+.lc-include-check { color: #1D9E75; flex-shrink: 0; margin-top: 2px; }
+.lc-price-cta {
+  width: 100%; background: #C9A84C; color: #0F0E0C;
+  font-family: 'Crimson Pro', serif; font-size: 1rem; font-weight: 700;
+  padding: 1rem 1.5rem; border-radius: 6px; border: none; cursor: pointer;
+  transition: all 0.2s; text-decoration: none; display: block; text-align: center;
+  letter-spacing: 0.02em;
+}
+.lc-price-cta:hover { background: #d4b05a; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(201,168,76,0.35); }
+.lc-price-note { text-align: center; font-size: 0.75rem; color: #6B6457; margin-top: 1rem; font-family: 'DM Mono', monospace; }
+
+/* CTA Section */
+.lc-cta { background: linear-gradient(135deg, #1A1915, #252420); padding: 4.5rem 0; border-top: 0.5px solid rgba(201,168,76,0.15); text-align: center; }
+.lc-cta h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 900; color: #F5F0E8; margin-bottom: 1rem; line-height: 1.12; }
+.lc-cta h2 em { color: #C9A84C; font-style: italic; }
+.lc-cta p { font-size: 1rem; color: #9A9280; line-height: 1.75; max-width: 520px; margin: 0 auto 2.5rem; font-weight: 300; }
+.lc-cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+/* Danger strip */
+.lc-danger-strip {
+  display: flex; gap: 0.65rem; align-items: flex-start;
+  background: rgba(226,75,74,0.08); border: 0.5px solid rgba(226,75,74,0.2);
+  border-radius: 6px; padding: 0.7rem 0.85rem; margin-bottom: 0.6rem;
+  font-size: 0.8rem; color: #EDE6D6; line-height: 1.5;
+}
+.lc-danger-icon { color: #E24B4A; flex-shrink: 0; margin-top: 2px; }
+
+/* Pain header */
+.lc-pain-header { max-width: 640px; margin-bottom: 2.5rem; }
+
+/* Slide Viewer */
+.lc-slide-box {
+  background: #1A1915; border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+.lc-slide-box-header {
+  padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(245,240,232,0.08);
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: 'DM Mono', monospace; font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C;
+  background: rgba(201,168,76,0.06);
+}
+.lc-slide-progress { display: flex; gap: 3px; padding: 0.55rem 1rem; border-bottom: 0.5px solid rgba(245,240,232,0.05); }
+.lc-spd { flex: 1; height: 2px; border-radius: 2px; background: rgba(245,240,232,0.08); cursor: pointer; transition: background 0.2s; }
+.lc-spd.done { background: #C9A84C; }
+.lc-spd.active { background: #F0D690; }
+.lc-slide-stage { width: 100%; aspect-ratio: 16/9; min-height: 340px; position: relative; overflow: hidden; background: #0F0E0C; }
+.lc-sl { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+.lc-sl.active { display: flex; }
+.lc-sl-cover { flex-direction: column; justify-content: flex-end; background: linear-gradient(145deg, #0d0c0a 0%, #191714 50%, #1e1c16 100%); }
+.lc-sl-cover-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 24px, rgba(201,168,76,0.04) 24px, rgba(201,168,76,0.04) 25px); }
+.lc-sl-cover-deco { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); width: 30%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(201,168,76,0.12); display: flex; align-items: center; justify-content: center; }
+.lc-sl-cover-deco-inner { width: 68%; aspect-ratio: 1; border-radius: 50%; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.18); display: flex; align-items: center; justify-content: center; font-size: clamp(2rem,5vw,3.5rem); color: #C9A84C; }
+.lc-sl-cover-content { position: relative; z-index: 2; padding: 7%; display: flex; flex-direction: column; justify-content: flex-end; flex: 1; }
+.lc-sl-badge { display: inline-flex; align-items: center; gap: 5px; background: rgba(201,168,76,0.15); border: 0.5px solid rgba(201,168,76,0.35); border-radius: 2rem; padding: 5px 14px; font-family: 'DM Mono', monospace; font-size: clamp(9px,1.6vw,12px); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #F0D690; margin-bottom: 10px; }
+.lc-sl-title { font-family: 'Playfair Display', serif; font-size: clamp(16px,4vw,30px); font-weight: 900; color: #fff; line-height: 1.18; letter-spacing: -0.01em; margin-bottom: 8px; }
+.lc-sl-sub { font-size: clamp(11px,1.8vw,14px); color: rgba(245,240,232,0.5); margin-bottom: 14px; }
+.lc-sl-meta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.lc-sl-meta-chip { display: flex; align-items: center; gap: 5px; font-size: clamp(10px,1.5vw,13px); color: rgba(245,240,232,0.4); font-family: 'DM Mono', monospace; }
+.lc-sl-meta-chip b { color: #C9A84C; }
+.lc-sl-content { flex-direction: column; padding: 5% 6%; gap: 0; background: #1A1915; }
+.lc-sl-label { font-family: 'DM Mono', monospace; font-size: clamp(9px,1.4vw,12px); letter-spacing: 0.12em; text-transform: uppercase; color: #C9A84C; margin-bottom: 6px; font-weight: 600; }
+.lc-sl-h { font-size: clamp(13px,2.5vw,20px); font-weight: 600; color: #F5F0E8; margin-bottom: 10px; line-height: 1.25; }
+.lc-sl-body { flex: 1; display: flex; flex-direction: column; gap: 7px; overflow: hidden; }
+.lc-sl-hl { background: rgba(201,168,76,0.1); border: 0.5px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 8px 12px; display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; }
+.lc-sl-hl-icon { font-size: clamp(13px,2vw,17px); flex-shrink: 0; margin-top: 1px; }
+.lc-sl-hl-text { font-size: clamp(10px,1.7vw,14px); color: #d4b86a; line-height: 1.5; }
+.lc-pt-card { display: flex; gap: 8px; align-items: flex-start; background: rgba(245,240,232,0.04); border: 0.5px solid rgba(245,240,232,0.07); border-radius: 6px; padding: 7px 9px; }
+.lc-pt-num { width: 22px; height: 22px; border-radius: 4px; flex-shrink: 0; background: rgba(201,168,76,0.12); border: 0.5px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: clamp(9px,1.5vw,12px); font-weight: 700; color: #C9A84C; margin-top: 1px; }
+.lc-pt-t { font-size: clamp(10px,1.7vw,14px); font-weight: 600; color: #F5F0E8; line-height: 1.3; }
+.lc-pt-s { font-size: clamp(8px,1.3vw,11px); color: #9A9280; margin-top: 2px; line-height: 1.4; }
+.lc-two-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.lc-two-cards .lc-pt-card { flex-direction: column; gap: 5px; }
+.lc-check-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.lc-check-item { display: flex; align-items: flex-start; gap: 6px; }
+.lc-check-item b { font-size: clamp(10px,1.7vw,14px); color: #1D9E75; font-weight: normal; }
+.lc-check-t { font-size: clamp(8px,1.5vw,12px); color: #F5F0E8; line-height: 1.35; }
+.lc-recap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+.lc-recap-item { display: flex; align-items: center; gap: 6px; }
+.lc-recap-item b { font-size: clamp(11px,1.8vw,15px); color: #1D9E75; font-weight: normal; }
+.lc-recap-t { font-size: clamp(9px,1.6vw,13px); color: #F5F0E8; line-height: 1.3; }
+.lc-bonus-chip-slide { display: inline-flex; align-items: center; gap: 6px; background: rgba(29,158,117,0.1); border: 0.5px solid rgba(29,158,117,0.25); border-radius: 5px; padding: 5px 10px; font-size: clamp(9px,1.5vw,12px); color: #1D9E75; font-family: 'DM Mono', monospace; }
+.lc-danger-sl { display: flex; gap: 6px; align-items: flex-start; background: rgba(226,75,74,0.08); border: 0.5px solid rgba(226,75,74,0.2); border-radius: 5px; padding: 7px 9px; }
+.lc-danger-sl-icon { color: #E24B4A; flex-shrink: 0; font-size: clamp(10px,1.7vw,14px); margin-top: 1px; }
+.lc-danger-sl-t { font-size: clamp(8px,1.5vw,12px); color: #EDE6D6; line-height: 1.45; }
+.lc-sl-flow { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.lc-flow-box { flex: 1; min-width: 50px; text-align: center; background: rgba(245,240,232,0.04); border: 0.5px solid rgba(245,240,232,0.07); border-radius: 5px; padding: 7px 5px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.lc-flow-box-icon { font-size: clamp(12px,2vw,18px); color: #C9A84C; }
+.lc-flow-box-t { font-size: clamp(8px,1.4vw,11px); color: #C8C0B0; }
+.lc-flow-arrow { font-size: clamp(10px,1.6vw,14px); color: #6B6457; flex-shrink: 0; }
+.lc-slide-nav { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 1rem; border-top: 0.5px solid rgba(245,240,232,0.06); }
+.lc-sl-nav-btn { background: rgba(245,240,232,0.05); border: 0.5px solid rgba(245,240,232,0.12); color: #C8C0B0; border-radius: 5px; padding: 0.3rem 0.75rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.04em; }
+.lc-sl-nav-btn:hover:not(:disabled) { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: #C9A84C; }
+.lc-sl-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.lc-sl-counter { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: #6B6457; }
+
+/* Responsive */
+@media (max-width: 700px) {
+  .lc-hero { padding: 3.5rem 0 3rem; }
+  .lc-stats-row { gap: 1.75rem; }
+  .lc-module-trigger { padding: 1.25rem 1.1rem; gap: 0.85rem; }
+  .lc-module-num { font-size: 1.6rem; min-width: 2rem; }
+  .lc-panel-inner { padding: 1rem 1.1rem 1.5rem; }
+  .lc-summary-grid { grid-template-columns: 1fr; }
+  .lc-price-card { max-width: 100%; }
+  .lc-price-amount { font-size: 2.5rem; }
+}
+</style>
+
+<section class="content-section lc-page" id="page-lexiclass" style="display:none;">
+
+  <!-- HERO -->
+  <div class="lc-hero">
+    <div class="container">
+      <div class="lc-hero-inner">
+        <div class="lc-eyebrow">⚖ LegalPreneur Class · Kursus Hukum Digital</div>
+        <h1>Kuasai Hukum <em>Kontrak Bisnis</em><br>Sebelum Terlambat</h1>
+        <p class="lc-hero-sub">Kursus mini praktis hukum kontrak untuk pelaku usaha Indonesia. 5 modul video langsung dari advokat berpengalaman — dilengkapi template dokumen hukum siap pakai.</p>
+        <div class="lc-hero-actions">
+          <a href="https://wa.me/6281262195937?text=Halo%2C+saya+tertarik+daftar+LegalPreneur+Class" class="lc-btn-gold" target="_blank">Daftar Sekarang →</a>
+          <button class="lc-btn-outline-cream" onclick="document.getElementById('lc-modules-section').scrollIntoView({behavior:'smooth'})">Lihat Materi Kursus</button>
+        </div>
+        <div class="lc-stats-row">
+          <div>
+            <span class="lc-stat-num">5</span>
+            <span class="lc-stat-label">Modul Video</span>
+          </div>
+          <div>
+            <span class="lc-stat-num">65+</span>
+            <span class="lc-stat-label">Menit Belajar</span>
+          </div>
+          <div>
+            <span class="lc-stat-num">5+</span>
+            <span class="lc-stat-label">Template Dokumen</span>
+          </div>
+          <div>
+            <span class="lc-stat-num">5+</span>
+            <span class="lc-stat-label">Tahun Pengalaman</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="lc-pain">
+    <div class="container">
+      <div class="lc-pain-header">
+        <div class="lc-section-label">Masalah yang Sering Terjadi</div>
+        <h2 class="lc-section-title">UMKM Rugi Karena<br><em>Kontrak yang Salah</em></h2>
+        <p class="lc-section-sub">Kesalahan hukum kontrak bukan hanya soal kerugian finansial — bisa mengancam kelangsungan bisnis Anda secara keseluruhan.</p>
+      </div>
+      <div class="lc-pain-grid">
+        <div class="lc-pain-card">
+          <span class="lc-pain-icon">📝</span>
+          <h3>Kontrak lisan tanpa bukti tertulis</h3>
+          <p>Ketika terjadi sengketa, Anda tidak punya pegangan hukum yang kuat untuk menuntut atau membela diri.</p>
+        </div>
+        <div class="lc-pain-card">
+          <span class="lc-pain-icon">⚠️</span>
+          <h3>Klausul yang tidak lengkap atau ambigu</h3>
+          <p>Celah kecil dalam kontrak bisa dimanfaatkan pihak lain. <em style="color:#C9A84C;font-style:italic;">"Secepatnya"</em> bukan jangka waktu yang sah di mata hukum.</p>
+        </div>
+        <div class="lc-pain-card">
+          <span class="lc-pain-icon">💸</span>
+          <h3>Tidak tahu cara menyelesaikan sengketa</h3>
+          <p>Langsung ke pengadilan itu mahal dan lama. Ada jalur mediasi dan arbitrase yang jauh lebih efisien dan terjangkau.</p>
+        </div>
+        <div class="lc-pain-card">
+          <span class="lc-pain-icon">🔍</span>
+          <h3>Tidak paham hak dan kewajiban legal</h3>
+          <p>Banyak pebisnis menandatangani kontrak tanpa memahami konsekuensi hukumnya — hingga terlambat untuk berbenah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div class="lc-modules" id="lc-modules-section">
+    <div class="container">
+      <div class="lc-modules-header">
+        <div class="lc-section-label">Kurikulum Kursus</div>
+        <h2 class="lc-section-title">5 Modul untuk Melindungi<br>Bisnis Anda</h2>
+        <p class="lc-section-sub">Setiap modul dirancang praktis — langsung bisa diterapkan untuk bisnis Anda hari ini.</p>
+      </div>
+
+      <div class="lc-module-list">
+
+        <!-- MODUL 1 -->
+        <div class="lc-module-acc">
+          <button class="lc-module-trigger" onclick="lcToggle(this,0)" aria-expanded="false">
+            <div class="lc-module-num">01</div>
+            <div class="lc-module-head">
+              <h3>Dasar Hukum Kontrak di Indonesia</h3>
+              <p>Pahami fondasi hukum perjanjian bisnis berdasarkan Pasal 1320 KUHPerdata — 4 syarat sah kontrak yang wajib dipenuhi.</p>
+              <div class="lc-module-format">
+                <span class="lc-fmt-tag">Video 12 mnt</span>
+                <span class="lc-fmt-tag">Slide PDF</span>
+                <span class="lc-fmt-tag">Quiz</span>
+              </div>
+            </div>
+            <div class="lc-module-right">
+              <div class="lc-module-bonus">PDF "4 Syarat Sah Kontrak"</div>
+              <span class="lc-acc-chevron">▼</span>
+            </div>
+          </button>
+          <div class="lc-module-panel" id="lc-panel-0">
+            <div class="lc-panel-inner">
+              <!-- SLIDE + SCRIPT GRID M1 -->
+              <div class="lc-slide-script-grid">
+              <!-- SLIDE VIEWER M1 -->
+              <div class="lc-slide-box">
+                <div class="lc-slide-box-header">📐 &nbsp;Outline Slide Canva</div>
+                <div class="lc-slide-progress" id="lc-prog-0"></div>
+                <div class="lc-slide-stage" id="lc-stage-0">
+
+                  <!-- SL 1: Cover -->
+                  <div class="lc-sl lc-sl-cover active" id="lc-s0-0">
+                    <div class="lc-sl-cover-pattern"></div>
+                    <div class="lc-sl-cover-deco"><div class="lc-sl-cover-deco-inner">⚖️</div></div>
+                    <div class="lc-sl-cover-content">
+                      <div class="lc-sl-badge">📜 Modul 1 · Hukum Kontrak</div>
+                      <div class="lc-sl-title">Dasar Hukum Kontrak<br>di Indonesia</div>
+                      <div class="lc-sl-sub">Pasal 1320 KUHPerdata — fondasi setiap perjanjian bisnis</div>
+                      <div class="lc-sl-meta-row">
+                        <div class="lc-sl-meta-chip"><b>▶</b> Video 12 mnt</div>
+                        <div class="lc-sl-meta-chip"><b>📄</b> Slide PDF</div>
+                        <div class="lc-sl-meta-chip"><b>✅</b> Quiz</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SL 2: Konteks & Mengapa Kontrak Penting -->
+                  <div class="lc-sl lc-sl-content" id="lc-s0-1">
+                    <div class="lc-sl-label">Slide 2 · Konteks</div>
+                    <div class="lc-sl-h">Mengapa Kontrak Bisnis Itu Penting?</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">💡</span><div class="lc-sl-hl-text">Realita: banyak UMKM merugi bukan karena produknya buruk, tapi karena kontraknya lemah atau tidak ada sama sekali.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Kontrak = peta jalan bisnis Anda</div><div class="lc-pt-s">Tanpa kontrak yang jelas, tidak ada yang bisa dibuktikan saat sengketa</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Berlaku sebagai UU bagi para pihak</div><div class="lc-pt-s">Pasal 1338 KUHPerdata: pacta sunt servanda — kontrak mengikat</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Perbedaan lisan vs tertulis</div><div class="lc-pt-s">Kontrak tertulis jauh lebih kuat — mudah dibuktikan di mata hukum</div></div></div>
+                    </div>
+                  </div>
+
+                  <!-- SL 3: 4 Syarat Sah -->
+                  <div class="lc-sl lc-sl-content" id="lc-s0-2">
+                    <div class="lc-sl-label">Slide 3 · Inti Materi</div>
+                    <div class="lc-sl-h">4 Syarat Sah Kontrak — Pasal 1320 KUHPerdata</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">1</div><div><div class="lc-pt-t">Sepakat</div><div class="lc-pt-s">Kedua pihak setuju secara sukarela — bukan karena paksaan, penipuan, atau kekhilafan</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">2</div><div><div class="lc-pt-t">Cakap Hukum</div><div class="lc-pt-s">Minimal 18 tahun, tidak di bawah pengampuan, tidak pailit</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">3</div><div><div class="lc-pt-t">Hal/Objek Tertentu</div><div class="lc-pt-s">Objek kontrak harus jelas, spesifik, dan tidak samar-samar</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">4</div><div><div class="lc-pt-t">Sebab yang Halal</div><div class="lc-pt-s">Tujuan tidak melanggar hukum, ketertiban umum, atau kesusilaan</div></div></div>
+                    </div>
+                  </div>
+
+                  <!-- SL 4: Akibat Kontrak Tidak Sah -->
+                  <div class="lc-sl lc-sl-content" id="lc-s0-3">
+                    <div class="lc-sl-label">Slide 4 · Konsekuensi Hukum</div>
+                    <div class="lc-sl-h">Apa Akibatnya Jika Syarat Tidak Terpenuhi?</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">⚠️</span><div class="lc-sl-hl-text">Satu syarat saja yang tidak terpenuhi bisa membuat seluruh kontrak gugur di mata hukum.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">✗</div><div><div class="lc-pt-t">Batal Demi Hukum (nietig)</div><div class="lc-pt-s">Kontrak dianggap tidak pernah ada — tidak ada kewajiban yang bisa dituntut</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">!</div><div><div class="lc-pt-t">Dapat Dibatalkan (vernietigbaar)</div><div class="lc-pt-s">Salah satu pihak dapat meminta pembatalan ke pengadilan dalam batas waktu tertentu</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Contoh kasus UMKM nyata</div><div class="lc-pt-s">Analisis singkat: kontrak tanda tangan tapi tetap tidak sah — mengapa?</div></div></div>
+                    </div>
+                  </div>
+
+                  <!-- SL 5: Recap & CTA -->
+                  <div class="lc-sl lc-sl-content" id="lc-s0-4">
+                    <div class="lc-sl-label">Slide 5 · Penutup</div>
+                    <div class="lc-sl-h">Recap &amp; Langkah Selanjutnya</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-recap-grid">
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Pasal 1320 KUHPerdata</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">4 syarat sah kontrak</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Batal vs dapat dibatalkan</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Kontrak tertulis = perlindungan</div></div>
+                      </div>
+                      <div class="lc-bonus-chip-slide">🎁 Bonus: PDF "4 Syarat Sah Kontrak" siap cetak</div>
+                      <div class="lc-pt-card" style="margin-top:6px;"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Lanjut: Modul 2 — Klausul Penting dalam Kontrak Bisnis</div></div></div>
+                    </div>
+                  </div>
+
+                </div><!-- /lc-slide-stage -->
+                <div class="lc-slide-nav">
+                  <button class="lc-sl-nav-btn" onclick="lcPrevSl(0)" id="lc-prev-0" disabled>← Prev</button>
+                  <span class="lc-sl-counter" id="lc-ctr-0">1 / 5</span>
+                  <button class="lc-sl-nav-btn" onclick="lcNextSl(0)" id="lc-next-0">Next →</button>
+                </div>
+              </div><!-- /lc-slide-box -->
+
+              <!-- SCRIPT SOSIAL MEDIA M1 -->
+              <div class="lc-script-box">
+                <div class="lc-script-box-header">
+                  <span>🎬 &nbsp;Script Sosial Media</span>
+                  <div class="lc-script-tabs">
+                    <span class="lc-script-tab active">TikTok</span>
+                    <span class="lc-script-tab">Instagram</span>
+                  </div>
+                </div>
+                <div class="lc-script-body">
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
+                    <div class="lc-script-text">"Tahukah kamu, banyak kontrak bisnis yang TIDAK SAH secara hukum — padahal sudah ditandatangani?"</div>
+                    <div class="lc-script-dir">Tampil teks besar di layar, ekspresi serius, nada mengejutkan</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
+                    <div class="lc-script-text">"Menurut Pasal 1320 KUHPerdata, ada 4 syarat agar kontrak sah: satu — kedua pihak harus sepakat. Dua — keduanya harus cakap hukum. Tiga — kontraknya harus punya objek yang jelas. Empat — tujuannya harus halal. Kalau satu aja kurang, kontrak itu bisa BATAL."</div>
+                    <div class="lc-script-dir">Tampilkan angka 1–2–3–4 satu per satu dengan animasi teks</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
+                    <div class="lc-script-text">"Mau belajar lebih dalam soal kontrak bisnis? Kursus mini saya ada di link bio — mulai dari 50 ribu aja."</div>
+                    <div class="lc-script-dir">Tunjuk kamera + gesture ke atas mengarah ke bio</div>
+                  </div>
+                </div>
+                <div class="lc-script-footer">
+                  <div class="lc-script-footer-row"><span>→</span> Posting: Selasa atau Kamis pukul 07.00–09.00 WIB</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kontrakbisnis #hukumumkm #tipsbisnishukum #umkmindonesia</div>
+                </div>
+              </div><!-- /lc-script-box -->
+              </div><!-- /lc-slide-script-grid -->
+
+              <!-- LEARN SUMMARY -->
+              <div class="lc-bonus-box">
+                <h4>Materi &amp; Bonus Modul 1</h4>
+                <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 12 menit</div>
+                <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📄</span> Slide PDF materi lengkap</div>
+                <div class="lc-bonus-item"><span class="lc-bonus-item-icon">✅</span> Quiz pemahaman modul</div>
+                <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> PDF "4 Syarat Sah Kontrak" siap cetak</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODUL 2 -->
+        <div class="lc-module-acc">
+          <button class="lc-module-trigger" onclick="lcToggle(this,1)" aria-expanded="false">
+            <div class="lc-module-num">02</div>
+            <div class="lc-module-head">
+              <h3>Klausul Penting dalam Kontrak Bisnis</h3>
+              <p>Identifikasi 5 klausul wajib yang harus ada dalam setiap kontrak — identitas para pihak, objek perjanjian, harga, jangka waktu, dan mekanisme sengketa.</p>
+              <div class="lc-module-format">
+                <span class="lc-fmt-tag">Video 14 mnt</span>
+                <span class="lc-fmt-tag">Slide PDF</span>
+                <span class="lc-fmt-tag">Template Kontrak</span>
+              </div>
+            </div>
+            <div class="lc-module-right">
+              <div class="lc-module-bonus">Template Kontrak Word/PDF</div>
+              <span class="lc-acc-chevron">▼</span>
+            </div>
+          </button>
+          <div class="lc-module-panel" id="lc-panel-1">
+            <div class="lc-panel-inner">
+              <!-- SLIDE + SCRIPT GRID M2 -->
+              <div class="lc-slide-script-grid">
+              <!-- SLIDE VIEWER M2 -->
+              <div class="lc-slide-box">
+                <div class="lc-slide-box-header">📐 &nbsp;Outline Slide Canva</div>
+                <div class="lc-slide-progress" id="lc-prog-1"></div>
+                <div class="lc-slide-stage" id="lc-stage-1">
+                  <!-- SL 1: Cover -->
+                  <div class="lc-sl lc-sl-cover active" id="lc-s1-0">
+                    <div class="lc-sl-cover-pattern"></div>
+                    <div class="lc-sl-cover-deco"><div class="lc-sl-cover-deco-inner">📋</div></div>
+                    <div class="lc-sl-cover-content">
+                      <div class="lc-sl-badge">📜 Modul 2 · Klausul Kontrak</div>
+                      <div class="lc-sl-title">Klausul Penting dalam<br>Kontrak Bisnis</div>
+                      <div class="lc-sl-sub">5 klausul wajib yang harus ada di setiap kontrak</div>
+                      <div class="lc-sl-meta-row">
+                        <div class="lc-sl-meta-chip"><b>▶</b> Video 14 mnt</div>
+                        <div class="lc-sl-meta-chip"><b>📄</b> Slide PDF</div>
+                        <div class="lc-sl-meta-chip"><b>📝</b> Template</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- SL 2: Identitas -->
+                  <div class="lc-sl lc-sl-content" id="lc-s1-1">
+                    <div class="lc-sl-label">Slide 2 · Klausul #1</div>
+                    <div class="lc-sl-h">Identitas Para Pihak yang Lengkap &amp; Sah</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">🗺️</span><div class="lc-sl-hl-text">Tanpa identitas yang tepat, pihak tidak bisa saling menuntut. Pastikan yang tanda tangan memiliki kewenangan hukum yang sah.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Nama lengkap &amp; alamat resmi sesuai KTP/akta</div><div class="lc-pt-s">Hindari singkatan atau nama panggilan yang ambigu</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Jabatan &amp; kewenangan penandatangan</div><div class="lc-pt-s">Pastikan ada surat kuasa jika bukan pemilik/direktur langsung</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Nomor KTP / NPWP / NIB yang valid</div><div class="lc-pt-s">Identitas pajak dan izin usaha wajib dicantumkan</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 3: Harga & Waktu -->
+                  <div class="lc-sl lc-sl-content" id="lc-s1-2">
+                    <div class="lc-sl-label">Slide 3 · Klausul #2 &amp; #3</div>
+                    <div class="lc-sl-h">Objek, Harga &amp; Jangka Waktu yang Spesifik</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">📦</div><div><div class="lc-pt-t">Objek &amp; ruang lingkup yang jelas</div><div class="lc-pt-s">Spesifikasi detail — volume, kualitas, standar, batas pekerjaan</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">💰</div><div><div class="lc-pt-t">Nominal, metode &amp; jadwal pembayaran</div><div class="lc-pt-s">Rincikan DP, cicilan, dan pelunasan dengan tanggal pasti</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">📅</div><div><div class="lc-pt-t">Tanggal mulai &amp; selesai yang eksplisit</div><div class="lc-pt-s">"Secepatnya" tidak sah — gunakan tanggal atau hari kalender tertentu</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">⚠️</div><div><div class="lc-pt-t">Denda keterlambatan pembayaran</div><div class="lc-pt-s">Persentase atau nominal denda per hari yang disepakati</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 4: Sengketa -->
+                  <div class="lc-sl lc-sl-content" id="lc-s1-3">
+                    <div class="lc-sl-label">Slide 4 · Klausul #4 &amp; #5</div>
+                    <div class="lc-sl-h">Force Majeure &amp; Mekanisme Sengketa</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">🌪️</div><div><div class="lc-pt-t">Klausul force majeure yang proporsional</div><div class="lc-pt-s">Pandemi, bencana, kebijakan pemerintah — batasi agar tidak disalahgunakan</div></div></div>
+                      <div class="lc-sl-flow" style="margin:6px 0;">
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">🤝</div><div class="lc-flow-box-t">Negosiasi</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">⚖️</div><div class="lc-flow-box-t">Mediasi</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">🏛️</div><div class="lc-flow-box-t">Arbitrase</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">⚖</div><div class="lc-flow-box-t">Pengadilan</div></div>
+                      </div>
+                      <div class="lc-sl-hl" style="margin-top:6px;"><span class="lc-sl-hl-icon">💡</span><div class="lc-sl-hl-text">Sepakati jalur sengketa sejak kontrak dibuat — hemat biaya dan waktu ketika masalah muncul.</div></div>
+                    </div>
+                  </div>
+                  <!-- SL 5: Recap -->
+                  <div class="lc-sl lc-sl-content" id="lc-s1-4">
+                    <div class="lc-sl-label">Slide 5 · Penutup</div>
+                    <div class="lc-sl-h">Recap &amp; Checklist Sebelum Tanda Tangan</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-recap-grid">
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Identitas para pihak</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Objek &amp; ruang lingkup</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Harga &amp; pembayaran</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Jangka waktu pasti</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Force majeure</div></div>
+                        <div class="lc-recap-item"><b>✓</b><div class="lc-recap-t">Klausul sengketa</div></div>
+                      </div>
+                      <div class="lc-bonus-chip-slide">🎁 Bonus: Template Kontrak Word/PDF siap edit</div>
+                    </div>
+                  </div>
+                </div><!-- /lc-slide-stage -->
+                <div class="lc-slide-nav">
+                  <button class="lc-sl-nav-btn" onclick="lcPrevSl(1)" id="lc-prev-1" disabled>← Prev</button>
+                  <span class="lc-sl-counter" id="lc-ctr-1">1 / 5</span>
+                  <button class="lc-sl-nav-btn" onclick="lcNextSl(1)" id="lc-next-1">Next →</button>
+                </div>
+              </div><!-- /lc-slide-box -->
+
+              <!-- SCRIPT SOSIAL MEDIA M2 -->
+              <div class="lc-script-box">
+                <div class="lc-script-box-header">
+                  <span>🎬 &nbsp;Script Sosial Media</span>
+                  <div class="lc-script-tabs">
+                    <span class="lc-script-tab active">TikTok</span>
+                    <span class="lc-script-tab">Instagram</span>
+                  </div>
+                </div>
+                <div class="lc-script-body">
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
+                    <div class="lc-script-text">"Ada 5 klausul yang WAJIB ada di setiap kontrak bisnis — kalau salah satu kurang, Anda bisa rugi besar."</div>
+                    <div class="lc-script-dir">Tampilkan angka 5 besar di layar, gerak cepat, nada urgent</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
+                    <div class="lc-script-text">"Pertama: identitas para pihak yang lengkap. Kedua: objek perjanjian yang spesifik. Ketiga: harga dan cara bayar. Keempat: jangka waktu yang pasti — bukan secepatnya! Kelima: mekanisme penyelesaian sengketa."</div>
+                    <div class="lc-script-dir">Tampil list 1–5 bertahap, animasi slide dari kiri</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
+                    <div class="lc-script-text">"Saya sudah siapkan template kontrak lengkap di kursus mini LegalPreneur Class. Cek link bio!"</div>
+                    <div class="lc-script-dir">Tunjuk ke layar, tampilkan preview template</div>
+                  </div>
+                </div>
+                <div class="lc-script-footer">
+                  <div class="lc-script-footer-row"><span>→</span> Posting: Rabu atau Jumat pukul 12.00–14.00 WIB</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #templatekontrak #klausulkontrak #hukumbisnis #umkm</div>
+                </div>
+              </div><!-- /lc-script-box -->
+              </div><!-- /lc-slide-script-grid -->
+
+              <div class="lc-content-grid">
+                <div class="lc-learn-box">
+                  <h4>5 Klausul Wajib dalam Kontrak</h4>
+                  <div class="lc-highlight">
+                    <span class="lc-highlight-icon">🗺️</span>
+                    <p>Kontrak adalah peta jalan bisnis. Tanpa peta yang lengkap, Anda dapat tersesat — dan susah membuktikan hak di mata hukum.</p>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">1</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Identitas Para Pihak</div>
+                      <div class="lc-learn-s">Nama, alamat, jabatan, KTP/NPWP — harus lengkap dan akurat</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">2</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Objek &amp; Ruang Lingkup</div>
+                      <div class="lc-learn-s">Apa yang diperjanjikan secara detail, batas pekerjaan/barang</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">3</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Harga &amp; Cara Pembayaran</div>
+                      <div class="lc-learn-s">Nominal, metode, jadwal, denda keterlambatan pembayaran</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">4</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Jangka Waktu</div>
+                      <div class="lc-learn-s">Tanggal mulai-selesai, kondisi perpanjangan otomatis</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">5</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Penyelesaian Sengketa</div>
+                      <div class="lc-learn-s">Mediasi → Arbitrase → Pengadilan. Pilih jalur yang disepakati</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lc-bonus-box">
+                  <h4>Materi &amp; Bonus Modul 2</h4>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 14 menit</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📄</span> Slide PDF materi lengkap</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> Template Kontrak Word/PDF siap edit</div>
+                  <div class="lc-summary-grid" style="margin-top:1rem;">
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> 5 klausul wajib</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Checklist sebelum TTD</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Sanksi wanprestasi</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Jalur sengketa</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODUL 3 -->
+        <div class="lc-module-acc">
+          <button class="lc-module-trigger" onclick="lcToggle(this,2)" aria-expanded="false">
+            <div class="lc-module-num">03</div>
+            <div class="lc-module-head">
+              <h3>Kesalahan Umum dalam Kontrak Bisnis</h3>
+              <p>Studi kasus nyata: kontrak tanpa tanda tangan, perjanjian lisan, dan klausul tidak jelas — beserta cara menghindarinya agar bisnis Anda terlindungi.</p>
+              <div class="lc-module-format">
+                <span class="lc-fmt-tag">Video 13 mnt</span>
+                <span class="lc-fmt-tag">Studi Kasus</span>
+                <span class="lc-fmt-tag">Checklist Anti-Masalah</span>
+              </div>
+            </div>
+            <div class="lc-module-right">
+              <div class="lc-module-bonus">Checklist Anti-Sengketa</div>
+              <span class="lc-acc-chevron">▼</span>
+            </div>
+          </button>
+          <div class="lc-module-panel" id="lc-panel-2">
+            <div class="lc-panel-inner">
+              <!-- SLIDE + SCRIPT GRID M3 -->
+              <div class="lc-slide-script-grid">
+              <!-- SLIDE VIEWER M3 -->
+              <div class="lc-slide-box">
+                <div class="lc-slide-box-header">📐 &nbsp;Outline Slide Canva</div>
+                <div class="lc-slide-progress" id="lc-prog-2"></div>
+                <div class="lc-slide-stage" id="lc-stage-2">
+                  <!-- SL 1: Cover -->
+                  <div class="lc-sl lc-sl-cover active" id="lc-s2-0">
+                    <div class="lc-sl-cover-pattern"></div>
+                    <div class="lc-sl-cover-deco"><div class="lc-sl-cover-deco-inner">⚠️</div></div>
+                    <div class="lc-sl-cover-content">
+                      <div class="lc-sl-badge">📜 Modul 3 · Kesalahan Kontrak</div>
+                      <div class="lc-sl-title">Kesalahan Umum dalam<br>Kontrak Bisnis</div>
+                      <div class="lc-sl-sub">Studi kasus nyata UMKM — dan cara menghindarinya</div>
+                      <div class="lc-sl-meta-row">
+                        <div class="lc-sl-meta-chip"><b>▶</b> Video 13 mnt</div>
+                        <div class="lc-sl-meta-chip"><b>📊</b> Studi Kasus</div>
+                        <div class="lc-sl-meta-chip"><b>✅</b> Checklist</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- SL 2: 4 Kesalahan -->
+                  <div class="lc-sl lc-sl-content" id="lc-s2-1">
+                    <div class="lc-sl-label">Poin Utama</div>
+                    <div class="lc-sl-h">4 Kesalahan Fatal yang Wajib Dihindari</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Kontrak lisan tanpa tanda tangan — hampir tidak bisa dibuktikan di mata hukum</div></div>
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Klausul ambigu — masing-masing pihak menafsirkan berbeda saat sengketa</div></div>
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Tanpa saksi dan materai sesuai ketentuan yang berlaku</div></div>
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Tidak ada klausul denda dan jalur penyelesaian sengketa</div></div>
+                    </div>
+                  </div>
+                  <!-- SL 3: Studi Kasus -->
+                  <div class="lc-sl lc-sl-content" id="lc-s2-2">
+                    <div class="lc-sl-label">Studi Kasus Nyata</div>
+                    <div class="lc-sl-h">Kasus Pak Budi — DP 30 Juta Hilang</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">📘</span><div class="lc-sl-hl-text">Pak Budi transfer DP Rp30 juta ke supplier tanpa kontrak tertulis. Supplier menghilang. Tidak ada yang bisa dibuktikan secara hukum.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">❌</div><div><div class="lc-pt-t">Tidak ada dokumen tertulis</div><div class="lc-pt-s">Kesepakatan hanya via WhatsApp, tidak memiliki kekuatan hukum penuh</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">❌</div><div><div class="lc-pt-t">Tanpa klausul pengembalian uang</div><div class="lc-pt-s">Tidak ada dasar hukum untuk menuntut pengembalian DP</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 4: Solusi -->
+                  <div class="lc-sl lc-sl-content" id="lc-s2-3">
+                    <div class="lc-sl-label">Solusi Praktis</div>
+                    <div class="lc-sl-h">Cara Melindungi Bisnis Anda</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">✓</div><div><div class="lc-pt-t">Selalu gunakan kontrak tertulis</div><div class="lc-pt-s">Meskipun nominal kecil — tulis dan tanda tangani bersama</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">✓</div><div><div class="lc-pt-t">Gunakan bahasa yang jelas</div><div class="lc-pt-s">Hindari kata ambigu seperti "secepatnya" atau "kurang lebih"</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">✓</div><div><div class="lc-pt-t">Sertakan saksi dan materai</div><div class="lc-pt-s">Materai Rp10.000 memperkuat kekuatan pembuktian dokumen</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 5: Recap -->
+                  <div class="lc-sl lc-sl-content" id="lc-s2-4">
+                    <div class="lc-sl-label">Penutup</div>
+                    <div class="lc-sl-h">Recap &amp; Checklist Modul 3</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-check-grid">
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Bahaya kontrak lisan</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Risiko klausul ambigu</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Peran saksi &amp; materai</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Studi kasus nyata</div></div>
+                      </div>
+                      <div class="lc-bonus-chip-slide">🎁 Bonus: Checklist Anti-Sengketa PDF</div>
+                    </div>
+                  </div>
+                </div><!-- /lc-slide-stage -->
+                <div class="lc-slide-nav">
+                  <button class="lc-sl-nav-btn" onclick="lcPrevSl(2)" id="lc-prev-2" disabled>← Prev</button>
+                  <span class="lc-sl-counter" id="lc-ctr-2">1 / 5</span>
+                  <button class="lc-sl-nav-btn" onclick="lcNextSl(2)" id="lc-next-2">Next →</button>
+                </div>
+              </div><!-- /lc-slide-box -->
+
+              <!-- SCRIPT SOSIAL MEDIA M3 -->
+              <div class="lc-script-box">
+                <div class="lc-script-box-header">
+                  <span>🎬 &nbsp;Script Sosial Media</span>
+                  <div class="lc-script-tabs">
+                    <span class="lc-script-tab active">TikTok</span>
+                    <span class="lc-script-tab">Instagram</span>
+                  </div>
+                </div>
+                <div class="lc-script-body">
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
+                    <div class="lc-script-text">"Pak Budi kehilangan Rp30 juta hanya karena satu kesalahan kontrak yang sebenarnya bisa dihindari."</div>
+                    <div class="lc-script-dir">Wajah serius, tampilkan nominal besar, pause dramatis</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
+                    <div class="lc-script-text">"Ada 4 kesalahan yang paling sering bikin kontrak bisnis bermasalah: kontrak lisan tanpa TTD, klausul yang ambigu, tidak ada saksi, dan tidak ada klausul sengketa. Satu aja cukup bikin Anda rugi besar."</div>
+                    <div class="lc-script-dir">Tampil list kesalahan bertahap, dengan ikon X merah</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
+                    <div class="lc-script-text">"Jangan sampai Anda jadi Pak Budi berikutnya. Pelajari cara buat kontrak yang benar di LegalPreneur Class."</div>
+                    <div class="lc-script-dir">Tunjuk kamera langsung, tampilkan harga di pojok layar</div>
+                  </div>
+                </div>
+                <div class="lc-script-footer">
+                  <div class="lc-script-footer-row"><span>→</span> Posting: Senin atau Kamis pukul 19.00–21.00 WIB</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kesalahankontrak #hukumumkm #bisnisamantips #kontrakbisnis</div>
+                </div>
+              </div><!-- /lc-script-box -->
+              </div><!-- /lc-slide-script-grid -->
+
+              <div class="lc-content-grid">
+                <div class="lc-learn-box">
+                  <h4>4 Kesalahan Fatal yang Wajib Dihindari</h4>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">⚠</span>
+                    <span>Kontrak lisan tanpa tanda tangan — hampir tidak bisa dibuktikan secara hukum</span>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">⚠</span>
+                    <span>Klausul ambigu — masing-masing pihak menafsirkan berbeda saat sengketa</span>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">⚠</span>
+                    <span>Tanpa saksi dan materai yang sesuai ketentuan berlaku</span>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">⚠</span>
+                    <span>Tidak ada klausul denda dan jalur penyelesaian sengketa</span>
+                  </div>
+                  <div class="lc-highlight" style="margin-top:0.75rem;">
+                    <span class="lc-highlight-icon">📘</span>
+                    <p>Studi kasus: Pak Budi transfer DP 30 juta tanpa kontrak tertulis. Supplier menghilang. Tidak ada yang bisa dibuktikan di mata hukum.</p>
+                  </div>
+                </div>
+                <div class="lc-bonus-box">
+                  <h4>Materi &amp; Bonus Modul 3</h4>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 13 menit</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📊</span> Studi kasus nyata UMKM</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> Checklist Anti-Sengketa PDF</div>
+                  <div class="lc-summary-grid" style="margin-top:1rem;">
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Kesalahan kontrak lisan</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Bahaya klausul ambigu</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Peran saksi &amp; materai</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Studi kasus nyata</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODUL 4 -->
+        <div class="lc-module-acc">
+          <button class="lc-module-trigger" onclick="lcToggle(this,3)" aria-expanded="false">
+            <div class="lc-module-num">04</div>
+            <div class="lc-module-head">
+              <h3>Strategi Menghindari Sengketa Bisnis</h3>
+              <p>Tips praktis negosiasi, mediasi, dan pencatatan dokumen yang benar sebelum masalah muncul — hemat waktu dan biaya hukum.</p>
+              <div class="lc-module-format">
+                <span class="lc-fmt-tag">Video 11 mnt</span>
+                <span class="lc-fmt-tag">Template Surat Mediasi</span>
+                <span class="lc-fmt-tag">Infografis Alur</span>
+              </div>
+            </div>
+            <div class="lc-module-right">
+              <div class="lc-module-bonus">Surat Perjanjian Mediasi</div>
+              <span class="lc-acc-chevron">▼</span>
+            </div>
+          </button>
+          <div class="lc-module-panel" id="lc-panel-3">
+            <div class="lc-panel-inner">
+              <!-- SLIDE + SCRIPT GRID M4 -->
+              <div class="lc-slide-script-grid">
+              <!-- SLIDE VIEWER M4 -->
+              <div class="lc-slide-box">
+                <div class="lc-slide-box-header">📐 &nbsp;Outline Slide Canva</div>
+                <div class="lc-slide-progress" id="lc-prog-3"></div>
+                <div class="lc-slide-stage" id="lc-stage-3">
+                  <!-- SL 1: Cover -->
+                  <div class="lc-sl lc-sl-cover active" id="lc-s3-0">
+                    <div class="lc-sl-cover-pattern"></div>
+                    <div class="lc-sl-cover-deco"><div class="lc-sl-cover-deco-inner">🛡️</div></div>
+                    <div class="lc-sl-cover-content">
+                      <div class="lc-sl-badge">📜 Modul 4 · Strategi Anti-Sengketa</div>
+                      <div class="lc-sl-title">Strategi Menghindari<br>Sengketa Bisnis</div>
+                      <div class="lc-sl-sub">Negosiasi, mediasi, dan pencatatan dokumen yang benar</div>
+                      <div class="lc-sl-meta-row">
+                        <div class="lc-sl-meta-chip"><b>▶</b> Video 11 mnt</div>
+                        <div class="lc-sl-meta-chip"><b>📊</b> Infografis Alur</div>
+                        <div class="lc-sl-meta-chip"><b>📝</b> Template Mediasi</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- SL 2: Akar Masalah -->
+                  <div class="lc-sl lc-sl-content" id="lc-s3-1">
+                    <div class="lc-sl-label">Analisis</div>
+                    <div class="lc-sl-h">Mengapa Sengketa Terjadi?</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">💡</span><div class="lc-sl-hl-text">Akar masalah: ekspektasi yang tidak selaras sejak awal, ditambah tidak ada bukti tertulis yang cukup kuat.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">1</div><div><div class="lc-pt-t">Komunikasi tidak terdokumentasi</div><div class="lc-pt-s">Kesepakatan lisan mudah dilupakan atau disangkal</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">2</div><div><div class="lc-pt-t">Kontrak tidak lengkap</div><div class="lc-pt-s">Klausul penting terlewat sehingga ada ruang multitafsir</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">3</div><div><div class="lc-pt-t">Tidak ada jalur sengketa</div><div class="lc-pt-s">Tidak tahu harus ke mana ketika masalah muncul</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 3: 3 Strategi -->
+                  <div class="lc-sl lc-sl-content" id="lc-s3-2">
+                    <div class="lc-sl-label">3 Strategi Utama</div>
+                    <div class="lc-sl-h">Tips Praktis Anti-Sengketa</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">1</div><div><div class="lc-pt-t">Negosiasi Sejak Awal</div><div class="lc-pt-s">Diskusikan setiap klausul sebelum tanda tangan. Ini hak bisnis Anda.</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">2</div><div><div class="lc-pt-t">Catat Semua Komunikasi</div><div class="lc-pt-s">WhatsApp, email, invoice — semua komunikasi penting wajib disimpan</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">3</div><div><div class="lc-pt-t">Masukkan Klausul Mediasi</div><div class="lc-pt-s">Sepakati mediasi dulu sebelum ke pengadilan — lebih murah dan cepat</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 4: Alur Sengketa -->
+                  <div class="lc-sl lc-sl-content" id="lc-s3-3">
+                    <div class="lc-sl-label">Infografis</div>
+                    <div class="lc-sl-h">Alur Penyelesaian Sengketa</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-flow">
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">🤝</div><div class="lc-flow-box-t">Negosiasi</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">⚖️</div><div class="lc-flow-box-t">Mediasi</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">🏛️</div><div class="lc-flow-box-t">Arbitrase</div></div>
+                        <div class="lc-flow-arrow">→</div>
+                        <div class="lc-flow-box"><div class="lc-flow-box-icon">⚖</div><div class="lc-flow-box-t">Pengadilan</div></div>
+                      </div>
+                      <div class="lc-sl-hl" style="margin-top:8px;"><span class="lc-sl-hl-icon">💰</span><div class="lc-sl-hl-text">Mediasi jauh lebih hemat biaya dan waktu dibanding litigasi di pengadilan yang bisa memakan bertahun-tahun.</div></div>
+                    </div>
+                  </div>
+                  <!-- SL 5: Recap -->
+                  <div class="lc-sl lc-sl-content" id="lc-s3-4">
+                    <div class="lc-sl-label">Penutup</div>
+                    <div class="lc-sl-h">Recap &amp; Template Modul 4</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-check-grid">
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Negosiasi sejak awal</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Catat semua dokumen</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Klausul mediasi</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Alur sengketa 4 tahap</div></div>
+                      </div>
+                      <div class="lc-bonus-chip-slide">🎁 Bonus: Template Surat Mediasi siap pakai</div>
+                    </div>
+                  </div>
+                </div><!-- /lc-slide-stage -->
+                <div class="lc-slide-nav">
+                  <button class="lc-sl-nav-btn" onclick="lcPrevSl(3)" id="lc-prev-3" disabled>← Prev</button>
+                  <span class="lc-sl-counter" id="lc-ctr-3">1 / 5</span>
+                  <button class="lc-sl-nav-btn" onclick="lcNextSl(3)" id="lc-next-3">Next →</button>
+                </div>
+              </div><!-- /lc-slide-box -->
+
+              <!-- SCRIPT SOSIAL MEDIA M4 -->
+              <div class="lc-script-box">
+                <div class="lc-script-box-header">
+                  <span>🎬 &nbsp;Script Sosial Media</span>
+                  <div class="lc-script-tabs">
+                    <span class="lc-script-tab active">TikTok</span>
+                    <span class="lc-script-tab">Instagram</span>
+                  </div>
+                </div>
+                <div class="lc-script-body">
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
+                    <div class="lc-script-text">"Bisnis Anda sedang sengketa? Jangan langsung ke pengadilan — ada 3 langkah lebih efisien dan hemat biaya."</div>
+                    <div class="lc-script-dir">Nada tenang tapi tegas, tatap kamera langsung</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
+                    <div class="lc-script-text">"Satu: negosiasi dulu sejak awal — diskusikan ekspektasi sebelum tanda tangan. Dua: catat semua komunikasi penting, WhatsApp, email, invoice — itu bukti hukum. Tiga: masukkan klausul mediasi di kontrak — lebih murah dan cepat dari pengadilan."</div>
+                    <div class="lc-script-dir">Tampil 3 poin bertahap, ikon berbeda tiap langkah</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
+                    <div class="lc-script-text">"Pelajari selengkapnya di Modul 4 LegalPreneur Class — termasuk template surat mediasi siap pakai."</div>
+                    <div class="lc-script-dir">Tampil preview template surat, tunjuk link bio</div>
+                  </div>
+                </div>
+                <div class="lc-script-footer">
+                  <div class="lc-script-footer-row"><span>→</span> Posting: Selasa atau Jumat pukul 07.00–09.00 WIB</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #penyelesaiansengketa #mediasibisnis #hukumumkm #tipsadvokat</div>
+                </div>
+              </div><!-- /lc-script-box -->
+              </div><!-- /lc-slide-script-grid -->
+
+              <div class="lc-content-grid">
+                <div class="lc-learn-box">
+                  <h4>3 Strategi Anti-Sengketa</h4>
+                  <div class="lc-highlight">
+                    <span class="lc-highlight-icon">💡</span>
+                    <p>Akar masalah: ekspektasi yang tidak selaras sejak awal ditambah tidak ada bukti tertulis yang cukup kuat.</p>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">1</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Negosiasi Sejak Awal</div>
+                      <div class="lc-learn-s">Diskusikan setiap klausul sebelum tanda tangan. Jangan takut menawar — ini hak bisnis Anda.</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">2</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Catat Semua Dokumen</div>
+                      <div class="lc-learn-s">WhatsApp, email, invoice — semua komunikasi penting wajib disimpan sebagai bukti hukum.</div>
+                    </div>
+                  </div>
+                  <div class="lc-learn-item">
+                    <div class="lc-learn-num">3</div>
+                    <div class="lc-learn-text-wrap">
+                      <div class="lc-learn-t">Masukkan Klausul Mediasi</div>
+                      <div class="lc-learn-s">Sepakati bahwa sengketa diselesaikan via mediasi dulu sebelum ke pengadilan — lebih murah dan cepat.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="lc-bonus-box">
+                  <h4>Materi &amp; Bonus Modul 4</h4>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 11 menit</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📊</span> Infografis alur sengketa</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> Template Surat Mediasi siap pakai</div>
+                  <p style="font-size:0.8rem;color:#9A9280;margin-top:0.75rem;line-height:1.6;">Alur penyelesaian yang dipelajari:</p>
+                  <div style="display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap;margin-top:0.5rem;font-size:0.75rem;color:#C9A84C;font-family:'DM Mono',monospace;">
+                    <span>Negosiasi</span><span style="color:#6B6457;">→</span>
+                    <span>Mediasi</span><span style="color:#6B6457;">→</span>
+                    <span>Arbitrase</span><span style="color:#6B6457;">→</span>
+                    <span>Pengadilan</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MODUL 5 -->
+        <div class="lc-module-acc">
+          <button class="lc-module-trigger" onclick="lcToggle(this,4)" aria-expanded="false">
+            <div class="lc-module-num">05</div>
+            <div class="lc-module-head">
+              <h3>Simulasi Kasus Nyata</h3>
+              <p>Studi kasus UMKM vs supplier — Toko Maju vs CV Sinar. Analisis kesalahan kontrak dan latihan membuat draft kontrak yang benar dari awal.</p>
+              <div class="lc-module-format">
+                <span class="lc-fmt-tag">Video 15 mnt</span>
+                <span class="lc-fmt-tag">Latihan Draft</span>
+                <span class="lc-fmt-tag">Kasus Nyata</span>
+              </div>
+            </div>
+            <div class="lc-module-right">
+              <div class="lc-module-bonus">Template Draft Kontrak</div>
+              <span class="lc-acc-chevron">▼</span>
+            </div>
+          </button>
+          <div class="lc-module-panel" id="lc-panel-4">
+            <div class="lc-panel-inner">
+              <!-- SLIDE + SCRIPT GRID M5 -->
+              <div class="lc-slide-script-grid">
+              <!-- SLIDE VIEWER M5 -->
+              <div class="lc-slide-box">
+                <div class="lc-slide-box-header">📐 &nbsp;Outline Slide Canva</div>
+                <div class="lc-slide-progress" id="lc-prog-4"></div>
+                <div class="lc-slide-stage" id="lc-stage-4">
+                  <!-- SL 1: Cover -->
+                  <div class="lc-sl lc-sl-cover active" id="lc-s4-0">
+                    <div class="lc-sl-cover-pattern"></div>
+                    <div class="lc-sl-cover-deco"><div class="lc-sl-cover-deco-inner">⚖</div></div>
+                    <div class="lc-sl-cover-content">
+                      <div class="lc-sl-badge">📜 Modul 5 · Simulasi Kasus</div>
+                      <div class="lc-sl-title">Simulasi Kasus Nyata</div>
+                      <div class="lc-sl-sub">Toko Maju vs CV Sinar — Analisis kontrak bermasalah UMKM</div>
+                      <div class="lc-sl-meta-row">
+                        <div class="lc-sl-meta-chip"><b>▶</b> Video 15 mnt</div>
+                        <div class="lc-sl-meta-chip"><b>✏️</b> Latihan Draft</div>
+                        <div class="lc-sl-meta-chip"><b>📁</b> Kasus Nyata</div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- SL 2: Kronologi -->
+                  <div class="lc-sl lc-sl-content" id="lc-s4-1">
+                    <div class="lc-sl-label">Studi Kasus</div>
+                    <div class="lc-sl-h">Toko Maju vs CV Sinar</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">📋</span><div class="lc-sl-hl-text">Toko Maju pesan 500 unit, DP 50% sudah dibayar. Perjanjian: pengiriman 30 hari. Kenyataan: 2 bulan berlalu, barang tidak datang, supplier sulit dihubungi.</div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">❓</div><div><div class="lc-pt-t">Apa yang salah dalam kontrak ini?</div><div class="lc-pt-s">Analisis bersama di video — temukan 3 kesalahan fatal</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 3: Kesalahan -->
+                  <div class="lc-sl lc-sl-content" id="lc-s4-2">
+                    <div class="lc-sl-label">Analisis Kontrak</div>
+                    <div class="lc-sl-h">3 Kesalahan Fatal dalam Kasus Ini</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Tidak ada batas waktu pengiriman yang tegas dan sanksi keterlambatan</div></div>
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Tidak ada klausul denda wanprestasi atau force majeure</div></div>
+                      <div class="lc-danger-sl"><div class="lc-danger-sl-icon">✗</div><div class="lc-danger-sl-t">Tidak ada jalur penyelesaian sengketa yang disepakati sejak awal</div></div>
+                    </div>
+                  </div>
+                  <!-- SL 4: Draft Kontrak -->
+                  <div class="lc-sl lc-sl-content" id="lc-s4-3">
+                    <div class="lc-sl-label">Latihan Praktis</div>
+                    <div class="lc-sl-h">Membuat Kontrak yang Benar</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-pt-card"><div class="lc-pt-num">1</div><div><div class="lc-pt-t">Klausul pengiriman spesifik</div><div class="lc-pt-s">"Barang dikirim paling lambat 30 hari kalender sejak tanggal X"</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">2</div><div><div class="lc-pt-t">Denda keterlambatan</div><div class="lc-pt-s">"Denda 1% per hari dari total nilai kontrak jika melewati batas waktu"</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">3</div><div><div class="lc-pt-t">Mekanisme pengembalian DP</div><div class="lc-pt-s">"Jika supplier wanprestasi, DP dikembalikan 2x dalam 7 hari kerja"</div></div></div>
+                    </div>
+                  </div>
+                  <!-- SL 5: Recap -->
+                  <div class="lc-sl lc-sl-content" id="lc-s4-4">
+                    <div class="lc-sl-label">Penutup</div>
+                    <div class="lc-sl-h">Recap &amp; Template Final Modul 5</div>
+                    <div class="lc-sl-body">
+                      <div class="lc-check-grid">
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Analisis kasus nyata</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">3 kesalahan fatal</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Draft kontrak benar</div></div>
+                        <div class="lc-check-item"><b>✓</b><div class="lc-check-t">Template siap pakai</div></div>
+                      </div>
+                      <div class="lc-bonus-chip-slide">🎁 Bonus: Template Draft Kontrak + Akses Konsultasi Premium</div>
+                    </div>
+                  </div>
+                </div><!-- /lc-slide-stage -->
+                <div class="lc-slide-nav">
+                  <button class="lc-sl-nav-btn" onclick="lcPrevSl(4)" id="lc-prev-4" disabled>← Prev</button>
+                  <span class="lc-sl-counter" id="lc-ctr-4">1 / 5</span>
+                  <button class="lc-sl-nav-btn" onclick="lcNextSl(4)" id="lc-next-4">Next →</button>
+                </div>
+              </div><!-- /lc-slide-box -->
+
+              <!-- SCRIPT SOSIAL MEDIA M5 -->
+              <div class="lc-script-box">
+                <div class="lc-script-box-header">
+                  <span>🎬 &nbsp;Script Sosial Media</span>
+                  <div class="lc-script-tabs">
+                    <span class="lc-script-tab active">TikTok</span>
+                    <span class="lc-script-tab">Instagram</span>
+                  </div>
+                </div>
+                <div class="lc-script-body">
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
+                    <div class="lc-script-text">"Ini kasus nyata UMKM yang kehilangan ratusan juta karena kontraknya salah dari awal."</div>
+                    <div class="lc-script-dir">Tampilkan judul kasus, ekspresi serious, nada prihatin</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
+                    <div class="lc-script-text">"Toko Maju pesan 500 unit, sudah bayar DP 50%. Tapi kontrak tidak lengkap — tidak ada tanggal pengiriman pasti, tidak ada klausul denda, dan tidak ada jalur sengketa. Hasil: uang hilang, bisnis macet."</div>
+                    <div class="lc-script-dir">Tampil kronologi kasus step by step dengan ikon masalah</div>
+                  </div>
+                  <div class="lc-script-segment">
+                    <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
+                    <div class="lc-script-text">"Di Modul 5, kita bongkar kasus ini dan saya tunjukkan cara buat kontrak yang benar dari awal. Lengkap dengan template draft kontrak siap pakai."</div>
+                    <div class="lc-script-dir">Tampil preview template, tunjuk link bio sambil tersenyum</div>
+                  </div>
+                </div>
+                <div class="lc-script-footer">
+                  <div class="lc-script-footer-row"><span>→</span> Posting: Senin atau Rabu pukul 19.00–21.00 WIB</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kasushukumumkm #simulasikontrak #draftkontrak #legalpreneur</div>
+                </div>
+              </div><!-- /lc-script-box -->
+              </div><!-- /lc-slide-script-grid -->
+
+              <div class="lc-content-grid">
+                <div class="lc-learn-box">
+                  <h4>Kasus: Toko Maju vs CV Sinar</h4>
+                  <div class="lc-highlight">
+                    <span class="lc-highlight-icon">📋</span>
+                    <p>Toko Maju pesan 500 unit, DP 50% sudah dibayar. Perjanjian: pengiriman 30 hari. Kenyataan: 2 bulan berlalu, barang tidak datang, supplier sulit dihubungi.</p>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">✗</span>
+                    <span>Tidak ada batas waktu pengiriman yang tegas dan sanksi keterlambatan</span>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">✗</span>
+                    <span>Tidak ada klausul denda wanprestasi atau force majeure</span>
+                  </div>
+                  <div class="lc-danger-strip">
+                    <span class="lc-danger-icon">✗</span>
+                    <span>Tidak ada jalur penyelesaian sengketa yang disepakati sejak awal</span>
+                  </div>
+                </div>
+                <div class="lc-bonus-box">
+                  <h4>Materi &amp; Bonus Modul 5</h4>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 15 menit</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">✏️</span> Latihan membuat draft kontrak</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> Template Draft Kontrak + Akses Konsultasi Premium</div>
+                  <div class="lc-summary-grid" style="margin-top:1rem;">
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Draft kontrak kasus nyata</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Analisis klausul bermasalah</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> 5 lesson learned</div>
+                    <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Template siap pakai</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /lc-module-list -->
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="lc-pricing" id="lc-pricing">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <div class="lc-section-label" style="justify-content:center;display:inline-block;">Investasi Ilmu Hukum Anda</div>
+        <h2 class="lc-section-title" style="text-align:center;">Paket <em>LegalPreneur Class</em></h2>
+        <p class="lc-section-sub" style="margin:0 auto;text-align:center;">Pilih paket yang sesuai dengan kebutuhan bisnis Anda — satu pembayaran, manfaat langsung terasa.</p>
+      </div>
+
+      <!-- PAKET BARIS -->
+      <div style="display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;">
+
+        <!-- Paket Starter -->
+        <div style="flex:1;min-width:240px;max-width:340px;background:#fff;border:1px solid rgba(184,151,58,0.2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+          <div style="background:#f5f0e8;padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid rgba(184,151,58,0.15);">
+            <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:#b8973a;text-transform:uppercase;margin-bottom:0.5rem;">Starter</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#0f0e0b;line-height:1;">Rp50.000</div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-top:0.35rem;">Akses materi dasar kursus</div>
+          </div>
+          <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> 5 Modul Video (65+ menit)</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Slide PDF setiap modul</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Quiz pemahaman modul</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> PDF "4 Syarat Sah Kontrak"</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Akses 30 hari</div>
+          </div>
+          <div style="padding:0 1.5rem 1.5rem;">
+            <a href="#lc-form-daftar" onclick="lcScrollForm('starter')" style="display:block;text-align:center;background:transparent;border:1.5px solid #b8973a;color:#b8973a;padding:0.75rem 1rem;border-radius:4px;font-family:'Crimson Pro',serif;font-weight:600;font-size:0.95rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#b8973a';this.style.color='#0f0e0b'" onmouseout="this.style.background='transparent';this.style.color='#b8973a'">Pilih Starter →</a>
+          </div>
+        </div>
+
+        <!-- Paket Pro (Featured) -->
+        <div style="flex:1;min-width:240px;max-width:340px;background:#0f0e0b;border:2px solid #b8973a;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;position:relative;">
+          <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#b8973a;color:#0f0e0b;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;font-weight:700;padding:4px 14px;border-radius:0 0 6px 6px;white-space:nowrap;">TERPOPULER</div>
+          <div style="padding:1.75rem 1.5rem 1.25rem;border-bottom:1px solid rgba(184,151,58,0.2);">
+            <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:#b8973a;text-transform:uppercase;margin-bottom:0.5rem;">Pro</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#f5f0e8;line-height:1;">Rp150.000</div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-top:0.35rem;">Paket lengkap + template dokumen</div>
+          </div>
+          <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Semua fitur Starter</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Template Kontrak Word &amp; PDF</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Template Surat Mediasi</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Checklist Anti-Sengketa PDF</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Grup WhatsApp Q&amp;A</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#f0ebe0;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Akses 90 hari</div>
+          </div>
+          <div style="padding:0 1.5rem 1.5rem;">
+            <a href="#lc-form-daftar" onclick="lcScrollForm('pro')" style="display:block;text-align:center;background:#b8973a;border:1.5px solid #b8973a;color:#0f0e0b;padding:0.75rem 1rem;border-radius:4px;font-family:'Crimson Pro',serif;font-weight:700;font-size:0.95rem;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Pilih Pro →</a>
+          </div>
+        </div>
+
+        <!-- Paket VIP -->
+        <div style="flex:1;min-width:240px;max-width:340px;background:#fff;border:1px solid rgba(184,151,58,0.2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
+          <div style="background:#f5f0e8;padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid rgba(184,151,58,0.15);">
+            <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:#b8973a;text-transform:uppercase;margin-bottom:0.5rem;">VIP Konsultasi</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#0f0e0b;line-height:1;">Rp350.000</div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-top:0.35rem;">Konsultasi 1-on-1 langsung bersama advokat</div>
+          </div>
+          <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Semua fitur Pro</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> 1× Konsultasi privat 45 mnt</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Review dokumen/kontrak Anda</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Rekomendasi hukum personal</div>
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.88rem;color:#2a2720;"><span style="color:#b8973a;flex-shrink:0;margin-top:1px;">✓</span> Akses seumur hidup</div>
+          </div>
+          <div style="padding:0 1.5rem 1.5rem;">
+            <a href="#lc-form-daftar" onclick="lcScrollForm('vip')" style="display:block;text-align:center;background:transparent;border:1.5px solid #b8973a;color:#b8973a;padding:0.75rem 1rem;border-radius:4px;font-family:'Crimson Pro',serif;font-weight:600;font-size:0.95rem;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#b8973a';this.style.color='#0f0e0b'" onmouseout="this.style.background='transparent';this.style.color='#b8973a'">Pilih VIP →</a>
+          </div>
+        </div>
+
+      </div><!-- /paket baris -->
+
+    </div>
+  </div>
+
+  <!-- FORM PENDAFTARAN + INFO PEMBAYARAN (di bawah Pricing) -->
+  <div style="background:var(--ink);padding:4.5rem 0;" id="daftar">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:2.75rem;">
+        <div class="section-tag" style="color:var(--gold);justify-content:center;display:inline-flex;">Daftar Sekarang</div>
+        <h2 class="lc-section-title" style="text-align:center;">Form <em>Pendaftaran</em><br>LegalPreneur Class</h2>
+        <p class="lc-section-sub" style="margin:0 auto;text-align:center;">Isi form di bawah, lakukan transfer, lalu kirim bukti bayar untuk mengaktifkan akses kelas.</p>
+      </div>
+
+      <div class="reg-grid" style="max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:2rem;align-items:start;">
+        <!-- INFO PEMBAYARAN -->
+        <div style="background:rgba(184,151,58,0.07);border:1px solid rgba(184,151,58,0.2);border-radius:10px;padding:2rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:1.25rem;">Informasi Pembayaran</div>
+          <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+            <div>
+              <div style="font-size:0.78rem;color:rgba(245,240,232,0.45);margin-bottom:3px;">Bank</div>
+              <div style="font-size:1.05rem;font-weight:600;color:var(--white);">Bank Mandiri</div>
+            </div>
+            <div>
+              <div style="font-size:0.78rem;color:rgba(245,240,232,0.45);margin-bottom:3px;">Atas Nama</div>
+              <div style="font-size:1.05rem;font-weight:600;color:var(--white);">Novrizal</div>
+            </div>
+            <div>
+              <div style="font-size:0.78rem;color:rgba(245,240,232,0.45);margin-bottom:5px;">Nomor Rekening</div>
+              <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+                <div id="main-rek-num" style="font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--gold);letter-spacing:2px;">1060017719025</div>
+                <button onclick="mainCopyRek()" style="background:transparent;border:1px solid rgba(184,151,58,0.4);color:var(--gold);padding:4px 12px;border-radius:3px;font-size:0.72rem;cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:0.05em;transition:all 0.2s;" id="main-copy-btn">Salin</button>
+              </div>
+              <div id="main-copy-ok" style="font-size:0.75rem;color:#22c55e;margin-top:4px;display:none;">✓ Tersalin!</div>
+            </div>
+          </div>
+          <div style="background:rgba(184,151,58,0.08);border:1px solid rgba(184,151,58,0.15);border-radius:6px;padding:0.85rem 1rem;font-size:0.8rem;color:rgba(245,240,232,0.55);line-height:1.65;">
+            Setelah transfer, isi form dan upload bukti pembayaran. Akses kelas akan diaktifkan dalam 1×24 jam setelah verifikasi.
+          </div>
+          <div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.25rem;">Paket Tersedia</div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(245,240,232,0.7);"><span style="color:var(--gold);">✓</span> Starter — Rp 50.000</div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(245,240,232,0.7);"><span style="color:var(--gold);">✓</span> Pro — Rp 150.000</div>
+            <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.88rem;color:rgba(245,240,232,0.7);"><span style="color:var(--gold);">✓</span> VIP Konsultasi — Rp 350.000</div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div style="background:var(--white);border-radius:10px;overflow:hidden;">
+          <div style="background:rgba(184,151,58,0.08);border-bottom:1px solid rgba(184,151,58,0.12);padding:1.5rem 1.75rem;">
+            <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase;margin-bottom:0.3rem;">Form Pendaftaran</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink);">LegalPreneur Class</div>
+          </div>
+          <div style="padding:1.5rem 1.75rem;display:flex;flex-direction:column;gap:0.85rem;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div>
+                <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Nama Lengkap *</label>
+                <input type="text" id="main-f-nama" placeholder="Nama sesuai KTP" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+              </div>
+              <div>
+                <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">WhatsApp Aktif *</label>
+                <input type="tel" id="main-f-wa" placeholder="08xxxxxxxxxx" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Email *</label>
+              <input type="email" id="main-f-email" placeholder="email@domain.com" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+            </div>
+            <div>
+              <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Pilih Paket *</label>
+              <select id="main-f-paket" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;cursor:pointer;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+                <option value="">— Pilih paket —</option>
+                <option value="starter">Starter — Rp 50.000</option>
+                <option value="pro">Pro — Rp 150.000</option>
+                <option value="vip">VIP Konsultasi — Rp 350.000</option>
+              </select>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;">
+              <div>
+                <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Jenis Usaha</label>
+                <input type="text" id="main-f-usaha" placeholder="Kuliner, Retail, Jasa..." style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+              </div>
+              <div>
+                <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Kota / Domisili</label>
+                <input type="text" id="main-f-kota" placeholder="Kota Anda" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:0.72rem;color:var(--ink-3);margin-bottom:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em;">Bukti Transfer *</label>
+              <input type="text" id="main-f-bukti" placeholder="Link Google Drive / nomor transaksi" style="width:100%;background:var(--cream);border:1px solid var(--border-light);color:var(--ink);padding:9px 12px;border-radius:4px;font-size:0.9rem;font-family:'Crimson Pro',serif;outline:none;transition:border 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border-light)'">
+              <div style="font-size:0.72rem;color:var(--ink-3);margin-top:3px;">Upload foto bukti transfer ke Google Drive dan share linknya.</div>
+            </div>
+            <button onclick="mainSubmitForm()" style="width:100%;background:var(--ink);color:var(--gold-pale);padding:0.9rem 1rem;border-radius:4px;border:none;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Crimson Pro',serif;letter-spacing:0.04em;transition:all 0.2s;margin-top:0.25rem;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='var(--ink)';this.style.color='var(--gold-pale)'">Kirim Pendaftaran via WhatsApp &amp; Email →</button>
+            <div id="main-form-success" style="display:none;margin-top:0.75rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:6px;padding:0.85rem;text-align:center;font-size:0.88rem;color:#166534;line-height:1.6;">
+              ✓ WhatsApp dan email telah terbuka otomatis. Tim kami akan menghubungi Anda dalam 1×24 jam.
+            </div>
+            <p style="font-size:0.72rem;color:var(--ink-3);text-align:center;margin-top:0.25rem;">Data Anda aman dan tidak dibagikan ke pihak ketiga.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  function mainCopyRek() {
+    var text = '1060017719025';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function() {
+        document.getElementById('main-copy-ok').style.display = 'block';
+        setTimeout(function() { document.getElementById('main-copy-ok').style.display = 'none'; }, 2500);
+      });
+    }
+  }
+  function mainSubmitForm() {
+    var nama  = (document.getElementById('main-f-nama').value || '').trim();
+    var wa    = (document.getElementById('main-f-wa').value || '').trim();
+    var email = (document.getElementById('main-f-email').value || '').trim();
+    var paket = (document.getElementById('main-f-paket').value || '').trim();
+    var bukti = (document.getElementById('main-f-bukti').value || '').trim();
+    if (!nama || !wa || !email || !paket || !bukti) {
+      alert('Mohon lengkapi: Nama, WhatsApp, Email, Paket, dan Bukti Transfer.');
+      return;
+    }
+    var usaha = (document.getElementById('main-f-usaha').value || '').trim();
+    var kota  = (document.getElementById('main-f-kota').value || '').trim();
+    var paketLabel = { starter: 'Starter – Rp50.000', pro: 'Pro – Rp150.000', vip: 'VIP Konsultasi – Rp350.000' }[paket] || paket;
+    var msg = 'Halo, saya ingin mendaftar LegalPreneur Class.'
+      + '%0ANama: ' + encodeURIComponent(nama)
+      + '%0AWhatsApp: ' + encodeURIComponent(wa)
+      + '%0AEmail: ' + encodeURIComponent(email)
+      + '%0APaket: ' + encodeURIComponent(paketLabel)
+      + (usaha ? '%0AJenis Usaha: ' + encodeURIComponent(usaha) : '')
+      + (kota  ? '%0AKota: ' + encodeURIComponent(kota) : '')
+      + '%0ABukti Transfer: ' + encodeURIComponent(bukti);
+    window.open('https://wa.me/6281262195937?text=' + msg, '_blank');
+    var emailSubj = encodeURIComponent('Pendaftaran LegalPreneur Class – ' + paketLabel);
+    var emailBody = encodeURIComponent(
+      'Halo, saya ingin mendaftar LegalPreneur Class.\n\n'
+      + 'Nama: ' + nama + '\nWhatsApp: ' + wa + '\nEmail: ' + email
+      + '\nPaket: ' + paketLabel
+      + (usaha ? '\nJenis Usaha: ' + usaha : '')
+      + (kota  ? '\nKota: ' + kota : '')
+      + '\nBukti Transfer: ' + bukti
+      + '\n\nNo. Rekening Pembayaran:\nBank Mandiri — 1060017719025 a.n. Novrizal'
+    );
+    setTimeout(function() {
+      window.open('mailto:novrizal.tan2@gmail.com?subject=' + emailSubj + '&body=' + emailBody, '_blank');
+    }, 800);
+    document.getElementById('main-form-success').style.display = 'block';
+    document.getElementById('main-form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  </script>
+
+
+  <!-- ══════════════════════════════════════
+       MODAL PEMBAYARAN — muncul setelah submit
+  ══════════════════════════════════════ -->
+  <div id="lc-payment-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(15,14,11,0.75);backdrop-filter:blur(6px);overflow-y:auto;padding:1.5rem;">
+    <div style="max-width:520px;margin:2rem auto;background:var(--ink);border:1px solid rgba(184,151,58,0.35);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-xl);">
+
+      <!-- Modal header -->
+      <div style="padding:2rem 2rem 1.5rem;border-bottom:1px solid rgba(184,151,58,0.2);position:relative;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.5rem;">Langkah 2 dari 2</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--cream);font-size:1.55rem;margin-bottom:0.35rem;">Detail Pembayaran</h3>
+        <p style="font-size:0.88rem;color:#9A9280;line-height:1.6;">Lakukan transfer sesuai paket yang dipilih, lalu kirim bukti bayar ke WhatsApp kami.</p>
+        <button onclick="lcCloseModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#9A9280;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(184,151,58,0.15)';this.style.color='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.07)';this.style.color='#9A9280'">✕</button>
+      </div>
+
+      <!-- Ringkasan pendaftaran -->
+      <div style="padding:1.25rem 2rem;border-bottom:1px solid rgba(184,151,58,0.15);background:rgba(255,255,255,0.03);">
+        <div style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.75rem;">Ringkasan Pendaftaran</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+          <div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-bottom:2px;">Nama</div>
+            <div id="lc-modal-nama" style="font-size:0.95rem;color:var(--cream);font-weight:500;">—</div>
+          </div>
+          <div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-bottom:2px;">Paket</div>
+            <div id="lc-modal-paket" style="font-size:0.95rem;color:var(--gold);font-weight:700;">—</div>
+          </div>
+          <div>
+            <div style="font-size:0.78rem;color:#9A9280;margin-bottom:2px;">Total</div>
+            <div id="lc-modal-harga" style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);font-weight:700;">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info rekening -->
+      <div style="padding:1.5rem 2rem;border-bottom:1px solid rgba(184,151,58,0.15);">
+        <div style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem;">Transfer ke Rekening</div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.75rem;margin-bottom:1rem;">
+          <div>
+            <div style="font-size:0.75rem;color:#9A9280;margin-bottom:2px;">Bank</div>
+            <div style="font-size:0.95rem;font-weight:600;color:var(--cream);">Bank Mandiri</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:#9A9280;margin-bottom:2px;">Atas Nama</div>
+            <div style="font-size:0.95rem;font-weight:600;color:var(--cream);">Novrizal</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem;color:#9A9280;margin-bottom:6px;">Nomor Rekening</div>
+          <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+            <div style="font-family:'DM Mono',monospace;font-size:1.45rem;font-weight:700;color:var(--gold);letter-spacing:3px;">1060017719025</div>
+            <button onclick="lcCopyRek()" id="lc-copy-btn" style="background:transparent;border:1px solid rgba(184,151,58,0.4);color:var(--gold);padding:4px 14px;border-radius:3px;font-size:0.7rem;cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:0.05em;transition:all 0.2s;" onmouseover="this.style.background='rgba(184,151,58,0.15)'" onmouseout="this.style.background='transparent'">Salin</button>
+          </div>
+          <div id="lc-copy-ok" style="font-size:0.75rem;color:#22c55e;margin-top:5px;display:none;">✓ Nomor rekening tersalin!</div>
+        </div>
+      </div>
+
+      <!-- Instruksi -->
+      <div style="padding:1.5rem 2rem;border-bottom:1px solid rgba(184,151,58,0.15);">
+        <div style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;margin-bottom:0.85rem;">Langkah Selanjutnya</div>
+        <div style="display:flex;flex-direction:column;gap:0.65rem;">
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <div style="background:rgba(184,151,58,0.15);color:var(--gold);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;font-family:'DM Mono',monospace;flex-shrink:0;margin-top:1px;">1</div>
+            <p style="font-size:0.88rem;color:#ccc;line-height:1.55;margin:0;">Transfer sesuai nominal paket ke rekening di atas.</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <div style="background:rgba(184,151,58,0.15);color:var(--gold);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;font-family:'DM Mono',monospace;flex-shrink:0;margin-top:1px;">2</div>
+            <p style="font-size:0.88rem;color:#ccc;line-height:1.55;margin:0;">Screenshot bukti transfer dan kirim via WhatsApp ke nomor <strong style="color:var(--gold);">0812-6219-5937</strong>.</p>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+            <div style="background:rgba(184,151,58,0.15);color:var(--gold);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;font-family:'DM Mono',monospace;flex-shrink:0;margin-top:1px;">3</div>
+            <p style="font-size:0.88rem;color:#ccc;line-height:1.55;margin:0;">Akses kelas akan diaktifkan dalam <strong style="color:var(--cream);">1×24 jam</strong> setelah verifikasi pembayaran.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA kirim WA -->
+      <div style="padding:1.5rem 2rem;">
+        <a id="lc-wa-btn" href="#" target="_blank" style="display:block;text-align:center;background:var(--gold);color:var(--ink);padding:1rem 1rem;border-radius:5px;font-family:'Crimson Pro',serif;font-weight:700;font-size:1.05rem;text-decoration:none;letter-spacing:0.03em;transition:opacity 0.2s;margin-bottom:0.85rem;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          📲 Kirim Bukti Transfer via WhatsApp
+        </a>
+        <button onclick="lcCloseModal()" style="width:100%;background:transparent;border:1px solid rgba(255,255,255,0.12);color:#9A9280;padding:0.7rem 1rem;border-radius:5px;font-size:0.88rem;cursor:pointer;font-family:'Crimson Pro',serif;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(184,151,58,0.35)';this.style.color='var(--gold-pale)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.12)';this.style.color='#9A9280'">Tutup & Kembali ke Halaman</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  function lcScrollForm(paket) {
+    if (paket) {
+      var sel = document.getElementById('lc-f-paket');
+      if (sel) sel.value = paket;
+    }
+    setTimeout(function() {
+      var el = document.getElementById('lc-form-daftar');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+  function lcCopyRek() {
+    var text = '1060017719025';
+    var btn = document.getElementById('lc-copy-btn');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function() {
+        document.getElementById('lc-copy-ok').style.display = 'block';
+        if (btn) btn.textContent = '✓ Tersalin';
+        setTimeout(function() {
+          document.getElementById('lc-copy-ok').style.display = 'none';
+          if (btn) btn.textContent = 'Salin';
+        }, 2500);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta);
+      ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      document.getElementById('lc-copy-ok').style.display = 'block';
+      if (btn) btn.textContent = '✓ Tersalin';
+      setTimeout(function() {
+        document.getElementById('lc-copy-ok').style.display = 'none';
+        if (btn) btn.textContent = 'Salin';
+      }, 2500);
+    }
+  }
+  function lcCloseModal() {
+    document.getElementById('lc-payment-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function lcSubmitForm() {
+    var nama  = (document.getElementById('lc-f-nama').value || '').trim();
+    var wa    = (document.getElementById('lc-f-wa').value || '').trim();
+    var email = (document.getElementById('lc-f-email').value || '').trim();
+    var paket = (document.getElementById('lc-f-paket').value || '').trim();
+    if (!nama || !wa || !email || !paket) {
+      alert('Mohon lengkapi: Nama, WhatsApp, Email, dan Paket.');
+      return;
+    }
+    var usaha = (document.getElementById('lc-f-usaha').value || '').trim();
+    var kota  = (document.getElementById('lc-f-kota').value || '').trim();
+    var tanya = (document.getElementById('lc-f-pertanyaan').value || '').trim();
+    var paketMap = { starter: 'Starter', pro: 'Pro', vip: 'VIP Konsultasi' };
+    var hargaMap = { starter: 'Rp50.000', pro: 'Rp150.000', vip: 'Rp350.000' };
+    var paketLabel = (paketMap[paket] || paket) + ' — ' + (hargaMap[paket] || '');
+
+    // Isi ringkasan di modal
+    document.getElementById('lc-modal-nama').textContent  = nama;
+    document.getElementById('lc-modal-paket').textContent = paketMap[paket] || paket;
+    document.getElementById('lc-modal-harga').textContent = hargaMap[paket] || '—';
+
+    // Siapkan link WA
+    var msg = 'Halo%2C+saya+sudah+mendaftar+LegalPreneur+Class.'
+      + '%0ANama%3A+' + encodeURIComponent(nama)
+      + '%0AWhatsApp%3A+' + encodeURIComponent(wa)
+      + '%0AEmail%3A+' + encodeURIComponent(email)
+      + '%0APaket%3A+' + encodeURIComponent(paketLabel)
+      + (usaha ? '%0AJenis+Usaha%3A+' + encodeURIComponent(usaha) : '')
+      + (kota  ? '%0AKota%3A+' + encodeURIComponent(kota) : '')
+      + (tanya ? '%0APertanyaan%3A+' + encodeURIComponent(tanya) : '')
+      + '%0A%0ASaya+akan+segera+mengirimkan+bukti+transfer.';
+    document.getElementById('lc-wa-btn').href = 'https://wa.me/6281262195937?text=' + msg;
+
+    // Tampilkan modal
+    document.getElementById('lc-payment-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  // Tutup modal jika klik di luar
+  document.getElementById('lc-payment-modal').addEventListener('click', function(e) {
+    if (e.target === this) lcCloseModal();
+  });
+  </script>
+
+  <!-- CTA -->
+  <div class="lc-cta">
+    <div class="container">
+      <h2>Lindungi Bisnis Anda<br><em>Sebelum Terlambat</em></h2>
+      <p>Bergabunglah dengan kursus hukum kontrak praktis untuk pelaku usaha Indonesia. Harga terjangkau, manfaat nyata.</p>
+      <div class="lc-cta-actions">
+        <a href="https://wa.me/6281262195937?text=Halo%2C+saya+ingin+tanya+tentang+LegalPreneur+Class" class="lc-btn-outline-cream" target="_blank">Tanya Dulu via WA</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTRUCTOR (dipindah ke bawah Pricing) -->
+  <div class="lc-instructor">
+    <div class="container">
+      <div class="lc-section-label">Tentang Instruktur</div>
+      <div class="lc-instructor-grid">
+        <div class="lc-instructor-avatar">⚖️</div>
+        <div>
+          <div class="lc-instructor-name">Novrizal, S.I.Kom., S.H., CPM</div>
+          <div class="lc-instructor-title">Advokat · Konsultan Hukum · Mediator Non Hakim</div>
+          <p class="lc-instructor-bio" style="text-align:justify;">Novrizal, S.I.Kom., S.H., CPM adalah Advokat, Mediator Non Hakim, dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan UMKM. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai affiliate marketer, pengembang produk digital, dan penulis.</p>
+          <div class="lc-cred-tags">
+            <span class="lc-cred-tag">⚖️ Advokat</span>
+            <span class="lc-cred-tag">🤝 Mediator Non Hakim</span>
+            <span class="lc-cred-tag">⚖️ Konsultan Hukum</span>
+            <span class="lc-cred-tag">🏢 Business Owner NovrizDigital</span>
+            <span class="lc-cred-tag">🛍️ Affiliate Marketer</span>
+            <span class="lc-cred-tag">✍️ Penulis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="page-mini-footer">
+    <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
+    <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
+    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
+  </div>
+
+</section>
+
+<script>
+// LegalPreneur Class Accordion
+function lcToggle(btn, idx) {
+  const panel = document.getElementById('lc-panel-' + idx);
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.lc-module-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.lc-module-trigger').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+  if (!isOpen) {
+    panel.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    lcInitSlide(idx);
+  }
+}
+
+// ── Slide Viewer ──────────────────────────────────────────────────
+var lcSlideIdx = {};
+
+function lcInitSlide(mod) {
+  if (lcSlideIdx[mod] !== undefined) { lcRenderProg(mod); return; }
+  lcSlideIdx[mod] = 0;
+  lcRenderProg(mod);
+}
+
+function lcRenderProg(mod) {
+  var prog = document.getElementById('lc-prog-' + mod);
+  if (!prog) return;
+  var slides = document.querySelectorAll('#lc-stage-' + mod + ' .lc-sl');
+  prog.innerHTML = '';
+  slides.forEach(function(_, i) {
+    var dot = document.createElement('div');
+    dot.style.cssText = 'flex:1;height:3px;border-radius:2px;background:' + (i === lcSlideIdx[mod] ? '#C9A84C' : 'rgba(245,240,232,0.1)') + ';transition:background 0.25s;cursor:pointer;';
+    dot.onclick = function() { lcGoSl(mod, i); };
+    prog.appendChild(dot);
+  });
+  var ctr = document.getElementById('lc-ctr-' + mod);
+  if (ctr) ctr.textContent = (lcSlideIdx[mod]+1) + ' / ' + slides.length;
+  var prev = document.getElementById('lc-prev-' + mod);
+  var next = document.getElementById('lc-next-' + mod);
+  if (prev) prev.disabled = lcSlideIdx[mod] === 0;
+  if (next) next.disabled = lcSlideIdx[mod] === slides.length - 1;
+}
+
+function lcGoSl(mod, idx) {
+  var slides = document.querySelectorAll('#lc-stage-' + mod + ' .lc-sl');
+  if (idx < 0 || idx >= slides.length) return;
+  slides[lcSlideIdx[mod]].classList.remove('active');
+  lcSlideIdx[mod] = idx;
+  slides[idx].classList.add('active');
+  lcRenderProg(mod);
+}
+
+function lcPrevSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) - 1); }
+function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
+</script>
+
 <!-- FOOTER -->
 <footer id="kontak">
   <div class="container">
@@ -4744,8 +6813,8 @@ img { max-width: 100%; height: auto; }
           <li><a href="#" onclick="showPage('home');return false;">Beranda</a></li>
           <li><a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
           <li><a href="#" onclick="showPage('konten');return false;">Konten</a></li>
-          <li><a href="#" onclick="showPage('affiliate');return false;">Produk Rekomendasi</a></li>
-          <li><a href="#" onclick="showPage('digital');return false;">Produk Digital</a></li>
+          <li><a href="#" onclick="showPage('produk');return false;">Produk Kami</a></li>
+          <li><a href="#" onclick="showPage('lexiclass');return false;">⚖ LegalPreneur Class</a></li>
           <li><a href="#konsultasi">Konsultasi</a></li>
         </ul>
       </div>
@@ -5060,7 +7129,7 @@ function filterShopee(q) {
 
 
 function showPage(page, cat) {
-  const allPages = ['page-konten','page-affiliate','page-digital','page-dashboard'];
+  const allPages = ['page-konten','page-affiliate','page-digital','page-produk','page-dashboard','page-lexiclass'];
 
   // Semua elemen yang hanya tampil di halaman home
   const hero     = document.querySelector('.hero');
@@ -5098,6 +7167,7 @@ function showPage(page, cat) {
       if (el) el.style.display = (id === 'page-' + page) ? 'block' : 'none';
     });
     if (page === 'affiliate') renderShopee();
+    if (page === 'produk') { /* default tab is digital, shopee loads on tab click */ }
     if (page === 'konten') {
       lp_init();
       setTimeout(lp_renderPortalWithOwnerCheck, 200);
@@ -6128,7 +8198,7 @@ function lp_injectInReadAds(body) {
                 <div class="lp-inread-ad-title">Produk Pilihan di Shopee</div>
                 <div class="lp-inread-ad-desc">Cari produk berkualitas yang telah diseleksi — dari kebutuhan harian hingga alat produktivitas.</div>
               </div>
-              <a href="#" onclick="showPage('affiliate');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">🛍️ Lihat Katalog</a>
+              <a href="#" onclick="showPage('produk');document.getElementById('lp-read-modal').style.display='none';document.body.style.overflow='';return false;" class="lp-inread-ad-cta">🛍️ Lihat Katalog</a>
             </div>
           </div>`);
       }
