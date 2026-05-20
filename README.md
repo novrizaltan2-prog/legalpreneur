@@ -7297,7 +7297,7 @@ let lp_initialized = false; // FIX: cegah double-init saat klik Konten berulang
 // ═══════════════════════════════════════════════════════════════
 
 // ─── TEMPEL URL GOOGLE APPS SCRIPT DEPLOYMENT DI SINI ───────
-const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbx3YfEnrnUtxcePee9nkXSwj7if1zPEmDBa7ntf4cvUoTqvFK_HwXuPkdpR4W7mKQ8G/exec';
+const LP_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyqANpdk60DVdNvAaKpwR8Sec-axSbB5xD2FW08C2nuZxUP8N3lB4jq4RoGIyKNtbIN/exec';
 // Contoh: 'https://script.google.com/macros/s/AKfycbxXXXXX.../exec'
 // ────────────────────────────────────────────────────────────
 
@@ -7310,7 +7310,7 @@ const LP_SITE_URL = 'https://novrizaltan2-prog.github.io/legalpreneur';
 // ────────────────────────────────────────────────────────────
 
 // ─── URL GOOGLE APPS SCRIPT UNTUK KIRIM ARTIKEL (form eksternal) ───
-const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbx3YfEnrnUtxcePee9nkXSwj7if1zPEmDBa7ntf4cvUoTqvFK_HwXuPkdpR4W7mKQ8G/exec';
+const LP_KIRIM_URL = 'https://script.google.com/macros/s/AKfycbyqANpdk60DVdNvAaKpwR8Sec-axSbB5xD2FW08C2nuZxUP8N3lB4jq4RoGIyKNtbIN/exec';
 // ────────────────────────────────────────────────────────────
 
 
@@ -7957,6 +7957,11 @@ function lp_getShareUrl() {
   if (!lp_currentArticle || lp_currentArticle.id === '__preview__') {
     if (window.location.protocol === 'file:') return '';
     return window.location.href.split('#')[0];
+  }
+  // Gunakan OG Proxy URL agar preview gambar + judul tampil di WA/FB/Telegram
+  // OG Proxy → Apps Script membaca artikel dari Sheets → kirim OG tags → redirect ke situs
+  if (LP_SHEETS_URL && LP_SHEETS_URL.indexOf('script.google.com') !== -1 && lp_currentArticle.id) {
+    return LP_SHEETS_URL.replace('/exec', '/exec') + '?id=' + encodeURIComponent(lp_currentArticle.id);
   }
   var url = lp_encodeArticleToUrl(lp_currentArticle);
   // Jika URL masih relatif (file lokal, LP_SITE_URL belum diisi), beri tahu user
