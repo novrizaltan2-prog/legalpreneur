@@ -26,6 +26,42 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
+<!-- ═══ EMAILJS SDK — kirim notifikasi pendaftaran otomatis ke legalpreneur.dk@gmail.com ═══ -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  // ── KONFIGURASI EMAILJS ──────────────────────────────────────────────
+  // Langkah setup (lakukan sekali di https://www.emailjs.com — gratis):
+  //   1. Daftar akun → "Email Services" → "Add New Service" → pilih Gmail
+  //      → hubungkan akun legalpreneur.dk@gmail.com → catat SERVICE_ID
+  //   2. "Email Templates" → "Create New Template":
+  //        Subject  : Pendaftaran LegalPreneur Class – {{paket}}
+  //        To Email : legalpreneur.dk@gmail.com
+  //        Body (contoh):
+  //          Pendaftaran Baru – LegalPreneur Class
+  //          ======================================
+  //          Nama       : {{nama}}
+  //          WhatsApp   : {{wa}}
+  //          Email      : {{email}}
+  //          Paket      : {{paket}}
+  //          Jenis Usaha: {{usaha}}
+  //          Kota       : {{kota}}
+  //          Bukti Transfer: {{bukti}}
+  //          Waktu      : {{waktu}}
+  //      → Save → catat TEMPLATE_ID
+  //   3. "Account" → "General" → catat Public Key
+  //   4. Ganti ketiga nilai di bawah ini, lalu re-upload file ke GitHub Pages.
+  // ────────────────────────────────────────────────────────────────────
+  var EMAILJS_PUBLIC_KEY  = 'GANTI_DENGAN_PUBLIC_KEY_ANDA';   // ← Public Key dari Account
+  var EMAILJS_SERVICE_ID  = 'GANTI_DENGAN_SERVICE_ID_ANDA';   // ← Service ID dari Email Services
+  var EMAILJS_TEMPLATE_ID = 'GANTI_DENGAN_TEMPLATE_ID_ANDA';  // ← Template ID dari Email Templates
+
+  (function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+  })();
+</script>
+
 <style>
 :root {
   --ink: #0f0e0b;
@@ -4115,7 +4151,7 @@ body {
       <div class="hero-cred-text">
         <div class="hero-cred-name">Novrizal, S.I.Kom., S.H., CPM</div>
         Advokat · Mediator Non Hakim · Konsultan Hukum<br>
-        Business Owner NovrizDigital · Affiliate Marketer · Penulis
+        Founder & CEO – LegalPreneur Digital Konsultan · Affiliate Marketer · Penulis
       </div>
     </div>
 
@@ -4199,7 +4235,7 @@ body {
               <div class="cert-item"><span class="icon">⚖️</span>Advokat</div>
               <div class="cert-item"><span class="icon">🤝</span>Mediator Non Hakim</div>
               <div class="cert-item"><span class="icon">⚖️</span>Konsultan Hukum</div>
-              <div class="cert-item"><span class="icon">🏢</span>Business Owner NovrizDigital</div>
+              <div class="cert-item"><span class="icon">🏢</span>Founder & CEO – LegalPreneur Digital Konsultan</div>
               <div class="cert-item"><span class="icon">🛍️</span>Affiliate Marketer</div>
               <div class="cert-item"><span class="icon">✍️</span>Penulis</div>
             </div>
@@ -5200,6 +5236,14 @@ body {
             <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
           </a>
 
+          <a href="http://lynk.id/novriz.digital/3q76kenmw8qd" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+            <div class="pk-prod-icon">📋</div>
+            <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
+            <div class="pk-prod-title">Panduan Kontrak Bisnis UMKM Anti-Sengketa</div>
+            <p class="pk-prod-desc">Panduan lengkap menyusun kontrak bisnis yang kuat dan bebas sengketa, khusus dirancang untuk pelaku UMKM Indonesia.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
           <a href="http://lynk.id/novriz.digital/z4q46p9evexv" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
             <div class="pk-prod-icon">💼</div>
             <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
@@ -5321,8 +5365,8 @@ function pkFilterDigital(cat, btn) {
           <a href="tel:085270707883" style="display:inline-flex;align-items:center;gap:0.6rem;color:rgba(245,240,232,0.65);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;">
             📞 Telepon: 0852-7070-7883
           </a>
-          <a href="mailto:novrizal.tan2@gmail.com" style="display:inline-flex;align-items:center;gap:0.6rem;color:rgba(245,240,232,0.65);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;">
-            ✉️ novrizal.tan2@gmail.com
+          <a href="mailto:legalpreneur.dk@gmail.com" style="display:inline-flex;align-items:center;gap:0.6rem;color:rgba(245,240,232,0.65);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.08em;">
+            ✉️ legalpreneur.dk@gmail.com
           </a>
         </div>
       </div>
@@ -6877,7 +6921,7 @@ function pkFilterDigital(cat, btn) {
             </div>
             <button onclick="mainSubmitForm()" style="width:100%;background:var(--ink);color:var(--gold-pale);padding:0.9rem 1rem;border-radius:4px;border:none;font-size:1rem;font-weight:600;cursor:pointer;font-family:'Crimson Pro',serif;letter-spacing:0.04em;transition:all 0.2s;margin-top:0.25rem;" onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='var(--ink)';this.style.color='var(--gold-pale)'">Kirim Pendaftaran via WhatsApp &amp; Email →</button>
             <div id="main-form-success" style="display:none;margin-top:0.75rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:6px;padding:0.85rem;text-align:center;font-size:0.88rem;color:#166534;line-height:1.6;">
-              ✓ WhatsApp dan email telah terbuka otomatis. Tim kami akan menghubungi Anda dalam 1×24 jam.
+              <span id="main-form-success-msg">✅ Pendaftaran berhasil dikirim!</span>
             </div>
             <p style="font-size:0.72rem;color:var(--ink-3);text-align:center;margin-top:0.25rem;">Data Anda aman dan tidak dibagikan ke pihak ketiga.</p>
           </div>
@@ -6896,43 +6940,118 @@ function pkFilterDigital(cat, btn) {
       });
     }
   }
+
+  // ── KIRIM PENDAFTARAN: WhatsApp + Email Otomatis via EmailJS ─────────
   function mainSubmitForm() {
-    var nama  = (document.getElementById('main-f-nama').value || '').trim();
-    var wa    = (document.getElementById('main-f-wa').value || '').trim();
+    var nama  = (document.getElementById('main-f-nama').value  || '').trim();
+    var wa    = (document.getElementById('main-f-wa').value    || '').trim();
     var email = (document.getElementById('main-f-email').value || '').trim();
     var paket = (document.getElementById('main-f-paket').value || '').trim();
     var bukti = (document.getElementById('main-f-bukti').value || '').trim();
+
     if (!nama || !wa || !email || !paket || !bukti) {
       alert('Mohon lengkapi: Nama, WhatsApp, Email, Paket, dan Bukti Transfer.');
       return;
     }
-    var usaha = (document.getElementById('main-f-usaha').value || '').trim();
-    var kota  = (document.getElementById('main-f-kota').value || '').trim();
+
+    var usaha      = (document.getElementById('main-f-usaha').value || '').trim();
+    var kota       = (document.getElementById('main-f-kota').value  || '').trim();
     var paketLabel = { starter: 'Starter – Rp50.000', pro: 'Pro – Rp150.000', vip: 'VIP Konsultasi – Rp350.000' }[paket] || paket;
+
+    // ── Nonaktifkan tombol, tampilkan status loading ──────────────────
+    var btn = document.querySelector('[onclick="mainSubmitForm()"]');
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Mengirim...'; }
+
+    // ── 1. Buka WhatsApp langsung ─────────────────────────────────────
     var msg = 'Halo, saya ingin mendaftar LegalPreneur Class.'
-      + '%0ANama: ' + encodeURIComponent(nama)
-      + '%0AWhatsApp: ' + encodeURIComponent(wa)
-      + '%0AEmail: ' + encodeURIComponent(email)
-      + '%0APaket: ' + encodeURIComponent(paketLabel)
+      + '%0ANama: '           + encodeURIComponent(nama)
+      + '%0AWhatsApp: '       + encodeURIComponent(wa)
+      + '%0AEmail: '          + encodeURIComponent(email)
+      + '%0APaket: '          + encodeURIComponent(paketLabel)
       + (usaha ? '%0AJenis Usaha: ' + encodeURIComponent(usaha) : '')
-      + (kota  ? '%0AKota: ' + encodeURIComponent(kota) : '')
+      + (kota  ? '%0AKota: '        + encodeURIComponent(kota)  : '')
       + '%0ABukti Transfer: ' + encodeURIComponent(bukti);
     window.open('https://wa.me/6281262195937?text=' + msg, '_blank');
-    var emailSubj = encodeURIComponent('Pendaftaran LegalPreneur Class – ' + paketLabel);
-    var emailBody = encodeURIComponent(
-      'Halo, saya ingin mendaftar LegalPreneur Class.\n\n'
-      + 'Nama: ' + nama + '\nWhatsApp: ' + wa + '\nEmail: ' + email
-      + '\nPaket: ' + paketLabel
-      + (usaha ? '\nJenis Usaha: ' + usaha : '')
-      + (kota  ? '\nKota: ' + kota : '')
-      + '\nBukti Transfer: ' + bukti
-      + '\n\nNo. Rekening Pembayaran:\nBank Mandiri — 1060017719025 a.n. Novrizal'
-    );
-    setTimeout(function() {
-      window.open('mailto:novrizal.tan2@gmail.com?subject=' + emailSubj + '&body=' + emailBody, '_blank');
-    }, 800);
-    document.getElementById('main-form-success').style.display = 'block';
-    document.getElementById('main-form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // ── 2. Kirim email otomatis ke legalpreneur.dk@gmail.com via EmailJS ──
+    var now    = new Date();
+    var waktu  = now.toLocaleDateString('id-ID', { weekday:'long', year:'numeric', month:'long', day:'numeric' })
+               + ' ' + now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' }) + ' WIB';
+
+    var templateParams = {
+      nama   : nama,
+      wa     : wa,
+      email  : email,
+      paket  : paketLabel,
+      usaha  : usaha  || '—',
+      kota   : kota   || '—',
+      bukti  : bukti,
+      waktu  : waktu
+    };
+
+    // Cek apakah EmailJS sudah dikonfigurasi (key bukan placeholder)
+    var ejsReady = (typeof emailjs !== 'undefined')
+      && EMAILJS_PUBLIC_KEY  !== 'GANTI_DENGAN_PUBLIC_KEY_ANDA'
+      && EMAILJS_SERVICE_ID  !== 'GANTI_DENGAN_SERVICE_ID_ANDA'
+      && EMAILJS_TEMPLATE_ID !== 'GANTI_DENGAN_TEMPLATE_ID_ANDA';
+
+    if (ejsReady) {
+      // Re-init dengan key terbaru (aman dipanggil ulang)
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(function() {
+          _lp_showSuccessBanner(true);
+        }, function(err) {
+          console.warn('EmailJS error:', err);
+          _lp_showSuccessBanner(false);
+        });
+    } else {
+      // EmailJS belum dikonfigurasi → tampilkan sukses tetap (WA sudah terbuka)
+      // dan log peringatan di console untuk developer
+      console.warn(
+        '[LegalPreneur] EmailJS belum dikonfigurasi.\n' +
+        'Isi EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, dan EMAILJS_TEMPLATE_ID\n' +
+        'di bagian <head> file HTML ini, lalu upload ulang ke GitHub Pages.\n' +
+        'Panduan: https://www.emailjs.com/docs/tutorial/overview/'
+      );
+      _lp_showSuccessBanner(null); // null = WA oke, email belum aktif
+    }
+  }
+
+  // ── Helper: tampilkan banner hasil pengiriman ─────────────────────
+  function _lp_showSuccessBanner(emailOk) {
+    var btn = document.querySelector('[onclick="mainSubmitForm()"]');
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Kirim Pendaftaran via WhatsApp & Email →';
+    }
+
+    var successDiv = document.getElementById('main-form-success');
+    var msgEl      = document.getElementById('main-form-success-msg');
+    if (!successDiv) return;
+
+    var html;
+    if (emailOk === true) {
+      html = '✅ Pendaftaran berhasil dikirim! WhatsApp <strong>dan</strong> email notifikasi ke '
+           + '<strong>legalpreneur.dk@gmail.com</strong> telah terkirim otomatis. '
+           + 'Tim kami akan menghubungi Anda dalam 1×24 jam.';
+    } else if (emailOk === false) {
+      html = '✅ WhatsApp telah terbuka. <em>Catatan: pengiriman email otomatis gagal — '
+           + 'pastikan koneksi internet stabil. Anda tetap akan dihubungi via WhatsApp.</em>';
+    } else {
+      // null → EmailJS belum dikonfigurasi
+      html = '✅ WhatsApp telah terbuka dan pendaftaran Anda sedang diproses. '
+           + 'Tim kami akan menghubungi Anda dalam 1×24 jam.';
+    }
+
+    if (msgEl) {
+      msgEl.innerHTML = html;
+    } else {
+      successDiv.innerHTML = html;
+    }
+    successDiv.style.display = 'block';
+    successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   </script>
 
@@ -7130,7 +7249,7 @@ function pkFilterDigital(cat, btn) {
             <span class="lc-cred-tag">⚖️ Advokat</span>
             <span class="lc-cred-tag">🤝 Mediator Non Hakim</span>
             <span class="lc-cred-tag">⚖️ Konsultan Hukum</span>
-            <span class="lc-cred-tag">🏢 Business Owner NovrizDigital</span>
+            <span class="lc-cred-tag">🏢 Founder & CEO – LegalPreneur Digital Konsultan</span>
             <span class="lc-cred-tag">🛍️ Affiliate Marketer</span>
             <span class="lc-cred-tag">✍️ Penulis</span>
           </div>
@@ -7218,7 +7337,7 @@ function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
         <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
           <a href="https://wa.me/6281262195937" target="_blank" style="color:#22c55e;text-decoration:none;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;">📱 WA: 0812-6219-5937</a>
           <a href="tel:085270707883" style="color:rgba(245,240,232,0.5);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;">📞 Tel: 0852-7070-7883</a>
-          <a href="mailto:novrizal.tan2@gmail.com" style="color:rgba(245,240,232,0.5);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;">✉️ novrizal.tan2@gmail.com</a>
+          <a href="mailto:legalpreneur.dk@gmail.com" style="color:rgba(245,240,232,0.5);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;">✉️ legalpreneur.dk@gmail.com</a>
         </div>
       </div>
 
@@ -7259,8 +7378,7 @@ function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
 
     <div class="footer-bottom">
       <div class="footer-copy">
-        © 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM ·
-        <a href="https://sites.google.com/view/legalpreneur" target="_blank">legalpreneur.site</a>
+        © 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM
       </div>
       <ul class="footer-bottom-links">
         <li><a href="#">Kebijakan Privasi</a></li>
@@ -7644,7 +7762,7 @@ function handleConsult(e) {
   const pesan   = document.getElementById('c-msg').value.trim();
 
   const waNumber = '6281262195937';
-  const emailTo  = 'novrizal.tan2@gmail.com';
+  const emailTo  = 'legalpreneur.dk@gmail.com';
 
   // Susun pesan WhatsApp
   const waText = encodeURIComponent(
