@@ -13290,5 +13290,38 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
+
+<style>
+/* ── Mobile font overrides: 4 specific sentences ─────────── */
+@media (max-width: 860px) {
+  /* 1. Berita — "Butuh Advokat Profesional? Konsultasikan di sini." */
+  .lp-ad-text {
+    font-size: 0.7rem !important;
+  }
+
+  /* 2. Produk — hero paragraph */
+  .pk-hero p {
+    font-size: 0.8rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* 3 & 4. LegalPreneur Class — lc-hero-sub & lc-section-sub */
+  .lc-hero-sub {
+    font-size: 0.8rem !important;
+    line-height: 1.65 !important;
+  }
+  .lc-section-sub {
+    font-size: 0.78rem !important;
+    line-height: 1.65 !important;
+  }
+}
+@media (max-width: 480px) {
+  .lp-ad-text { font-size: 0.65rem !important; }
+  .pk-hero p { font-size: 0.75rem !important; }
+  .lc-hero-sub { font-size: 0.75rem !important; }
+  .lc-section-sub { font-size: 0.72rem !important; }
+}
+</style>
+
 </body>
 </html>
