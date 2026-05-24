@@ -1572,21 +1572,21 @@ footer {
   }
   .social-link { font-size: 0.6rem; padding: 0.35rem 0.6rem; }
 
-  .about-intro { font-size: 1rem; line-height: 1.7; }
+  .about-intro { font-size: 0.9rem; line-height: 1.7; }
   .vm-card { padding: 1.25rem; }
-  .vm-card-text { font-size: 0.93rem; }
+  .vm-card-text { font-size: 0.83rem; }
 
   /* --- Services section --- */
   .service-card { padding: 1.5rem 1.25rem; }
   .service-card-num { font-size: 2rem; margin-bottom: 0.5rem; }
   .service-card-icon { font-size: 1.35rem; margin-bottom: 0.6rem; }
   .service-card-title { font-size: 1.05rem; margin-bottom: 0.4rem; }
-  .service-card-desc { font-size: 0.88rem; line-height: 1.6; }
+  .service-card-desc { font-size: 0.8rem; line-height: 1.6; }
 
   /* --- Consult section --- */
   .consult-section { }
   .consult-title { font-size: clamp(1.5rem, 6vw, 2rem); }
-  .consult-desc { font-size: 0.95rem; }
+  .consult-desc { font-size: 0.85rem; }
   .consult-form { padding: 1.5rem 1.25rem; width: 100%; }
   .form-input { font-size: 0.95rem; padding: 0.65rem 0.85rem; }
   .form-label { font-size: 0.6rem; }
@@ -6095,7 +6095,7 @@ var _npDashObs = setInterval(function(){
   .pb-desc { font-size: 0.97rem; margin-bottom: 1.75rem; max-width: 100%; }
   .pb-cred { margin-bottom: 1.75rem; max-width: 100%; padding: 0.75rem 0.85rem; gap: 0.5rem; }
   .pb-cred-icon { font-size: 0.96rem; }
-  .pb-cred-name { font-size: 0.96rem; }
+  .pb-cred-name { font-size: 0.82rem; }
   .pb-cred-text { font-size: 0.48rem; letter-spacing: 0.01em; line-height: 1.55; }
   .pb-badge { margin-bottom: 1.75rem; }
   .pb-stats { margin-bottom: 1.75rem; }
@@ -6105,7 +6105,7 @@ var _npDashObs = setInterval(function(){
 @media (max-width: 480px) {
   .pb-left { padding: 2.5rem 1.25rem 2.5rem; }
   .pb-right { padding: 2rem 1.25rem 2.5rem; }
-  .pb-cred-name { font-size: 0.88rem; }
+  .pb-cred-name { font-size: 0.76rem; }
   .pb-cred-text { font-size: 0.44rem; line-height: 1.5; }
   .pb-actions { flex-direction: column; gap: 0.75rem; }
   .pb-btn-primary, .pb-btn-outline { justify-content: center; }
@@ -6349,7 +6349,7 @@ function renderBeranda() {
           </div>
         </div>
 
-        <div class="section-lead fade-up" style="font-size: 1rem; padding: 1.5rem; background: var(--cream-2); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0;">
+        <div class="section-lead fade-up" style="font-size: 1rem; padding: 1.5rem; background: var(--cream-2); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; text-align:justify;">
           💡 <strong style="font-weight: 600;">Filosofi kami:</strong> Hukum bukan tembok penghalang — melainkan jembatan menuju keadilan. LegalPreneur hadir untuk membangun jembatan itu, satu konsultasi dalam satu waktu.
         </div>
       </div>
@@ -7350,7 +7350,7 @@ function renderBeranda() {
       <div class="container">
         <div class="section-tag">Produk Digital Eksklusif</div>
         <h2 class="section-title">E-Book, Game & <em>Simulasi Interaktif</em></h2>
-        <p class="section-lead">Karya digital eksklusif oleh Novrizal — tersedia di Lynk.id dan Amazon. Mulai dari panduan hukum praktis hingga game edukasi dan simulasi tes CPNS.</p>
+        <p class="section-lead pk-intro-lead" style="text-align:justify;">Karya digital eksklusif oleh Novrizal — tersedia di Lynk.id dan Amazon. Mulai dari panduan hukum praktis hingga game edukasi dan simulasi tes CPNS.</p>
 
         <div class="pk-cat-pills">
           <button class="pk-cat-pill active" onclick="pkFilterDigital('semua', this)">Semua</button>
@@ -7485,7 +7485,7 @@ function pkFilterDigital(cat, btn) {
       <div>
         <div class="consult-label">Konsultasi Hukum</div>
         <h2 class="consult-title">Ada Pertanyaan <em>Hukum</em>?<br>Kami Siap Membantu.</h2>
-        <p class="consult-desc">
+        <p class="consult-desc" style="text-align:justify;">
           Sampaikan permasalahan hukum Anda — tanpa biaya, tanpa basa-basi. Tim kami akan memberikan panduan awal yang jelas, praktis, dan berintegritas untuk membantu Anda mengambil langkah yang tepat.
         </p>
         <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
@@ -7960,7 +7960,7 @@ function pkFilterDigital(cat, btn) {
       <div class="lc-hero-inner">
         <div class="lc-eyebrow">⚖ LegalPreneur Class · Kursus Hukum Digital</div>
         <h1>Kuasai Hukum <em>Kontrak Bisnis</em><br>Sebelum Terlambat</h1>
-        <p class="lc-hero-sub">Kursus mini praktis hukum kontrak untuk pelaku usaha Indonesia. 5 modul video langsung dari advokat berpengalaman — dilengkapi template dokumen hukum siap pakai.</p>
+        <p class="lc-hero-sub">Kursus mini praktis hukum kontrak untuk pelaku usaha Indonesia. 5 modul video langsung, dilengkapi template dokumen hukum siap pakai.</p>
         <div class="lc-hero-actions">
           <a href="https://wa.me/6281262195937?text=Halo%2C+saya+tertarik+daftar+LegalPreneur+Class" class="lc-btn-gold" target="_blank">Daftar Sekarang →</a>
           <button class="lc-btn-outline-cream" onclick="document.getElementById('lc-modules-section').scrollIntoView({behavior:'smooth'})">Lihat Materi Kursus</button>
@@ -13314,12 +13314,28 @@ document.addEventListener('DOMContentLoaded', function() {
     font-size: 0.78rem !important;
     line-height: 1.65 !important;
   }
+
+  /* 5. Produk — "Karya digital eksklusif..." section-lead */
+  .pk-intro-lead {
+    font-size: 0.83rem !important;
+    line-height: 1.65 !important;
+  }
+
+  /* 6. Layanan & Filosofi — section-lead paragraphs */
+  .services-section .section-lead,
+  .about-section .section-lead {
+    font-size: 0.83rem !important;
+    line-height: 1.65 !important;
+  }
 }
 @media (max-width: 480px) {
   .lp-ad-text { font-size: 0.65rem !important; }
   .pk-hero p { font-size: 0.75rem !important; }
   .lc-hero-sub { font-size: 0.75rem !important; }
   .lc-section-sub { font-size: 0.72rem !important; }
+  .pk-intro-lead { font-size: 0.78rem !important; }
+  .services-section .section-lead,
+  .about-section .section-lead { font-size: 0.78rem !important; }
 }
 </style>
 
