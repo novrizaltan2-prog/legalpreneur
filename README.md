@@ -1572,21 +1572,21 @@ footer {
   }
   .social-link { font-size: 0.6rem; padding: 0.35rem 0.6rem; }
 
-  .about-intro { font-size: 0.9rem; line-height: 1.7; }
+  .about-intro { font-size: 0.78rem; line-height: 1.7; }
   .vm-card { padding: 1.25rem; }
-  .vm-card-text { font-size: 0.83rem; }
+  .vm-card-text { font-size: 0.72rem; }
 
   /* --- Services section --- */
   .service-card { padding: 1.5rem 1.25rem; }
   .service-card-num { font-size: 2rem; margin-bottom: 0.5rem; }
   .service-card-icon { font-size: 1.35rem; margin-bottom: 0.6rem; }
   .service-card-title { font-size: 1.05rem; margin-bottom: 0.4rem; }
-  .service-card-desc { font-size: 0.8rem; line-height: 1.6; }
+  .service-card-desc { font-size: 0.70rem; line-height: 1.6; }
 
   /* --- Consult section --- */
   .consult-section { }
   .consult-title { font-size: clamp(1.5rem, 6vw, 2rem); }
-  .consult-desc { font-size: 0.85rem; }
+  .consult-desc { font-size: 0.72rem; }
   .consult-form { padding: 1.5rem 1.25rem; width: 100%; }
   .form-input { font-size: 0.95rem; padding: 0.65rem 0.85rem; }
   .form-label { font-size: 0.6rem; }
@@ -6095,7 +6095,7 @@ var _npDashObs = setInterval(function(){
   .pb-desc { font-size: 0.97rem; margin-bottom: 1.75rem; max-width: 100%; }
   .pb-cred { margin-bottom: 1.75rem; max-width: 100%; padding: 0.75rem 0.85rem; gap: 0.5rem; }
   .pb-cred-icon { font-size: 0.96rem; }
-  .pb-cred-name { font-size: 0.82rem; }
+  .pb-cred-name { font-size: 0.70rem; }
   .pb-cred-text { font-size: 0.48rem; letter-spacing: 0.01em; line-height: 1.55; }
   .pb-badge { margin-bottom: 1.75rem; }
   .pb-stats { margin-bottom: 1.75rem; }
@@ -6105,7 +6105,7 @@ var _npDashObs = setInterval(function(){
 @media (max-width: 480px) {
   .pb-left { padding: 2.5rem 1.25rem 2.5rem; }
   .pb-right { padding: 2rem 1.25rem 2.5rem; }
-  .pb-cred-name { font-size: 0.76rem; }
+  .pb-cred-name { font-size: 0.65rem; }
   .pb-cred-text { font-size: 0.44rem; line-height: 1.5; }
   .pb-actions { flex-direction: column; gap: 0.75rem; }
   .pb-btn-primary, .pb-btn-outline { justify-content: center; }
@@ -13317,14 +13317,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* 5. Produk — "Karya digital eksklusif..." section-lead */
   .pk-intro-lead {
-    font-size: 0.83rem !important;
+    font-size: 0.72rem !important;
     line-height: 1.65 !important;
   }
 
   /* 6. Layanan & Filosofi — section-lead paragraphs */
   .services-section .section-lead,
   .about-section .section-lead {
-    font-size: 0.83rem !important;
+    font-size: 0.72rem !important;
     line-height: 1.65 !important;
   }
 }
@@ -13333,9 +13333,13 @@ document.addEventListener('DOMContentLoaded', function() {
   .pk-hero p { font-size: 0.75rem !important; }
   .lc-hero-sub { font-size: 0.75rem !important; }
   .lc-section-sub { font-size: 0.72rem !important; }
-  .pk-intro-lead { font-size: 0.78rem !important; }
+  .pk-intro-lead { font-size: 0.66rem !important; }
   .services-section .section-lead,
-  .about-section .section-lead { font-size: 0.78rem !important; }
+  .about-section .section-lead { font-size: 0.66rem !important; }
+  .about-intro { font-size: 0.72rem !important; }
+  .vm-card-text { font-size: 0.66rem !important; }
+  .service-card-desc { font-size: 0.64rem !important; }
+  .consult-desc { font-size: 0.66rem !important; }
 }
 </style>
 
