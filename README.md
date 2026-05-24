@@ -6375,37 +6375,37 @@ function renderBeranda() {
         <div class="service-card-num">01</div>
         <div class="service-card-icon">⚖️</div>
         <h3 class="service-card-title">Konsultasi Hukum Online</h3>
-        <p class="service-card-desc" style="text-align:justify;">Ruang terbuka bagi masyarakat yang membutuhkan panduan awal dalam menghadapi permasalahan hukum. Melalui LegalPreneur, setiap orang dapat memperoleh arahan yang jelas, praktis, dan berintegritas, sehingga mampu mengelola risiko hukum dengan lebih percaya diri.</p>
+        <p class="service-card-desc" style="text-align:left;">Ruang terbuka bagi masyarakat yang membutuhkan panduan awal dalam menghadapi permasalahan hukum. Melalui LegalPreneur, setiap orang dapat memperoleh arahan yang jelas, praktis, dan berintegritas, sehingga mampu mengelola risiko hukum dengan lebih percaya diri.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">02</div>
         <div class="service-card-icon">📑</div>
         <h3 class="service-card-title">Penyusunan Kontrak & Dokumen Legal</h3>
-        <p class="service-card-desc" style="text-align:justify;">Kontrak bisnis, perjanjian kerja sama, dokumen perusahaan — disusun secara profesional sesuai kebutuhan bisnis maupun personal Anda.</p>
+        <p class="service-card-desc" style="text-align:left;">Kontrak bisnis, perjanjian kerja sama, dokumen perusahaan — disusun secara profesional sesuai kebutuhan bisnis maupun personal Anda.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">03</div>
         <div class="service-card-icon">🔍</div>
         <h3 class="service-card-title">Verifikasi Legalitas</h3>
-        <p class="service-card-desc" style="text-align:justify;">Memastikan semua transaksi bisnis Anda aman dan sesuai regulasi. Verifikasi dokumen, izin usaha, dan aspek legal penyedia layanan.</p>
+        <p class="service-card-desc" style="text-align:left;">Memastikan semua transaksi bisnis Anda aman dan sesuai regulasi. Verifikasi dokumen, izin usaha, dan aspek legal penyedia layanan.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">04</div>
         <div class="service-card-icon">🏛️</div>
         <h3 class="service-card-title">Edukasi Hukum Praktis</h3>
-        <p class="service-card-desc" style="text-align:justify;">Workshop, artikel, dan materi edukasi hukum yang dirancang agar masyarakat lebih melek hukum dalam kehidupan digital sehari-hari.</p>
+        <p class="service-card-desc" style="text-align:left;">Workshop, artikel, dan materi edukasi hukum yang dirancang agar masyarakat lebih melek hukum dalam kehidupan digital sehari-hari.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">05</div>
         <div class="service-card-icon">🤝</div>
         <h3 class="service-card-title">Mediasi Non-Litigasi</h3>
-        <p class="service-card-desc" style="text-align:justify;">Penyelesaian sengketa di luar pengadilan — lebih cepat, lebih hemat, dan lebih menjaga hubungan para pihak melalui proses mediasi profesional.</p>
+        <p class="service-card-desc" style="text-align:left;">Penyelesaian sengketa di luar pengadilan — lebih cepat, lebih hemat, dan lebih menjaga hubungan para pihak melalui proses mediasi profesional.</p>
       </div>
       <div class="service-card">
         <div class="service-card-num">06</div>
         <div class="service-card-icon">📩</div>
         <h3 class="service-card-title">Kolaborasi & Kemitraan</h3>
-        <p class="service-card-desc" style="text-align:justify;">Terbuka untuk individu, komunitas, organisasi, maupun korporasi — dalam bidang advokasi, edukasi hukum, penerbitan, dan inisiatif digital.</p>
+        <p class="service-card-desc" style="text-align:left;">Terbuka untuk individu, komunitas, organisasi, maupun korporasi — dalam bidang advokasi, edukasi hukum, penerbitan, dan inisiatif digital.</p>
       </div>
     </div>
   </div>
