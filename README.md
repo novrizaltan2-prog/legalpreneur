@@ -5236,11 +5236,19 @@ body {
             <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
           </a>
 
-          <a href="http://lynk.id/novriz.digital/3q76kenmw8qd" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+          <a href="https://lynk.id/novriz.digital/o9o07zo9q1op" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
             <div class="pk-prod-icon">📋</div>
             <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
-            <div class="pk-prod-title">Panduan Kontrak Bisnis UMKM Anti-Sengketa</div>
+            <div class="pk-prod-title">Panduan Menulis Kontrak bisnis UMKM Anti Sengketa</div>
             <p class="pk-prod-desc">Panduan lengkap menyusun kontrak bisnis yang kuat dan bebas sengketa, khusus dirancang untuk pelaku UMKM Indonesia.</p>
+            <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
+          </a>
+
+          <a href="http://lynk.id/novriz.digital/wogp8vr6erv6" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
+            <div class="pk-prod-icon">⚖️</div>
+            <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
+            <div class="pk-prod-title">Modul Ajar Arbitrase</div>
+            <p class="pk-prod-desc">Modul pembelajaran arbitrase yang komprehensif sebagai alternatif penyelesaian sengketa di luar pengadilan.</p>
             <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
           </a>
 
