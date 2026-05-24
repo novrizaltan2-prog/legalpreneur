@@ -87,11 +87,207 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Crimson Pro', Georgia, serif;
-  background: var(--cream);
+  background: #f4f1eb;
   color: var(--ink);
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+/* ══════════════════════════════════════════════════════
+   NEWSPAPER GLOBAL OVERRIDE — tagDiv Style
+   Berlaku untuk SEMUA halaman dan komponen
+══════════════════════════════════════════════════════ */
+
+/* ── ANNOUNCEMENT BAR → Breaking strip merah ── */
+.announce-bar {
+  background: #b8151a !important;
+  color: #fff !important;
+  font-family: 'DM Mono', monospace !important;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.1em !important;
+  padding: 0.42rem 1rem !important;
+  border-bottom: 2px solid #8a0f14 !important;
+}
+.announce-bar::before { display: none !important; }
+.announce-bar a { color: #ffe0a0 !important; border-bottom: 1px solid rgba(255,224,160,0.5) !important; }
+
+/* ── NAVIGATION → Koran bersih putih ── */
+nav {
+  background: #fff !important;
+  border-bottom: 3px solid #0f0e0b !important;
+  backdrop-filter: none !important;
+  box-shadow: 0 2px 8px rgba(15,14,11,0.07) !important;
+}
+.nav-logo-main { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.03em !important; color: #0f0e0b !important; }
+.nav-logo-main span { color: var(--gold) !important; }
+.nav-logo-sub { color: #666 !important; font-size: 0.55rem !important; letter-spacing: 0.15em !important; }
+.nav-menu a { font-family: 'DM Mono', monospace !important; font-size: 0.65rem !important; letter-spacing: 0.08em !important; color: #333 !important; text-transform: uppercase !important; }
+.nav-menu a:hover { color: #0f0e0b !important; }
+.nav-menu a::after { background: #b8151a !important; }
+.nav-cta { background: #0f0e0b !important; color: #f0e4c0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.62rem !important; letter-spacing: 0.1em !important; }
+.nav-cta:hover { background: var(--gold) !important; color: #0f0e0b !important; }
+.hamburger span { background: #0f0e0b !important; }
+@media (max-width: 860px) {
+  .nav-menu { background: #fff !important; border-bottom: 3px solid #0f0e0b !important; }
+}
+
+/* ── HERO → Layout majalah berita ── */
+.hero {
+  background: #fff !important;
+  border-bottom: 4px double #0f0e0b !important;
+  min-height: auto !important;
+  padding: 3rem 0 !important;
+  position: relative !important;
+}
+.hero::before { display: none !important; }
+.hero-left::before { display: none !important; }
+.hero-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(2rem, 5vw, 3.5rem) !important;
+  font-weight: 900 !important;
+  color: #0f0e0b !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+  text-shadow: none !important;
+}
+.hero-title em { color: var(--gold) !important; font-style: italic !important; }
+.hero-subtitle {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.18em !important;
+  color: #b8151a !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border-left: 3px solid #b8151a !important;
+  padding-left: 0.75rem !important;
+  border-radius: 0 !important;
+}
+.hero-desc { color: #333 !important; font-size: 1.05rem !important; line-height: 1.7 !important; }
+.hero-eyebrow { display: none !important; }
+.hero-eyebrow-line { display: none !important; }
+.hero-right {
+  background: #f4f1eb !important;
+  border: 1px solid #ddd !important;
+  border-top: 3px solid #0f0e0b !important;
+  border-radius: 0 !important;
+  padding: 1.5rem !important;
+}
+.hero-right::before { display: none !important; }
+.hero-badge { background: #b8151a !important; color: #fff !important; border: none !important; font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; letter-spacing: 0.12em !important; }
+.badge-dot { background: #fff !important; }
+.hero-stat-num { font-family: 'Playfair Display', serif !important; color: #0f0e0b !important; font-size: 1.8rem !important; }
+.hero-stat-label { font-family: 'DM Mono', monospace !important; font-size: 0.58rem !important; color: #666 !important; letter-spacing: 0.1em !important; }
+.hero-cred { background: rgba(184,151,58,0.08) !important; border: 1px solid rgba(184,151,58,0.3) !important; border-left: 3px solid var(--gold) !important; border-radius: 0 !important; }
+.hero-cred-name { font-family: 'Playfair Display', serif !important; color: #0f0e0b !important; }
+.hero-service-item { border-bottom: 1px solid #e5e0d8 !important; font-family: 'DM Mono', monospace !important; font-size: 0.65rem !important; letter-spacing: 0.06em !important; text-transform: uppercase !important; color: #333 !important; background: none !important; }
+.hero-service-item:hover { color: #b8151a !important; background: rgba(184,21,26,0.04) !important; }
+.service-icon { background: none !important; box-shadow: none !important; }
+.btn-primary { background: #0f0e0b !important; color: #f0e4c0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.68rem !important; letter-spacing: 0.1em !important; border-radius: 0 !important; border: 2px solid #0f0e0b !important; padding: 0.75rem 1.5rem !important; }
+.btn-primary:hover { background: var(--gold) !important; color: #0f0e0b !important; border-color: var(--gold) !important; }
+.btn-outline { border: 2px solid #0f0e0b !important; color: #0f0e0b !important; font-family: 'DM Mono', monospace !important; font-size: 0.68rem !important; letter-spacing: 0.1em !important; border-radius: 0 !important; padding: 0.75rem 1.5rem !important; background: transparent !important; }
+.btn-outline:hover { background: #0f0e0b !important; color: #f0e4c0 !important; }
+
+/* ── ABOUT SECTION ── */
+.about-section { background: #f4f1eb !important; border-top: 4px double #0f0e0b !important; border-bottom: 1px solid #ddd !important; }
+.section-label { font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; letter-spacing: 0.25em !important; color: #b8151a !important; text-transform: uppercase !important; background: none !important; border: none !important; border-bottom: 2px solid #b8151a !important; padding-bottom: 0.3rem !important; }
+.section-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.02em !important; color: #0f0e0b !important; }
+.section-title em, .section-title span { color: var(--gold) !important; }
+.profile-card { background: #fff !important; border: 1px solid #ddd !important; border-top: 3px solid #0f0e0b !important; border-radius: 0 !important; box-shadow: 0 2px 12px rgba(15,14,11,0.07) !important; }
+.stat-num { font-family: 'Playfair Display', serif !important; color: #0f0e0b !important; }
+.profile-degree { background: rgba(184,151,58,0.1) !important; border: 1px solid rgba(184,151,58,0.3) !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; }
+.cred-badge { background: #f4f1eb !important; border: 1px solid #ddd !important; border-left: 3px solid var(--gold) !important; border-radius: 0 !important; }
+
+/* ── SERVICES SECTION ── */
+.services-section { background: #fff !important; border-top: 4px double #0f0e0b !important; border-bottom: 1px solid #ddd !important; }
+.service-card { background: #f4f1eb !important; border: 1px solid #ddd !important; border-top: 3px solid transparent !important; border-radius: 0 !important; }
+.service-card:hover { border-top-color: #b8151a !important; transform: translateY(-3px) !important; box-shadow: 0 8px 28px rgba(15,14,11,0.1) !important; }
+.service-tag { background: rgba(184,151,58,0.12) !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.58rem !important; letter-spacing: 0.15em !important; color: var(--gold) !important; }
+.service-title { font-family: 'Playfair Display', serif !important; color: #0f0e0b !important; }
+.service-features li::before { color: #b8151a !important; }
+.service-btn { background: #0f0e0b !important; color: #f0e4c0 !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.65rem !important; letter-spacing: 0.08em !important; border: 2px solid #0f0e0b !important; }
+.service-btn:hover { background: var(--gold) !important; color: #0f0e0b !important; border-color: var(--gold) !important; }
+
+/* ── KONSULTASI SECTION ── */
+.consult-section { background: #0f0e0b !important; border-top: 4px solid var(--gold) !important; }
+.consult-section::before { display: none !important; }
+.consult-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.02em !important; }
+.consult-subtitle { font-family: 'DM Mono', monospace !important; font-size: 0.65rem !important; letter-spacing: 0.15em !important; color: #b8151a !important; text-transform: uppercase !important; }
+.form-card { background: #fff !important; border: 1px solid #ddd !important; border-top: 3px solid #0f0e0b !important; border-radius: 0 !important; }
+.form-input, .form-textarea, .form-select { border-radius: 0 !important; border: 1px solid #ccc !important; font-family: 'Crimson Pro', serif !important; }
+.form-input:focus, .form-textarea:focus { border-color: #0f0e0b !important; }
+.form-submit { background: #0f0e0b !important; color: #f0e4c0 !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; letter-spacing: 0.1em !important; }
+.form-submit:hover { background: var(--gold) !important; color: #0f0e0b !important; }
+.contact-card { background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-left: 3px solid var(--gold) !important; border-radius: 0 !important; }
+.wa-btn { background: #25d366 !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.65rem !important; letter-spacing: 0.08em !important; }
+
+/* ── FOOTER ── */
+footer { background: #0f0e0b !important; border-top: 4px solid var(--gold) !important; }
+.footer-brand-name { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.02em !important; }
+.footer-heading { font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; letter-spacing: 0.2em !important; text-transform: uppercase !important; border-bottom: 1px solid rgba(184,151,58,0.3) !important; padding-bottom: 0.4rem !important; }
+.footer-link { font-family: 'Crimson Pro', serif !important; color: rgba(245,240,232,0.6) !important; }
+.footer-link:hover { color: var(--gold) !important; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08) !important; }
+
+/* ── HALAMAN PRODUK ── */
+#page-produk { background: #f4f1eb !important; }
+.prod-hero { background: #0f0e0b !important; border-bottom: 3px solid var(--gold) !important; }
+.prod-hero-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+.prod-card { background: #fff !important; border: 1px solid #ddd !important; border-top: 3px solid transparent !important; border-radius: 0 !important; }
+.prod-card:hover { border-top-color: var(--gold) !important; }
+.prod-section-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; color: #0f0e0b !important; border-bottom: 3px double #0f0e0b !important; }
+.prod-tag { background: rgba(184,151,58,0.12) !important; border-radius: 0 !important; font-family: 'DM Mono', monospace !important; }
+.prod-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; letter-spacing: 0.08em !important; }
+.prod-badge { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.58rem !important; }
+
+/* ── HALAMAN LEXICLASS ── */
+.lc-page { background: #0f0e0b !important; }
+.lc-hero { border-bottom: 3px solid var(--gold) !important; }
+.lc-logo-text { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+.lc-card { border-radius: 0 !important; border-top: 3px solid transparent !important; }
+.lc-card:hover { border-top-color: var(--gold) !important; }
+.lc-card-title { font-family: 'Playfair Display', serif !important; }
+.lc-register-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; letter-spacing: 0.1em !important; }
+.lc-cta-section { border-top: 3px solid var(--gold) !important; }
+
+/* ── HALAMAN DASHBOARD ── */
+#page-dashboard { background: #f4f1eb !important; }
+.dash-login-box { border-radius: 0 !important; border-top: 3px solid #0f0e0b !important; }
+.dash-section-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; border-bottom: 3px double #0f0e0b !important; padding-bottom: 0.4rem !important; }
+
+/* ── MINI FOOTER ── */
+.page-mini-footer { background: #f4f1eb !important; border-top: 2px solid #ddd !important; font-family: 'DM Mono', monospace !important; font-size: 0.62rem !important; }
+.mini-back-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; background: #0f0e0b !important; color: #f0e4c0 !important; border: none !important; }
+.mini-back-btn:hover { background: var(--gold) !important; color: #0f0e0b !important; }
+
+/* ── MODAL BACA ARTIKEL ── */
+#lp-read-modal .lp-read-header { background: #0f0e0b !important; border-bottom: 3px solid var(--gold) !important; }
+.lp-read-brand-legal, .lp-read-brand-preneur { font-family: 'Playfair Display', serif !important; }
+.lp-read-cat { font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; letter-spacing: 0.2em !important; text-transform: uppercase !important; color: #b8151a !important; }
+.lp-read-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.02em !important; }
+.lp-share-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; }
+.lp-read-disclaimer { border-left: 3px solid var(--gold) !important; background: rgba(184,151,58,0.06) !important; border-radius: 0 !important; }
+
+/* ── SIDEBAR PORTAL ── */
+.lp-sidebar-box { border-radius: 0 !important; border-top: 3px solid #0f0e0b !important; background: #fff !important; border: 1px solid #e5e0d8 !important; border-top: 3px solid #0f0e0b !important; }
+.lp-sidebar-title { font-family: 'DM Mono', monospace !important; font-size: 0.62rem !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; color: #0f0e0b !important; border-bottom: 2px solid #e5e0d8 !important; padding-bottom: 0.5rem !important; }
+.lp-recent-list li { border-bottom: 1px solid #f0ebe3 !important; }
+.lp-ad-sidebar { border-radius: 0 !important; background: #0f0e0b !important; border-top: 3px solid var(--gold) !important; }
+.lp-ad-side-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.62rem !important; }
+
+/* ── IKLAN BANNER ── */
+.lp-ad-banner { border-radius: 0 !important; }
+.lp-ad-banner-bottom { background: #0f0e0b !important; border-top: 3px solid var(--gold) !important; }
+.lp-ad-btn { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.62rem !important; }
+
+/* ── TAG CHIP ── */
+.lp-tag-chip { border-radius: 0 !important; font-family: 'DM Mono', monospace !important; font-size: 0.6rem !important; }
+
+/* ── INSIGHT STATS ── */
+.lp-insight-num { font-family: 'Playfair Display', serif !important; }
+
+/* ── FADE IN ANIMATION ── */
+@keyframes np-fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+#page-konten, #page-produk, #page-lexiclass, .about-section, .services-section { animation: np-fadein 0.3s ease; }
 
 /* ══════════════════════════════════════
    ANNOUNCEMENT BAR
@@ -1144,7 +1340,7 @@ section { padding: 5rem 0; }
   padding: 0.75rem 1rem;
   font-family: 'Crimson Pro', serif;
   font-size: 1rem;
-  color: var(--white);
+  color: #0f0e0b;
   margin-bottom: 1rem;
   transition: border-color 0.2s;
   outline: none;
@@ -1803,145 +1999,263 @@ img { max-width: 100%; height: auto; }
 }
 @keyframes lp-fadein { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
-/* ── PORTAL HEADER ENHANCED ─────────────── */
+/* ══════════════════════════════════════════════════════
+   NEWSPAPER TEMPLATE (tagDiv Style)
+   Portal berita modern — news ticker, kategori lengkap, layout majalah
+══════════════════════════════════════════════════════ */
+
+/* ── TOP DATE BAR (Newspaper masthead style) ────────── */
 .lp-portal-header {
-  background: linear-gradient(135deg, var(--ink) 0%, #1a1816 50%, #0f0e0b 100%);
-  padding: 2.5rem 0 2rem;
-  border-bottom: 3px solid var(--gold);
+  background: #fff;
+  padding: 0;
+  border-bottom: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
-.lp-portal-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 60% at 0% 100%, rgba(184,151,58,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 40% at 100% 0%, rgba(184,151,58,0.07) 0%, transparent 50%);
-  pointer-events: none;
-}
-.lp-portal-header::after {
-  content: '§';
-  position: absolute;
-  right: 4rem;
-  top: -1rem;
-  font-family: 'Playfair Display', serif;
-  font-size: 12rem;
-  font-weight: 900;
-  color: rgba(184,151,58,0.04);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
+.lp-portal-header::before { display: none; }
+.lp-portal-header::after  { display: none; }
+
+/* Masthead top strip */
+.lp-portal-header .lp-portal-inner {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
 }
 
-/* ── BREAKING NEWS TICKER ─────────────────── */
+/* Top utility bar */
+.lp-np-topbar {
+  background: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0.35rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: #666;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.lp-np-topbar-left { display: flex; align-items: center; gap: 1.2rem; }
+.lp-np-topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+
+/* Masthead — Judul koran besar tengah */
+.lp-np-masthead {
+  background: #fff;
+  padding: 1.2rem 0 0.9rem;
+  border-bottom: 4px double #0f0e0b;
+  text-align: center;
+  position: relative;
+}
+.lp-np-masthead-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.lp-np-masthead-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 900;
+  color: #0f0e0b;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.lp-np-masthead-name em {
+  color: var(--gold);
+  font-style: italic;
+}
+.lp-np-masthead-tagline {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 0.35rem;
+  font-style: italic;
+}
+.lp-np-masthead-rule {
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  margin-top: 0.75rem;
+}
+
+/* Auth/user controls inside masthead (moved inline) */
+.lp-np-masthead-controls {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/* ── BREAKING NEWS TICKER (Newspaper style) ──────────── */
 .lp-breaking-bar {
-  background: var(--gold);
-  padding: 0.4rem 0;
+  background: #b8151a;
+  padding: 0;
   overflow: hidden;
   white-space: nowrap;
+  display: flex;
+  align-items: stretch;
 }
 .lp-breaking-inner {
   display: inline-flex;
-  gap: 3rem;
-  animation: lp-ticker 30s linear infinite;
+  gap: 4rem;
+  animation: lp-ticker 35s linear infinite;
   white-space: nowrap;
+  padding: 0.42rem 0;
 }
 .lp-breaking-label {
   font-family: 'DM Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--ink);
+  letter-spacing: 0.18em;
+  background: #fff;
+  color: #b8151a;
+  padding: 0.22rem 0.7rem;
+  margin-right: 0.85rem;
   text-transform: uppercase;
-  background: var(--ink);
-  color: var(--gold);
-  padding: 0.2rem 0.6rem;
-  border-radius: 2px;
-  margin-right: 0.75rem;
+  border-radius: 0;
+  flex-shrink: 0;
 }
 .lp-breaking-text {
   font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  color: var(--ink);
+  font-size: 0.63rem;
+  letter-spacing: 0.04em;
+  color: #fff;
+  font-weight: 400;
+}
+/* Prefix "TERKINI" badge on ticker bar */
+.lp-breaking-bar::before {
+  content: '● BERITA';
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  background: #fff;
+  color: #b8151a;
+  padding: 0 1.1rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-right: 2px solid rgba(255,255,255,0.3);
+  white-space: nowrap;
 }
 @keyframes lp-ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* ── ARTICLE CARD ENHANCED ─────────────────── */
+/* ── NAVIGATION / FILTER BAR (Newspaper nav style) ────── */
+.lp-filter-bar {
+  background: #0f0e0b;
+  border-bottom: 3px solid var(--gold);
+  padding: 0;
+  overflow-x: auto;
+  position: sticky;
+  top: 68px;
+  z-index: 50;
+  scrollbar-width: none;
+}
+.lp-filter-bar::-webkit-scrollbar { display: none; }
+.lp-filter-bar .lp-portal-inner {
+  display: flex;
+  gap: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  align-items: stretch;
+}
+.lp-cat-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  color: rgba(245,240,232,0.6);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  padding: 0.8rem 1.15rem;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  text-transform: uppercase;
+  position: relative;
+}
+.lp-cat-btn:hover {
+  color: #fff;
+  background: rgba(184,151,58,0.12);
+}
+.lp-cat-btn.active {
+  color: #0f0e0b !important;
+  background: var(--gold) !important;
+  border-bottom-color: var(--gold) !important;
+  font-weight: 700;
+}
+
+/* ── SECTION BG ──────────────────────────────────────── */
+#page-konten {
+  background: #f4f1eb;
+}
+.lp-portal-inner.lp-portal-body {
+  background: transparent;
+  padding-top: 2rem;
+}
+
+/* ── ARTICLE CARDS (Magazine grid style) ─────────────── */
 .lp-article-card {
-  background: var(--white);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e5e0d8;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(.4,0,.2,1);
+  transition: all 0.22s ease;
   display: flex;
   flex-direction: column;
   position: relative;
+  box-shadow: 0 2px 8px rgba(15,14,11,0.05);
 }
 .lp-article-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  background: var(--gold);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 .lp-article-card:hover::before { transform: scaleX(1); }
 .lp-article-card:hover {
   border-color: var(--gold);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(15,14,11,0.16);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(15,14,11,0.13);
 }
 
-/* ── FEATURED CARD ENHANCED ────────────────── */
+/* ── FEATURED CARD (Hero block) ──────────────────────── */
 .lp-featured-card {
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
+  box-shadow: 0 4px 24px rgba(15,14,11,0.12);
 }
 
-/* ── USER STATUS BAR ──────────────────────── */
+/* ── USER STATUS BAR ──────────────────────────────────── */
 #lp-user-status-bar {
   background: rgba(184,151,58,0.1);
-  border: 1px solid rgba(184,151,58,0.25);
-  border-radius: 20px;
-  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(184,151,58,0.3);
+  border-radius: 3px;
+  padding: 0.35rem 0.8rem;
 }
 
-/* ── SECTION BG ALTERNATING ─────────────────── */
-#page-konten {
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
-}
-.lp-portal-inner.lp-portal-body {
-  background: transparent;
-}
-
-/* ── FILTER BAR ENHANCED ────────────────── */
-.lp-filter-bar {
-  background: linear-gradient(90deg, var(--ink-2), var(--ink));
-  border-bottom: 2px solid rgba(184,151,58,0.3);
-  padding: 0;
-  overflow-x: auto;
-  position: sticky;
-  top: 68px;
-  z-index: 50;
-}
-
-.lp-cat-btn.active {
-  background: var(--gold) !important;
-  color: var(--ink) !important;
-  border-bottom-color: var(--gold) !important;
-}
-
-
+/* ── EMPTY STATE ─────────────────────────────────────── */
+.lp-empty-state {
   text-align: center;
   padding: 4rem 2rem;
-  background: var(--white);
-  border: 2px dashed var(--border-light);
-  border-radius: 10px;
+  background: #fff;
+  border: 2px dashed #ddd;
+  border-radius: 0;
 }
 .lp-empty-icon { font-size: 3rem; margin-bottom: 1rem; }
 .lp-empty-title { font-family: 'Playfair Display',serif; font-size: 1.4rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
@@ -2980,8 +3294,8 @@ img { max-width: 100%; height: auto; }
   .lp-portal-inner.lp-portal-body { grid-template-columns: 1fr; }
   .lp-sidebar { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .lp-ad-sidebar { grid-column: 1/-1; }
-  .lp-portal-header .lp-portal-inner { flex-direction: column; align-items: flex-start; }
-  .lp-portal-meta { flex-direction: row; align-items: center; }
+  .lp-np-topbar-left span:not(:first-child) { display: none; }
+  .lp-np-masthead-controls { position: static; transform: none; align-items: center; }
 }
 @media (max-width: 600px) {
   .lp-portal-inner { padding: 0 1.25rem; }
@@ -3970,21 +4284,13 @@ body {
   }
 }
 
-/* ── Portal header: better spacing on small screens ── */
+/* ── Portal header: Newspaper masthead responsive ── */
 @media (max-width: 560px) {
-  .lp-portal-header {
-    padding: 1.75rem 0 1.5rem;
-  }
-  .lp-portal-inner {
-    padding: 0 1rem;
-  }
-  .lp-portal-title {
-    font-size: clamp(1.35rem, 5.5vw, 1.9rem);
-  }
-  .lp-portal-sub {
-    font-size: 0.82rem;
-    white-space: normal;
-  }
+  .lp-np-topbar { font-size: 0.55rem; }
+  .lp-np-topbar-left { gap: 0.6rem; }
+  .lp-np-masthead-name { font-size: clamp(1.8rem, 10vw, 3rem); }
+  .lp-np-masthead-tagline { font-size: 0.78rem; }
+  .lp-np-masthead-eyebrow { font-size: 0.5rem; letter-spacing: 0.15em; }
 }
 
 /* ── Dashboard: responsive table ── */
@@ -4102,8 +4408,1345 @@ body {
   }
 }
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════
+   LEGALPRENEUR — FULL NEWSPAPER (tagDiv Style) OVERRIDE
+   Injected layer: overrides ALL prior styles
+   ════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+/* ── Global newspaper reset ─────────────────────────────── */
+:root {
+  --np-ink: #111111;
+  --np-ink2: #333;
+  --np-ink3: #666;
+  --np-red: #c0001a;
+  --np-gold: #b8973a;
+  --np-paper: #faf8f3;
+  --np-paper2: #f0ece1;
+  --np-border: #c8bfa2;
+  --np-border-dark: #888070;
+  --np-white: #fff;
+  --np-shadow: 0 2px 12px rgba(17,17,17,0.08);
+  --np-col: repeat(12, 1fr);
+}
+
+*,*::before,*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-family: 'Libre Baskerville', Georgia, serif !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  overflow-x: hidden !important;
+}
+
+/* ─── MASTHEAD DATE BAR ─────────────────────────────────── */
+#np-masthead-bar {
+  background: var(--np-paper2);
+  border-bottom: 1px solid var(--np-border);
+  padding: 0.35rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--np-ink3);
+}
+#np-masthead-bar a { color: var(--np-ink3); text-decoration: none; }
+#np-masthead-bar a:hover { color: var(--np-red); }
+.np-bar-sep { margin: 0 0.6rem; color: var(--np-border); }
+
+/* ─── MASTHEAD NAMEPLATE ─────────────────────────────────── */
+#np-nameplate {
+  background: var(--np-white);
+  border-bottom: 4px double var(--np-ink);
+  text-align: center;
+  padding: 1.5rem 2rem 1rem;
+  position: relative;
+}
+#np-nameplate-kicker {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--np-ink3);
+  margin-bottom: 0.4rem;
+}
+#np-nameplate-title {
+  font-family: 'Playfair Display', 'UnifrakturCook', serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900;
+  color: var(--np-ink);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0;
+}
+#np-nameplate-title em {
+  color: var(--np-gold);
+  font-style: italic;
+}
+#np-nameplate-tagline {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--np-ink3);
+  margin-top: 0.5rem;
+}
+#np-nameplate-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--np-border);
+  margin-top: 0.75rem;
+}
+.np-nameplate-controls {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-end;
+}
+
+/* ─── BREAKING / NEWS TICKER ─────────────────────────────── */
+#np-ticker-wrap {
+  background: var(--np-red);
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 2px solid #8a0010;
+}
+#np-ticker-wrap::before {
+  content: '● TERKINI';
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: var(--np-white);
+  color: var(--np-red);
+  padding: 0 1.1rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-right: 2px solid rgba(255,255,255,0.3);
+  white-space: nowrap;
+}
+.np-ticker-inner {
+  display: inline-flex;
+  gap: 4rem;
+  animation: np-ticker 36s linear infinite;
+  white-space: nowrap;
+  padding: 0.42rem 0;
+}
+.np-ticker-item {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.04em;
+  color: var(--np-white);
+}
+.np-ticker-label {
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  padding: 0.1rem 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 2px;
+}
+@keyframes np-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── NAV / CATEGORY BAR ─────────────────────────────────── */
+#np-nav-bar {
+  background: var(--np-ink);
+  border-bottom: 3px solid var(--np-gold);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+#np-nav-bar::-webkit-scrollbar { display: none; }
+.np-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.np-nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1rem;
+  color: var(--np-gold);
+  text-decoration: none;
+  padding: 0.75rem 1rem 0.75rem 0;
+  margin-right: 0.5rem;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.np-nav-link {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,240,232,0.65);
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.18s;
+  cursor: pointer;
+  background: none;
+  border-left: none;
+  border-right: none;
+}
+.np-nav-link:hover, .np-nav-link.active {
+  color: var(--np-ink);
+  background: var(--np-gold);
+  border-bottom-color: var(--np-gold);
+  font-weight: 700;
+}
+.np-nav-cta {
+  margin-left: auto;
+  background: var(--np-red);
+  color: var(--np-white) !important;
+  padding: 0.6rem 1.1rem !important;
+  border: none !important;
+  font-weight: 700 !important;
+  flex-shrink: 0;
+}
+.np-nav-cta:hover {
+  background: #e0001f !important;
+  color: var(--np-white) !important;
+}
+.np-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: auto;
+  flex-direction: column;
+  gap: 5px;
+}
+.np-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--np-white);
+  transition: all 0.2s;
+}
+@media (max-width: 860px) {
+  .np-hamburger { display: flex; }
+  .np-nav-items { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--np-ink); border-top: 1px solid rgba(255,255,255,0.1); z-index: 300; }
+  .np-nav-items.open { display: flex; }
+  .np-nav-link { padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+  .np-nav-cta { margin: 0.5rem 1rem; text-align: center; }
+}
+
+/* ─── HIDE OLD ANNOUNCE BAR / NAV / PORTAL HEADER ───────── */
+.announce-bar,
+nav,
+.lp-portal-header,
+.lp-breaking-bar,
+.lp-filter-bar {
+  display: none !important;
+}
+
+/* ─── HERO (Beranda) — Magazine-style ───────────────────── */
+.hero {
+  background: var(--np-white) !important;
+  border-bottom: 4px double var(--np-ink) !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  gap: 0 !important;
+}
+.hero::before { display: none !important; }
+.hero-left {
+  padding: 3.5rem 2.5rem 3.5rem 0 !important;
+  border-right: 1px solid var(--np-border) !important;
+  background: var(--np-white) !important;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(1.9rem, 4vw, 3.2rem) !important;
+  font-weight: 900 !important;
+  color: var(--np-ink) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+  text-shadow: none !important;
+  margin-bottom: 1.25rem !important;
+}
+.hero-title em { color: var(--np-gold) !important; font-style: italic !important; }
+.hero-subtitle {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.2em !important;
+  color: var(--np-red) !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border-left: 3px solid var(--np-red) !important;
+  padding-left: 0.75rem !important;
+  border-radius: 0 !important;
+  margin-bottom: 1rem !important;
+  display: block !important;
+}
+.hero-desc { color: var(--np-ink2) !important; font-size: 1rem !important; line-height: 1.75 !important; }
+.hero-cred {
+  background: rgba(184,151,58,0.06) !important;
+  border-left: 3px solid var(--np-gold) !important;
+  border-radius: 0 !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+.hero-eyebrow, .hero-eyebrow-line { display: none !important; }
+.hero-right {
+  background: var(--np-paper2) !important;
+  border-top: none !important;
+  border-left: 1px solid var(--np-border) !important;
+  border-radius: 0 !important;
+  padding: 3.5rem 2.5rem !important;
+}
+.hero-right::before { display: none !important; }
+.hero-badge {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.14em !important;
+}
+.hero-stat-num {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 2rem !important;
+  color: var(--np-ink) !important;
+}
+.hero-stat-label { font-family: 'Source Sans 3', sans-serif !important; font-size: 0.68rem !important; color: var(--np-ink3) !important; }
+.hero-stat-grid { background: var(--np-border) !important; border: 1px solid var(--np-border) !important; border-radius: 0 !important; }
+.hero-stat { background: var(--np-white) !important; }
+.hero-service-item {
+  border-bottom: 1px solid var(--np-border) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  color: var(--np-ink2) !important;
+  background: none !important;
+}
+.hero-service-item:hover { color: var(--np-red) !important; }
+.btn-primary {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  border: 2px solid var(--np-ink) !important;
+  padding: 0.75rem 1.5rem !important;
+}
+.btn-primary:hover { background: var(--np-gold) !important; color: var(--np-ink) !important; border-color: var(--np-gold) !important; transform: none !important; box-shadow: none !important; }
+.btn-outline {
+  border: 2px solid var(--np-ink) !important;
+  color: var(--np-ink) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+}
+.btn-outline:hover { background: var(--np-ink) !important; color: #f0e4c0 !important; border-color: var(--np-ink) !important; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr !important; }
+  .hero-left { padding: 2rem 1.5rem !important; border-right: none !important; }
+  .hero-right { padding: 2rem 1.5rem !important; border-left: none !important; border-top: 1px solid var(--np-border) !important; }
+}
+
+/* ─── SECTION DIVIDER ────────────────────────────────────── */
+.np-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto 1.25rem;
+  padding: 0 2rem;
+}
+.np-section-divider-label {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--np-red);
+  white-space: nowrap;
+}
+.np-section-divider::before, .np-section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--np-border);
+}
+
+/* ─── ABOUT SECTION ─────────────────────────────────────── */
+.about-section {
+  background: var(--np-paper) !important;
+  border-top: 4px double var(--np-ink) !important;
+}
+.section-tag, .section-label {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.25em !important;
+  color: var(--np-red) !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border: none !important;
+  border-bottom: 2px solid var(--np-red) !important;
+  padding-bottom: 0.3rem !important;
+  border-radius: 0 !important;
+}
+.section-title {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--np-ink) !important;
+}
+.section-title em, .section-title span { color: var(--np-gold) !important; }
+.profile-card {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid var(--np-ink) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--np-shadow) !important;
+}
+.stat-num { font-family: 'Playfair Display', serif !important; color: var(--np-ink) !important; }
+.cred-badge {
+  background: var(--np-paper2) !important;
+  border: 1px solid var(--np-border) !important;
+  border-left: 3px solid var(--np-gold) !important;
+  border-radius: 0 !important;
+}
+
+/* ─── SERVICES SECTION ───────────────────────────────────── */
+.services-section {
+  background: var(--np-white) !important;
+  border-top: 4px double var(--np-ink) !important;
+}
+.service-card {
+  background: var(--np-paper) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid transparent !important;
+  border-radius: 0 !important;
+  transition: border-top-color 0.2s, box-shadow 0.2s !important;
+}
+.service-card:hover { border-top-color: var(--np-red) !important; box-shadow: var(--np-shadow) !important; transform: none !important; }
+.service-card-title, .service-title { font-family: 'Playfair Display', serif !important; color: var(--np-ink) !important; }
+.service-tag { background: rgba(184,151,58,0.1) !important; border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; color: var(--np-gold) !important; }
+.service-btn, .service-features li::before { color: var(--np-red) !important; }
+.service-btn {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  border-radius: 0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.1em !important;
+  border: 2px solid var(--np-ink) !important;
+}
+.service-btn:hover { background: var(--np-gold) !important; color: var(--np-ink) !important; border-color: var(--np-gold) !important; }
+
+/* ─── CONSULT SECTION ────────────────────────────────────── */
+.consult-section {
+  background: var(--np-ink) !important;
+  border-top: 4px solid var(--np-gold) !important;
+}
+.consult-section::before { display: none !important; }
+.consult-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+.form-card {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid var(--np-ink) !important;
+  border-radius: 0 !important;
+}
+.form-input, .form-textarea, .form-select {
+  border-radius: 0 !important;
+  border: 1px solid var(--np-border) !important;
+  font-family: 'Libre Baskerville', serif !important;
+  background: var(--np-paper) !important;
+  color: #0f0e0b !important;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--np-ink) !important; }
+.form-submit {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  border-radius: 0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  letter-spacing: 0.12em !important;
+}
+.form-submit:hover { background: var(--np-gold) !important; color: var(--np-ink) !important; }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer {
+  background: var(--np-ink) !important;
+  border-top: 4px solid var(--np-gold) !important;
+}
+.footer-brand-name, .logo-text { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+.footer-col-title, .footer-heading {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(184,151,58,0.3) !important;
+  padding-bottom: 0.4rem !important;
+  color: var(--np-gold) !important;
+}
+.footer-link, .footer-links a { font-family: 'Libre Baskerville', serif !important; color: rgba(245,240,232,0.55) !important; }
+.footer-link:hover, .footer-links a:hover { color: var(--np-gold) !important; }
+
+/* ─── PORTAL / KONTEN PAGE ───────────────────────────────── */
+#page-konten { background: var(--np-paper) !important; }
+.lp-portal-inner.lp-portal-body {
+  background: transparent !important;
+  padding-top: 2rem !important;
+}
+.lp-np-masthead-name { font-family: 'Playfair Display', serif !important; font-size: clamp(2rem, 6vw, 4rem) !important; font-weight: 900 !important; color: var(--np-ink) !important; }
+.lp-np-masthead-name em { color: var(--np-gold) !important; }
+.lp-np-masthead { border-bottom: 4px double var(--np-ink) !important; background: var(--np-white) !important; }
+.lp-np-topbar { background: var(--np-paper2) !important; border-bottom: 1px solid var(--np-border) !important; font-family: 'Source Sans 3', sans-serif !important; }
+.lp-cat-btn {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+.lp-cat-btn.active { background: var(--np-gold) !important; color: var(--np-ink) !important; }
+
+/* ─── ARTICLE CARDS ──────────────────────────────────────── */
+.lp-article-card {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--np-shadow) !important;
+}
+.lp-article-card::before { background: var(--np-red) !important; }
+.lp-article-card:hover { border-color: var(--np-red) !important; transform: none !important; box-shadow: 0 4px 20px rgba(17,17,17,0.1) !important; }
+
+/* ─── SIDEBAR ────────────────────────────────────────────── */
+.lp-sidebar-box {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid var(--np-ink) !important;
+  border-radius: 0 !important;
+}
+.lp-sidebar-title {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.62rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--np-ink) !important;
+  border-bottom: 2px solid var(--np-border) !important;
+}
+.lp-ad-sidebar {
+  background: var(--np-ink) !important;
+  border: 1px solid rgba(184,151,58,0.25) !important;
+  border-top: 3px solid var(--np-gold) !important;
+  border-radius: 0 !important;
+}
+.lp-recent-list li { border-bottom: 1px solid var(--np-paper2) !important; }
+.lp-recent-title { font-family: 'Playfair Display', serif !important; color: var(--np-ink) !important; }
+.lp-recent-list li:hover .lp-recent-title { color: var(--np-red) !important; }
+
+/* ─── READ MODAL ─────────────────────────────────────────── */
+#lp-read-modal .lp-read-header {
+  background: var(--np-ink) !important;
+  border-bottom: 3px solid var(--np-gold) !important;
+}
+.lp-read-cat { color: var(--np-red) !important; font-family: 'Source Sans 3', sans-serif !important; letter-spacing: 0.2em !important; }
+.lp-read-title { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; letter-spacing: -0.02em !important; }
+.lp-read-disclaimer { border-left: 3px solid var(--np-gold) !important; background: rgba(184,151,58,0.05) !important; border-radius: 0 !important; }
+.lp-modal-box { border-radius: 0 !important; }
+
+/* ─── AD BANNERS ─────────────────────────────────────────── */
+.lp-ad-banner { border-radius: 0 !important; }
+.lp-ad-banner-bottom { background: var(--np-ink) !important; border-top: 3px solid var(--np-gold) !important; }
+.lp-ad-btn { border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; }
+
+/* ─── PRODUK PAGE ────────────────────────────────────────── */
+#page-produk { background: var(--np-paper) !important; }
+.prod-hero, .pk-hero { background: var(--np-ink) !important; border-bottom: 3px solid var(--np-gold) !important; }
+.prod-section-title, .pk-hero h1 { font-family: 'Playfair Display', serif !important; font-weight: 900 !important; }
+.prod-card, .pk-prod-card {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid transparent !important;
+  border-radius: 0 !important;
+}
+.prod-card:hover, .pk-prod-card:hover { border-top-color: var(--np-gold) !important; }
+
+/* ─── LEXICLASS PAGE ──────────────────────────────────────── */
+.lc-page { background: var(--np-ink) !important; }
+.lc-hero { border-bottom: 3px solid var(--np-gold) !important; }
+.lc-logo-text, .lc-card-title { font-family: 'Playfair Display', serif !important; }
+.lc-card { border-radius: 0 !important; border-top: 3px solid transparent !important; }
+.lc-card:hover { border-top-color: var(--np-gold) !important; }
+.lc-register-btn { border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; }
+
+/* ─── DASHBOARD ──────────────────────────────────────────── */
+#page-dashboard { background: var(--np-paper) !important; }
+.dash-login-box { border-radius: 0 !important; border-top: 3px solid var(--np-ink) !important; border: 1px solid var(--np-border) !important; }
+.dash-section-title { font-family: 'Playfair Display', serif !important; border-bottom: 3px double var(--np-ink) !important; }
+
+/* ─── MINI FOOTER ────────────────────────────────────────── */
+.page-mini-footer {
+  background: var(--np-paper2) !important;
+  border-top: 2px solid var(--np-border) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.62rem !important;
+}
+.mini-back-btn {
+  border-radius: 0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  border: none !important;
+}
+.mini-back-btn:hover { background: var(--np-gold) !important; color: var(--np-ink) !important; }
+
+/* ─── INSIGHT STATS ───────────────────────────────────────── */
+.lp-insight-num { font-family: 'Playfair Display', serif !important; }
+
+/* ─── TAG CHIP ────────────────────────────────────────────── */
+.lp-tag-chip { border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; }
+
+/* ─── SHARE BTNS ──────────────────────────────────────────── */
+.lp-share-btn { border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; }
+
+/* ─── WRITE BTN ───────────────────────────────────────────── */
+.lp-write-btn { border-radius: 0 !important; font-family: 'Source Sans 3', sans-serif !important; }
+
+/* ─── GENERAL INPUTS ──────────────────────────────────────── */
+.lp-kirim-input, .lp-kirim-textarea, .lp-field-input,
+.lp-editor-area {
+  border-radius: 0 !important;
+  font-family: 'Libre Baskerville', serif !important;
+}
+
+/* ─── SHOPEE CARDS ────────────────────────────────────────── */
+.shopee-card {
+  border-radius: 0 !important;
+  border: 1px solid var(--np-border) !important;
+}
+.shopee-card:hover { border-color: var(--np-gold) !important; }
+.shopee-card-link { border-radius: 0 !important; }
+
+/* ─── ANIMATE IN ──────────────────────────────────────────── */
+@keyframes np-fadein { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+#page-konten, #page-produk, #page-lexiclass,
+.about-section, .services-section, .hero {
+  animation: np-fadein 0.35s ease;
+}
+
+/* ─── COLUMN RULE UTILITY ──────────────────────────────────── */
+.np-col-rule {
+  width: 1px;
+  background: var(--np-border);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ─── PRINT-STYLE QUOTE ───────────────────────────────────── */
+blockquote {
+  border-left: 3px solid var(--np-gold);
+  padding: 0.75rem 1.25rem;
+  background: var(--np-paper2);
+  font-style: italic;
+  color: var(--np-ink2);
+  margin: 1.5rem 0;
+}
+
+/* ════════════════════════════════════════════════════════════
+   LEGALPRENEUR — ENHANCED NEWSPAPER LAYOUT v2
+   Penyempurnaan layout, homepage grid, sidebar, footer
+════════════════════════════════════════════════════════════ */
+
+/* ── Hide announce-bar (digantikan np-ticker) ── */
+.announce-bar { display: none !important; }
+
+/* ── Sembunyikan nav lama (digantikan np-nav-bar) ── */
+nav { display: none !important; }
+
+/* ── Nameplate kicker hidden (handled in v4 block above) ── */
+
+/* ══════════════════════════════════════════════════════════
+   HEADER CLEANUP v4 — Nameplate presisi, Auth Bar di Portal
+══════════════════════════════════════════════════════════ */
+
+/* ── Nameplate: bersih, kiri, presisi ── */
+#np-nameplate {
+  background: var(--np-white) !important;
+  border-bottom: 3px solid var(--np-border) !important;
+  padding: 1.5rem 2rem 1.25rem !important;
+  text-align: left !important;
+  position: static !important;
+  overflow: visible !important;
+}
+#np-nameplate-kicker  { display: none !important; }
+#np-nameplate-rule    { display: none !important; }
+.np-nameplate-controls { display: none !important; }
+
+#np-nameplate-title {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(2.4rem, 5.5vw, 4rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+  color: var(--np-ink) !important;
+  margin: 0 0 0.3rem 0 !important;
+  display: block !important;
+}
+#np-nameplate-title em {
+  color: var(--np-gold) !important;
+  font-style: normal !important;
+}
+#np-nameplate-tagline {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--np-ink3) !important;
+  font-style: normal !important;
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* ── Masthead date bar: tipis & clean ── */
+#np-masthead-bar {
+  background: var(--np-paper2) !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  padding: 0.4rem 2rem !important;
+  font-size: 0.68rem !important;
+}
+
+/* ── Portal auth bar: clean strip di bawah masthead konten ── */
+#lp-portal-auth-bar {
+  border-top: 1px solid var(--border-light);
+  background: var(--cream-2);
+  padding: 0.65rem clamp(1rem,4vw,3rem);
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+/* ── Sembunyikan div auth lama yang tidak terpakai (ada di topbar portal) ── */
+#lp-user-status-bar,
+#lp-auth-btn-wrap,
+#lp-write-btn-wrap {
+  display: none !important;
+}
+
+/* ── Responsive: nameplate mobile ── */
+@media (max-width: 600px) {
+  #np-nameplate {
+    padding: 1.1rem 1rem 0.9rem !important;
+  }
+  #np-nameplate-title {
+    font-size: clamp(2rem, 10vw, 2.6rem) !important;
+  }
+  #np-nameplate-tagline {
+    font-size: 0.58rem !important;
+    letter-spacing: 0.15em !important;
+  }
+  #np-masthead-bar {
+    padding: 0.4rem 1rem !important;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+}
+
+/* ── Homepage layout: Hero section newspaper magazine ── */
+.hero {
+  display: grid !important;
+  grid-template-columns: 1fr 380px !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  background: var(--np-white) !important;
+  border-bottom: 4px double var(--np-ink) !important;
+  gap: 0 !important;
+}
+
+.hero-left {
+  background: var(--np-white) !important;
+  padding: 3rem 3rem 3rem 4rem !important;
+  border-right: 1px solid var(--np-border) !important;
+  position: relative !important;
+}
+
+.hero-left::before { display: none !important; }
+
+.hero-title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem) !important;
+  font-weight: 900 !important;
+  color: var(--np-ink) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  text-shadow: none !important;
+  margin-bottom: 1rem !important;
+  border-top: 3px solid var(--np-red) !important;
+  padding-top: 1rem !important;
+}
+
+.hero-title em {
+  color: var(--np-gold) !important;
+  font-style: italic !important;
+}
+
+.hero-subtitle {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.2em !important;
+  color: var(--np-red) !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border-left: 3px solid var(--np-red) !important;
+  padding-left: 0.75rem !important;
+  border-radius: 0 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.hero-desc {
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 1rem !important;
+  color: var(--np-ink2) !important;
+  line-height: 1.8 !important;
+  max-width: 580px !important;
+}
+
+.hero-cred {
+  background: var(--np-paper2) !important;
+  border: 1px solid var(--np-border) !important;
+  border-left: 3px solid var(--np-gold) !important;
+  border-radius: 0 !important;
+  margin: 1.5rem 0 !important;
+  padding: 1rem 1.25rem !important;
+  display: flex !important;
+  gap: 1rem !important;
+  align-items: center !important;
+}
+
+.hero-cred-name {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--np-ink) !important;
+  font-weight: 700 !important;
+}
+
+.hero-actions {
+  display: flex !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+  margin-top: 1.5rem !important;
+}
+
+.btn-primary {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 0 !important;
+  border: 2px solid var(--np-ink) !important;
+  padding: 0.75rem 1.5rem !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.2s !important;
+}
+
+.btn-primary:hover {
+  background: var(--np-gold) !important;
+  color: var(--np-ink) !important;
+  border-color: var(--np-gold) !important;
+}
+
+.btn-outline {
+  border: 2px solid var(--np-ink) !important;
+  color: var(--np-ink) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 0 !important;
+  padding: 0.75rem 1.5rem !important;
+  background: transparent !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.2s !important;
+}
+
+.btn-outline:hover {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+}
+
+/* Hero right: sidebar-like panel */
+.hero-right {
+  background: var(--np-paper2) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 2rem 1.5rem !important;
+  border-top: 3px solid var(--np-ink) !important;
+}
+
+.hero-right::before { display: none !important; }
+
+.hero-badge {
+  background: var(--np-red) !important;
+  color: var(--np-white) !important;
+  border: none !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  padding: 0.35rem 0.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.badge-dot {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--np-white) !important;
+  border-radius: 50% !important;
+  animation: pulse 1.5s ease infinite !important;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero-stat-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 0.75rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.hero-stat {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid var(--np-ink) !important;
+  padding: 0.85rem !important;
+  text-align: center !important;
+}
+
+.hero-stat-num {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--np-ink) !important;
+  font-size: 1.6rem !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.hero-stat-label {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.58rem !important;
+  color: var(--np-ink3) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  line-height: 1.3 !important;
+}
+
+.hero-service-item {
+  border-bottom: 1px solid var(--np-border) !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--np-ink2) !important;
+  background: none !important;
+  padding: 0.65rem 0.5rem !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  transition: all 0.15s !important;
+}
+
+.hero-service-item:hover {
+  color: var(--np-red) !important;
+  background: rgba(192,0,26,0.04) !important;
+}
+
+.service-icon { font-size: 1rem !important; }
+.service-arrow { margin-left: auto !important; color: var(--np-red) !important; font-weight: 700 !important; }
+
+/* ── About & Services sections ── */
+.about-section {
+  background: var(--np-paper) !important;
+  border-top: 4px double var(--np-ink) !important;
+  border-bottom: 1px solid var(--np-border) !important;
+}
+
+.services-section {
+  background: var(--np-white) !important;
+  border-top: 4px double var(--np-ink) !important;
+  border-bottom: 1px solid var(--np-border) !important;
+}
+
+.section-label {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.25em !important;
+  color: var(--np-red) !important;
+  text-transform: uppercase !important;
+  background: none !important;
+  border: none !important;
+  border-bottom: 2px solid var(--np-red) !important;
+  padding-bottom: 0.3rem !important;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--np-ink) !important;
+}
+
+.section-title em, .section-title span { color: var(--np-gold) !important; }
+
+.profile-card {
+  background: var(--np-white) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid var(--np-ink) !important;
+  border-radius: 0 !important;
+  box-shadow: var(--np-shadow) !important;
+}
+
+.service-card {
+  background: var(--np-paper2) !important;
+  border: 1px solid var(--np-border) !important;
+  border-top: 3px solid transparent !important;
+  border-radius: 0 !important;
+}
+
+.service-card:hover {
+  border-top-color: var(--np-red) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(17,17,17,0.1) !important;
+}
+
+.service-title {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--np-ink) !important;
+}
+
+.service-btn {
+  background: var(--np-ink) !important;
+  color: #f0e4c0 !important;
+  border-radius: 0 !important;
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.08em !important;
+  border: 2px solid var(--np-ink) !important;
+}
+
+.service-btn:hover {
+  background: var(--np-gold) !important;
+  color: var(--np-ink) !important;
+  border-color: var(--np-gold) !important;
+}
+
+/* ── Konsultasi section ── */
+.consult-section {
+  background: var(--np-ink) !important;
+  border-top: 4px solid var(--np-gold) !important;
+}
+.consult-section::before { display: none !important; }
+.consult-title {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ── Enhanced footer ── */
+footer {
+  background: var(--np-ink) !important;
+  border-top: 4px solid var(--np-gold) !important;
+}
+.footer-brand-name, .logo-text {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+.footer-heading, .footer-col-title {
+  font-family: 'Source Sans 3', sans-serif !important;
+  font-size: 0.6rem !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(184,151,58,0.3) !important;
+  padding-bottom: 0.4rem !important;
+  color: var(--np-gold) !important;
+}
+.footer-link, .footer-links a {
+  font-family: 'Libre Baskerville', serif !important;
+  color: rgba(245,240,232,0.6) !important;
+  text-decoration: none !important;
+}
+.footer-link:hover, .footer-links a:hover { color: var(--np-gold) !important; }
+
+/* ── Kebijakan Privasi / Disclaimer footer links ── */
+#np-footer-extras {
+  background: var(--np-ink);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: rgba(245,240,232,0.35);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+#np-footer-extras a {
+  color: rgba(245,240,232,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+#np-footer-extras a:hover { color: var(--np-gold); }
+.np-footer-sep { margin: 0 0.6rem; color: rgba(245,240,232,0.2); }
+
+/* ── Kebijakan Privasi modal ── */
+#np-privacy-modal, #np-disclaimer-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: rgba(17,17,17,0.75);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+.np-legal-modal-box {
+  max-width: 760px;
+  margin: 0 auto;
+  background: var(--np-paper);
+  border: 1px solid var(--np-border);
+  border-top: 4px solid var(--np-gold);
+  padding: 2.5rem 3rem;
+  font-family: 'Libre Baskerville', serif;
+  color: var(--np-ink);
+  line-height: 1.8;
+  position: relative;
+}
+.np-legal-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: var(--np-ink);
+  color: var(--np-paper);
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.np-legal-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  border-bottom: 3px double var(--np-ink);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.np-legal-modal-box h3 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--np-red);
+  margin: 1.5rem 0 0.5rem;
+}
+.np-legal-modal-box p {
+  font-size: 0.95rem;
+  color: var(--np-ink2);
+  margin-bottom: 1rem;
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-left {
+    padding: 2.5rem 1.5rem 2rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--np-border) !important;
+  }
+  .hero-right {
+    padding: 1.5rem !important;
+    border-top: 1px solid var(--np-border) !important;
+  }
+  #np-masthead-bar { display: none; }
+}
+
+@media (max-width: 600px) {
+  .hero-left { padding: 1.5rem 1rem 1.5rem !important; }
+  .hero-title { font-size: 1.9rem !important; }
+  .hero-stat-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+</style>
+
+<!-- KEBIJAKAN PRIVASI MODAL -->
+<div id="np-privacy-modal" onclick="if(event.target===this)this.style.display='none'">
+  <div class="np-legal-modal-box">
+    <button class="np-legal-modal-close" onclick="document.getElementById('np-privacy-modal').style.display='none'">✕</button>
+    <div class="np-legal-modal-title">Kebijakan Privasi</div>
+    <h3>1. Pengumpulan Data</h3>
+    <p>LegalPreneur hanya mengumpulkan data yang Anda berikan secara sukarela, seperti nama, alamat email, dan nomor WhatsApp melalui formulir konsultasi atau pendaftaran kelas. Data ini digunakan semata-mata untuk keperluan komunikasi dan pemberian layanan.</p>
+    <h3>2. Penggunaan Data</h3>
+    <p>Data yang dikumpulkan digunakan untuk merespons pertanyaan konsultasi, mengirimkan informasi layanan, dan memproses pendaftaran LegalPreneur Class. Kami tidak menjual, menyewakan, atau membagikan data pribadi Anda kepada pihak ketiga tanpa izin Anda.</p>
+    <h3>3. Keamanan Data</h3>
+    <p>Kami berkomitmen menjaga keamanan data pribadi Anda dengan menerapkan langkah-langkah teknis yang wajar. Namun, tidak ada sistem transmisi data melalui internet yang sepenuhnya aman.</p>
+    <h3>4. Cookie dan Analytics</h3>
+    <p>Website ini dapat menggunakan cookie analitik untuk memahami pola penggunaan dan meningkatkan pengalaman pengguna. Anda dapat menonaktifkan cookie melalui pengaturan browser Anda.</p>
+    <h3>5. Hak Pengguna</h3>
+    <p>Anda berhak meminta akses, koreksi, atau penghapusan data pribadi Anda kapan saja dengan menghubungi kami melalui email legalpreneur.dk@gmail.com atau WhatsApp 0812-6219-5937.</p>
+    <h3>6. Perubahan Kebijakan</h3>
+    <p>Kebijakan privasi ini dapat diperbarui sewaktu-waktu. Perubahan akan diumumkan melalui website ini. Penggunaan berkelanjutan atas layanan kami dianggap sebagai persetujuan terhadap perubahan tersebut.</p>
+    <p style="font-family:'Source Sans 3',sans-serif; font-size:0.72rem; color:#888; margin-top:2rem; border-top:1px solid var(--np-border); padding-top:1rem;">Berlaku sejak: 1 Januari 2025 · LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</p>
+  </div>
+</div>
+
+<!-- DISCLAIMER MODAL -->
+<div id="np-disclaimer-modal" onclick="if(event.target===this)this.style.display='none'">
+  <div class="np-legal-modal-box">
+    <button class="np-legal-modal-close" onclick="document.getElementById('np-disclaimer-modal').style.display='none'">✕</button>
+    <div class="np-legal-modal-title">Disclaimer</div>
+    <h3>Informasi Hukum Bukan Nasihat Hukum</h3>
+    <p>Seluruh konten yang dipublikasikan di LegalPreneur — termasuk artikel, panduan, tips, dan informasi hukum lainnya — bersifat informatif dan edukatif semata. Konten ini tidak dapat dianggap sebagai nasihat hukum profesional, representasi hukum, atau opini hukum resmi.</p>
+    <h3>Konsultasi Profesional</h3>
+    <p>Untuk permasalahan hukum spesifik, kami sangat menganjurkan Anda untuk berkonsultasi langsung dengan advokat atau konsultan hukum berlisensi yang dapat memberikan nasihat yang tepat berdasarkan fakta dan situasi hukum Anda secara keseluruhan.</p>
+    <h3>Akurasi Informasi</h3>
+    <p>Meskipun kami berusaha menyajikan informasi yang akurat dan terkini, hukum dan peraturan dapat berubah. LegalPreneur tidak bertanggung jawab atas kerugian yang timbul akibat ketergantungan pada informasi yang disediakan tanpa verifikasi lebih lanjut.</p>
+    <h3>Hubungan Advokat-Klien</h3>
+    <p>Penggunaan website ini atau formulir konsultasi gratis tidak membentuk hubungan advokat-klien secara resmi. Hubungan advokat-klien hanya terbentuk melalui perjanjian jasa hukum yang ditandatangani oleh kedua pihak.</p>
+    <h3>Konten Pihak Ketiga</h3>
+    <p>Tautan atau referensi ke sumber eksternal disediakan hanya untuk kemudahan informasi. LegalPreneur tidak bertanggung jawab atas konten, akurasi, atau ketersediaan situs web pihak ketiga tersebut.</p>
+    <p style="font-family:'Source Sans 3',sans-serif; font-size:0.72rem; color:#888; margin-top:2rem; border-top:1px solid var(--np-border); padding-top:1rem;">© 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM · Medan, Sumatera Utara</p>
+  </div>
+</div>
+
 </head>
 <body>
+
+<!-- ════════════════════════════════════════════════════════
+     NP: MASTHEAD DATE BAR
+════════════════════════════════════════════════════════ -->
+<div id="np-masthead-bar">
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <span id="np-date-display"></span>
+    <span class="np-bar-sep">|</span>
+    <span>Portal Hukum · Bisnis · Regulasi · Mediasi</span>
+    <span class="np-bar-sep">|</span>
+    <span>Medan, Sumatera Utara</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp</a>
+    <span class="np-bar-sep">|</span>
+    <a href="mailto:legalpreneur.dk@gmail.com">Email</a>
+    <span class="np-bar-sep">|</span>
+    <span id="np-topbar-auth-wrap"></span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     NP: NAMEPLATE
+════════════════════════════════════════════════════════ -->
+<div id="np-nameplate">
+  <h1 id="np-nameplate-title">Legal<em>Preneur</em></h1>
+  <div id="np-nameplate-tagline">Advokat - Mediator Non Hakim - Konsultan Hukum</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     NP: BREAKING NEWS TICKER
+════════════════════════════════════════════════════════ -->
+<div id="np-ticker-wrap">
+  <div class="np-ticker-inner">
+    <span class="np-ticker-item"><span class="np-ticker-label">TERKINI</span>Portal Hukum &amp; Literasi Digital LegalPreneur — Informasi hukum terpercaya oleh Novrizal, S.I.Kom., S.H., CPM</span>
+    <span class="np-ticker-item"><span class="np-ticker-label">INFO</span>Konsultasi hukum gratis: WhatsApp 0812-6219-5937 — Advokat, Mediator Bersertifikat</span>
+    <span class="np-ticker-item"><span class="np-ticker-label">TERBARU</span>LegalPreneur Class kini tersedia — Kuasai hukum bisnis &amp; kontrak dalam 5 modul praktis</span>
+    <span class="np-ticker-item"><span class="np-ticker-label">TERKINI</span>Portal Hukum &amp; Literasi Digital LegalPreneur — Informasi hukum terpercaya oleh Novrizal, S.I.Kom., S.H., CPM</span>
+    <span class="np-ticker-item"><span class="np-ticker-label">INFO</span>Konsultasi hukum gratis: WhatsApp 0812-6219-5937 — Advokat, Mediator Bersertifikat</span>
+    <span class="np-ticker-item"><span class="np-ticker-label">TERBARU</span>LegalPreneur Class kini tersedia — Kuasai hukum bisnis &amp; kontrak dalam 5 modul praktis</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     NP: NAVIGATION BAR
+════════════════════════════════════════════════════════ -->
+<div id="np-nav-bar">
+  <div class="np-nav-inner">
+    <a href="#" class="np-nav-logo" onclick="showPage('beranda');return false;">LP</a>
+    <div class="np-nav-items" id="np-nav-items">
+      <a class="np-nav-link active" onclick="closeMenu();showPage('beranda');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Beranda</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Tentang</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Layanan</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('konten');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Konten</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('produk');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">🛍 Produk Kami</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('lexiclass');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">⚖ LegalPreneur Class</a>
+      <a id="np-nav-dashboard-link" class="np-nav-link" onclick="closeMenu();showPage('dashboard');return false;" href="#" style="display:none;color:#b8973a!important;">🔐 Dashboard</a>
+      <a class="np-nav-link np-nav-cta" onclick="closeMenu();showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" href="#">Daftar Kelas</a>
+    </div>
+    <button class="np-hamburger" id="np-hamburger" aria-label="Menu" onclick="document.getElementById('np-nav-items').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</div>
+
+<script>
+// NP: date display
+(function(){
+  var d=new Date();
+  var days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  var months=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  var el=document.getElementById('np-date-display');
+  if(el) el.textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+})();
+// NP: mirror dashboard link visibility from old nav
+var _npDashObs = setInterval(function(){
+  var oldDashLi = document.getElementById('nav-dashboard-li');
+  var npDashLink = document.getElementById('np-nav-dashboard-link');
+  if(oldDashLi && npDashLink){
+    npDashLink.style.display = (oldDashLi.style.display==='none'||oldDashLi.style.display==='') ? 'none' : 'block';
+  }
+},500);
+// NP: auth cloning ke nameplate DINONAKTIFKAN — auth buttons dipindah ke portal Konten
+</script>
+
+
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">
@@ -4121,100 +5764,474 @@ body {
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu">
-      <li><a href="#" onclick="closeMenu();showPage('home');return false;">Beranda</a></li>
+      <li><a href="#" onclick="closeMenu();showPage('beranda');return false;">Beranda</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Tentang</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
       <li><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a></li>
       <li><a href="#" onclick="closeMenu();showPage('produk');return false;">🛍 Produk Kami</a></li>
       <li><a href="#" onclick="closeMenu();showPage('lexiclass');return false;">⚖ LegalPreneur Class</a></li>
-      <li><a href="#" onclick="closeMenu();showPage('lexiclass');return false;" class="nav-cta">Daftar Kelas</a></li>
+      <li><a href="#" onclick="closeMenu();showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" class="nav-cta">Daftar Kelas</a></li>
       <li id="nav-dashboard-li" style="display:none;"><a href="#" onclick="closeMenu();showPage('dashboard');return false;" style="color:var(--gold)!important;">🔐 Dashboard</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <h1 class="hero-title">
-      Hukum yang<br><em>Mudah Dipahami</em>,<br>Advokasi yang<br>Berintegritas
-    </h1>
+<!-- ═══════════════════════════════════════════════════════════
+     BERANDA — Halaman Utama Portal LegalPreneur
+     Berisi: Headline, Kategori, Trending, Newsletter, dan navigasi
+═══════════════════════════════════════════════════════════ -->
+<div id="page-beranda" style="display:none; background:#f4f1eb; min-height:80vh;">
 
-    <p class="hero-subtitle">Platform hukum & literasi digital terpercaya</p>
+<style>
+/* ── Beranda Styles ─────────────────────────────────────── */
+.beranda-headline-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 0;
+  align-items: start;
+}
+@media (max-width: 900px) { .beranda-headline-grid { grid-template-columns: 1fr; } }
 
-    <p class="hero-desc" style="text-align:justify;">
-      LegalPreneur hadir untuk menjembatani masyarakat, profesional, dan korporasi dalam mengakses solusi hukum yang praktis, transparan, dan berdampak nyata.
-    </p>
+.beranda-headline-main {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: 4px solid #b8151a;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.beranda-headline-main:hover { box-shadow: 0 8px 32px rgba(15,14,11,0.12); }
+.beranda-hl-img {
+  width: 100%; height: 340px; object-fit: cover;
+  display: block; background: #e5e0d8;
+}
+.beranda-hl-no-img {
+  width: 100%; height: 340px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem; background: linear-gradient(135deg, #0f0e0b 0%, #2a2720 100%);
+}
+.beranda-hl-body { padding: 1.75rem 2rem 2rem; }
+.beranda-hl-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #b8151a; margin-bottom: 0.65rem;
+}
+.beranda-hl-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.2rem);
+  font-weight: 900; color: #0f0e0b; line-height: 1.12; letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+}
+.beranda-hl-summary {
+  font-family: 'Crimson Pro', serif; font-size: 1rem; color: #5c5749;
+  line-height: 1.7; margin-bottom: 1rem;
+}
+.beranda-hl-meta {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #9A9280;
+  letter-spacing: 0.06em; display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.beranda-hl-readbtn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: #0f0e0b; color: #f0e4c0;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
+  border: none; padding: 0.65rem 1.25rem; cursor: pointer; margin-top: 1rem;
+  transition: background 0.2s;
+}
+.beranda-hl-readbtn:hover { background: #b8973a; color: #0f0e0b; }
 
-    <div class="hero-cred">
-      <div class="hero-cred-icon">⚖️</div>
-      <div class="hero-cred-text">
-        <div class="hero-cred-name">Novrizal, S.I.Kom., S.H., CPM</div>
-        Advokat · Mediator Non Hakim · Konsultan Hukum<br>
-        Founder & CEO – LegalPreneur Digital Konsultan · Affiliate Marketer · Penulis
-      </div>
-    </div>
+/* Sidebar beranda */
+.beranda-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+.beranda-sidebar-box {
+  background: #fff; border: 1px solid #ddd; border-top: 3px solid #0f0e0b; padding: 1.25rem;
+}
+.beranda-sidebar-title {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #0f0e0b; border-bottom: 2px solid #e5e0d8;
+  padding-bottom: 0.5rem; margin-bottom: 1rem;
+}
+.beranda-trending-item {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  padding: 0.65rem 0; border-bottom: 1px solid #f0ebe3; cursor: pointer;
+}
+.beranda-trending-item:last-child { border-bottom: none; }
+.beranda-trending-num {
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
+  color: rgba(184,151,58,0.35); line-height: 1; flex-shrink: 0; min-width: 1.75rem;
+}
+.beranda-trending-title {
+  font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 600;
+  color: #0f0e0b; line-height: 1.35;
+}
+.beranda-trending-item:hover .beranda-trending-title { color: #b8151a; }
+.beranda-trending-cat {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #9A9280;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem;
+}
+/* Newsletter */
+.beranda-newsletter-box {
+  background: #0f0e0b; border-top: 3px solid #b8973a; padding: 1.5rem;
+}
+.beranda-nl-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 0.4rem; }
+.beranda-nl-sub { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.6; margin-bottom: 1rem; }
+.beranda-nl-input {
+  width: 100%; background: rgba(245,240,232,0.06); border: 1px solid rgba(184,151,58,0.3);
+  padding: 0.65rem 0.85rem; color: #f5f0e8; font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem; outline: none; margin-bottom: 0.65rem;
+}
+.beranda-nl-input::placeholder { color: rgba(245,240,232,0.3); }
+.beranda-nl-btn {
+  width: 100%; background: #b8973a; color: #0f0e0b;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
+  border: none; padding: 0.7rem; cursor: pointer; font-weight: 700;
+  transition: background 0.2s;
+}
+.beranda-nl-btn:hover { background: #d4b05a; }
+/* Ad sidebar box */
+.beranda-ad-box {
+  background: #0f0e0b; border-top: 3px solid #b8973a; padding: 1.5rem; text-align: center;
+}
+.beranda-ad-box p { color: rgba(245,240,232,0.55); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
+.beranda-ad-btn {
+  display: inline-block; background: #b8973a; color: #0f0e0b;
+  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em;
+  padding: 0.65rem 1.25rem; text-decoration: none; font-weight: 700; transition: background 0.2s;
+}
+.beranda-ad-btn:hover { background: #d4b05a; }
 
-    <div class="hero-actions">
-      <a href="#konsultasi" class="btn-primary">Konsultasi Gratis →</a>
-      <a href="#layanan" class="btn-outline">Lihat Layanan</a>
-    </div>
+/* Kategori grid */
+.beranda-kategori-section {
+  max-width: 1200px; margin: 2.5rem auto 0; padding: 0 2rem;
+}
+.beranda-kat-header {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+}
+.beranda-kat-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #b8151a; white-space: nowrap;
+}
+.beranda-kat-line { flex: 1; height: 2px; background: #0f0e0b; }
+.beranda-kat-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.beranda-kat-card {
+  background: #fff; border: 1px solid #ddd; border-top: 3px solid transparent;
+  padding: 1.25rem; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: block;
+}
+.beranda-kat-card:hover { border-top-color: #b8151a; box-shadow: 0 4px 20px rgba(15,14,11,0.08); }
+.beranda-kat-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.beranda-kat-name {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: #0f0e0b; margin-bottom: 0.25rem; font-weight: 700;
+}
+.beranda-kat-count { font-size: 0.8rem; color: #9A9280; }
+
+/* Recent articles grid in beranda */
+.beranda-recent-section {
+  max-width: 1200px; margin: 2.5rem auto 3rem; padding: 0 2rem;
+  display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start;
+}
+@media (max-width: 900px) { .beranda-recent-section { grid-template-columns: 1fr; } }
+.beranda-recent-label {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em;
+  color: #b8151a; text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.beranda-recent-title-h {
+  font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 900;
+  color: #0f0e0b; border-bottom: 3px double #0f0e0b; padding-bottom: 0.5rem; margin-bottom: 1.25rem;
+}
+.beranda-mini-card {
+  background: #fff; border: 1px solid #e5e0d8; border-left: 3px solid transparent;
+  padding: 0.85rem 1rem; margin-bottom: 0.85rem; cursor: pointer; transition: all 0.2s;
+  display: flex; gap: 0.75rem; align-items: flex-start;
+}
+.beranda-mini-card:hover { border-left-color: #b8151a; background: #fdf9f4; }
+.beranda-mini-cat-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.beranda-mini-card-title {
+  font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700;
+  color: #0f0e0b; line-height: 1.35; margin-bottom: 0.25rem;
+}
+.beranda-mini-card:hover .beranda-mini-card-title { color: #b8151a; }
+.beranda-mini-card-meta {
+  font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #9A9280; letter-spacing: 0.05em;
+}
+/* Beranda footer */
+.beranda-footer-links {
+  max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 3rem;
+  border-top: 3px double #0f0e0b; margin-top: 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem;
+}
+.beranda-footer-col-title {
+  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #0f0e0b; margin-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e0d8; padding-bottom: 0.4rem;
+}
+.beranda-footer-col a {
+  display: block; font-family: 'Crimson Pro', serif; font-size: 0.92rem;
+  color: #5c5749; text-decoration: none; margin-bottom: 0.4rem; transition: color 0.2s;
+}
+.beranda-footer-col a:hover { color: #b8151a; }
+.beranda-footer-copy {
+  max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+  border-top: 1px solid #e5e0d8;
+}
+.beranda-footer-copy span { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #9A9280; letter-spacing: 0.06em; }
+.beranda-footer-copy a { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #b8973a; text-decoration: none; }
+</style>
+
+<!-- Beranda: Headline Utama + Sidebar -->
+<div class="beranda-headline-grid">
+  <div>
+    <div id="beranda-hl-card" class="beranda-headline-main" onclick=""></div>
+    <div id="beranda-sub-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;"></div>
   </div>
-
-  <div class="hero-right">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      Tersedia untuk Konsultasi
+  <div class="beranda-sidebar">
+    <!-- Trending -->
+    <div class="beranda-sidebar-box">
+      <div class="beranda-sidebar-title">🔥 Artikel Trending</div>
+      <div id="beranda-trending-list"></div>
     </div>
-
-    <div class="hero-stat-grid">
-      <div class="hero-stat">
-        <div class="hero-stat-num">5+</div>
-        <div class="hero-stat-label">Tahun Pengalaman Hukum</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100+</div>
-        <div class="hero-stat-label">Klien Terlayani</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">10+</div>
-        <div class="hero-stat-label">Karya Literasi</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100+</div>
-        <div class="hero-stat-label">Mediasi/Non Litigasi</div>
-      </div>
+    <!-- Ad Box -->
+    <div class="beranda-newsletter-box">
+      <div class="beranda-nl-title">⚖️ Konsultasi Hukum Gratis</div>
+      <p class="beranda-nl-sub">Sampaikan permasalahan hukum Anda — advokat kami siap membantu dengan solusi yang praktis dan berintegritas.</p>
+      <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" class="beranda-ad-btn" style="display:block;text-align:center;margin-bottom:0.5rem;">Konsultasi Sekarang →</a>
     </div>
-
-    <div class="hero-services-quick">
-      <a href="#layanan" class="hero-service-item">
-        <span class="service-icon">⚖️</span>
-        <span class="service-text">Konsultasi Hukum Online</span>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="#layanan" class="hero-service-item">
-        <span class="service-icon">📑</span>
-        <span class="service-text">Penyusunan Kontrak & Dokumen Legal</span>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="#layanan" class="hero-service-item">
-        <span class="service-icon">🔍</span>
-        <span class="service-text">Verifikasi Legalitas Penyedia Layanan</span>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="#konten" class="hero-service-item">
-        <span class="service-icon">📚</span>
-        <span class="service-text">E-Book & Literasi Hukum Digital</span>
-        <span class="service-arrow">→</span>
-      </a>
-      <a href="#produk" class="hero-service-item">
-        <span class="service-icon">🛍️</span>
-        <span class="service-text">Produk Kami — Digital &amp; Rekomendasi</span>
-        <span class="service-arrow">→</span>
-      </a>
+    <!-- Newsletter signup -->
+    <div class="beranda-sidebar-box" style="border-top-color:#b8973a;">
+      <div class="beranda-sidebar-title">📬 Newsletter LegalPreneur</div>
+      <p style="font-size:0.82rem;color:#5c5749;line-height:1.6;margin-bottom:1rem;">Dapatkan update artikel hukum terbaru langsung ke WhatsApp Anda.</p>
+      <a href="https://wa.me/6281262195937?text=Halo%2C+saya+ingin+berlangganan+newsletter+LegalPreneur" target="_blank" class="beranda-hl-readbtn" style="display:block;text-align:center;font-size:0.65rem;">📱 Daftar via WhatsApp</a>
+    </div>
+    <!-- Iklan -->
+    <div class="beranda-ad-box">
+      <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#f5f0e8;margin-bottom:0.5rem;">LegalPreneur Class</div>
+      <p>Kuasai hukum kontrak bisnis. Kursus mini untuk UMKM. Mulai Rp50.000.</p>
+      <a href="#" onclick="showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" class="beranda-ad-btn">Daftar Kelas →</a>
     </div>
   </div>
 </div>
+
+<!-- Beranda: Ringkasan Kategori -->
+<div class="beranda-kategori-section">
+  <div class="beranda-kat-header">
+    <div class="beranda-kat-label">Jelajahi Topik</div>
+    <div class="beranda-kat-line"></div>
+    <button onclick="showPage('konten')" style="background:none;border:none;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:#b8973a;cursor:pointer;white-space:nowrap;">Lihat Semua →</button>
+  </div>
+  <div class="beranda-kat-grid" id="beranda-kat-grid">
+    <div class="beranda-kat-card" onclick="showPage('konten','nasional')">
+      <div class="beranda-kat-icon">🏛️</div>
+      <div class="beranda-kat-name">Nasional</div>
+      <div class="beranda-kat-count" id="bk-nasional">Hukum & kebijakan nasional</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','daerah')">
+      <div class="beranda-kat-icon">🗺️</div>
+      <div class="beranda-kat-name">Daerah</div>
+      <div class="beranda-kat-count" id="bk-daerah">Regulasi & isu regional</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','bisnis')">
+      <div class="beranda-kat-icon">💼</div>
+      <div class="beranda-kat-name">Bisnis</div>
+      <div class="beranda-kat-count" id="bk-bisnis">Hukum bisnis & UMKM</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','hukum')">
+      <div class="beranda-kat-icon">⚖️</div>
+      <div class="beranda-kat-name">Hukum</div>
+      <div class="beranda-kat-count" id="bk-hukum">Analisis & literasi hukum</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','teknologi')">
+      <div class="beranda-kat-icon">💻</div>
+      <div class="beranda-kat-name">Teknologi</div>
+      <div class="beranda-kat-count" id="bk-teknologi">Regulasi digital & siber</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','lifestyle')">
+      <div class="beranda-kat-icon">🌿</div>
+      <div class="beranda-kat-name">Lifestyle</div>
+      <div class="beranda-kat-count" id="bk-lifestyle">Gaya hidup & produktivitas</div>
+    </div>
+    <div class="beranda-kat-card" onclick="showPage('konten','opini')">
+      <div class="beranda-kat-icon">✍️</div>
+      <div class="beranda-kat-name">Opini</div>
+      <div class="beranda-kat-count" id="bk-opini">Sudut pandang & analisis</div>
+    </div>
+  </div>
+</div>
+
+<!-- Beranda: Artikel Terbaru + Navigasi Situs -->
+<div class="beranda-recent-section">
+  <div>
+    <div class="beranda-recent-label">Artikel Terbaru</div>
+    <div class="beranda-recent-title-h">Konten Pilihan LegalPreneur</div>
+    <div id="beranda-recent-list"></div>
+    <button onclick="showPage('konten')" style="background:#0f0e0b;color:#f0e4c0;border:none;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:0.75rem 1.5rem;cursor:pointer;margin-top:0.5rem;transition:background 0.2s;" onmouseover="this.style.background='#b8973a';this.style.color='#0f0e0b'" onmouseout="this.style.background='#0f0e0b';this.style.color='#f0e4c0'">Baca Semua Artikel →</button>
+  </div>
+
+  <!-- Navigasi Situs Sidebar -->
+  <div>
+    <div class="beranda-sidebar-box">
+      <div class="beranda-sidebar-title">🗂 Navigasi Situs</div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <a href="#" onclick="showPage('home');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>🏠</span> Layanan Hukum</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>👤</span> Tentang Pendiri</a>
+        <a href="#" onclick="showPage('konten');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>📰</span> Portal Berita</a>
+        <a href="#" onclick="showPage('produk');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>🛍️</span> Produk Digital</a>
+        <a href="#" onclick="showPage('lexiclass');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>⚖️</span> LegalPreneur Class</a>
+        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>💬</span> Konsultasi Hukum</a>
+      </div>
+    </div>
+
+    <!-- Kontak singkat -->
+    <div class="beranda-sidebar-box" style="margin-top:0;border-top-color:#22c55e;">
+      <div class="beranda-sidebar-title">📞 Hubungi Kami</div>
+      <div style="display:flex;flex-direction:column;gap:0.6rem;">
+        <a href="https://wa.me/6281262195937" target="_blank" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#22c55e;text-decoration:none;">📱 WA: 0812-6219-5937</a>
+        <a href="tel:085270707883" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#5c5749;text-decoration:none;">📞 Tel: 0852-7070-7883</a>
+        <a href="mailto:legalpreneur.dk@gmail.com" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#5c5749;text-decoration:none;">✉️ legalpreneur.dk@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Beranda: Footer Mini -->
+<div class="beranda-footer-links">
+  <div class="beranda-footer-col">
+    <div class="beranda-footer-col-title">Halaman</div>
+    <a href="#" onclick="showPage('home');return false;">Layanan</a>
+    <a href="#" onclick="showPage('konten');return false;">Portal Berita</a>
+    <a href="#" onclick="showPage('produk');return false;">Produk Kami</a>
+    <a href="#" onclick="showPage('lexiclass');return false;">LegalPreneur Class</a>
+  </div>
+  <div class="beranda-footer-col">
+    <div class="beranda-footer-col-title">Kategori Berita</div>
+    <a href="#" onclick="showPage('konten','nasional');return false;">Nasional</a>
+    <a href="#" onclick="showPage('konten','bisnis');return false;">Bisnis</a>
+    <a href="#" onclick="showPage('konten','hukum');return false;">Hukum</a>
+    <a href="#" onclick="showPage('konten','opini');return false;">Opini</a>
+  </div>
+  <div class="beranda-footer-col">
+    <div class="beranda-footer-col-title">Layanan Hukum</div>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Konsultasi Online</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Penyusunan Kontrak</a>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Mediasi</a>
+  </div>
+  <div class="beranda-footer-col">
+    <div class="beranda-footer-col-title">Tentang</div>
+    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Profil Pendiri</a>
+    <a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a>
+    <a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a>
+    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp</a>
+  </div>
+</div>
+<div class="beranda-footer-copy">
+  <span>© 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM · Medan, Sumatera Utara</span>
+  <div style="display:flex;gap:1rem;">
+    <a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a>
+    <a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a>
+  </div>
+</div>
+
+</div>
+<!-- /page-beranda -->
+
+<script>
+// ── Beranda renderer ──────────────────────────────────────
+function renderBeranda() {
+  // Wait for articles to be available
+  if (typeof lp_articles === 'undefined') {
+    setTimeout(renderBeranda, 300);
+    return;
+  }
+  var arts = [...lp_articles].sort((a,b) => b.createdAt - a.createdAt);
+
+  // Headline utama
+  var hlCard = document.getElementById('beranda-hl-card');
+  if (hlCard && arts.length > 0) {
+    var a = arts[0];
+    var catLabel = (typeof LP_CAT_LABELS !== 'undefined' && LP_CAT_LABELS[a.cat]) || a.cat || 'Umum';
+    var dateStr = typeof lp_formatDateTime === 'function' ? lp_formatDateTime(a.createdAt) : '';
+    var imgHtml = a.img
+      ? '<img class="beranda-hl-img" src="' + (a.img) + '" alt="' + (a.title||'') + '" onerror="this.parentElement.querySelector(\'.beranda-hl-no-img\') && (this.style.display=\'none\')">'
+      : '<div class="beranda-hl-no-img">' + (typeof lp_catIcon==='function'?lp_catIcon(a.cat):'📰') + '</div>';
+    hlCard.innerHTML = imgHtml + '<div class="beranda-hl-body">'
+      + '<div class="beranda-hl-cat">' + catLabel + '</div>'
+      + '<div class="beranda-hl-title">' + (a.title||'Tanpa Judul') + '</div>'
+      + '<div class="beranda-hl-summary">' + (a.summary||'') + '</div>'
+      + '<div class="beranda-hl-meta"><span>✍️ ' + (a.author||'Novrizal') + '</span><span>🕐 ' + dateStr + '</span></div>'
+      + '<button class="beranda-hl-readbtn" onclick="event.stopPropagation();lp_openRead(\'' + a.id + '\');showPage(\'konten\')">Baca Selengkapnya →</button>'
+      + '</div>';
+    hlCard.onclick = function() { lp_openRead(a.id); showPage('konten'); };
+  } else if (hlCard) {
+    hlCard.innerHTML = '<div class="beranda-hl-no-img">📰</div><div class="beranda-hl-body"><div class="beranda-hl-cat">Portal LegalPreneur</div><div class="beranda-hl-title">Selamat Datang di Portal Hukum LegalPreneur</div><div class="beranda-hl-summary">Platform literasi hukum digital terpercaya oleh Novrizal, S.I.Kom., S.H., CPM. Artikel terbaru akan ditampilkan di sini.</div><button class="beranda-hl-readbtn" onclick="showPage(\'konten\')">Buka Portal Berita →</button></div>';
+  }
+
+  // Sub grid (artikel ke-2 & ke-3)
+  var subGrid = document.getElementById('beranda-sub-grid');
+  if (subGrid) {
+    var subArts = arts.slice(1, 3);
+    subGrid.innerHTML = subArts.map(function(a) {
+      var catLabel = (typeof LP_CAT_LABELS !== 'undefined' && LP_CAT_LABELS[a.cat]) || a.cat || 'Umum';
+      var dateStr = typeof lp_formatDateTime === 'function' ? lp_formatDateTime(a.createdAt) : '';
+      return '<div style="background:#fff;border:1px solid #ddd;border-top:3px solid transparent;padding:1.25rem;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.borderTopColor=\'#b8151a\'" onmouseout="this.style.borderTopColor=\'transparent\'" onclick="lp_openRead(\'' + a.id + '\');showPage(\'konten\')">'
+        + '<div style="font-family:\'DM Mono\',monospace;font-size:0.58rem;letter-spacing:0.15em;color:#b8151a;text-transform:uppercase;margin-bottom:0.4rem;">' + catLabel + '</div>'
+        + '<div style="font-family:\'Playfair Display\',serif;font-size:1rem;font-weight:700;color:#0f0e0b;line-height:1.3;margin-bottom:0.4rem;">' + (a.title||'') + '</div>'
+        + '<div style="font-family:\'DM Mono\',monospace;font-size:0.58rem;color:#9A9280;">' + dateStr + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  // Trending
+  var trendList = document.getElementById('beranda-trending-list');
+  if (trendList) {
+    var tArts = arts.slice(0, 6);
+    trendList.innerHTML = tArts.map(function(a, i) {
+      var catLabel = (typeof LP_CAT_LABELS !== 'undefined' && LP_CAT_LABELS[a.cat]) || a.cat || 'Umum';
+      return '<div class="beranda-trending-item" onclick="lp_openRead(\'' + a.id + '\');showPage(\'konten\')">'
+        + '<div class="beranda-trending-num">0' + (i+1) + '</div>'
+        + '<div><div class="beranda-trending-title">' + (a.title||'') + '</div><div class="beranda-trending-cat">' + catLabel + '</div></div>'
+        + '</div>';
+    }).join('');
+    if (tArts.length === 0) {
+      trendList.innerHTML = '<div style="font-size:0.85rem;color:#9A9280;padding:0.5rem 0;">Belum ada artikel.</div>';
+    }
+  }
+
+  // Artikel terbaru list
+  var recentList = document.getElementById('beranda-recent-list');
+  if (recentList) {
+    var rArts = arts.slice(0, 8);
+    recentList.innerHTML = rArts.map(function(a) {
+      var catLabel = (typeof LP_CAT_LABELS !== 'undefined' && LP_CAT_LABELS[a.cat]) || a.cat || 'Umum';
+      var dateStr = typeof lp_formatDateTime === 'function' ? lp_formatDateTime(a.createdAt) : '';
+      var icon = typeof lp_catIcon === 'function' ? lp_catIcon(a.cat) : '📰';
+      return '<div class="beranda-mini-card" onclick="lp_openRead(\'' + a.id + '\');showPage(\'konten\')">'
+        + '<div class="beranda-mini-cat-icon">' + icon + '</div>'
+        + '<div><div class="beranda-mini-card-title">' + (a.title||'') + '</div>'
+        + '<div class="beranda-mini-card-meta">' + catLabel + ' · ' + dateStr + '</div></div>'
+        + '</div>';
+    }).join('');
+    if (rArts.length === 0) {
+      recentList.innerHTML = '<div style="font-size:0.92rem;color:#9A9280;padding:1rem 0;">Belum ada artikel. <button onclick="showPage(\'konten\')" style="background:none;border:none;color:#b8973a;cursor:pointer;font-family:\'Crimson Pro\',serif;font-size:0.92rem;">Buka portal →</button></div>';
+    }
+  }
+
+  // Kategori count
+  if (typeof lp_articles !== 'undefined') {
+    var catKeys = ['nasional','daerah','bisnis','hukum','teknologi','lifestyle','opini'];
+    catKeys.forEach(function(cat) {
+      var el = document.getElementById('bk-' + cat);
+      if (!el) return;
+      var count = lp_articles.filter(function(a) { return a.cat === cat; }).length;
+      if (count > 0) el.textContent = count + ' artikel';
+    });
+  }
+}
+</script>
+
+<!-- HERO -->
 
 <!-- TENTANG PENDIRI -->
 <section class="about-section" id="tentang">
@@ -4349,28 +6366,82 @@ body {
   </div>
 </div>
 
-<!-- ── PORTAL HEADER ─────────────────────────────────── -->
+<!-- ── PORTAL HEADER (Newspaper Masthead) ──────────────── -->
 <div class="lp-portal-header">
   <div class="lp-portal-inner">
-    <div class="lp-portal-brand">
-      <span class="lp-portal-tag">PORTAL HUKUM & LITERASI</span>
-      <h1 class="lp-portal-title">Berita & Artikel <em>LegalPreneur</em></h1>
-      <p class="lp-portal-sub">Informasi hukum, literasi digital, dan analisis kebijakan terkini oleh Novrizal, S.I.Kom., S.H., CPM</p>
-    </div>
-    <div class="lp-portal-meta">
-      <span id="lp-date-now" class="lp-date-live"></span>
-      <!-- Info user login -->
-      <div id="lp-user-status-bar" style="display:none; align-items:center; gap:0.5rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.08em; color:rgba(245,240,232,0.7);">
-        <span id="lp-user-greeting"></span>
-        <button onclick="lp_logout()" style="background:rgba(184,151,58,0.15); border:1px solid rgba(184,151,58,0.3); border-radius:4px; padding:0.3rem 0.65rem; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--gold); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(184,151,58,0.3)'" onmouseout="this.style.background='rgba(184,151,58,0.15)'">🔒 Keluar</button>
-      </div>
-      <div id="lp-auth-btn-wrap" style="display:none;">
-        <button onclick="lp_showAuthBox()" style="background:var(--gold); color:var(--ink); border:none; border-radius:5px; padding:0.5rem 1.1rem; font-family:'DM Mono',monospace; font-size:0.65rem; font-weight:700; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">✍️ Daftar / Masuk</button>
-      </div>
-      <div id="lp-write-btn-wrap" style="display:none;">
-        <button class="lp-write-btn" onclick="lp_openEditor(null)">✏️ &nbsp;Tulis Artikel Baru</button>
+
+    <!-- Top utility bar — date & location only -->
+    <div class="lp-np-topbar" style="padding-left: clamp(1rem,4vw,3rem); padding-right: clamp(1rem,4vw,3rem);">
+      <div class="lp-np-topbar-left">
+        <span id="lp-date-now" class="lp-date-live" style="color:#555;"></span>
+        <span style="color:#bbb;">|</span>
+        <span>Portal Hukum &amp; Literasi Digital</span>
+        <span style="color:#bbb;">|</span>
+        <span>Medan, Sumatera Utara</span>
       </div>
     </div>
+
+    <!-- Masthead / Nameplate -->
+    <div class="lp-np-masthead" style="padding-left: clamp(1rem,4vw,3rem); padding-right: clamp(1rem,4vw,3rem);">
+      <div class="lp-np-masthead-eyebrow">PORTAL HUKUM · BISNIS · REGULASI · MEDIASI</div>
+      <div class="lp-np-masthead-name">Legal<em>Preneur</em></div>
+      <div class="lp-np-masthead-tagline">Advokat - Mediator Non Hakim - Konsultan Hukum</div>
+      <div class="lp-np-masthead-rule"></div>
+    </div>
+
+    <!-- Auth Action Bar — Daftar/Masuk · Tulis Artikel · Keluar -->
+    <div id="lp-portal-auth-bar" style="
+      padding: 0.75rem clamp(1rem,4vw,3rem);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-top: 1px solid var(--border-light);
+      background: var(--cream-2);
+      flex-wrap: wrap;
+    ">
+      <!-- Daftar / Masuk — tampil jika belum login -->
+      <div id="lp-auth-btn-wrap-portal" style="display:none;">
+        <button onclick="lp_showAuthBox()" style="
+          display:inline-flex; align-items:center; gap:0.4rem;
+          background:var(--ink); color:var(--gold-pale);
+          border:none; padding:0.55rem 1.25rem;
+          font-family:'DM Mono',monospace; font-size:0.68rem;
+          font-weight:700; letter-spacing:0.08em;
+          cursor:pointer; transition:all 0.2s;
+          border-radius:0;
+        " onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='var(--ink)';this.style.color='var(--gold-pale)'">
+          ✍️ &nbsp;Daftar / Masuk
+        </button>
+      </div>
+      <!-- Tulis Artikel — tampil jika sudah login -->
+      <div id="lp-write-btn-wrap-portal" style="display:none;">
+        <button onclick="lp_openEditor(null)" style="
+          display:inline-flex; align-items:center; gap:0.4rem;
+          background:var(--gold); color:var(--ink);
+          border:none; padding:0.55rem 1.25rem;
+          font-family:'DM Mono',monospace; font-size:0.68rem;
+          font-weight:700; letter-spacing:0.08em;
+          cursor:pointer; transition:all 0.2s;
+          border-radius:0;
+        " onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">
+          ✏️ &nbsp;Tulis Artikel
+        </button>
+      </div>
+      <!-- User greeting + Keluar — tampil jika sudah login -->
+      <div id="lp-user-status-bar-portal" style="display:none; align-items:center; gap:0.65rem; font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.06em; color:var(--ink-2);">
+        <span id="lp-user-greeting-portal"></span>
+        <button onclick="lp_logout()" style="
+          display:inline-flex; align-items:center; gap:0.35rem;
+          background:rgba(184,151,58,0.12); border:1px solid rgba(184,151,58,0.35);
+          border-radius:0; padding:0.45rem 0.85rem;
+          font-family:'DM Mono',monospace; font-size:0.62rem;
+          color:var(--gold); cursor:pointer; transition:all 0.2s;
+        " onmouseover="this.style.background='rgba(184,151,58,0.25)'" onmouseout="this.style.background='rgba(184,151,58,0.12)'">
+          🔒 &nbsp;Keluar
+        </button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -4526,7 +6597,7 @@ body {
 </div>
 
 <div class="page-mini-footer">
-  <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
+  <button onclick="showPage('beranda')" class="mini-back-btn">← Kembali ke Beranda</button>
   <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
   <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
 </div>
@@ -4547,7 +6618,7 @@ body {
     <input type="password" id="dash-pw-input" class="dash-pw-input" placeholder="Masukkan kata sandi…" onkeydown="if(event.key==='Enter')dashLogin()">
     <button class="dash-pw-btn" onclick="dashLogin()">🔓 Masuk Dashboard</button>
     <div id="dash-pw-err" style="display:none; color:#f87171; font-family:'DM Mono',monospace; font-size:0.68rem; margin-top:0.75rem; text-align:center;">❌ Kata sandi salah. Coba lagi.</div>
-    <button onclick="showPage('home')" class="dash-back-link">← Kembali ke Beranda</button>
+    <button onclick="showPage('beranda')" class="dash-back-link">← Kembali ke Beranda</button>
   </div>
 </div>
 
@@ -4719,7 +6790,7 @@ body {
   </div><!-- /dash-inner -->
 
   <div class="page-mini-footer" style="margin-top:0;">
-    <button onclick="dashLogout();showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
+    <button onclick="dashLogout();showPage('beranda')" class="mini-back-btn">← Kembali ke Beranda</button>
     <span>LegalPreneur Owner Dashboard · Confidential</span>
     <span style="color:var(--gold);" id="dash-last-update"></span>
   </div>
@@ -5323,7 +7394,7 @@ body {
   </div><!-- /pk-panel-shopee -->
 
   <div class="page-mini-footer">
-    <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
+    <button onclick="showPage('beranda')" class="mini-back-btn">← Kembali ke Beranda</button>
     <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
     <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
   </div>
@@ -6015,22 +8086,19 @@ function pkFilterDigital(cat, btn) {
                   <div class="lc-script-segment">
                     <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
                     <div class="lc-script-text">"Tahukah kamu, banyak kontrak bisnis yang TIDAK SAH secara hukum — padahal sudah ditandatangani?"</div>
-                    <div class="lc-script-dir">Tampil teks besar di layar, ekspresi serius, nada mengejutkan</div>
+
                   </div>
                   <div class="lc-script-segment">
                     <div class="lc-script-segment-label">Isi (5–35 dtk)</div>
                     <div class="lc-script-text">"Menurut Pasal 1320 KUHPerdata, ada 4 syarat agar kontrak sah: satu — kedua pihak harus sepakat. Dua — keduanya harus cakap hukum. Tiga — kontraknya harus punya objek yang jelas. Empat — tujuannya harus halal. Kalau satu aja kurang, kontrak itu bisa BATAL."</div>
-                    <div class="lc-script-dir">Tampilkan angka 1–2–3–4 satu per satu dengan animasi teks</div>
+
                   </div>
                   <div class="lc-script-segment">
                     <div class="lc-script-segment-label">CTA (35–45 dtk)</div>
                     <div class="lc-script-text">"Mau belajar lebih dalam soal kontrak bisnis? Kursus mini saya ada di link bio — mulai dari 50 ribu aja."</div>
-                    <div class="lc-script-dir">Tunjuk kamera + gesture ke atas mengarah ke bio</div>
+
                   </div>
                 </div>
-                <div class="lc-script-footer">
-                  <div class="lc-script-footer-row"><span>→</span> Posting: Selasa atau Kamis pukul 07.00–09.00 WIB</div>
-                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kontrakbisnis #hukumumkm #tipsbisnishukum #umkmindonesia</div>
                 </div>
               </div><!-- /lc-script-box -->
               </div><!-- /lc-slide-script-grid -->
@@ -7271,7 +9339,7 @@ function pkFilterDigital(cat, btn) {
 
 
   <div class="page-mini-footer">
-    <button onclick="showPage('home')" class="mini-back-btn">← Kembali ke Beranda</button>
+    <button onclick="showPage('beranda')" class="mini-back-btn">← Kembali ke Beranda</button>
     <span>LegalPreneur · Novrizal, S.I.Kom., S.H., CPM</span>
     <a href="https://wa.me/6281262195937" target="_blank">WhatsApp: 0812-6219-5937</a>
   </div>
@@ -7352,7 +9420,7 @@ function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
       <div>
         <div class="footer-col-title">Navigasi</div>
         <ul class="footer-links">
-          <li><a href="#" onclick="showPage('home');return false;">Beranda</a></li>
+          <li><a href="#" onclick="showPage('beranda');return false;">Beranda</a></li>
           <li><a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
           <li><a href="#" onclick="showPage('konten');return false;">Konten</a></li>
           <li><a href="#" onclick="showPage('produk');return false;">Produk Kami</a></li>
@@ -7389,13 +9457,27 @@ function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
         © 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM
       </div>
       <ul class="footer-bottom-links">
-        <li><a href="#">Kebijakan Privasi</a></li>
-        <li><a href="#">Syarat & Ketentuan</a></li>
+        <li><a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a></li>
+        <li><a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a></li>
         <li><a href="#konsultasi">Hubungi Kami</a></li>
       </ul>
     </div>
   </div>
 </footer>
+
+<!-- NP Footer Extras Bar -->
+<div id="np-footer-extras">
+  <div>LegalPreneur Portal Hukum &amp; Literasi Digital · Medan, Sumatera Utara</div>
+  <div>
+    <a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a>
+    <span class="np-footer-sep">|</span>
+    <a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a>
+    <span class="np-footer-sep">|</span>
+    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp</a>
+    <span class="np-footer-sep">|</span>
+    <a href="mailto:legalpreneur.dk@gmail.com">Email</a>
+  </div>
+</div>
 
 
 <script>
@@ -7670,7 +9752,7 @@ function filterShopee(q) {
 
 
 function showPage(page, cat) {
-  const allPages = ['page-konten','page-affiliate','page-digital','page-produk','page-dashboard','page-lexiclass'];
+  const allPages = ['page-konten','page-affiliate','page-digital','page-produk','page-dashboard','page-lexiclass','page-beranda'];
 
   // Semua elemen yang hanya tampil di halaman home
   const hero     = document.querySelector('.hero');
@@ -7679,6 +9761,10 @@ function showPage(page, cat) {
   const konsultasi = document.getElementById('konsultasi');
   const footerEl = document.querySelector('footer');
   const announceBar = document.querySelector('.announce-bar');
+  const npFooterExtras = document.getElementById('np-footer-extras');
+  const npNameplate = document.getElementById('np-nameplate');
+  const npMastheadBar = document.getElementById('np-masthead-bar');
+  const npTicker = document.getElementById('np-ticker-wrap');
 
   if (page === 'home') {
     // Tampilkan semua elemen home
@@ -7688,12 +9774,39 @@ function showPage(page, cat) {
     konsultasi   && (konsultasi.style.display = '');
     footerEl     && (footerEl.style.display = '');
     announceBar  && (announceBar.style.display = '');
+    npFooterExtras && (npFooterExtras.style.display = '');
+    npNameplate  && (npNameplate.style.display = '');
+    npMastheadBar && (npMastheadBar.style.display = '');
+    npTicker     && (npTicker.style.display = '');
     // Sembunyikan semua halaman lain
     allPages.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else if (page === 'beranda') {
+    // Sembunyikan elemen home
+    hero         && (hero.style.display = 'none');
+    tentang      && (tentang.style.display = 'none');
+    layanan      && (layanan.style.display = 'none');
+    konsultasi   && (konsultasi.style.display = 'none');
+    footerEl     && (footerEl.style.display = 'none');
+    announceBar  && (announceBar.style.display = 'none');
+    npFooterExtras && (npFooterExtras.style.display = 'none');
+    npNameplate  && (npNameplate.style.display = 'none');
+    npMastheadBar && (npMastheadBar.style.display = 'none');
+    npTicker     && (npTicker.style.display = 'none');
+    // Tampilkan page-beranda
+    allPages.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = (id === 'page-beranda') ? 'block' : 'none';
+    });
+    // Init artikel jika belum
+    lp_init();
+    setTimeout(() => {
+      renderBeranda();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 200);
   } else {
     // Sembunyikan semua elemen home
     hero         && (hero.style.display = 'none');
@@ -7702,6 +9815,10 @@ function showPage(page, cat) {
     konsultasi   && (konsultasi.style.display = 'none');
     footerEl     && (footerEl.style.display = 'none');
     announceBar  && (announceBar.style.display = 'none');
+    npFooterExtras && (npFooterExtras.style.display = '');
+    npNameplate  && (npNameplate.style.display = 'none');
+    npMastheadBar && (npMastheadBar.style.display = 'none');
+    npTicker     && (npTicker.style.display = 'none');
     // Tampilkan halaman yang dipilih
     allPages.forEach(id => {
       const el = document.getElementById(id);
@@ -7994,14 +10111,25 @@ window.lp_sheetsCallback = function(rows) {
       if (lp_articles.length === 0) lp_loadFromLocalStorage();
       return;
     }
+    // Baca localStorage dulu sebelum mapped, untuk perbandingan body
+    var localDataForMerge = [];
+    try { localDataForMerge = JSON.parse(localStorage.getItem(LP_STORE_KEY)) || []; } catch(e) {}
+    var localBodyMap = {};
+    localDataForMerge.forEach(function(a) { if (a.id) localBodyMap[a.id] = a.body || ''; });
+
     var mapped = rows.map(function(row) {
+      var sheetsBody = String(row.body || '');
+      // FIX: Jika body di Sheets lebih pendek dari di localStorage (karena terpotong saat sync),
+      // gunakan body lokal yang lebih lengkap agar artikel tidak tampil terpotong
+      var localBody = localBodyMap[String(row.id || '')] || '';
+      var finalBody = (localBody.length > sheetsBody.length) ? localBody : sheetsBody;
       return {
         id:        String(row.id || ''),
         title:     String(row.title || ''),
         cat:       String(row.cat || 'umum'),
         author:    String(row.author || 'Novrizal, S.I.Kom., S.H., CPM'),
         summary:   String(row.summary || ''),
-        body:      String(row.body || ''),
+        body:      finalBody,
         tags:      String(row.tags || ''),
         img:       String(row.img || ''),
         imgCaption: String(row.imgCaption || ''),
@@ -8016,8 +10144,7 @@ window.lp_sheetsCallback = function(rows) {
     // Ambil artikel dari localStorage yang ID-nya belum ada di Sheets (belum tersinkron)
     var localUnsyncedIds = [];
     try {
-      var localData = JSON.parse(localStorage.getItem(LP_STORE_KEY)) || [];
-      localUnsyncedIds = localData.filter(function(a) {
+      localUnsyncedIds = localDataForMerge.filter(function(a) {
         return a.id && a.title && !sheetsIds.includes(a.id);
       });
     } catch(e) {}
@@ -8250,6 +10377,9 @@ function lp_renderPortalWithOwnerCheck() {
   // Tombol Tulis Artikel: tampil untuk owner ATAU pengguna terdaftar (lp_isLoggedIn)
   const writeBtnWrap = document.getElementById('lp-write-btn-wrap');
   if (writeBtnWrap) writeBtnWrap.style.display = (lp_isOwner() || lp_isLoggedIn()) ? '' : 'none';
+  // Portal auth bar write button
+  const writeBtnPortal = document.getElementById('lp-write-btn-wrap-portal');
+  if (writeBtnPortal) writeBtnPortal.style.display = (lp_isOwner() || lp_isLoggedIn()) ? '' : 'none';
   // Form kirim artikel: tampil untuk semua (termasuk visitor yang sudah daftar)
   const kirimBox = document.getElementById('lp-kirim-form-box');
   if (kirimBox) kirimBox.style.display = lp_isLoggedIn() || lp_isOwner() ? '' : 'none';
@@ -8310,7 +10440,6 @@ function lp_renderFeatured(a) {
         <div class="lp-featured-meta">
           <span>✍️ ${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</span>
           <span>🕐 ${dateStr}</span>
-          <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         </div>
         <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
           <button class="lp-featured-read" onclick="event.stopPropagation();lp_openRead('${a.id}')">Baca Selengkapnya →</button>
@@ -8338,7 +10467,7 @@ function lp_renderCard(a) {
         <div class="lp-card-title">${lp_esc(a.title)}</div>
         <div class="lp-card-summary">${lp_esc(a.summary)}</div>
         <div class="lp-card-footer">
-          <div class="lp-card-meta">🕐 ${dateStr} · ⏱ ${lp_readTime(a.body)} mnt</div>
+          <div class="lp-card-meta">🕐 ${dateStr}</div>
           ${editBtn}
         </div>
       </div>
@@ -8419,7 +10548,6 @@ function lp_openReadFromData(a) {
       <div class="lp-read-byline">
         <span class="lp-byline-author">✍️ <strong>${lp_esc(a.author || 'Novrizal, S.I.Kom., S.H., CPM')}</strong></span>
         <span class="lp-byline-datetime">🕐 ${dateStr}</span>
-        <span>⏱ ${lp_readTime(a.body)} menit baca</span>
         <span style="margin-left:auto; font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--gold); padding:0.28rem 0.65rem; background:rgba(184,151,58,0.08); border:1px solid rgba(184,151,58,0.25); border-radius:4px;">🔗 Dibagikan</span>
       </div>
       <div class="lp-read-summary-block">${lp_esc(a.summary)}</div>
@@ -9797,14 +11925,28 @@ function lp_updateUserBar() {
   const statusBar = document.getElementById('lp-user-status-bar');
   const authBtnWrap = document.getElementById('lp-auth-btn-wrap');
   const greeting = document.getElementById('lp-user-greeting');
+  // Portal auth bar elements
+  const portalStatus = document.getElementById('lp-user-status-bar-portal');
+  const portalAuth   = document.getElementById('lp-auth-btn-wrap-portal');
+  const portalWrite  = document.getElementById('lp-write-btn-wrap-portal');
+  const portalGreeting = document.getElementById('lp-user-greeting-portal');
   const user = lp_getLoggedInUser();
   if (user) {
     if (statusBar) { statusBar.style.display = 'flex'; }
     if (authBtnWrap) authBtnWrap.style.display = 'none';
     if (greeting) greeting.textContent = `👤 ${user.name}`;
+    // Portal bar: show greeting + keluar, hide daftar/masuk, show tulis artikel
+    if (portalStatus) { portalStatus.style.display = 'flex'; }
+    if (portalAuth)   { portalAuth.style.display = 'none'; }
+    if (portalWrite)  { portalWrite.style.display = ''; }
+    if (portalGreeting) portalGreeting.textContent = `👤 ${user.name}`;
   } else {
     if (statusBar) statusBar.style.display = 'none';
     if (authBtnWrap) authBtnWrap.style.display = '';
+    // Portal bar: show daftar/masuk only
+    if (portalStatus) { portalStatus.style.display = 'none'; }
+    if (portalAuth)   { portalAuth.style.display = ''; }
+    if (portalWrite)  { portalWrite.style.display = 'none'; }
   }
 }
 
@@ -10425,7 +12567,6 @@ function lp_openRead(id) {
       + '<div class="lp-read-byline">'
       + '<span class="lp-byline-author">✍️ <strong>' + authorEsc + '</strong></span>'
       + '<span class="lp-byline-datetime">🕐 ' + dateStr + '</span>'
-      + '<span>⏱ ' + readTime + ' menit baca</span>'
       + '</div>'
       + '<div class="lp-read-summary-block">' + lp_esc(a.summary) + '</div>'
       + '<div class="lp-read-article-body" id="lp-article-body-el">' + bodyWithAds + '</div>'
@@ -11068,6 +13209,19 @@ window.addEventListener('popstate', function(event) {
         _lp_closeRead_original();
       }
     }
+  }
+});
+// ── Inisialisasi Halaman: tampilkan Beranda saat pertama kali dimuat ─────
+document.addEventListener('DOMContentLoaded', function() {
+  // Hanya tampilkan beranda jika tidak ada ?id= di URL (deep link ke artikel)
+  var params = new URLSearchParams(window.location.search);
+  if (!params.get('id')) {
+    // Jalankan setelah semua script siap
+    setTimeout(function() {
+      if (typeof showPage === 'function') {
+        showPage('beranda');
+      }
+    }, 50);
   }
 });
 </script>
