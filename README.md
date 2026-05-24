@@ -8506,11 +8506,8 @@ function lp_getShareUrl() {
     if (window.location.protocol === 'file:') return '';
     return window.location.href.split('#')[0];
   }
-  // Gunakan OG Proxy URL agar preview gambar + judul tampil di WA/FB/Telegram
-  // OG Proxy → Apps Script membaca artikel dari Sheets → kirim OG tags → redirect ke situs
-  if (LP_SHEETS_URL && LP_SHEETS_URL.indexOf('script.google.com') !== -1 && lp_currentArticle.id) {
-    return LP_SHEETS_URL.replace('/exec', '/exec') + '?id=' + encodeURIComponent(lp_currentArticle.id);
-  }
+  // Gunakan URL situs langsung (GitHub Pages) agar link share bersih dan mudah dibagikan.
+  // Koneksi ke Apps Script / Google Sheets tetap berjalan untuk load konten artikel.
   var url = lp_encodeArticleToUrl(lp_currentArticle);
   // Jika URL masih relatif (file lokal, LP_SITE_URL belum diisi), beri tahu user
   if (!url.startsWith('http')) {
