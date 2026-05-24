@@ -4577,7 +4577,8 @@ body {
 #np-nav-bar::-webkit-scrollbar { display: none; }
 @media (max-width: 860px) {
   #np-nav-bar {
-    overflow: visible;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 .np-nav-inner {
@@ -4636,36 +4637,51 @@ body {
   background: #e0001f !important;
   color: var(--np-white) !important;
 }
-.np-hamburger {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-left: auto;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 44px;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
+/* hamburger dihapus — semua menu selalu tampil */
+.np-hamburger { display: none !important; }
+
+/* Nav bar: scroll horizontal di mobile agar semua menu tampil */
+#np-nav-bar {
+  overflow-x: auto !important;
+  overflow-y: visible !important;
 }
-.np-hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--np-white);
-  transition: all 0.2s;
+#np-nav-bar::-webkit-scrollbar { display: none; }
+
+/* Nav items: selalu tampil sebaris di semua ukuran layar */
+.np-nav-items {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  position: static !important;
+  background: transparent !important;
+  border: none !important;
+  overflow: visible !important;
 }
+
+/* Di mobile: link sedikit lebih kecil agar muat */
 @media (max-width: 860px) {
-  .np-hamburger { display: flex; }
-  .np-nav-inner { position: relative; }
-  .np-nav-items { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--np-ink); border-top: 1px solid rgba(255,255,255,0.1); z-index: 500; }
-  .np-nav-items.open { display: flex; }
-  .np-nav-link { padding: 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
-  .np-nav-cta { margin: 0.5rem 1rem; text-align: center; }
+  .np-nav-inner {
+    padding: 0 0.5rem;
+    flex-wrap: nowrap;
+  }
+  .np-nav-link {
+    font-size: 0.55rem !important;
+    padding: 0.75rem 0.6rem !important;
+    letter-spacing: 0.06em !important;
+    white-space: nowrap !important;
+    border-bottom: none !important;
+  }
+  .np-nav-cta {
+    margin-left: 0.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.55rem !important;
+    white-space: nowrap !important;
+  }
+  .np-nav-logo {
+    font-size: 0.85rem !important;
+    padding: 0.75rem 0.75rem 0.75rem 0 !important;
+    margin-right: 0.25rem !important;
+  }
 }
 
 /* ─── HIDE OLD ANNOUNCE BAR / NAV / PORTAL HEADER ───────── */
@@ -5732,9 +5748,7 @@ footer {
       <a id="np-nav-dashboard-link" class="np-nav-link" onclick="closeMenu();showPage('dashboard');return false;" href="#" style="display:none;color:#b8973a!important;">🔐 Dashboard</a>
       <a class="np-nav-link np-nav-cta" onclick="closeMenu();showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" href="#">Daftar Kelas</a>
     </div>
-    <button class="np-hamburger" id="np-hamburger" aria-label="Menu" onclick="document.getElementById('np-nav-items').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
+
   </div>
 </div>
 
