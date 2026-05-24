@@ -5780,359 +5780,391 @@ var _npDashObs = setInterval(function(){
      BERANDA — Halaman Utama Portal LegalPreneur
      Berisi: Headline, Kategori, Trending, Newsletter, dan navigasi
 ═══════════════════════════════════════════════════════════ -->
-<div id="page-beranda" style="display:none; background:#f4f1eb; min-height:80vh;">
+<div id="page-beranda" style="display:none;">
 
 <style>
-/* ── Beranda Styles ─────────────────────────────────────── */
-.beranda-headline-grid {
+/* ══════════════════════════════════════════════════════
+   BERANDA — Hero Split Layout (sesuai desain gambar)
+══════════════════════════════════════════════════════ */
+#page-beranda {
+  background: #f5f0e8;
+  min-height: 100vh;
+}
+
+/* Hero container: split 50/50 */
+.pb-hero {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2.5rem 2rem 0;
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
 }
-@media (max-width: 900px) { .beranda-headline-grid { grid-template-columns: 1fr; } }
 
-.beranda-headline-main {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-top: 4px solid #b8151a;
+/* LEFT: dark side */
+.pb-left {
+  background: #0f0e0b;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 4rem 5rem 5rem;
   overflow: hidden;
-  cursor: pointer;
-  transition: box-shadow 0.2s;
 }
-.beranda-headline-main:hover { box-shadow: 0 8px 32px rgba(15,14,11,0.12); }
-.beranda-hl-img {
-  width: 100%; height: 340px; object-fit: cover;
-  display: block; background: #e5e0d8;
+.pb-left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 80%, rgba(184,151,58,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 90% 20%, rgba(184,151,58,0.05) 0%, transparent 50%);
+  pointer-events: none;
 }
-.beranda-hl-no-img {
-  width: 100%; height: 340px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 5rem; background: linear-gradient(135deg, #0f0e0b 0%, #2a2720 100%);
-}
-.beranda-hl-body { padding: 1.75rem 2rem 2rem; }
-.beranda-hl-cat {
-  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #b8151a; margin-bottom: 0.65rem;
-}
-.beranda-hl-title {
-  font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.2rem);
-  font-weight: 900; color: #0f0e0b; line-height: 1.12; letter-spacing: -0.02em;
-  margin-bottom: 0.85rem;
-}
-.beranda-hl-summary {
-  font-family: 'Crimson Pro', serif; font-size: 1rem; color: #5c5749;
-  line-height: 1.7; margin-bottom: 1rem;
-}
-.beranda-hl-meta {
-  font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #9A9280;
-  letter-spacing: 0.06em; display: flex; gap: 1rem; flex-wrap: wrap;
-}
-.beranda-hl-readbtn {
-  display: inline-flex; align-items: center; gap: 0.4rem;
-  background: #0f0e0b; color: #f0e4c0;
-  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
-  border: none; padding: 0.65rem 1.25rem; cursor: pointer; margin-top: 1rem;
-  transition: background 0.2s;
-}
-.beranda-hl-readbtn:hover { background: #b8973a; color: #0f0e0b; }
 
-/* Sidebar beranda */
-.beranda-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-.beranda-sidebar-box {
-  background: #fff; border: 1px solid #ddd; border-top: 3px solid #0f0e0b; padding: 1.25rem;
+.pb-left-inner {
+  position: relative;
+  z-index: 1;
 }
-.beranda-sidebar-title {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em;
-  text-transform: uppercase; color: #0f0e0b; border-bottom: 2px solid #e5e0d8;
-  padding-bottom: 0.5rem; margin-bottom: 1rem;
-}
-.beranda-trending-item {
-  display: flex; gap: 0.75rem; align-items: flex-start;
-  padding: 0.65rem 0; border-bottom: 1px solid #f0ebe3; cursor: pointer;
-}
-.beranda-trending-item:last-child { border-bottom: none; }
-.beranda-trending-num {
-  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
-  color: rgba(184,151,58,0.35); line-height: 1; flex-shrink: 0; min-width: 1.75rem;
-}
-.beranda-trending-title {
-  font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 600;
-  color: #0f0e0b; line-height: 1.35;
-}
-.beranda-trending-item:hover .beranda-trending-title { color: #b8151a; }
-.beranda-trending-cat {
-  font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #9A9280;
-  letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem;
-}
-/* Newsletter */
-.beranda-newsletter-box {
-  background: #0f0e0b; border-top: 3px solid #b8973a; padding: 1.5rem;
-}
-.beranda-nl-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #f5f0e8; margin-bottom: 0.4rem; }
-.beranda-nl-sub { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.6; margin-bottom: 1rem; }
-.beranda-nl-input {
-  width: 100%; background: rgba(245,240,232,0.06); border: 1px solid rgba(184,151,58,0.3);
-  padding: 0.65rem 0.85rem; color: #f5f0e8; font-family: 'Crimson Pro', serif;
-  font-size: 0.95rem; outline: none; margin-bottom: 0.65rem;
-}
-.beranda-nl-input::placeholder { color: rgba(245,240,232,0.3); }
-.beranda-nl-btn {
-  width: 100%; background: #b8973a; color: #0f0e0b;
-  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em;
-  border: none; padding: 0.7rem; cursor: pointer; font-weight: 700;
-  transition: background 0.2s;
-}
-.beranda-nl-btn:hover { background: #d4b05a; }
-/* Ad sidebar box */
-.beranda-ad-box {
-  background: #0f0e0b; border-top: 3px solid #b8973a; padding: 1.5rem; text-align: center;
-}
-.beranda-ad-box p { color: rgba(245,240,232,0.55); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1rem; }
-.beranda-ad-btn {
-  display: inline-block; background: #b8973a; color: #0f0e0b;
-  font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em;
-  padding: 0.65rem 1.25rem; text-decoration: none; font-weight: 700; transition: background 0.2s;
-}
-.beranda-ad-btn:hover { background: #d4b05a; }
 
-/* Kategori grid */
-.beranda-kategori-section {
-  max-width: 1200px; margin: 2.5rem auto 0; padding: 0 2rem;
+/* Title */
+.pb-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fdfcf9;
+  margin-bottom: 0.6rem;
 }
-.beranda-kat-header {
-  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+.pb-title em {
+  font-style: italic;
+  color: #b8973a;
 }
-.beranda-kat-label {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #b8151a; white-space: nowrap;
+
+/* Subtitle */
+.pb-subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+  font-style: italic;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 2rem;
+  line-height: 1.45;
 }
-.beranda-kat-line { flex: 1; height: 2px; background: #0f0e0b; }
-.beranda-kat-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;
-  margin-bottom: 0.5rem;
+
+/* Desc paragraph */
+.pb-desc {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1.05rem;
+  color: rgba(245,240,232,0.72);
+  line-height: 1.78;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
 }
-.beranda-kat-card {
-  background: #fff; border: 1px solid #ddd; border-top: 3px solid transparent;
-  padding: 1.25rem; cursor: pointer; transition: all 0.2s; text-decoration: none;
+
+/* Founder credential box */
+.pb-cred {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid rgba(184,151,58,0.28);
+  background: rgba(184,151,58,0.06);
+  margin-bottom: 2.5rem;
+  max-width: 460px;
+}
+.pb-cred-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.pb-cred-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: rgba(245,240,232,0.65);
+  line-height: 1.65;
+}
+.pb-cred-name {
+  color: #b8973a;
+  font-weight: 600;
+  font-size: 0.78rem;
+  margin-bottom: 0.15rem;
   display: block;
 }
-.beranda-kat-card:hover { border-top-color: #b8151a; box-shadow: 0 4px 20px rgba(15,14,11,0.08); }
-.beranda-kat-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-.beranda-kat-name {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em;
-  text-transform: uppercase; color: #0f0e0b; margin-bottom: 0.25rem; font-weight: 700;
-}
-.beranda-kat-count { font-size: 0.8rem; color: #9A9280; }
 
-/* Recent articles grid in beranda */
-.beranda-recent-section {
-  max-width: 1200px; margin: 2.5rem auto 3rem; padding: 0 2rem;
-  display: grid; grid-template-columns: 1fr 320px; gap: 2rem; align-items: start;
+/* Buttons */
+.pb-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
-@media (max-width: 900px) { .beranda-recent-section { grid-template-columns: 1fr; } }
-.beranda-recent-label {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em;
-  color: #b8151a; text-transform: uppercase; margin-bottom: 0.5rem;
+.pb-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #b8973a;
+  color: #0f0e0b;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border: 2px solid #b8973a;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s;
+  white-space: nowrap;
 }
-.beranda-recent-title-h {
-  font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 900;
-  color: #0f0e0b; border-bottom: 3px double #0f0e0b; padding-bottom: 0.5rem; margin-bottom: 1.25rem;
+.pb-btn-primary:hover {
+  background: #d4b05a;
+  border-color: #d4b05a;
 }
-.beranda-mini-card {
-  background: #fff; border: 1px solid #e5e0d8; border-left: 3px solid transparent;
-  padding: 0.85rem 1rem; margin-bottom: 0.85rem; cursor: pointer; transition: all 0.2s;
-  display: flex; gap: 0.75rem; align-items: flex-start;
+.pb-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: #f5f0e8;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border: 2px solid rgba(245,240,232,0.3);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.22s;
+  white-space: nowrap;
 }
-.beranda-mini-card:hover { border-left-color: #b8151a; background: #fdf9f4; }
-.beranda-mini-cat-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-.beranda-mini-card-title {
-  font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700;
-  color: #0f0e0b; line-height: 1.35; margin-bottom: 0.25rem;
+.pb-btn-outline:hover {
+  border-color: #b8973a;
+  color: #b8973a;
 }
-.beranda-mini-card:hover .beranda-mini-card-title { color: #b8151a; }
-.beranda-mini-card-meta {
-  font-family: 'DM Mono', monospace; font-size: 0.58rem; color: #9A9280; letter-spacing: 0.05em;
+
+/* RIGHT: cream side */
+.pb-right {
+  background: #f5f0e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 4rem 4rem 3.5rem;
+  position: relative;
 }
-/* Beranda footer */
-.beranda-footer-links {
-  max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 3rem;
-  border-top: 3px double #0f0e0b; margin-top: 1rem;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem;
+
+/* Status badge */
+.pb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fdfcf9;
+  border: 1px solid rgba(184,151,58,0.35);
+  padding: 0.45rem 0.9rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: #b8973a;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  width: fit-content;
 }
-.beranda-footer-col-title {
-  font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
-  text-transform: uppercase; color: #0f0e0b; margin-bottom: 0.75rem;
-  border-bottom: 1px solid #e5e0d8; padding-bottom: 0.4rem;
+.pb-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: pbpulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
-.beranda-footer-col a {
-  display: block; font-family: 'Crimson Pro', serif; font-size: 0.92rem;
-  color: #5c5749; text-decoration: none; margin-bottom: 0.4rem; transition: color 0.2s;
+@keyframes pbpulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* Stats grid 2x2 */
+.pb-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(92,87,73,0.15);
+  border: 1px solid rgba(92,87,73,0.15);
+  margin-bottom: 2.5rem;
+  overflow: hidden;
 }
-.beranda-footer-col a:hover { color: #b8151a; }
-.beranda-footer-copy {
-  max-width: 1200px; margin: 0 auto; padding: 1rem 2rem 2rem;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
-  border-top: 1px solid #e5e0d8;
+.pb-stat {
+  background: #fdfcf9;
+  padding: 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
-.beranda-footer-copy span { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #9A9280; letter-spacing: 0.06em; }
-.beranda-footer-copy a { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: #b8973a; text-decoration: none; }
+.pb-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f0e0b;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.pb-stat-label {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: #5c5749;
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+/* Service list */
+.pb-services {
+  display: flex;
+  flex-direction: column;
+}
+.pb-service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid rgba(92,87,73,0.14);
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.02rem;
+  color: #2a2720;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.18s, background 0.18s;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  text-align: left;
+  width: 100%;
+}
+.pb-service-item:last-child { border-bottom: none; }
+.pb-service-item:hover { color: #b8973a; background: rgba(184,151,58,0.05); }
+.pb-service-item:hover .pb-srv-arrow { transform: translateX(4px); }
+.pb-srv-icon {
+  font-size: 1.1rem;
+  width: 26px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.pb-srv-text { flex: 1; font-weight: 500; }
+.pb-srv-arrow {
+  color: #b8973a;
+  font-size: 0.85rem;
+  transition: transform 0.18s;
+  flex-shrink: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .pb-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .pb-left {
+    padding: 3.5rem 1.5rem 3rem;
+    order: 1;
+  }
+  .pb-right {
+    padding: 2.5rem 1.5rem 3rem;
+    order: 2;
+  }
+  .pb-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .pb-subtitle { font-size: 1rem; margin-bottom: 1.25rem; }
+  .pb-desc { font-size: 0.97rem; margin-bottom: 1.75rem; max-width: 100%; }
+  .pb-cred { margin-bottom: 1.75rem; max-width: 100%; }
+  .pb-badge { margin-bottom: 1.75rem; }
+  .pb-stats { margin-bottom: 1.75rem; }
+  .pb-stat { padding: 1rem; }
+  .pb-stat-num { font-size: 1.65rem; }
+}
+@media (max-width: 480px) {
+  .pb-left { padding: 2.5rem 1.25rem 2.5rem; }
+  .pb-right { padding: 2rem 1.25rem 2.5rem; }
+  .pb-actions { flex-direction: column; gap: 0.75rem; }
+  .pb-btn-primary, .pb-btn-outline { justify-content: center; }
+}
 </style>
 
-<!-- Beranda: Headline Utama + Sidebar -->
-<div class="beranda-headline-grid">
-  <div>
-    <div id="beranda-hl-card" class="beranda-headline-main" onclick=""></div>
-    <div id="beranda-sub-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;"></div>
-  </div>
-  <div class="beranda-sidebar">
-    <!-- Trending -->
-    <div class="beranda-sidebar-box">
-      <div class="beranda-sidebar-title">🔥 Artikel Trending</div>
-      <div id="beranda-trending-list"></div>
-    </div>
-    <!-- Ad Box -->
-    <div class="beranda-newsletter-box">
-      <div class="beranda-nl-title">⚖️ Konsultasi Hukum Gratis</div>
-      <p class="beranda-nl-sub">Sampaikan permasalahan hukum Anda — advokat kami siap membantu dengan solusi yang praktis dan berintegritas.</p>
-      <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" class="beranda-ad-btn" style="display:block;text-align:center;margin-bottom:0.5rem;">Konsultasi Sekarang →</a>
-    </div>
-    <!-- Newsletter signup -->
-    <div class="beranda-sidebar-box" style="border-top-color:#b8973a;">
-      <div class="beranda-sidebar-title">📬 Newsletter LegalPreneur</div>
-      <p style="font-size:0.82rem;color:#5c5749;line-height:1.6;margin-bottom:1rem;">Dapatkan update artikel hukum terbaru langsung ke WhatsApp Anda.</p>
-      <a href="https://wa.me/6281262195937?text=Halo%2C+saya+ingin+berlangganan+newsletter+LegalPreneur" target="_blank" class="beranda-hl-readbtn" style="display:block;text-align:center;font-size:0.65rem;">📱 Daftar via WhatsApp</a>
-    </div>
-    <!-- Iklan -->
-    <div class="beranda-ad-box">
-      <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#f5f0e8;margin-bottom:0.5rem;">LegalPreneur Class</div>
-      <p>Kuasai hukum kontrak bisnis. Kursus mini untuk UMKM. Mulai Rp50.000.</p>
-      <a href="#" onclick="showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" class="beranda-ad-btn">Daftar Kelas →</a>
-    </div>
-  </div>
-</div>
+<!-- BERANDA: Split Hero Layout -->
+<div class="pb-hero">
 
-<!-- Beranda: Ringkasan Kategori -->
-<div class="beranda-kategori-section">
-  <div class="beranda-kat-header">
-    <div class="beranda-kat-label">Jelajahi Topik</div>
-    <div class="beranda-kat-line"></div>
-    <button onclick="showPage('konten')" style="background:none;border:none;font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:#b8973a;cursor:pointer;white-space:nowrap;">Lihat Semua →</button>
-  </div>
-  <div class="beranda-kat-grid" id="beranda-kat-grid">
-    <div class="beranda-kat-card" onclick="showPage('konten','nasional')">
-      <div class="beranda-kat-icon">🏛️</div>
-      <div class="beranda-kat-name">Nasional</div>
-      <div class="beranda-kat-count" id="bk-nasional">Hukum & kebijakan nasional</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','daerah')">
-      <div class="beranda-kat-icon">🗺️</div>
-      <div class="beranda-kat-name">Daerah</div>
-      <div class="beranda-kat-count" id="bk-daerah">Regulasi & isu regional</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','bisnis')">
-      <div class="beranda-kat-icon">💼</div>
-      <div class="beranda-kat-name">Bisnis</div>
-      <div class="beranda-kat-count" id="bk-bisnis">Hukum bisnis & UMKM</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','hukum')">
-      <div class="beranda-kat-icon">⚖️</div>
-      <div class="beranda-kat-name">Hukum</div>
-      <div class="beranda-kat-count" id="bk-hukum">Analisis & literasi hukum</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','teknologi')">
-      <div class="beranda-kat-icon">💻</div>
-      <div class="beranda-kat-name">Teknologi</div>
-      <div class="beranda-kat-count" id="bk-teknologi">Regulasi digital & siber</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','lifestyle')">
-      <div class="beranda-kat-icon">🌿</div>
-      <div class="beranda-kat-name">Lifestyle</div>
-      <div class="beranda-kat-count" id="bk-lifestyle">Gaya hidup & produktivitas</div>
-    </div>
-    <div class="beranda-kat-card" onclick="showPage('konten','opini')">
-      <div class="beranda-kat-icon">✍️</div>
-      <div class="beranda-kat-name">Opini</div>
-      <div class="beranda-kat-count" id="bk-opini">Sudut pandang & analisis</div>
-    </div>
-  </div>
-</div>
-
-<!-- Beranda: Artikel Terbaru + Navigasi Situs -->
-<div class="beranda-recent-section">
-  <div>
-    <div class="beranda-recent-label">Artikel Terbaru</div>
-    <div class="beranda-recent-title-h">Konten Pilihan LegalPreneur</div>
-    <div id="beranda-recent-list"></div>
-    <button onclick="showPage('konten')" style="background:#0f0e0b;color:#f0e4c0;border:none;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;padding:0.75rem 1.5rem;cursor:pointer;margin-top:0.5rem;transition:background 0.2s;" onmouseover="this.style.background='#b8973a';this.style.color='#0f0e0b'" onmouseout="this.style.background='#0f0e0b';this.style.color='#f0e4c0'">Baca Semua Artikel →</button>
-  </div>
-
-  <!-- Navigasi Situs Sidebar -->
-  <div>
-    <div class="beranda-sidebar-box">
-      <div class="beranda-sidebar-title">🗂 Navigasi Situs</div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;">
-        <a href="#" onclick="showPage('home');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>🏠</span> Layanan Hukum</a>
-        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>👤</span> Tentang Pendiri</a>
-        <a href="#" onclick="showPage('konten');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>📰</span> Portal Berita</a>
-        <a href="#" onclick="showPage('produk');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>🛍️</span> Produk Digital</a>
-        <a href="#" onclick="showPage('lexiclass');return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #f0ebe3;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>⚖️</span> LegalPreneur Class</a>
-        <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" style="display:flex;align-items:center;gap:0.6rem;font-size:0.92rem;color:#2a2720;text-decoration:none;padding:0.5rem 0;" onmouseover="this.style.color='#b8151a'" onmouseout="this.style.color='#2a2720'"><span>💬</span> Konsultasi Hukum</a>
+  <!-- LEFT: dark editorial side -->
+  <div class="pb-left">
+    <div class="pb-left-inner">
+      <h1 class="pb-title">Hukum yang<br><em>Mudah Dipahami,</em><br>Advokasi yang<br>Berintegritas</h1>
+      <p class="pb-subtitle">Platform hukum &amp; literasi digital terpercaya</p>
+      <p class="pb-desc">LegalPreneur hadir untuk menjembatani masyarakat, profesional, dan korporasi dalam mengakses solusi hukum yang praktis, transparan, dan berdampak nyata.</p>
+      <div class="pb-cred">
+        <div class="pb-cred-icon">⚖️</div>
+        <div class="pb-cred-text">
+          <span class="pb-cred-name">Novrizal, S.I.Kom., S.H., CPM</span>
+          Advokat · Mediator Non Hakim · Konsultan Hukum<br>
+          Founder &amp; CEO – LegalPreneur Digital Konsultan<br>
+          Affiliate Marketer · Penulis
+        </div>
       </div>
-    </div>
-
-    <!-- Kontak singkat -->
-    <div class="beranda-sidebar-box" style="margin-top:0;border-top-color:#22c55e;">
-      <div class="beranda-sidebar-title">📞 Hubungi Kami</div>
-      <div style="display:flex;flex-direction:column;gap:0.6rem;">
-        <a href="https://wa.me/6281262195937" target="_blank" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#22c55e;text-decoration:none;">📱 WA: 0812-6219-5937</a>
-        <a href="tel:085270707883" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#5c5749;text-decoration:none;">📞 Tel: 0852-7070-7883</a>
-        <a href="mailto:legalpreneur.dk@gmail.com" style="display:flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.68rem;color:#5c5749;text-decoration:none;">✉️ legalpreneur.dk@gmail.com</a>
+      <div class="pb-actions">
+        <a href="#" class="pb-btn-primary" onclick="showPage('home');setTimeout(()=>{var el=document.getElementById('konsultasi');if(el)el.scrollIntoView({behavior:'smooth'});},80);return false;">Konsultasi Gratis →</a>
+        <a href="#" class="pb-btn-outline" onclick="showPage('home');setTimeout(()=>{var el=document.getElementById('layanan');if(el)el.scrollIntoView({behavior:'smooth'});},80);return false;">Lihat Layanan</a>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Beranda: Footer Mini -->
-<div class="beranda-footer-links">
-  <div class="beranda-footer-col">
-    <div class="beranda-footer-col-title">Halaman</div>
-    <a href="#" onclick="showPage('home');return false;">Layanan</a>
-    <a href="#" onclick="showPage('konten');return false;">Portal Berita</a>
-    <a href="#" onclick="showPage('produk');return false;">Produk Kami</a>
-    <a href="#" onclick="showPage('lexiclass');return false;">LegalPreneur Class</a>
+  <!-- RIGHT: cream stat + services side -->
+  <div class="pb-right">
+    <div class="pb-badge">
+      <span class="pb-badge-dot"></span>
+      Tersedia untuk Konsultasi
+    </div>
+
+    <!-- Stats 2x2 -->
+    <div class="pb-stats">
+      <div class="pb-stat">
+        <div class="pb-stat-num">5<sup style="font-size:1rem;">+</sup></div>
+        <div class="pb-stat-label">Tahun Pengalaman Hukum</div>
+      </div>
+      <div class="pb-stat">
+        <div class="pb-stat-num">100<sup style="font-size:1rem;">+</sup></div>
+        <div class="pb-stat-label">Klien Terlayani</div>
+      </div>
+      <div class="pb-stat">
+        <div class="pb-stat-num">10<sup style="font-size:1rem;">+</sup></div>
+        <div class="pb-stat-label">Karya Literasi</div>
+      </div>
+      <div class="pb-stat">
+        <div class="pb-stat-num">100<sup style="font-size:1rem;">+</sup></div>
+        <div class="pb-stat-label">Mediasi/Non Litigasi</div>
+      </div>
+    </div>
+
+    <!-- Service links -->
+    <div class="pb-services">
+      <button class="pb-service-item" onclick="showPage('home');setTimeout(()=>{var el=document.getElementById('layanan');if(el)el.scrollIntoView({behavior:'smooth'});},80);">
+        <span class="pb-srv-icon">⚖️</span>
+        <span class="pb-srv-text">Konsultasi Hukum Online</span>
+        <span class="pb-srv-arrow">→</span>
+      </button>
+      <button class="pb-service-item" onclick="showPage('home');setTimeout(()=>{var el=document.getElementById('layanan');if(el)el.scrollIntoView({behavior:'smooth'});},80);">
+        <span class="pb-srv-icon">📑</span>
+        <span class="pb-srv-text">Penyusunan Kontrak &amp; Dokumen Legal</span>
+        <span class="pb-srv-arrow">→</span>
+      </button>
+      <button class="pb-service-item" onclick="showPage('home');setTimeout(()=>{var el=document.getElementById('layanan');if(el)el.scrollIntoView({behavior:'smooth'});},80);">
+        <span class="pb-srv-icon">🔍</span>
+        <span class="pb-srv-text">Verifikasi Legalitas Penyedia Layanan</span>
+        <span class="pb-srv-arrow">→</span>
+      </button>
+      <button class="pb-service-item" onclick="showPage('produk')">
+        <span class="pb-srv-icon">📚</span>
+        <span class="pb-srv-text">E-Book &amp; Literasi Hukum Digital</span>
+        <span class="pb-srv-arrow">→</span>
+      </button>
+      <button class="pb-service-item" onclick="showPage('produk')">
+        <span class="pb-srv-icon">🛍️</span>
+        <span class="pb-srv-text">Produk Kami — Digital &amp; Rekomendasi</span>
+        <span class="pb-srv-arrow">→</span>
+      </button>
+    </div>
   </div>
-  <div class="beranda-footer-col">
-    <div class="beranda-footer-col-title">Kategori Berita</div>
-    <a href="#" onclick="showPage('konten','nasional');return false;">Nasional</a>
-    <a href="#" onclick="showPage('konten','bisnis');return false;">Bisnis</a>
-    <a href="#" onclick="showPage('konten','hukum');return false;">Hukum</a>
-    <a href="#" onclick="showPage('konten','opini');return false;">Opini</a>
-  </div>
-  <div class="beranda-footer-col">
-    <div class="beranda-footer-col-title">Layanan Hukum</div>
-    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Konsultasi Online</a>
-    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Penyusunan Kontrak</a>
-    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Mediasi</a>
-  </div>
-  <div class="beranda-footer-col">
-    <div class="beranda-footer-col-title">Tentang</div>
-    <a href="#" onclick="showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Profil Pendiri</a>
-    <a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a>
-    <a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a>
-    <a href="https://wa.me/6281262195937" target="_blank">WhatsApp</a>
-  </div>
-</div>
-<div class="beranda-footer-copy">
-  <span>© 2025 LegalPreneur · Novrizal, S.I.Kom., S.H., CPM · Medan, Sumatera Utara</span>
-  <div style="display:flex;gap:1rem;">
-    <a href="#" onclick="document.getElementById('np-privacy-modal').style.display='block';return false;">Kebijakan Privasi</a>
-    <a href="#" onclick="document.getElementById('np-disclaimer-modal').style.display='block';return false;">Disclaimer</a>
-  </div>
-</div>
+
+</div><!-- /pb-hero -->
 
 </div>
 <!-- /page-beranda -->
@@ -9785,7 +9817,7 @@ function showPage(page, cat) {
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else if (page === 'beranda') {
-    // Sembunyikan elemen home
+    // Sembunyikan elemen konten home (hero, tentang, layanan, konsultasi, footer)
     hero         && (hero.style.display = 'none');
     tentang      && (tentang.style.display = 'none');
     layanan      && (layanan.style.display = 'none');
@@ -9793,9 +9825,10 @@ function showPage(page, cat) {
     footerEl     && (footerEl.style.display = 'none');
     announceBar  && (announceBar.style.display = 'none');
     npFooterExtras && (npFooterExtras.style.display = 'none');
-    npNameplate  && (npNameplate.style.display = 'none');
-    npMastheadBar && (npMastheadBar.style.display = 'none');
-    npTicker     && (npTicker.style.display = 'none');
+    // Tampilkan header (sama seperti halaman home)
+    npNameplate  && (npNameplate.style.display = '');
+    npMastheadBar && (npMastheadBar.style.display = '');
+    npTicker     && (npTicker.style.display = '');
     // Tampilkan page-beranda
     allPages.forEach(id => {
       const el = document.getElementById(id);
@@ -9816,9 +9849,9 @@ function showPage(page, cat) {
     footerEl     && (footerEl.style.display = 'none');
     announceBar  && (announceBar.style.display = 'none');
     npFooterExtras && (npFooterExtras.style.display = '');
-    npNameplate  && (npNameplate.style.display = 'none');
-    npMastheadBar && (npMastheadBar.style.display = 'none');
-    npTicker     && (npTicker.style.display = 'none');
+    npNameplate  && (npNameplate.style.display = '');
+    npMastheadBar && (npMastheadBar.style.display = '');
+    npTicker     && (npTicker.style.display = '');
     // Tampilkan halaman yang dipilih
     allPages.forEach(id => {
       const el = document.getElementById(id);
