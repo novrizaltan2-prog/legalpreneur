@@ -5737,16 +5737,14 @@ footer {
 ════════════════════════════════════════════════════════ -->
 <div id="np-nav-bar">
   <div class="np-nav-inner">
-    <a href="#" class="np-nav-logo" onclick="showPage('beranda');return false;">LP</a>
     <div class="np-nav-items" id="np-nav-items">
       <a class="np-nav-link active" onclick="closeMenu();showPage('beranda');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Beranda</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Tentang</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Layanan</a>
-      <a class="np-nav-link" onclick="closeMenu();showPage('konten');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Konten</a>
-      <a class="np-nav-link" onclick="closeMenu();showPage('produk');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">🛍 Produk Kami</a>
-      <a class="np-nav-link" onclick="closeMenu();showPage('lexiclass');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">⚖ LegalPreneur Class</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('konten');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Berita</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('produk');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Produk</a>
+      <a class="np-nav-link" onclick="closeMenu();showPage('lexiclass');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">LegalPreneur Class</a>
       <a id="np-nav-dashboard-link" class="np-nav-link" onclick="closeMenu();showPage('dashboard');return false;" href="#" style="display:none;color:#b8973a!important;">🔐 Dashboard</a>
-      <a class="np-nav-link np-nav-cta" onclick="closeMenu();showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" href="#">Daftar Kelas</a>
     </div>
 
   </div>
@@ -5897,7 +5895,7 @@ var _npDashObs = setInterval(function(){
   max-width: 460px;
 }
 .pb-cred-icon {
-  font-size: 2rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -5911,9 +5909,10 @@ var _npDashObs = setInterval(function(){
 .pb-cred-name {
   color: #b8973a;
   font-weight: 600;
-  font-size: 0.78rem;
-  margin-bottom: 0.15rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.25rem;
   display: block;
+  line-height: 1.2;
 }
 
 /* Buttons */
@@ -6094,7 +6093,10 @@ var _npDashObs = setInterval(function(){
   .pb-title { font-size: clamp(2rem, 8vw, 3rem); }
   .pb-subtitle { font-size: 1rem; margin-bottom: 1.25rem; }
   .pb-desc { font-size: 0.97rem; margin-bottom: 1.75rem; max-width: 100%; }
-  .pb-cred { margin-bottom: 1.75rem; max-width: 100%; }
+  .pb-cred { margin-bottom: 1.75rem; max-width: 100%; padding: 0.75rem 0.85rem; gap: 0.5rem; }
+  .pb-cred-icon { font-size: 0.96rem; }
+  .pb-cred-name { font-size: 0.96rem; }
+  .pb-cred-text { font-size: 0.48rem; letter-spacing: 0.01em; line-height: 1.55; }
   .pb-badge { margin-bottom: 1.75rem; }
   .pb-stats { margin-bottom: 1.75rem; }
   .pb-stat { padding: 1rem; }
@@ -6103,6 +6105,8 @@ var _npDashObs = setInterval(function(){
 @media (max-width: 480px) {
   .pb-left { padding: 2.5rem 1.25rem 2.5rem; }
   .pb-right { padding: 2rem 1.25rem 2.5rem; }
+  .pb-cred-name { font-size: 0.88rem; }
+  .pb-cred-text { font-size: 0.44rem; line-height: 1.5; }
   .pb-actions { flex-direction: column; gap: 0.75rem; }
   .pb-btn-primary, .pb-btn-outline { justify-content: center; }
 }
