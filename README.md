@@ -7405,7 +7405,7 @@ function renderBeranda() {
           <a href="https://www.amazon.com/dp/B0GRJL9XFM" target="_blank" class="pk-prod-card" data-cat="novel">
             <div class="pk-prod-icon">📕</div>
             <div class="pk-prod-cat">Novel Geopolitik · Amazon</div>
-            <div class="pk-prod-title">Novel Geopolitik</div>
+            <div class="pk-prod-title">After World War III</div>
             <p class="pk-prod-desc">Narasi fiksi bertensi tinggi yang mengeksplorasi dinamika kekuasaan dan konsekuensi hukum internasional.</p>
             <div class="pk-prod-cta">Beli di Amazon →</div>
           </a>
@@ -7413,8 +7413,32 @@ function renderBeranda() {
           <a href="https://a.co/d/013vts5G" target="_blank" class="pk-prod-card" data-cat="novel">
             <div class="pk-prod-icon">🌍</div>
             <div class="pk-prod-cat">Novel Eksklusif · Amazon</div>
-            <div class="pk-prod-title">Novel Eksklusif — Amazon Store</div>
+            <div class="pk-prod-title">HORMUZ</div>
             <p class="pk-prod-desc">Karya fiksi terbaru tersedia di platform Amazon untuk pembaca global yang menginginkan cerita berkualitas tinggi.</p>
+            <div class="pk-prod-cta">Beli di Amazon →</div>
+          </a>
+
+          <a href="https://www.amazon.com/dp/B0GX32B327" target="_blank" class="pk-prod-card" data-cat="novel">
+            <div class="pk-prod-icon">🌑</div>
+            <div class="pk-prod-cat">Novel · Amazon Kindle</div>
+            <div class="pk-prod-title">Shadows Behind Civilization</div>
+            <p class="pk-prod-desc">Sebuah karya fiksi yang mengungkap sisi gelap di balik peradaban — tersedia secara global di Amazon Kindle.</p>
+            <div class="pk-prod-cta">Beli di Amazon →</div>
+          </a>
+
+          <a href="https://www.amazon.com/dp/B0H35ZYWKD" target="_blank" class="pk-prod-card" data-cat="novel">
+            <div class="pk-prod-icon">💞</div>
+            <div class="pk-prod-cat">Novel · Amazon Kindle</div>
+            <div class="pk-prod-title">Whispers of Eternal Love</div>
+            <p class="pk-prod-desc">Kisah cinta abadi yang menyentuh hati — karya puitis yang mengalir indah, tersedia di Amazon Kindle.</p>
+            <div class="pk-prod-cta">Beli di Amazon →</div>
+          </a>
+
+          <a href="https://www.amazon.com/dp/B0H37JDHYN" target="_blank" class="pk-prod-card" data-cat="novel">
+            <div class="pk-prod-icon">🔭</div>
+            <div class="pk-prod-cat">Novel · Amazon Kindle</div>
+            <div class="pk-prod-title">Echoes of Tomorrow</div>
+            <p class="pk-prod-desc">Narasi fiksi yang menjelajahi masa depan melalui gema masa kini — tersedia secara global di Amazon Kindle.</p>
             <div class="pk-prod-cta">Beli di Amazon →</div>
           </a>
 
@@ -7969,10 +7993,10 @@ function pkFilterDigital(cat, btn) {
         <div class="lc-stats-row">
           <div>
             <span class="lc-stat-num">5</span>
-            <span class="lc-stat-label">Modul Video</span>
+            <span class="lc-stat-label">Materi Video</span>
           </div>
           <div>
-            <span class="lc-stat-num">65+</span>
+            <span class="lc-stat-num">120+</span>
             <span class="lc-stat-label">Menit Belajar</span>
           </div>
           <div>
@@ -8026,7 +8050,7 @@ function pkFilterDigital(cat, btn) {
     <div class="container">
       <div class="lc-modules-header">
         <div class="lc-section-label">Kurikulum Kursus</div>
-        <h2 class="lc-section-title">5 Modul untuk Melindungi<br>Bisnis Anda</h2>
+        <h2 class="lc-section-title">5 Materi untuk Melindungi<br>Bisnis Anda</h2>
         <p class="lc-section-sub">Setiap modul dirancang praktis — langsung bisa diterapkan untuk bisnis Anda hari ini.</p>
       </div>
 
