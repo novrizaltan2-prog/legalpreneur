@@ -5742,6 +5742,7 @@ footer {
       <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Tentang</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Layanan</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('konten');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Berita</a>
+      <a id="np-nav-tulis-artikel-link" class="np-nav-link" onclick="closeMenu();showPage('konten');setTimeout(function(){if(typeof lp_openEditor==='function')lp_openEditor(null);},100);return false;" href="#" style="display:none;color:#b8973a!important;">✏️ Tulis Artikel</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('produk');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">Produk</a>
       <a class="np-nav-link" onclick="closeMenu();showPage('lexiclass');this.closest('.np-nav-items').querySelectorAll('.np-nav-link').forEach(l=>l.classList.remove('active'));this.classList.add('active');return false;" href="#">LegalPreneur Class</a>
       <a id="np-nav-dashboard-link" class="np-nav-link" onclick="closeMenu();showPage('dashboard');return false;" href="#" style="display:none;color:#b8973a!important;">🔐 Dashboard</a>
@@ -5792,6 +5793,7 @@ var _npDashObs = setInterval(function(){
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('tentang').scrollIntoView({behavior:'smooth'}),50);return false;">Tentang</a></li>
       <li><a href="#" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('layanan').scrollIntoView({behavior:'smooth'}),50);return false;">Layanan</a></li>
       <li><a href="#" onclick="closeMenu();showPage('konten');return false;">Konten</a></li>
+      <li id="nav-tulis-artikel-li" style="display:none;"><a href="#" onclick="closeMenu();showPage('konten');setTimeout(function(){if(typeof lp_openEditor==='function')lp_openEditor(null);},100);return false;" style="color:var(--gold)!important;">✏️ Tulis Artikel</a></li>
       <li><a href="#" onclick="closeMenu();showPage('produk');return false;">🛍 Produk Kami</a></li>
       <li><a href="#" onclick="closeMenu();showPage('lexiclass');return false;">⚖ LegalPreneur Class</a></li>
       <li><a href="#" onclick="closeMenu();showPage('lexiclass');setTimeout(()=>{var el=document.getElementById('daftar');if(el)el.scrollIntoView({behavior:'smooth'});},350);return false;" class="nav-cta">Daftar Kelas</a></li>
@@ -6424,7 +6426,7 @@ function renderBeranda() {
     <div class="lp-ad-text">
       <strong>Butuh Advokat Profesional?</strong> Konsultasikan <a href="#konsultasi" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" style="color:var(--gold-pale);font-weight:600;text-decoration:underline;text-decoration-color:rgba(240,228,192,0.4);text-underline-offset:2px;transition:text-decoration-color 0.2s;" onmouseover="this.style.textDecorationColor='rgba(240,228,192,0.9)'" onmouseout="this.style.textDecorationColor='rgba(240,228,192,0.4)'">di sini</a>.
     </div>
-    <a href="#konsultasi" onclick="closeMenu();showPage('home');setTimeout(()=>document.getElementById('konsultasi').scrollIntoView({behavior:'smooth'}),80);return false;" class="lp-ad-btn">Konsultasi Gratis →</a>
+    <a href="#" onclick="showPage('konten');setTimeout(function(){if(typeof lp_openEditor==='function')lp_openEditor(null);},100);return false;" class="lp-ad-btn">✏️ Tulis Artikel</a>
   </div>
 </div>
 
@@ -11993,6 +11995,8 @@ function lp_updateUserBar() {
   const portalAuth   = document.getElementById('lp-auth-btn-wrap-portal');
   const portalWrite  = document.getElementById('lp-write-btn-wrap-portal');
   const portalGreeting = document.getElementById('lp-user-greeting-portal');
+  const navTulisLi   = document.getElementById('nav-tulis-artikel-li');
+  const npNavTulis   = document.getElementById('np-nav-tulis-artikel-link');
   const user = lp_getLoggedInUser();
   if (user) {
     if (statusBar) { statusBar.style.display = 'flex'; }
@@ -12003,6 +12007,9 @@ function lp_updateUserBar() {
     if (portalAuth)   { portalAuth.style.display = 'none'; }
     if (portalWrite)  { portalWrite.style.display = ''; }
     if (portalGreeting) portalGreeting.textContent = `👤 ${user.name}`;
+    // Nav menu: tampilkan tombol Tulis Artikel
+    if (navTulisLi) navTulisLi.style.display = '';
+    if (npNavTulis) npNavTulis.style.display = '';
   } else {
     if (statusBar) statusBar.style.display = 'none';
     if (authBtnWrap) authBtnWrap.style.display = '';
@@ -12010,6 +12017,9 @@ function lp_updateUserBar() {
     if (portalStatus) { portalStatus.style.display = 'none'; }
     if (portalAuth)   { portalAuth.style.display = ''; }
     if (portalWrite)  { portalWrite.style.display = 'none'; }
+    // Nav menu: sembunyikan tombol Tulis Artikel
+    if (navTulisLi) navTulisLi.style.display = 'none';
+    if (npNavTulis) npNavTulis.style.display = 'none';
   }
 }
 
