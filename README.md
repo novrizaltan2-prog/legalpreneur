@@ -6127,8 +6127,8 @@ var _npDashObs = setInterval(function(){
         <div class="pb-cred-text">
           <span class="pb-cred-name">Novrizal, S.I.Kom., S.H., CPM</span>
           Advokat · Konsultan Hukum<br>
-          Founder &amp; CEO – LegalPreneur Digital Konsultan<br>
-          Affiliate Marketer · Penulis
+          CEO &amp; Founder – LegalPreneur<br>
+          Penulis
         </div>
       </div>
       <div class="pb-actions">
