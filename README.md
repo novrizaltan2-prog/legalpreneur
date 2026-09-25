@@ -6127,7 +6127,7 @@ var _npDashObs = setInterval(function(){
         <div class="pb-cred-text">
           <span class="pb-cred-name">Novrizal, S.I.Kom., S.H., CPM</span>
           Advokat · Konsultan Hukum<br>
-          CEO &amp; Founder – LegalPreneur<br>
+          CEO &amp; Founder – LegalPreneur <br>
           Penulis
         </div>
       </div>
@@ -6314,7 +6314,7 @@ function renderBeranda() {
             <div class="profile-cert">
               <div class="cert-item"><span class="icon">⚖️</span>Advokat</div>
               <div class="cert-item"><span class="icon">⚖️</span>Konsultan Hukum</div>
-              <div class="cert-item"><span class="icon">🏢</span>CEO & Founder – LegalPreneur</div>
+              <div class="cert-item"><span class="icon">🏢</span>CEO & Founder – LegalPreneur </div>
               <div class="cert-item"><span class="icon">✍️</span>Penulis</div>
             </div>
           </div>
@@ -8130,7 +8130,7 @@ function pkFilterDigital(cat, btn) {
                       <div class="lc-sl-hl"><span class="lc-sl-hl-icon">⚠️</span><div class="lc-sl-hl-text">Satu syarat saja yang tidak terpenuhi bisa membuat seluruh kontrak gugur di mata hukum.</div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">✗</div><div><div class="lc-pt-t">Batal Demi Hukum (nietig)</div><div class="lc-pt-s">Kontrak dianggap tidak pernah ada — tidak ada kewajiban yang bisa dituntut</div></div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">!</div><div><div class="lc-pt-t">Dapat Dibatalkan (vernietigbaar)</div><div class="lc-pt-s">Salah satu pihak dapat meminta pembatalan ke pengadilan dalam batas waktu tertentu</div></div></div>
-                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Contoh kasus nyata</div><div class="lc-pt-s">Analisis singkat: kontrak tanda tangan tapi tetap tidak sah — mengapa?</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Contoh kasus bisnis nyata</div><div class="lc-pt-s">Analisis singkat: kontrak tanda tangan tapi tetap tidak sah — mengapa?</div></div></div>
                     </div>
                   </div>
 
@@ -9409,14 +9409,13 @@ function pkFilterDigital(cat, btn) {
           <div class="lc-cred-tags">
             <span class="lc-cred-tag">⚖️ Advokat</span>
             <span class="lc-cred-tag">⚖️ Konsultan Hukum</span>
-            <span class="lc-cred-tag">🏢 CEO & Founder – LegalPreneur</span>
+            <span class="lc-cred-tag">🏢 CEO & Founder – LegalPreneur </span>
             <span class="lc-cred-tag">✍️ Penulis</span>
-          </div>
         </div>
       </div>
     </div>
   </div>
-
+</div>
 
 
 
