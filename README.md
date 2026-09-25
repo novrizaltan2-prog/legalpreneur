@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LegalPreneur — Advokat & Konsultan Hukum Digital</title>
-<meta name="description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+<meta name="description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum dan platform literasi hukum digital terpercaya.">
 
 <!-- ═══ OPEN GRAPH (WhatsApp, Facebook, Telegram, dll) ═══ -->
 <meta id="og-title"       property="og:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
-<meta id="og-description" property="og:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+<meta id="og-description" property="og:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum dan platform literasi hukum digital terpercaya.">
 <meta id="og-image"       property="og:image"       content="https://novrizaltan2-prog.github.io/legalpreneur/og-default.png">
 <meta id="og-image-w"     property="og:image:width"  content="1200">
 <meta id="og-image-h"     property="og:image:height" content="630">
@@ -19,7 +19,7 @@
 <!-- ═══ TWITTER / X CARD ═══ -->
 <meta id="tw-card"        name="twitter:card"        content="summary_large_image">
 <meta id="tw-title"       name="twitter:title"       content="LegalPreneur — Advokat & Konsultan Hukum Digital">
-<meta id="tw-description" name="twitter:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.">
+<meta id="tw-description" name="twitter:description" content="LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum dan platform literasi hukum digital terpercaya.">
 <meta id="tw-image"       name="twitter:image"       content="https://novrizaltan2-prog.github.io/legalpreneur/og-default.png">
 <meta                     name="twitter:site"        content="@Novriz_Tan">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -5715,7 +5715,7 @@ footer {
 ════════════════════════════════════════════════════════ -->
 <div id="np-nameplate">
   <h1 id="np-nameplate-title">Legal<em>Preneur</em></h1>
-  <div id="np-nameplate-tagline">Advokat - Mediator Non Hakim - Konsultan Hukum</div>
+  <div id="np-nameplate-tagline">Advokat - Konsultan Hukum</div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════
@@ -5782,7 +5782,7 @@ var _npDashObs = setInterval(function(){
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <span class="nav-logo-main">Legal<span>Preneur</span></span>
-      <span class="nav-logo-sub">Advokat - Mediator Non Hakim - Konsultan Hukum</span>
+      <span class="nav-logo-sub">Advokat - Konsultan Hukum</span>
     </a>
     <button class="hamburger" id="hamburger-btn" onclick="(function(btn){var menu=btn.closest('nav').querySelector('.nav-menu');menu.classList.toggle('open');btn.classList.toggle('open');})(this)" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -6126,7 +6126,7 @@ var _npDashObs = setInterval(function(){
         <div class="pb-cred-icon">⚖️</div>
         <div class="pb-cred-text">
           <span class="pb-cred-name">Novrizal, S.I.Kom., S.H., CPM</span>
-          Advokat · Mediator Non Hakim · Konsultan Hukum<br>
+          Advokat · Konsultan Hukum<br>
           Founder &amp; CEO – LegalPreneur Digital Konsultan<br>
           Affiliate Marketer · Penulis
         </div>
@@ -6313,10 +6313,8 @@ function renderBeranda() {
           <div class="profile-body">
             <div class="profile-cert">
               <div class="cert-item"><span class="icon">⚖️</span>Advokat</div>
-              <div class="cert-item"><span class="icon">🤝</span>Mediator Non Hakim</div>
               <div class="cert-item"><span class="icon">⚖️</span>Konsultan Hukum</div>
-              <div class="cert-item"><span class="icon">🏢</span>Founder & CEO – LegalPreneur Digital Konsultan</div>
-              <div class="cert-item"><span class="icon">🛍️</span>Affiliate Marketer</div>
+              <div class="cert-item"><span class="icon">🏢</span>CEO & Founder – LegalPreneur</div>
               <div class="cert-item"><span class="icon">✍️</span>Penulis</div>
             </div>
           </div>
@@ -6336,7 +6334,7 @@ function renderBeranda() {
         <h2 class="section-title fade-up">Selamat Datang di <em>LegalPreneur</em></h2>
 
         <p class="about-intro fade-up" style="text-align:justify;">
-          Novrizal, S.I.Kom., S.H., CPM adalah Advokat, Mediator Non Hakim, dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan UMKM. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai affiliate marketer, pengembang produk digital, dan penulis.
+          Novrizal, S.I.Kom., S.H., CPM adalah Advokat dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan hukum. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai pengembang produk digital, dan penulis.
         </p>
 
         <div class="visi-misi-grid">
@@ -6448,7 +6446,7 @@ function renderBeranda() {
     <div class="lp-np-masthead" style="padding-left: clamp(1rem,4vw,3rem); padding-right: clamp(1rem,4vw,3rem);">
       <div class="lp-np-masthead-eyebrow">PORTAL HUKUM · BISNIS · REGULASI · MEDIASI</div>
       <div class="lp-np-masthead-name">Legal<em>Preneur</em></div>
-      <div class="lp-np-masthead-tagline">Advokat - Mediator Non Hakim - Konsultan Hukum</div>
+      <div class="lp-np-masthead-tagline">Advokat - Konsultan Hukum</div>
       <div class="lp-np-masthead-rule"></div>
     </div>
 
@@ -7373,8 +7371,8 @@ function renderBeranda() {
           <a href="https://lynk.id/novriz.digital/o9o07zo9q1op" target="_blank" class="pk-prod-card" data-cat="ebook-hukum">
             <div class="pk-prod-icon">📋</div>
             <div class="pk-prod-cat">E-Book Hukum · Lynk.id</div>
-            <div class="pk-prod-title">Panduan Menulis Kontrak bisnis UMKM Anti Sengketa</div>
-            <p class="pk-prod-desc">Panduan lengkap menyusun kontrak bisnis yang kuat dan bebas sengketa, khusus dirancang untuk pelaku UMKM Indonesia.</p>
+            <div class="pk-prod-title">Panduan Menulis Kontrak bisnis Anti Sengketa</div>
+            <p class="pk-prod-desc">Panduan lengkap menyusun kontrak bisnis yang kuat dan bebas sengketa, khusus dirancang untuk pelaku bisnis Indonesia.</p>
             <div class="pk-prod-cta">Dapatkan di Lynk.id →</div>
           </a>
 
@@ -8017,7 +8015,7 @@ function pkFilterDigital(cat, btn) {
     <div class="container">
       <div class="lc-pain-header">
         <div class="lc-section-label">Masalah yang Sering Terjadi</div>
-        <h2 class="lc-section-title">UMKM Rugi Karena<br><em>Kontrak yang Salah</em></h2>
+        <h2 class="lc-section-title">Bisnis Rugi Karena<br><em>Kontrak yang Salah</em></h2>
         <p class="lc-section-sub">Kesalahan hukum kontrak bukan hanya soal kerugian finansial — bisa mengancam kelangsungan bisnis Anda secara keseluruhan.</p>
       </div>
       <div class="lc-pain-grid">
@@ -8105,7 +8103,7 @@ function pkFilterDigital(cat, btn) {
                     <div class="lc-sl-label">Slide 2 · Konteks</div>
                     <div class="lc-sl-h">Mengapa Kontrak Bisnis Itu Penting?</div>
                     <div class="lc-sl-body">
-                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">💡</span><div class="lc-sl-hl-text">Realita: banyak UMKM merugi bukan karena produknya buruk, tapi karena kontraknya lemah atau tidak ada sama sekali.</div></div>
+                      <div class="lc-sl-hl"><span class="lc-sl-hl-icon">💡</span><div class="lc-sl-hl-text">Realita: banyak bisnis merugi bukan karena produknya buruk, tapi karena kontraknya lemah atau tidak ada sama sekali.</div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Kontrak = peta jalan bisnis Anda</div><div class="lc-pt-s">Tanpa kontrak yang jelas, tidak ada yang bisa dibuktikan saat sengketa</div></div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Berlaku sebagai UU bagi para pihak</div><div class="lc-pt-s">Pasal 1338 KUHPerdata: pacta sunt servanda — kontrak mengikat</div></div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Perbedaan lisan vs tertulis</div><div class="lc-pt-s">Kontrak tertulis jauh lebih kuat — mudah dibuktikan di mata hukum</div></div></div>
@@ -8132,7 +8130,7 @@ function pkFilterDigital(cat, btn) {
                       <div class="lc-sl-hl"><span class="lc-sl-hl-icon">⚠️</span><div class="lc-sl-hl-text">Satu syarat saja yang tidak terpenuhi bisa membuat seluruh kontrak gugur di mata hukum.</div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">✗</div><div><div class="lc-pt-t">Batal Demi Hukum (nietig)</div><div class="lc-pt-s">Kontrak dianggap tidak pernah ada — tidak ada kewajiban yang bisa dituntut</div></div></div>
                       <div class="lc-pt-card"><div class="lc-pt-num">!</div><div><div class="lc-pt-t">Dapat Dibatalkan (vernietigbaar)</div><div class="lc-pt-s">Salah satu pihak dapat meminta pembatalan ke pengadilan dalam batas waktu tertentu</div></div></div>
-                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Contoh kasus UMKM nyata</div><div class="lc-pt-s">Analisis singkat: kontrak tanda tangan tapi tetap tidak sah — mengapa?</div></div></div>
+                      <div class="lc-pt-card"><div class="lc-pt-num">→</div><div><div class="lc-pt-t">Contoh kasus nyata</div><div class="lc-pt-s">Analisis singkat: kontrak tanda tangan tapi tetap tidak sah — mengapa?</div></div></div>
                     </div>
                   </div>
 
@@ -8336,7 +8334,7 @@ function pkFilterDigital(cat, btn) {
                 </div>
                 <div class="lc-script-footer">
                   <div class="lc-script-footer-row"><span>→</span> Posting: Rabu atau Jumat pukul 12.00–14.00 WIB</div>
-                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #templatekontrak #klausulkontrak #hukumbisnis #umkm</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #templatekontrak #klausulkontrak #hukumbisnis</div>
                 </div>
               </div><!-- /lc-script-box -->
               </div><!-- /lc-slide-script-grid -->
@@ -8435,7 +8433,7 @@ function pkFilterDigital(cat, btn) {
                     <div class="lc-sl-cover-content">
                       <div class="lc-sl-badge">📜 Modul 3 · Kesalahan Kontrak</div>
                       <div class="lc-sl-title">Kesalahan Umum dalam<br>Kontrak Bisnis</div>
-                      <div class="lc-sl-sub">Studi kasus nyata UMKM — dan cara menghindarinya</div>
+                      <div class="lc-sl-sub">Studi kasus nyata — dan cara menghindarinya</div>
                       <div class="lc-sl-meta-row">
                         <div class="lc-sl-meta-chip"><b>▶</b> Video 13 mnt</div>
                         <div class="lc-sl-meta-chip"><b>📊</b> Studi Kasus</div>
@@ -8524,7 +8522,7 @@ function pkFilterDigital(cat, btn) {
                 </div>
                 <div class="lc-script-footer">
                   <div class="lc-script-footer-row"><span>→</span> Posting: Senin atau Kamis pukul 19.00–21.00 WIB</div>
-                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kesalahankontrak #hukumumkm #bisnisamantips #kontrakbisnis</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kesalahankontrak #hukum #bisnisamantips #kontrakbisnis</div>
                 </div>
               </div><!-- /lc-script-box -->
               </div><!-- /lc-slide-script-grid -->
@@ -8556,7 +8554,7 @@ function pkFilterDigital(cat, btn) {
                 <div class="lc-bonus-box">
                   <h4>Materi &amp; Bonus Modul 3</h4>
                   <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎥</span> Video penjelasan 13 menit</div>
-                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📊</span> Studi kasus nyata UMKM</div>
+                  <div class="lc-bonus-item"><span class="lc-bonus-item-icon">📊</span> Studi kasus nyata</div>
                   <div class="lc-bonus-item"><span class="lc-bonus-item-icon">🎁</span> <strong>Bonus:</strong> Checklist Anti-Sengketa PDF</div>
                   <div class="lc-summary-grid" style="margin-top:1rem;">
                     <div class="lc-summary-item"><span class="lc-summary-check">✓</span> Kesalahan kontrak lisan</div>
@@ -8700,7 +8698,7 @@ function pkFilterDigital(cat, btn) {
                 </div>
                 <div class="lc-script-footer">
                   <div class="lc-script-footer-row"><span>→</span> Posting: Selasa atau Jumat pukul 07.00–09.00 WIB</div>
-                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #penyelesaiansengketa #mediasibisnis #hukumumkm #tipsadvokat</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #penyelesaiansengketa #mediasibisnis #hukum #tipsadvokat</div>
                 </div>
               </div><!-- /lc-script-box -->
               </div><!-- /lc-slide-script-grid -->
@@ -8758,7 +8756,7 @@ function pkFilterDigital(cat, btn) {
             <div class="lc-module-num">05</div>
             <div class="lc-module-head">
               <h3>Simulasi Kasus Nyata</h3>
-              <p>Studi kasus UMKM vs supplier — Toko Maju vs CV Sinar. Analisis kesalahan kontrak dan latihan membuat draft kontrak yang benar dari awal.</p>
+              <p>Studi kasus vs supplier — Toko Maju vs CV Sinar. Analisis kesalahan kontrak dan latihan membuat draft kontrak yang benar dari awal.</p>
               <div class="lc-module-format">
                 <span class="lc-fmt-tag">Video 15 mnt</span>
                 <span class="lc-fmt-tag">Latihan Draft</span>
@@ -8786,7 +8784,7 @@ function pkFilterDigital(cat, btn) {
                     <div class="lc-sl-cover-content">
                       <div class="lc-sl-badge">📜 Modul 5 · Simulasi Kasus</div>
                       <div class="lc-sl-title">Simulasi Kasus Nyata</div>
-                      <div class="lc-sl-sub">Toko Maju vs CV Sinar — Analisis kontrak bermasalah UMKM</div>
+                      <div class="lc-sl-sub">Toko Maju vs CV Sinar — Analisis kontrak bermasalah</div>
                       <div class="lc-sl-meta-row">
                         <div class="lc-sl-meta-chip"><b>▶</b> Video 15 mnt</div>
                         <div class="lc-sl-meta-chip"><b>✏️</b> Latihan Draft</div>
@@ -8857,7 +8855,7 @@ function pkFilterDigital(cat, btn) {
                 <div class="lc-script-body">
                   <div class="lc-script-segment">
                     <div class="lc-script-segment-label">Hook (0–5 dtk)</div>
-                    <div class="lc-script-text">"Ini kasus nyata UMKM yang kehilangan ratusan juta karena kontraknya salah dari awal."</div>
+                    <div class="lc-script-text">"Ini kasus nyata yang kehilangan ratusan juta karena kontraknya salah dari awal."</div>
                     <div class="lc-script-dir">Tampilkan judul kasus, ekspresi serious, nada prihatin</div>
                   </div>
                   <div class="lc-script-segment">
@@ -8873,7 +8871,7 @@ function pkFilterDigital(cat, btn) {
                 </div>
                 <div class="lc-script-footer">
                   <div class="lc-script-footer-row"><span>→</span> Posting: Senin atau Rabu pukul 19.00–21.00 WIB</div>
-                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kasushukumumkm #simulasikontrak #draftkontrak #legalpreneur</div>
+                  <div class="lc-script-footer-row"><span>→</span> Hashtag: #kasushukum #simulasikontrak #draftkontrak #legalpreneur</div>
                 </div>
               </div><!-- /lc-script-box -->
               </div><!-- /lc-slide-script-grid -->
@@ -8955,7 +8953,7 @@ function pkFilterDigital(cat, btn) {
           <div style="position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#b8973a;color:#0f0e0b;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;font-weight:700;padding:4px 14px;border-radius:0 0 6px 6px;white-space:nowrap;">TERPOPULER</div>
           <div style="padding:1.75rem 1.5rem 1.25rem;border-bottom:1px solid rgba(184,151,58,0.2);">
             <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:#b8973a;text-transform:uppercase;margin-bottom:0.5rem;">Pro</div>
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#f5f0e8;line-height:1;">Rp150.000</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#f5f0e8;line-height:1;">Rp100.000</div>
             <div style="font-size:0.78rem;color:#9A9280;margin-top:0.35rem;">Paket lengkap + template dokumen</div>
           </div>
           <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;">
@@ -8975,7 +8973,7 @@ function pkFilterDigital(cat, btn) {
         <div style="flex:1;min-width:240px;max-width:340px;background:#fff;border:1px solid rgba(184,151,58,0.2);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;">
           <div style="background:#f5f0e8;padding:1.5rem 1.5rem 1.25rem;border-bottom:1px solid rgba(184,151,58,0.15);">
             <div style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;color:#b8973a;text-transform:uppercase;margin-bottom:0.5rem;">VIP Konsultasi</div>
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#0f0e0b;line-height:1;">Rp350.000</div>
+            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#0f0e0b;line-height:1;">Rp150.000</div>
             <div style="font-size:0.78rem;color:#9A9280;margin-top:0.35rem;">Konsultasi 1-on-1 langsung bersama advokat</div>
           </div>
           <div style="padding:1.25rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:0.6rem;">
@@ -9119,7 +9117,7 @@ function pkFilterDigital(cat, btn) {
 
     var usaha      = (document.getElementById('main-f-usaha').value || '').trim();
     var kota       = (document.getElementById('main-f-kota').value  || '').trim();
-    var paketLabel = { starter: 'Starter – Rp50.000', pro: 'Pro – Rp150.000', vip: 'VIP Konsultasi – Rp350.000' }[paket] || paket;
+    var paketLabel = { starter: 'Starter – Rp50.000', pro: 'Pro – Rp100.000', vip: 'VIP Konsultasi – Rp150.000' }[paket] || paket;
 
     // ── Nonaktifkan tombol, tampilkan status loading ──────────────────
     var btn = document.querySelector('[onclick="mainSubmitForm()"]');
@@ -9357,7 +9355,7 @@ function pkFilterDigital(cat, btn) {
     var kota  = (document.getElementById('lc-f-kota').value || '').trim();
     var tanya = (document.getElementById('lc-f-pertanyaan').value || '').trim();
     var paketMap = { starter: 'Starter', pro: 'Pro', vip: 'VIP Konsultasi' };
-    var hargaMap = { starter: 'Rp50.000', pro: 'Rp150.000', vip: 'Rp350.000' };
+    var hargaMap = { starter: 'Rp50.000', pro: 'Rp100.000', vip: 'Rp150.000' };
     var paketLabel = (paketMap[paket] || paket) + ' — ' + (hargaMap[paket] || '');
 
     // Isi ringkasan di modal
@@ -9406,14 +9404,12 @@ function pkFilterDigital(cat, btn) {
         <div class="lc-instructor-avatar">⚖️</div>
         <div>
           <div class="lc-instructor-name">Novrizal, S.I.Kom., S.H., CPM</div>
-          <div class="lc-instructor-title">Advokat · Konsultan Hukum · Mediator Non Hakim</div>
-          <p class="lc-instructor-bio" style="text-align:justify;">Novrizal, S.I.Kom., S.H., CPM adalah Advokat, Mediator Non Hakim, dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan UMKM. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai affiliate marketer, pengembang produk digital, dan penulis.</p>
+          <div class="lc-instructor-title">Advokat · Konsultan Hukum</div>
+          <p class="lc-instructor-bio" style="text-align:justify;">Novrizal, S.I.Kom., S.H., CPM adalah Advokat dan Konsultan Hukum yang berfokus pada hukum bisnis serta pendampingan hukum. Ia mendirikan LegalPreneur untuk menghadirkan solusi hukum digital yang praktis dan berintegritas, sekaligus aktif sebagai pengembang produk digital, dan penulis.</p>
           <div class="lc-cred-tags">
             <span class="lc-cred-tag">⚖️ Advokat</span>
-            <span class="lc-cred-tag">🤝 Mediator Non Hakim</span>
             <span class="lc-cred-tag">⚖️ Konsultan Hukum</span>
-            <span class="lc-cred-tag">🏢 Founder & CEO – LegalPreneur Digital Konsultan</span>
-            <span class="lc-cred-tag">🛍️ Affiliate Marketer</span>
+            <span class="lc-cred-tag">🏢 CEO & Founder – LegalPreneur</span>
             <span class="lc-cred-tag">✍️ Penulis</span>
           </div>
         </div>
@@ -9495,7 +9491,7 @@ function lcNextSl(mod) { lcGoSl(mod, (lcSlideIdx[mod] || 0) + 1); }
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo-text">Legal<span>Preneur</span></div>
-        <span class="logo-sub">Advokat - Mediator Non Hakim - Konsultan Hukum</span>
+        <span class="logo-sub">Advokat - Konsultan Hukum</span>
         <p>Platform hukum, literasi, dan gaya hidup digital terpercaya oleh Novrizal, S.I.Kom., S.H., CPM.</p>
         <div style="margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;">
           <a href="https://wa.me/6281262195937" target="_blank" style="color:#22c55e;text-decoration:none;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;">📱 WA: 0812-6219-5937</a>
@@ -10709,7 +10705,7 @@ function lp_deleteFromRead(id) {
 // Reset OG tags ke default situs (dipanggil saat modal artikel ditutup)
 function lp_resetOgTags() {
   const defaultTitle = 'LegalPreneur — Advokat & Konsultan Hukum Digital';
-  const defaultDesc  = 'LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum, Mediator, dan platform literasi hukum digital terpercaya.';
+  const defaultDesc  = 'LegalPreneur oleh Novrizal, S.I.Kom., S.H., CPM — Advokat & Konsultan Hukum dan platform literasi hukum digital terpercaya.';
   document.title = defaultTitle;
   ['og-title','tw-title'].forEach(id => document.getElementById(id)?.setAttribute('content', defaultTitle));
   ['og-description','tw-description'].forEach(id => document.getElementById(id)?.setAttribute('content', defaultDesc));
